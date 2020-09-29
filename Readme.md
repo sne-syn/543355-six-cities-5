@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Snezhana Syn](https://up.htmlacademy.ru/react/5/user/543355).
-* Наставник: [Владимир Коршунов](https://up.htmlacademy.ru/react/5/user/83596).
+* Наставник: [Владимир Коршунов](https://htmlacademy.ru/profile/bekobou).
 
 ---
 
