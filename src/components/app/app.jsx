@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import PageContainer from '../pageContainer/pageContainer';
+import Page from '../page/page';
 
 const App = (props) => {
   const {placesCount} = props;
 
   return (
-    <PageContainer placesCount={placesCount} />
+    <Page placesCount={placesCount} />
   );
 };
 

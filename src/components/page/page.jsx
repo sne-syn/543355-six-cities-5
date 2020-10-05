@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Header from '../header/header';
 import Main from '../main/main';
 
-const PageContainer = (props) => {
+const Page = (props) => {
   const {placesCount} = props;
 
   return (
@@ -14,8 +14,8 @@ const PageContainer = (props) => {
   );
 };
 
-PageContainer.propTypes = {
+Page.propTypes = {
   placesCount: PropTypes.number.isRequired,
 };
 
-export default PageContainer;
+export default Page;
