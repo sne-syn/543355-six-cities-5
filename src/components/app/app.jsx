@@ -12,7 +12,6 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-
         <Route exact path='/'>
           <MainPage placesCount={placesCount} /></Route>
         <Route exact path='/login'>
