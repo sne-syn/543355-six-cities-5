@@ -21,7 +21,9 @@ const App = (props) => {
         <Route exact path='/favorites'>
           <FavoritesPage />
         </Route>
-        <Route path='/offer/:id' component={PropertyPage}/>
+        <Route exact path='/offer/:id'>
+          <PropertyPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
