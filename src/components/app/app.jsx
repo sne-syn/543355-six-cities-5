@@ -1,12 +1,30 @@
 import React from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import PropTypes from "prop-types";
-import Page from '../page/page';
+import LoginPage from '../loginPage/loginPage';
+import FavoritesPage from '../favoritesPage/favoritesPage';
+import MainPage from '../mainPage/mainPage';
+import PropertyPage from '../propertyPage/propertyPage';
 
 const App = (props) => {
   const {placesCount} = props;
 
   return (
-    <Page placesCount={placesCount} />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/'>
+          <MainPage placesCount={placesCount} /></Route>
+        <Route exact path='/login'>
+          <LoginPage />
+        </Route>
+        <Route exact path='/favorites'>
+          <FavoritesPage />
+        </Route>
+        <Route exact path='/offer/:id'>
+          <PropertyPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
