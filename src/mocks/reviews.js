@@ -3,6 +3,7 @@ import {
 } from '../utils/const.js';
 import {
   getRandomIntegerNumber,
+  getRandomNumber
 } from '../utils/common.js';
 
 const getRandomDate = () => {
@@ -29,9 +30,11 @@ const texts = [`Maria’s place is at a perfect location, very easy to get aroun
 const generateReview = () => {
   return {
     id: i++,
+    avatar: `https://robohash.org/${getRandomIntegerNumber(1, 100)}?set=set2&size=54x54`,
     text: texts[getRandomIntegerNumber(0, texts.length)],
     author: authors[getRandomIntegerNumber(0, authors.length)],
     date: formatReleaseDate(getRandomDate()),
+    rating: getRandomNumber(0, 5)
   };
 };
 

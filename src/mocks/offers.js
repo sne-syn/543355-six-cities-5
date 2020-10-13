@@ -17,6 +17,15 @@ const generateRandomAmountOfRandomNumbers = () => {
   return uniqueSet;
 };
 
+const getShuffledArray = (arr) => {
+  let newArr = [...arr];
+  for (let i = newArr.length - 1; i > 0; i--) {
+    const rand = Math.floor(Math.random() * (i + 1));
+    [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
+  }
+  return newArr;
+};
+
 const Photos = [`https://bit.ly/30YVQif`, `https://bit.ly/36TgIv7`, `https://bit.ly/36Ys6Wn`, `https://bit.ly/3lEt2DG`, `https://bit.ly/33Qpecj`, `https://bit.ly/34LWdhj`];
 const Features = [`dishwasher`, `parking`, `washer`, `elevator`, `conditioner`, `Wi-Fi`, `washing machine`, `towels`, `heating`, `coffee machine`, `baby seat`, `kitchen`, `cabel TV`, `fridge`];
 const AccomnodationTypes = [`apartment`, `room`, `house`, `hotel`];
@@ -31,7 +40,7 @@ const generateOffer = () => {
     id: generateID(),
     city: getRandomArrayItem(CITIES),
     title: getRandomArrayItem(Titles),
-    images: getRandomArrayItem(Photos),
+    images: getShuffledArray(Photos),
     price: getRandomIntegerNumber(50, 250),
     type: getRandomArrayItem(AccomnodationTypes),
     rating: getRandomNumber(0, 5),

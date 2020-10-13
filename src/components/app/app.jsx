@@ -6,21 +6,22 @@ import FavoritesPage from '../favoritesPage/favoritesPage';
 import MainPage from '../mainPage/mainPage';
 import PropertyPage from '../propertyPage/propertyPage';
 
-const App = (props) => {
-  const {offers, reviews, host} = props;
+const App = ({offers, reviews, host, isLogged}) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
-          <MainPage offers={offers} /></Route>
+        <Route exact path='/' render={({history}) => (
+          <MainPage offers={offers} isLogged={isLogged} onCardClick={() => history.push(`/offer/:id`)} />
+        )}
+        />
         <Route exact path='/login'>
-          <LoginPage />
+          <LoginPage isLogged={isLogged}/>
         </Route>
         <Route exact path='/favorites'>
-          <FavoritesPage />
+          <FavoritesPage isLogged={isLogged}/>
         </Route>
-        <Route exact path='/offer/:id' offers={offers} reviews={reviews} host={host}>
-          <PropertyPage />
+        <Route exact path='/offer/:id'>
+          <PropertyPage offer={offers[0]} reviews={reviews} host={host} isLogged={isLogged} />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -36,6 +37,7 @@ App.propTypes = {
     name: PropTypes.string.isRequired,
     isSuper: PropTypes.bool.isRequired,
   }).isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default App;
