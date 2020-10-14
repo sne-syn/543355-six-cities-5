@@ -1,27 +1,38 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import PropTypes from "prop-types";
-import LoginPage from '../loginPage/loginPage';
-import FavoritesPage from '../favoritesPage/favoritesPage';
-import MainPage from '../mainPage/mainPage';
-import PropertyPage from '../propertyPage/propertyPage';
+import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import LoginPage from '../login-page/login-page';
+import FavoritesPage from '../favorites-page/favorites-page';
+import MainPage from '../main-page/main-page';
+import PropertyPage from '../property-page/property-page';
 
-const App = (props) => {
-  const {placesCount} = props;
-
+const App = ({offers, reviews, hosts, isLogged}) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
-          <MainPage placesCount={placesCount} /></Route>
+        <Route exact path='/' render={({history}) => (
+          <MainPage offers={offers} isLogged={isLogged} onCardClick={() => history.push(`/offer/5`)} />
+        )}
+        />
         <Route exact path='/login'>
-          <LoginPage />
+          {(isLogged) ? (
+            <Redirect to="/" />
+          ) :
+            (<LoginPage isLogged={isLogged}/>)
+          }
+
         </Route>
         <Route exact path='/favorites'>
-          <FavoritesPage />
+
+          {(!isLogged) ? (
+            <Redirect to="/login" />
+          ) :
+            (<FavoritesPage isLogged={isLogged} offers={offers} />)
+          }
+
         </Route>
         <Route exact path='/offer/:id'>
-          <PropertyPage />
+          <PropertyPage offer={offers[0]} reviews={reviews} hosts={hosts} isLogged={isLogged} />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -29,7 +40,10 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired,
+  offers: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired,
+  hosts: PropTypes.array.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default App;
