@@ -15,7 +15,6 @@ const formateDate = (date) => {
 };
 
 const ReviewsList = ({reviews}) => {
-  console.log(reviews[0].date)
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
