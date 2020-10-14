@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
+import FavoriteButton from '../favorite-button/favorite-button';
 import Host from '../host/host';
+import MapSection from '../map-section/map-section';
 import ReviewsList from '../reviews-list/reviews-list';
 import {CITIES} from '../../utils/const';
 import {capitalizeChar} from '../../utils/common';
@@ -32,12 +34,7 @@ const PropertyPage = ({offer, reviews, host, isLogged}) => {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <button className={`property__bookmark-button ${offer.isFavorite && (`property__bookmark-button--active`)} button`} type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">{`${offer.isFavorite ? (`In`) : (`To`)} bookmarks`}</span>
-                </button>
+                <FavoriteButton isFavorite={offer.isFavorite} componentName={`property`} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -77,7 +74,7 @@ const PropertyPage = ({offer, reviews, host, isLogged}) => {
 
             </div>
           </div>
-          <section className="property__map map"></section>
+          <MapSection sectionName={`property`}/>
         </section>
         <div className="container">
           <section className="near-places places">

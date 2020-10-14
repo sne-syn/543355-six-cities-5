@@ -11,7 +11,7 @@ const App = ({offers, reviews, host, isLogged}) => {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' render={({history}) => (
-          <MainPage offers={offers} isLogged={isLogged} onCardClick={() => history.push(`/offer/:id`)} />
+          <MainPage offers={offers} isLogged={isLogged} onCardClick={() => history.push(`/offer/5`)} />
         )}
         />
         <Route exact path='/login'>

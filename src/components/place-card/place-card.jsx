@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FavoriteButton from '../favorite-button/favorite-button';
 import {CITIES} from '../../utils/const';
 import {capitalizeChar} from '../../utils/common';
 
 const PlaceCard = ({offer, onCardHover, onCardClick}) => {
   return (
-    <article key={`${offer.id}`} className="cities__place-card place-card" onMouseEnter={onCardHover} onClick={onCardClick}>
+    <article key={`${offer.id}`} className="cities__place-card place-card" onMouseEnter={onCardHover}>
       {offer.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
@@ -23,12 +24,7 @@ const PlaceCard = ({offer, onCardHover, onCardClick}) => {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${offer.isFavorite && (`place-card__bookmark-button--active`)} button`} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">{`${offer.isFavorite ? (`In`) : (`To`)} bookmarks`}</span>
-          </button>
+          <FavoriteButton isFavorite={offer.isFavorite} componentName={`place-card`} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -37,7 +33,7 @@ const PlaceCard = ({offer, onCardHover, onCardClick}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.title}</a>
+          <a href="#" onClick={onCardClick}>{offer.title}</a>
         </h2>
         <p className="place-card__type">{capitalizeChar(offer.type)}</p>
       </div>

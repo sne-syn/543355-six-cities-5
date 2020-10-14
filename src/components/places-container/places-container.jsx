@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlacesList from '../places-list/places-list';
+import MapSection from '../map-section/map-section';
 
 const PlacesContainer = ({filteredOffers, activeCity, onCardClick}) => {
   return (
@@ -26,7 +27,7 @@ const PlacesContainer = ({filteredOffers, activeCity, onCardClick}) => {
         <PlacesList offers={filteredOffers} onCardClick={onCardClick}/>
       </section>
       <div className="cities__right-section">
-        <section className="cities__map map"></section>
+        <MapSection sectionName={`cities`}/>
       </div>
     </div>
   );

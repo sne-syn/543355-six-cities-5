@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from './../header/header';
 import Footer from './../footer/footer';
 
-const FavoritesPage = () => {
+const FavoritesPage = ({isLogged}) => {
   return (
     <div className="page">
-      <Header />
+      <Header isLogged={isLogged}/>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -135,6 +136,10 @@ const FavoritesPage = () => {
       <Footer />
     </div>
   );
+};
+
+FavoritesPage.propTypes = {
+  isLogged: PropTypes.bool.isRequired
 };
 
 export default FavoritesPage;
