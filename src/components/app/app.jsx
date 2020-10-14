@@ -6,7 +6,7 @@ import FavoritesPage from '../favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
 
-const App = ({offers, reviews, host, isLogged}) => {
+const App = ({offers, reviews, hosts, isLogged}) => {
   return (
     <BrowserRouter>
       <Switch>
@@ -32,7 +32,7 @@ const App = ({offers, reviews, host, isLogged}) => {
 
         </Route>
         <Route exact path='/offer/:id'>
-          <PropertyPage offer={offers[0]} reviews={reviews} host={host} isLogged={isLogged} />
+          <PropertyPage offer={offers[0]} reviews={reviews} hosts={hosts} isLogged={isLogged} />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -42,12 +42,7 @@ const App = ({offers, reviews, host, isLogged}) => {
 App.propTypes = {
   offers: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
-  host: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    isSuper: PropTypes.bool.isRequired,
-  }).isRequired,
+  hosts: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,
 };
 

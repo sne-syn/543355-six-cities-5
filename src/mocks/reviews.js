@@ -1,22 +1,18 @@
 import {
-  MONTH_NAMES,
-} from '../utils/const.js';
-import {
   getRandomIntegerNumber,
   getRandomNumber
 } from '../utils/common.js';
 
 const getRandomDate = () => {
   const reviewDate = new Date();
-  reviewDate.setMonth(getRandomIntegerNumber(0, 11));
+  reviewDate.setDate(getRandomIntegerNumber(1, 31));
+  reviewDate.setMonth((getRandomIntegerNumber(0, 11)));
   reviewDate.setFullYear(getRandomIntegerNumber(2000, 2020));
-
-  return reviewDate;
-};
-
-// format date month yyyy
-const formatReleaseDate = (date) => {
-  const formatedDate = `${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+  const formatedDate = {
+    year: reviewDate.getFullYear(),
+    month: reviewDate.getMonth(),
+    day: reviewDate.getDay()
+  };
 
   return formatedDate;
 };
@@ -33,7 +29,7 @@ const generateReview = () => {
     avatar: `https://robohash.org/${getRandomIntegerNumber(1, 100)}?set=set2&size=54x54`,
     text: texts[getRandomIntegerNumber(0, texts.length)],
     author: authors[getRandomIntegerNumber(0, authors.length)],
-    date: formatReleaseDate(getRandomDate()),
+    date: getRandomDate(),
     rating: getRandomNumber(0, 5)
   };
 };

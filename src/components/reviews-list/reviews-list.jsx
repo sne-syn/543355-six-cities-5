@@ -1,8 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../form/form';
+import {
+  addLeadingZero
+} from '../../utils/common.js';
+import {
+  MONTH_NAMES,
+} from '../../utils/const';
+
+// format date month yyyy
+const formateDate = (date) => {
+  const formatedDate = `${MONTH_NAMES[date.month]} ${date.year}`;
+  return formatedDate;
+};
 
 const ReviewsList = ({reviews}) => {
+  console.log(reviews[0].date)
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
@@ -26,7 +39,7 @@ const ReviewsList = ({reviews}) => {
               </div>
               <p className="reviews__text">{review.text}
               </p>
-              <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+              <time className="reviews__time" dateTime={`${review.date.year}-${addLeadingZero(review.date.month)}-${addLeadingZero(review.date.day)}`}>{formateDate(review.date)}</time>
             </div>
           </li>
         ))}

@@ -8,7 +8,7 @@ import ReviewsList from '../reviews-list/reviews-list';
 import {CITIES} from '../../utils/const';
 import {capitalizeChar} from '../../utils/common';
 
-const PropertyPage = ({offer, reviews, host, isLogged}) => {
+const PropertyPage = ({offer, reviews, hosts, isLogged}) => {
   return (
     <div className="page">
       <Header isLogged={isLogged}/>
@@ -69,7 +69,7 @@ const PropertyPage = ({offer, reviews, host, isLogged}) => {
                 </ul>
               </div>
 
-              <Host offer={offer} host={host}/>
+              <Host description={offer.description} hostID={offer.host} hosts={hosts}/>
               <ReviewsList reviews={reviews} />
 
             </div>
@@ -202,12 +202,7 @@ PropertyPage.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }).isRequired,
-  host: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    isSuper: PropTypes.bool.isRequired,
-  }).isRequired,
+  hosts: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
 };
 

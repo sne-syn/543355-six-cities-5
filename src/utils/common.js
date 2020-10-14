@@ -1,3 +1,8 @@
+// add leading zero to num < 10
+const addLeadingZero = (value) => {
+  return (value < 10) ? `0${value}` : value;
+};
+
 const generateID = function () {
   return `_${Math.random().toString(36).substr(2, 9)}`;
 };
@@ -36,6 +41,7 @@ const capitalizeChar = (str) => {
 };
 
 export {
+  addLeadingZero,
   capitalizeChar,
   generateID,
   getRandomIntegerNumber,
