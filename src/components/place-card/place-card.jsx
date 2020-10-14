@@ -28,7 +28,7 @@ const PlaceCard = ({offer, onCardHover, onCardClick}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${100 / 5 * Math.floor(offer.rating)}%`}}></span>
+            <span style={{width: `${100 / 5 * offer.rating}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -38,7 +38,7 @@ const PropertyPage = ({offer, reviews, hosts, isLogged}) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${100 / 5 * Math.floor(offer.rating)}%`}}></span>
+                  <span style={{width: `${100 / 5 * offer.rating}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>

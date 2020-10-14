@@ -40,7 +40,7 @@ const ReviewsList = ({reviews}) => {
             <div className="reviews__info">
               <div className="reviews__rating rating">
                 <div className="reviews__stars rating__stars">
-                  <span style={{width: `${100 / 5 * Math.floor(review.rating)}%`}}></span>
+                  <span style={{width: `${100 / 5 * Math.round(review.rating)}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
               </div>
