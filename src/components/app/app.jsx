@@ -1,10 +1,10 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import LoginPage from '../loginPage/loginPage';
+import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favoritesPage/favoritesPage';
-import MainPage from '../mainPage/mainPage';
-import PropertyPage from '../propertyPage/propertyPage';
+import MainPage from '../main-page/main-page';
+import PropertyPage from '../property-page/property-page';
 
 const App = ({offers, reviews, host, isLogged}) => {
   return (
@@ -15,10 +15,21 @@ const App = ({offers, reviews, host, isLogged}) => {
         )}
         />
         <Route exact path='/login'>
-          <LoginPage isLogged={isLogged}/>
+          {(isLogged) ? (
+            <Redirect to="/" />
+          ) :
+            (<LoginPage isLogged={isLogged}/>)
+          }
+
         </Route>
         <Route exact path='/favorites'>
-          <FavoritesPage isLogged={isLogged}/>
+
+          {(!isLogged) ? (
+            <Redirect to="/login" />
+          ) :
+            (<FavoritesPage isLogged={isLogged}/>)
+          }
+
         </Route>
         <Route exact path='/offer/:id'>
           <PropertyPage offer={offers[0]} reviews={reviews} host={host} isLogged={isLogged} />
