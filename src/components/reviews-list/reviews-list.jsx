@@ -2,24 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../form/form';
 import {
-  addLeadingZero
-} from '../../utils/common.js';
-import {
   MONTH_NAMES,
 } from '../../utils/const';
 
 // format date month yyyy
 const formateDate = (date) => {
-  const formatedDate = `${MONTH_NAMES[date.month]} ${date.year}`;
+  const monthNumberConverted = Number(date.slice(5, 7).replace(/^0+/, ``));
+  const formatedDate = `${MONTH_NAMES[monthNumberConverted - 1]} ${date.slice(0, 4)}`;
   return formatedDate;
 };
 
 const ReviewsList = ({reviews}) => {
+  const reviewsSorted = reviews.sort((a, b) => {
+    if (a.date > b.date) {
+      return -1;
+    }
+    if (a.date < b.date) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ul className="reviews__list">
-        {reviews.slice(0, 10).map((review) => (
+        {reviewsSorted.slice(0, 10).map((review) => (
           <li key={review.id} className="reviews__item">
             <div className="reviews__user user">
               <div className="reviews__avatar-wrapper user__avatar-wrapper">
@@ -38,7 +46,7 @@ const ReviewsList = ({reviews}) => {
               </div>
               <p className="reviews__text">{review.text}
               </p>
-              <time className="reviews__time" dateTime={`${review.date.year}-${addLeadingZero(review.date.month)}-${addLeadingZero(review.date.day)}`}>{formateDate(review.date)}</time>
+              <time className="reviews__time" dateTime={`${review.date.slice(0, 10)}`}>{formateDate(review.date)}</time>
             </div>
           </li>
         ))}

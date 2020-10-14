@@ -43,7 +43,7 @@ const generateOffer = () => {
     images: getShuffledArray(Photos),
     price: getRandomIntegerNumber(50, 250),
     type: getRandomArrayItem(AccomnodationTypes),
-    rating: getRandomNumber(0, 5),
+    rating: getRandomNumber(1, 5),
     features: getSeveralRandomItems(Features, getRandomIntegerNumber(5, Features.length)),
     bedrooms: getRandomIntegerNumber(1, 5),
     maxGuests: getRandomIntegerNumber(1, 10),
