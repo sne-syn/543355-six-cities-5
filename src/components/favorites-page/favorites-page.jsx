@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import Header from './../header/header';
 import Footer from './../footer/footer';
 
-const FavoritesPage = ({isLogged}) => {
+const FavoritesPage = ({isLogged, offers}) => {
+  const favoritesOffersOnly = offers.filter((offer) => {
+    return offer.isFavorite === true;
+  });
   return (
     <div className="page">
       <Header isLogged={isLogged}/>
-      <main className="page__main page__main--favorites">
+      {favoritesOffersOnly.length > 0 ? (<main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
@@ -132,14 +135,25 @@ const FavoritesPage = ({isLogged}) => {
             </ul>
           </section>
         </div>
-      </main>
+      </main>) : (<main className="page__main page__main--favorites page__main--favorites-empty">
+        <div className="page__favorites-container container">
+          <section className="favorites favorites--empty">
+            <h1 className="visually-hidden">Favorites (empty)</h1>
+            <div className="favorites__status-wrapper">
+              <b className="favorites__status">Nothing yet saved.</b>
+              <p className="favorites__status-description">Save properties to narrow down search or plan yor future trips.</p>
+            </div>
+          </section>
+        </div>
+      </main>)}
       <Footer />
     </div>
   );
 };
 
 FavoritesPage.propTypes = {
-  isLogged: PropTypes.bool.isRequired
+  isLogged: PropTypes.bool.isRequired,
+  offers: PropTypes.array.isRequired,
 };
 
 export default FavoritesPage;

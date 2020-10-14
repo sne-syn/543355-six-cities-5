@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LoginPage from '../login-page/login-page';
-import FavoritesPage from '../favoritesPage/favoritesPage';
+import FavoritesPage from '../favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
 
@@ -27,7 +27,7 @@ const App = ({offers, reviews, host, isLogged}) => {
           {(!isLogged) ? (
             <Redirect to="/login" />
           ) :
-            (<FavoritesPage isLogged={isLogged}/>)
+            (<FavoritesPage isLogged={isLogged} offers={offers} />)
           }
 
         </Route>
