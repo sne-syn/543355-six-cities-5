@@ -70,7 +70,7 @@ const PropertyPage = ({offer, reviews, hosts, isLogged}) => {
               </div>
 
               <Host description={offer.description} hostID={offer.host} hosts={hosts}/>
-              <ReviewsList reviews={reviews} />
+              <ReviewsList reviews={reviews} isLogged={isLogged}/>
 
             </div>
           </div>

@@ -12,7 +12,7 @@ const formateDate = (date) => {
   return formatedDate;
 };
 
-const ReviewsList = ({reviews}) => {
+const ReviewsList = ({reviews, isLogged}) => {
   const reviewsSorted = reviews.sort((a, b) => {
     if (a.date > b.date) {
       return -1;
@@ -51,13 +51,14 @@ const ReviewsList = ({reviews}) => {
           </li>
         ))}
       </ul>
-      <Form />
+      {isLogged && (<Form />)}
     </section>
   );
 };
 
 ReviewsList.propTypes = {
   reviews: PropTypes.array.isRequired,
+  isLogged: PropTypes.bool.isRequired
 };
 
 export default ReviewsList;
