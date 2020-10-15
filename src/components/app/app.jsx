@@ -32,7 +32,7 @@ const App = ({offers, reviews, hosts, isLogged}) => {
 
         </Route>
         <Route exact path='/offer/:id'>
-          <PropertyPage offer={offers[0]} reviews={reviews} hosts={hosts} isLogged={isLogged} />
+          <PropertyPage offers={offers} offer={offers[0]} reviews={reviews} hosts={hosts} isLogged={isLogged} onCardClick={() => history.push(`/offer/5`)} />
         </Route>
       </Switch>
     </BrowserRouter>

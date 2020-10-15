@@ -4,16 +4,16 @@ import FavoriteButton from '../favorite-button/favorite-button';
 import {CITIES} from '../../utils/const';
 import {AccomodationTypes} from '../../utils/common';
 
-const PlaceCard = ({offer, onCardHover, onCardClick}) => {
+const PlaceCard = ({containerCardClass, imageCardClass, offer, onCardHover, onCardClick}) => {
   return (
-    <article key={`${offer.id}`} className="cities__place-card place-card" onMouseEnter={onCardHover}>
+    <article key={`${offer.id}`} className={`place-card ${containerCardClass}`} onMouseEnter={onCardHover}>
       {offer.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${imageCardClass} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={offer.images[0]} width="260" height="200" alt="Place image" />
         </a>
@@ -42,6 +42,8 @@ const PlaceCard = ({offer, onCardHover, onCardClick}) => {
 };
 
 PlaceCard.propTypes = {
+  containerCardClass: PropTypes.string.isRequired,
+  imageCardClass: PropTypes.string.isRequired,
   onCardHover: PropTypes.func.isRequired,
   onCardClick: PropTypes.func.isRequired,
   offer: PropTypes.shape({

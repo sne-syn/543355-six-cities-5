@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../form/form';
-import {
-  MONTH_NAMES,
-} from '../../utils/const';
+import {MONTH_NAMES} from '../../utils/const';
 
 // format date month yyyy
 const formateDate = (date) => {

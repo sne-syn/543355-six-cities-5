@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './../header/header';
+import FavoriteButton from '../favorite-button/favorite-button';
 import Footer from './../footer/footer';
 
 const FavoritesPage = ({isLogged, offers}) => {
@@ -68,12 +69,7 @@ const FavoritesPage = ({isLogged, offers}) => {
                           <b className="place-card__price-value">&euro;80</b>
                           <span className="place-card__price-text">&#47;&nbsp;night</span>
                         </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                          <svg className="place-card__bookmark-icon" width="18" height="19">
-                            <use xlinkHref="#icon-bookmark"></use>
-                          </svg>
-                          <span className="visually-hidden">In bookmarks</span>
-                        </button>
+                        <FavoriteButton isFavorite={true} componentName={`place-card`} />
                       </div>
                       <div className="place-card__rating rating">
                         <div className="place-card__stars rating__stars">

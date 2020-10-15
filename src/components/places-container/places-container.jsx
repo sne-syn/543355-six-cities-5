@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlacesList from '../places-list/places-list';
 import MapSection from '../map-section/map-section';
+const MAIN_PLACE_CARD_COUNT = 4;
 
 const PlacesContainer = ({filteredOffers, activeCity, onCardClick}) => {
   return (
@@ -17,14 +18,14 @@ const PlacesContainer = ({filteredOffers, activeCity, onCardClick}) => {
               <use xlinkHref="#icon-arrow-select"></use>
             </svg>
           </span>
-          {/* <ul className="places__options places__options--custom places__options--opened">
+          <ul className="places__options places__options--custom places__options--opened">
             <li className="places__option places__option--active" tabIndex="0">Popular</li>
             <li className="places__option" tabIndex="0">Price: low to high</li>
             <li className="places__option" tabIndex="0">Price: high to low</li>
             <li className="places__option" tabIndex="0">Top rated first</li>
-          </ul>*/}
+          </ul>
         </form>
-        <PlacesList offers={filteredOffers} onCardClick={onCardClick}/>
+        <PlacesList cardListClass={`cities__places-list tabs__content`} containerCardClass={`cities__place-card`} imageCardClass={`cities__image-wrapper`} offers={filteredOffers} onCardClick={onCardClick} cardsCount={MAIN_PLACE_CARD_COUNT}/>
       </section>
       <div className="cities__right-section">
         <MapSection sectionName={`cities`}/>

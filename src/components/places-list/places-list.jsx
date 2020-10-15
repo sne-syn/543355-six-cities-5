@@ -1,8 +1,6 @@
 import React, {PureComponent} from 'react';
-import {withRouter} from 'react-router';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card';
-const PLACE_CARD_COUNT = 4;
 
 class PlacesList extends PureComponent {
   constructor(props) {
@@ -13,26 +11,29 @@ class PlacesList extends PureComponent {
   }
 
   render() {
-    const {offers, onCardClick} = this.props;
+    const {cardListClass, offers, onCardClick, cardsCount} = this.props;
     return (
-      <div className="cities__places-list places__list tabs__content">
-        {offers.slice(0, PLACE_CARD_COUNT).map((offer) => (
+      <div className={`${cardListClass} places__list`}>
+        {offers.slice(0, cardsCount).map((offer) => (
           <PlaceCard
             key={offer.id}
+            containerCardClass={`cities__place-card`}
+            imageCardClass={`cities__image-wrapper`}
             offer={offer}
             onCardHover={(evt) => this.setState({card: evt.currentTarget})}
             onCardClick={onCardClick}
           />
         ))}
-
       </div>
     );
   }
 }
 
 PlacesList.propTypes = {
+  cardListClass: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
   onCardClick: PropTypes.func.isRequired,
+  cardsCount: PropTypes.number.isRequired,
 };
 
-export default withRouter(PlacesList);
+export default PlacesList;
