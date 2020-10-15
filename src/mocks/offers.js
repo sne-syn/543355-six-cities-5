@@ -28,7 +28,7 @@ const getShuffledArray = (arr) => {
 
 const Photos = [`https://bit.ly/30YVQif`, `https://bit.ly/36TgIv7`, `https://bit.ly/36Ys6Wn`, `https://bit.ly/3lEt2DG`, `https://bit.ly/33Qpecj`, `https://bit.ly/34LWdhj`];
 const Features = [`dishwasher`, `parking`, `washer`, `elevator`, `conditioner`, `Wi-Fi`, `washing machine`, `towels`, `heating`, `coffee machine`, `baby seat`, `kitchen`, `cabel TV`, `fridge`];
-const AccomnodationTypes = [`apartment`, `room`, `house`, `hotel`];
+const AccomodationTypes = [`apartment`, `room`, `house`, `hotel`];
 const Titles = [`Refurbished apartment close to Sacré Coeur 4P`, `Estudio junto a la Plaza Mayor`, `La Latina- Small Charming Studio`, `Estudio/suite completo en el centro de Segovia`, `Music Apartment. With pool`];
 const Descriptions = [`Small and charming 25 m2 studio located in an old building of XIX century. Is located on the ground floor inside of a typical Corrala Madrileña.
 Small but well equipped with everything you need for a short stay in Madrid.
@@ -42,7 +42,7 @@ const generateOffer = () => {
     title: getRandomArrayItem(Titles),
     images: getShuffledArray(Photos),
     price: getRandomIntegerNumber(50, 250),
-    type: getRandomArrayItem(AccomnodationTypes),
+    type: getRandomArrayItem(AccomodationTypes),
     rating: getRandomNumber(1, 5),
     features: getSeveralRandomItems(Features, getRandomIntegerNumber(5, Features.length)),
     bedrooms: getRandomIntegerNumber(1, 5),

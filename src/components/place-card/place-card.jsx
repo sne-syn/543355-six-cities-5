@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FavoriteButton from '../favorite-button/favorite-button';
 import {CITIES} from '../../utils/const';
-import {capitalizeChar} from '../../utils/common';
+import {AccomodationTypes} from '../../utils/common';
 
 const PlaceCard = ({offer, onCardHover, onCardClick}) => {
   return (
@@ -35,7 +35,7 @@ const PlaceCard = ({offer, onCardHover, onCardClick}) => {
         <h2 className="place-card__name">
           <a href="#" onClick={onCardClick}>{offer.title}</a>
         </h2>
-        <p className="place-card__type">{capitalizeChar(offer.type)}</p>
+        <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
       </div>
     </article>
   );

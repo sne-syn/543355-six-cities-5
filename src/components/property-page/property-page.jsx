@@ -6,7 +6,7 @@ import Host from '../host/host';
 import MapSection from '../map-section/map-section';
 import ReviewsList from '../reviews-list/reviews-list';
 import {CITIES} from '../../utils/const';
-import {capitalizeChar} from '../../utils/common';
+import {AccomodationTypes, capitalizeChar} from '../../utils/common';
 
 const PropertyPage = ({offer, reviews, hosts, isLogged}) => {
   return (
@@ -45,7 +45,7 @@ const PropertyPage = ({offer, reviews, hosts, isLogged}) => {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {capitalizeChar(offer.type)}
+                  {AccomodationTypes[offer.type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {offer.bedrooms} Bedrooms
