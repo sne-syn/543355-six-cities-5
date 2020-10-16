@@ -62,6 +62,5 @@ const generateOffers = (count) => {
 };
 
 export {
-  generateOffer,
   generateOffers
 };

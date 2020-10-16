@@ -10,6 +10,7 @@ const isLogged = Math.random() > 0.5;
 const offers = generateOffers(20);
 const reviews = generateReviews(getRandomIntegerNumber(0, 15));
 const hosts = generateHosts(10);
+
 ReactDOM.render(
     <App offers={offers} reviews={reviews} hosts={hosts} isLogged={isLogged} />,
     document.querySelector(`#root`)

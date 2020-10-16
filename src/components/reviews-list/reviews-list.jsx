@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../form/form';
+import StarBar from '../star-bar/star-bar';
 import {MONTH_NAMES} from '../../utils/const';
 
 // format date month yyyy
@@ -36,12 +37,7 @@ const ReviewsList = ({reviews, isLogged}) => {
               </span>
             </div>
             <div className="reviews__info">
-              <div className="reviews__rating rating">
-                <div className="reviews__stars rating__stars">
-                  <span style={{width: `${100 / 5 * Math.round(review.rating)}%`}}></span>
-                  <span className="visually-hidden">Rating</span>
-                </div>
-              </div>
+              <StarBar rating={review.rating} />
               <p className="reviews__text">{review.text}
               </p>
               <time className="reviews__time" dateTime={`${review.date.slice(0, 10)}`}>{formateDate(review.date)}</time>

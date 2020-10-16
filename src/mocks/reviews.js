@@ -1,7 +1,6 @@
 import {
   addLeadingZero,
-  getRandomIntegerNumber,
-  getRandomNumber
+  getRandomIntegerNumber
 } from '../utils/common.js';
 
 let i = 0;
@@ -15,7 +14,7 @@ const generateReview = () => {
     text: texts[getRandomIntegerNumber(0, texts.length)],
     author: authors[getRandomIntegerNumber(0, authors.length)],
     date: `${getRandomIntegerNumber(2000, 2020)}-${addLeadingZero(getRandomIntegerNumber(1, 12))}-${addLeadingZero(getRandomIntegerNumber(1, 31))}T16:12:32.554Z`,
-    rating: getRandomNumber(1, 5)
+    rating: getRandomIntegerNumber(1, 5)
   };
 };
 

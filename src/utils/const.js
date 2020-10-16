@@ -1,3 +1,4 @@
+const MAX_RATING = 5;
 const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 const MONTH_NAMES = [
   `January`,
@@ -14,4 +15,4 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {CITIES, MONTH_NAMES};
+export {MAX_RATING, CITIES, MONTH_NAMES};

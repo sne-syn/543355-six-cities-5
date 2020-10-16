@@ -4,13 +4,13 @@ import Header from '../header/header';
 import FavoriteButton from '../favorite-button/favorite-button';
 import Host from '../host/host';
 import MapSection from '../map-section/map-section';
-import PlacesList from '../places-list/places-list';
 import ReviewsList from '../reviews-list/reviews-list';
+import NearPlaces from '../near-places/near-places';
+import StarBar from '../star-bar/star-bar';
 import {CITIES} from '../../utils/const';
 import {AccomodationTypes, capitalizeChar} from '../../utils/common';
-const NEAR_PLACE_CARD_COUNT = 3;
 
-const PropertyPage = ({offers, offer, reviews, hosts, isLogged, onCardClick}) => {
+const PropertyPage = ({offer, reviews, hosts, isLogged, offers, onCardClick}) => {
   return (
     <div className="page">
       <Header isLogged={isLogged}/>
@@ -36,15 +36,11 @@ const PropertyPage = ({offers, offer, reviews, hosts, isLogged, onCardClick}) =>
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <FavoriteButton isFavorite={offer.isFavorite} componentName={`property`} />
+                <FavoriteButton isFavorite={offer.isFavorite} componentName={`property`} iconWidth={31} iconHeight={33} />
               </div>
-              <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  <span style={{width: `${100 / 5 * offer.rating}%`}}></span>
-                  <span className="visually-hidden">Rating</span>
-                </div>
+              <StarBar rating={offer.rating} containerClassName={`property`}>
                 <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
-              </div>
+              </ StarBar>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {AccomodationTypes[offer.type]}
@@ -79,12 +75,7 @@ const PropertyPage = ({offers, offer, reviews, hosts, isLogged, onCardClick}) =>
           <MapSection sectionName={`property`}/>
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-
-            <PlacesList cardListClass={`near-places__list`} containerCardClass={`near-places__card`} imageCardClass={`near-places__image-wrapper`} offers={offers} onCardClick={onCardClick} cardsCount={NEAR_PLACE_CARD_COUNT}/>
-
-          </section>
+          <NearPlaces offers={offers} onCardClick={onCardClick}/>
         </div>
       </main>
     </div>
