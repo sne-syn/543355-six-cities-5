@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const FavoriteButton = ({isFavorite, componentName, iconWidth, iconHeight}) => {
   return (
     <button className={`${componentName}__bookmark-button button ${isFavorite && (`${componentName}__bookmark-button--active`)}`} type="button">
-      <svg className={`${componentName}__bookmark-icon`} width={`${iconWidth}`} height={`${iconHeight}`}>
+      <svg className={`place-card__bookmark-icon`} width={`${iconWidth}`} height={`${iconHeight}`}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">{`${isFavorite ? (`In`) : (`To`)} bookmarks`}</span>
