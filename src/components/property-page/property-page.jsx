@@ -7,8 +7,8 @@ import MapSection from '../map-section/map-section';
 import ReviewsList from '../reviews-list/reviews-list';
 import NearPlaces from '../near-places/near-places';
 import StarBar from '../star-bar/star-bar';
-import {CITIES} from '../../utils/const';
-import {AccomodationTypes, capitalizeChar} from '../../utils/common';
+import {CITIES, AccomodationTypes} from '../../utils/const';
+import {capitalizeChar} from '../../utils/common';
 
 const PropertyPage = ({offer, reviews, hosts, isLogged, offers, onCardClick}) => {
   return (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
 import {CITIES} from '../../utils/const';
-import {AccomodationTypes} from '../../utils/common';
+import {AccomodationTypes} from '../../utils/const';
 
 const PlaceCard = ({containerCardClass, imageCardClass, offer, onCardHover, onCardClick, imgWidth, imgHeight}) => {
   return (

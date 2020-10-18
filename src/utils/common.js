@@ -1,9 +1,4 @@
-const AccomodationTypes = {
-  apartment: `Apartment`,
-  room: `Private Room`,
-  house: `House`,
-  hotel: `Hotel`
-};
+
 
 // add leading zero to num < 10
 const addLeadingZero = (value) => {
@@ -48,7 +43,6 @@ const capitalizeChar = (str) => {
 };
 
 export {
-  AccomodationTypes,
   addLeadingZero,
   capitalizeChar,
   generateID,

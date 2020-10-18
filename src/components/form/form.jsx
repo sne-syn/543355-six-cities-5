@@ -27,7 +27,7 @@ class Form extends PureComponent {
       textLength: 0,
       buttonDisabled: true,
     });
-    document.querySelector('.reviews__form').reset();
+    document.querySelector(`.reviews__form`).reset();
   }
 
   handleRatingChange(evt) {
@@ -57,9 +57,7 @@ class Form extends PureComponent {
     return (
       <form className="reviews__form form" onSubmit={this.handleSubmit}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
-
         <StarButtons onStarClick={this.handleRatingChange}/>
-
         <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onInput = {this.handleTextareaChange}></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
