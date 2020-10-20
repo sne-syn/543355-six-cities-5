@@ -12,13 +12,13 @@ class Form extends PureComponent {
       buttonDisabled: true,
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleRatingChange = this.handleRatingChange.bind(this);
-    this.handleTextareaChange = this.handleTextareaChange.bind(this);
-    this.handleButtonDisable = this.handleButtonDisable.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleRatingChange = this._handleRatingChange.bind(this);
+    this._handleTextareaChange = this._handleTextareaChange.bind(this);
+    this._handleButtonDisable = this._handleButtonDisable.bind(this);
   }
 
-  handleSubmit(evt) {
+  _handleSubmit(evt) {
     evt.preventDefault();
     this.setState({
       rating: null,
@@ -30,14 +30,14 @@ class Form extends PureComponent {
     document.querySelector(`.reviews__form`).reset();
   }
 
-  handleRatingChange(evt) {
+  _handleRatingChange(evt) {
     this.setState({
       rating: evt.target.value,
       buttonDisabled: this.handleButtonDisable()
     });
   }
 
-  handleTextareaChange(evt) {
+  _handleTextareaChange(evt) {
     this.setState({
       text: evt.target.value,
       textLength: evt.target.value.length,
@@ -45,7 +45,7 @@ class Form extends PureComponent {
     });
   }
 
-  handleButtonDisable() {
+  _handleButtonDisable() {
     if (this.state.textLength >= 50 && this.state.textLength < 300 && this.state.rating > 0) {
       return false;
     } else {
@@ -55,9 +55,9 @@ class Form extends PureComponent {
 
   render() {
     return (
-      <form className="reviews__form form" onSubmit={this.handleSubmit}>
+      <form className="reviews__form form" onSubmit={this._handleSubmit}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
-        <StarButtons onStarClick={this.handleRatingChange}/>
+        <StarButtons onStarClick={this._handleRatingChange}/>
         <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onInput = {this.handleTextareaChange}></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">

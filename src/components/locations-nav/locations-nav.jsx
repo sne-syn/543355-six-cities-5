@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {CITIES} from '../../utils/const';
 
@@ -8,9 +9,9 @@ const LocationsNav = ({activeCity, onLocationChange}) => {
     <ul className = "locations__list tabs__list" >
       {citiesList.map((city, i) => (
         <li key={i} className="locations__item" onClick={onLocationChange}>
-          <a className={`locations__item-link tabs__item ${activeCity === city && `tabs__item--active`}`} href="#">
+          <Link to="/" className={`locations__item-link tabs__item ${activeCity === city && `tabs__item--active`}`} href="#">
             <span>{city}</span>
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

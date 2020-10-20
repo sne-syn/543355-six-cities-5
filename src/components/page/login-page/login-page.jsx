@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../header/header';
+import Page from '../page';
+import Header from '../../header/header';
+import LocationsItem from '../../locations-item/locations-item';
 
 const LoginPage = ({isLogged}) => {
   return (
-    <div className="page page--gray page--login">
+    <Page pageClass={`page page--gray page--login`}>
       <Header isLogged={isLogged}/>
-
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -24,15 +25,11 @@ const LoginPage = ({isLogged}) => {
             </form>
           </section>
           <section className="locations locations--login locations--current">
-            <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
-            </div>
+            <LocationsItem cityName={`Amsterdam`} />
           </section>
         </div>
       </main>
-    </div>
+    </Page>
   );
 };
 

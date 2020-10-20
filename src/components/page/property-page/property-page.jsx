@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../header/header';
-import FavoriteButton from '../favorite-button/favorite-button';
-import Host from '../host/host';
-import MapSection from '../map-section/map-section';
-import ReviewsList from '../reviews-list/reviews-list';
-import NearPlaces from '../near-places/near-places';
-import StarBar from '../star-bar/star-bar';
-import {CITIES, AccomodationTypes} from '../../utils/const';
-import {capitalizeChar} from '../../utils/common';
+import Page from '../page';
+import Header from '../../header/header';
+import FavoriteButton from '../../favorite-button/favorite-button';
+import Host from '../../host/host';
+import MapSection from '../../map-section/map-section';
+import ReviewsList from '../../reviews-list/reviews-list';
+import NearPlaces from '../../near-places/near-places';
+import StarBar from '../../star-bar/star-bar';
+import {CITIES, AccomodationTypes} from '../../../utils/const';
+import {capitalizeChar} from '../../../utils/common';
 
-const PropertyPage = ({offer, reviews, hosts, isLogged, offers, onCardClick}) => {
+const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
   return (
-    <div className="page">
+    <Page pageClass={`page`}>
       <Header isLogged={isLogged}/>
       <main className="page__main page__main--property">
         <section className="property">
@@ -36,7 +37,7 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers, onCardClick}) =>
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <FavoriteButton isFavorite={offer.isFavorite} componentName={`property`} iconWidth={31} iconHeight={33} />
+                <FavoriteButton isFavorite={offer.isFavorite} componentName={`property`} />
               </div>
               <StarBar rating={offer.rating} containerClassName={`property`}>
                 <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
@@ -75,10 +76,10 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers, onCardClick}) =>
           <MapSection sectionName={`property`}/>
         </section>
         <div className="container">
-          <NearPlaces offers={offers} onCardClick={onCardClick}/>
+          <NearPlaces offers={offers}/>
         </div>
       </main>
-    </div>
+    </Page>
   );
 };
 
@@ -104,7 +105,6 @@ PropertyPage.propTypes = {
   }).isRequired,
   hosts: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
-  onCardClick: PropTypes.func.isRequired,
 };
 
 export default PropertyPage;

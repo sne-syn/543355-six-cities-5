@@ -35,6 +35,13 @@ Small but well equipped with everything you need for a short stay in Madrid.
 Walking distance to: Plaza Mayor, Sol, El Rastro, Royal Palace, San Miguel Market, Plaza de la Cebadal, Gran Vía, Cava Baja street and Lavapiés neighborhood, a lot of shops, bars and restaurants of all kinds.`, `Auténtica casa mallorquina de cerca 100 años de antigüedad y bien conservada. Ubicada en una finca que ofrece tranquilidad y privacidad total, a la vez que muy bien comunicada con los principales puntos de interés turístico, como son las playas de Puerto de Pollença, la increíble Cala San Vicente, el pintoresco pueblo de Pollença...
 En su estancia podrá disfrutar del gran jardín y piscina, además de sus acogedoras estancias.`, `Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish`, `Places of interest: Cuenca Alta del Manzanares Natural Park, Cerro de San Pedro. My accommodation is good for couples, adventurers, business travelers.It is a very quiet and silent individual apartment. In wild nature. Free parking at the door. The apartment has a garden area that can be used by the different guests. The wi-fi also covers the whole garden.`, `In full nature and very close to public transport. Green area surrounded by all kinds of sports facilities including a golf course, paddle, artificial grass soccer, pelota court. In an urbanization of villas with landscaped plots of about 500 m2`];
 
+const Location = [
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198]
+];
+
 const generateOffer = () => {
   return {
     id: generateID(),
@@ -52,6 +59,7 @@ const generateOffer = () => {
     isPremium: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,
     host: `id-${getRandomIntegerNumber(0, 5)}`,
+    location: getRandomArrayItem(Location)
   };
 };
 

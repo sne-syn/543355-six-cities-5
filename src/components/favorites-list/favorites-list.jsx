@@ -1,47 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card';
+import CardFavorites from '../card/card-favorites/card-favorites';
+import LocationsItem from '../locations-item/locations-item';
 
 const FavoritesList = ({favoritesOffersOnly}) => {
+  const someOffers = favoritesOffersOnly.filter(((offer) => {
+    return offer.city === `Amsterdam`;
+  }));
+
   return (
     <ul className="favorites__list">
       <li className="favorites__locations-items">
         <div className="favorites__locations locations locations--current">
-          <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
-            </a>
-          </div>
+          <LocationsItem cityName={favoritesOffersOnly[1].city} />
         </div>
         <div className="favorites__places">
-          <PlaceCard
-            key={favoritesOffersOnly[1].id}
-            containerCardClass={`favorites__card`}
-            imageCardClass={`favorites__image-wrapper `}
-            imgWidth={150}
-            imgHeight={110}
-            offer={favoritesOffersOnly[1]}
-          />
-        </div>
-      </li>
-
-      <li className="favorites__locations-items">
-        <div className="favorites__locations locations locations--current">
-          <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Cologne</span>
-            </a>
-          </div>
-        </div>
-        <div className="favorites__places">
-          <PlaceCard
-            key={favoritesOffersOnly[0].id}
-            containerCardClass={`favorites__card`}
-            imageCardClass={`favorites__image-wrapper `}
-            imgWidth={150}
-            imgHeight={110}
-            offer={favoritesOffersOnly[0]}
-          />
+          {someOffers.map((offer) => {
+            return (
+              <CardFavorites
+                key={offer.id}
+                offer={offer}
+              />
+            );
+          })}
         </div>
       </li>
     </ul>

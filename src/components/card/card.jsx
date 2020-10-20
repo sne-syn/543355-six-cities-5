@@ -1,22 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
-import {CITIES} from '../../utils/const';
-import {AccomodationTypes} from '../../utils/const';
+import {CITIES, AccomodationTypes} from '../../utils/const';
 
-const PlaceCard = ({containerCardClass, imageCardClass, offer, onCardHover, onCardClick, imgWidth, imgHeight}) => {
+const getImageSize = (type) => {
+  return (type === `favorites`) ? {
+    width: 150,
+    height: 110,
+  } :
+    {
+      width: 260,
+      height: 200,
+    };
+};
+
+const Card = ({type, offer, setCardMarkerHover, resetCardMarkerHover}) => {
+  const {cardType, containerClass} = type;
+  const imageSize = getImageSize(cardType);
   return (
-    <article key={`${offer.id}`} className={`place-card ${containerCardClass}`} onMouseEnter={onCardHover}>
+    <article id={`${offer.id}`} className={`place-card ${containerClass}`} onMouseEnter={setCardMarkerHover} onMouseLeave={ resetCardMarkerHover}>
       {offer.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
 
-      <div className={`${imageCardClass} place-card__image-wrapper`}>
+      <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.images[0]} width={`${imgWidth}`} height={`${imgHeight}`} alt="Place image" />
+          <img className="place-card__image" src={offer.images[0]} width={imageSize.width} height={imageSize.height} alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -29,7 +42,7 @@ const PlaceCard = ({containerCardClass, imageCardClass, offer, onCardHover, onCa
         </div>
         <StarBar rating={offer.rating} />
         <h2 className="place-card__name">
-          <a href="#" onClick={onCardClick}>{offer.title}</a>
+          <Link to="/offer/5">{offer.title}</Link>
         </h2>
         <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
       </div>
@@ -37,18 +50,17 @@ const PlaceCard = ({containerCardClass, imageCardClass, offer, onCardHover, onCa
   );
 };
 
-PlaceCard.defaultProps = {
-  imgWidth: 260,
-  imgHeight: 200
-};
-
-PlaceCard.propTypes = {
-  imgHeight: PropTypes.number.isRequired,
-  imgWidth: PropTypes.number.isRequired,
-  containerCardClass: PropTypes.string.isRequired,
-  imageCardClass: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func,
-  onCardClick: PropTypes.func,
+Card.propTypes = {
+  type: PropTypes.shape({
+    cardType: PropTypes.string.isRequired,
+    containerClass: PropTypes.string.isRequired,
+    size: PropTypes.shape({
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired
+    })
+  }).isRequired,
+  setCardMarkerHover: PropTypes.func,
+  resetCardMarkerHover: PropTypes.func,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     city: PropTypes.oneOf([...CITIES]).isRequired,
@@ -68,4 +80,4 @@ PlaceCard.propTypes = {
   }).isRequired,
 };
 
-export default PlaceCard;
+export default Card;

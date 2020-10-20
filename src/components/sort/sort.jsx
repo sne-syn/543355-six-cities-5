@@ -1,5 +1,12 @@
 import React from 'react';
 
+export const SortType = {
+  POPULAR: `popular`,
+  PRICE_LOW_HIGH: `low-high`,
+  PRICE_HIGH_LOW: `high-low`,
+  TOP_RATED: `top`
+};
+
 const Sort = () => {
   return (
     <form className="places__sorting" action="#" method="get">
@@ -11,10 +18,10 @@ Popular
         </svg>
       </span>
       <ul className="places__options places__options--custom places__options--opened">
-        <li className="places__option places__option--active" tabIndex="0">Popular</li>
-        <li className="places__option" tabIndex="0">Price: low to high</li>
-        <li className="places__option" tabIndex="0">Price: high to low</li>
-        <li className="places__option" tabIndex="0">Top rated first</li>
+        <li className="places__option places__option--active" tabIndex="0" data-sort-type="${SortType.POPULAR}">Popular</li>
+        <li className="places__option" tabIndex="0" data-sort-type="${SortType.PRICE_LOW_HIGH}">Price: low to high</li>
+        <li className="places__option" tabIndex="0" data-sort-type="${SortType.PRICE_HIGH_LOW}">Price: high to low</li>
+        <li className="places__option" tabIndex="0" data-sort-type="${SortType.TOP_RATED}">Top rated first</li>
       </ul>
     </form>
   );

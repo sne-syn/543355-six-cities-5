@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlacesList from '../places-list/places-list';
+import ListNearPlaces from '../list-near-places/list-near-places';
 import {CountCards} from '../../utils/const';
 
-const NearPlaces = ({offers, onCardClick}) => {
+const NearPlaces = ({offers}) => {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
-
-      <PlacesList cardListClass={`near-places__list`} containerCardClass={`near-places__card`} imageCardClass={`near-places__image-wrapper`} offers={offers} onCardClick={onCardClick} cardsCount={CountCards.NEAR_LIST}/>
-
+      <ListNearPlaces listClass={`near-places__list places__list`} offers={offers} countCards={CountCards.NEAR_LIST} >
+      </ListNearPlaces>
     </section>
   );
 };
 
 NearPlaces.propTypes = {
   offers: PropTypes.array.isRequired,
-  onCardClick: PropTypes.func.isRequired,
 };
 
 export default NearPlaces;
