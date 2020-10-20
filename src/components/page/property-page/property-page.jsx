@@ -73,7 +73,9 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
 
             </div>
           </div>
-          <MapSection sectionName={`property`}/>
+          <section className="property__map map">
+            <MapSection />
+          </section>
         </section>
         <div className="container">
           <NearPlaces offers={offers}/>

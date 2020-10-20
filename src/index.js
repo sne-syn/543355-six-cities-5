@@ -5,6 +5,7 @@ import {generateOffers} from './mocks/offers.js';
 import {generateReviews} from './mocks/reviews.js';
 import {generateHosts} from './mocks/hosts';
 import {getRandomIntegerNumber} from './utils/common.js';
+import 'leaflet/dist/leaflet';
 
 // const isLogged = Math.random() > 0.5;
 const isLogged = true;

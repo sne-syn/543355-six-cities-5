@@ -5,13 +5,13 @@ import Header from '../../header/header';
 import LocationsNav from '../../locations-nav/locations-nav';
 import PlacesContainer from '../../places-container/places-container';
 import NoPlacesContainer from '../../no-places-container/no-places-container';
-import {CITIES} from '../../../utils/const';
+// import {CITIES} from '../../../utils/const';
 
 class MainPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeCity: CITIES[0],
+      activeCity: `Amsterdam`,
     };
     this._handleLocationChange = this._handleLocationChange.bind(this);
   }

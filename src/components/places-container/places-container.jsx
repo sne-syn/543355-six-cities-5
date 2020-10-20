@@ -15,7 +15,9 @@ const PlacesContainer = ({filteredOffers, activeCity}) => {
         <ListCities listClass={`cities__places-list tabs__content places__list`} filteredOffers={filteredOffers} countCards={CountCards.MAIN_LIST} />
       </section>
       <div className="cities__right-section">
-        <MapSection sectionName={`cities`}/>
+        <section className="cities__map map">
+          <MapSection />
+        </section>
       </div>
     </div>
   );
