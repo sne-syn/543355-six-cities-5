@@ -11,21 +11,21 @@ class MainPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeCity: `Amsterdam`,
+      currentCity: `Amsterdam`,
     };
     this._handleLocationChange = this._handleLocationChange.bind(this);
   }
 
   _handleLocationChange(evt) {
     this.setState({
-      activeCity: evt.target.textContent
+      currentCity: evt.target.textContent
     });
   }
 
   render() {
     const {offers, isLogged} = this.props;
     const filteredOffers = offers.filter((offer) =>
-      (offer.city === this.state.activeCity)
+      (offer.city === this.state.currentCity)
     );
     return (
       <Page pageClass={`page page--gray page--main ${ filteredOffers.length === 0 && `page__main--index-empty`}`}>
@@ -34,11 +34,11 @@ class MainPage extends PureComponent {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <LocationsNav activeCity={this.state.activeCity} onLocationChange={this._handleLocationChange} />
+              <LocationsNav currentCity={this.state.currentCity} onLocationChange={this._handleLocationChange} />
             </section>
           </div>
           <div className="cities">
-            {filteredOffers.length > 0 ? (<PlacesContainer filteredOffers={filteredOffers} activeCity={this.state.activeCity} />) : (<NoPlacesContainer activeCity={this.state.activeCity} />)}
+            {filteredOffers.length > 0 ? (<PlacesContainer filteredOffers={filteredOffers} currentCity={this.state.currentCity} />) : (<NoPlacesContainer currentCity={this.state.currentCity} />)}
           </div>
         </main>
       </Page>

@@ -42,6 +42,8 @@ const Location = [
   [52.3809553943508, 4.939309666406198]
 ];
 
+const cityCoordination = [52.38333, 4.9];
+
 const generateOffer = () => {
   return {
     id: generateID(),
@@ -59,7 +61,8 @@ const generateOffer = () => {
     isPremium: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,
     host: `id-${getRandomIntegerNumber(0, 5)}`,
-    location: getRandomArrayItem(Location)
+    location: getRandomArrayItem(Location),
+    areaLocation: cityCoordination
   };
 };
 

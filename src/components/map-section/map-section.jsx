@@ -1,8 +1,15 @@
 import React, {PureComponent} from 'react';
-// import PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-import '../../../node_modules/leaflet/dist/leaflet';
+
+const CoordinatesMap = {
+  PARIS: [48.85341, 2.3488],
+  AMSTERDAM: [52.38333, 4.9],
+};
+
+const getAreaCoordinats = (city) => {
+  return CoordinatesMap[city.toUpperCase()];
+};
 
 class MapSection extends PureComponent {
   constructor(props) {
@@ -11,26 +18,36 @@ class MapSection extends PureComponent {
     this._pin = leaflet.icon({
       iconUrl: `/img/pin.svg`,
     });
-
-    this._city = [52.38333, 4.9];
+    this._currentCenter = null;
     this._zoom = 10;
   }
 
-  _addPin() {
-    const offerCords = [52.3709553943508, 4.89309666406198];
-    leaflet
-      .marker(offerCords, this._pin)
+  _addPins() {
+    const {filteredOffers} = this.props;
+    const currentOffersCoords = filteredOffers.map((it) => it.location);
+    currentOffersCoords.map((it) => {
+      leaflet
+      .marker(it, this._pin)
       .addTo(this._map);
+    });
+  }
+
+  // временная консоль
+  componentDidUpdate() {
+    console.log(this.props.currentCity);
   }
 
   componentDidMount() {
+    const {currentCity} = this.props;
     this._map = leaflet.map(this._mapRef.current, {
-      center: this._city,
+      center: getAreaCoordinats(currentCity),
       zoom: this._zoom,
       zoomControl: false,
       marker: true,
     });
-    this._map.setView(this._city, this._zoom);
+
+    this._map.setView(getAreaCoordinats(currentCity), this._zoom);
+
     leaflet
     .tileLayer(
         `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
@@ -47,7 +64,7 @@ class MapSection extends PureComponent {
         }
     )
     .addTo(this._map);
-    this._addPin();
+    this._addPins();
   }
 
   render() {
@@ -57,6 +74,11 @@ class MapSection extends PureComponent {
     );
   }
 }
+
+MapSection.propTypes = {
+  currentCity: PropTypes.string.isRequired,
+  filteredOffers: PropTypes.array.isRequired
+};
 
 export default MapSection;
 

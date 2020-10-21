@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {CITIES} from '../../utils/const';
 
-const LocationsNav = ({activeCity, onLocationChange}) => {
+const LocationsNav = ({currentCity, onLocationChange}) => {
   const citiesList = CITIES;
   return (
     <ul className = "locations__list tabs__list" >
       {citiesList.map((city, i) => (
         <li key={i} className="locations__item" onClick={onLocationChange}>
-          <Link to="/" className={`locations__item-link tabs__item ${activeCity === city && `tabs__item--active`}`} href="#">
+          <Link to="/" className={`locations__item-link tabs__item ${currentCity === city && `tabs__item--active`}`} href="#">
             <span>{city}</span>
           </Link>
         </li>
@@ -19,7 +19,7 @@ const LocationsNav = ({activeCity, onLocationChange}) => {
 };
 
 LocationsNav.propTypes = {
-  activeCity: PropTypes.string.isRequired,
+  currentCity: PropTypes.string.isRequired,
   onLocationChange: PropTypes.func.isRequired
 };
 
