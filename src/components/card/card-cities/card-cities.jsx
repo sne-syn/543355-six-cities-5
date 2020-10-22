@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../card';
-// import List from '../../list/list';
 
 const CardType = {
   cardType: `cities`,
