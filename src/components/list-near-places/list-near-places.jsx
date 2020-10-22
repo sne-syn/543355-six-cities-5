@@ -18,10 +18,10 @@ class ListNearPlaces extends PureComponent {
   }
 
   render() {
-    const {listClass, offers, countCards} = this.props;
+    const {listClass, offers} = this.props;
     return (
       <div className={`${listClass}`}>
-        {offers.slice(0, countCards).map((offer) => (
+        {offers.map((offer) => (
           <CardNearPlaces key={offer.id} offer={offer} onCardHover={this._handleCardHover}/>
         ))}
       </div>
@@ -32,7 +32,6 @@ class ListNearPlaces extends PureComponent {
 ListNearPlaces.propTypes = {
   listClass: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
-  countCards: PropTypes.number.isRequired,
 };
 
 export default ListNearPlaces;

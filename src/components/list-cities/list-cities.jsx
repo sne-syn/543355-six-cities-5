@@ -25,10 +25,10 @@ class ListCities extends PureComponent {
   }
 
   render() {
-    const {listClass, filteredOffers, countCards} = this.props;
+    const {listClass, offersToRender} = this.props;
     return (
       <div className={`${listClass}`}>
-        {filteredOffers.slice(0, countCards).map((offer) => (
+        {offersToRender.map((offer) => (
           <CardCities key={offer.id} offer={offer} setCardMarkerHover={this._setCardMarkerHover} resetCardMarkerHover={this._resetCardMarkerHover}/>
         ))
         }
@@ -39,8 +39,7 @@ class ListCities extends PureComponent {
 
 ListCities.propTypes = {
   listClass: PropTypes.string.isRequired,
-  filteredOffers: PropTypes.array.isRequired,
-  countCards: PropTypes.number.isRequired,
+  offersToRender: PropTypes.array.isRequired,
 };
 
 export default ListCities;

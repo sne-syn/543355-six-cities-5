@@ -5,9 +5,8 @@ import {
   getSeveralRandomItems,
   generateID
 } from '../utils/common.js';
-import {
-  CITIES
-} from '../utils/const.js';
+import {CITIES} from '../utils/const.js';
+
 
 const generateRandomAmountOfRandomNumbers = () => {
   let uniqueSet = new Set();
@@ -27,6 +26,7 @@ const getShuffledArray = (arr) => {
 };
 
 const Photos = [`https://bit.ly/30YVQif`, `https://bit.ly/36TgIv7`, `https://bit.ly/36Ys6Wn`, `https://bit.ly/3lEt2DG`, `https://bit.ly/33Qpecj`, `https://bit.ly/34LWdhj`];
+
 const Features = [`dishwasher`, `parking`, `washer`, `elevator`, `conditioner`, `Wi-Fi`, `washing machine`, `towels`, `heating`, `coffee machine`, `baby seat`, `kitchen`, `cabel TV`, `fridge`];
 const AccomodationTypes = [`apartment`, `room`, `house`, `hotel`];
 const Titles = [`Refurbished apartment close to Sacré Coeur 4P`, `Estudio junto a la Plaza Mayor`, `La Latina- Small Charming Studio`, `Estudio/suite completo en el centro de Segovia`, `Music Apartment. With pool`];
@@ -39,15 +39,17 @@ const Location = [
   [52.3909553943508, 4.85309666406198],
   [52.369553943508, 4.85309666406198],
   [52.3909553943508, 4.929309666406198],
-  [52.3809553943508, 4.939309666406198]
+  [52.3809553943508, 4.939309666406198],
+  [52.4006614685059, 4.88902187347412],
+  [52.3763414, 4.8999733],
+  [52.333889, 4.888803]
 ];
 
-const cityCoordination = [52.38333, 4.9];
 
 const generateOffer = () => {
   return {
     id: generateID(),
-    city: getRandomArrayItem(CITIES),
+    city: CITIES[3],
     title: getRandomArrayItem(Titles),
     images: getShuffledArray(Photos),
     price: getRandomIntegerNumber(50, 250),
@@ -61,8 +63,7 @@ const generateOffer = () => {
     isPremium: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,
     host: `id-${getRandomIntegerNumber(0, 5)}`,
-    location: getRandomArrayItem(Location),
-    areaLocation: cityCoordination
+    location: getRandomArrayItem(Location)
   };
 };
 

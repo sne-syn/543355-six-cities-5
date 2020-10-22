@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
 const CoordinatesMap = {
-  PARIS: [48.85341, 2.3488],
   AMSTERDAM: [52.38333, 4.9],
 };
 
@@ -19,22 +18,17 @@ class MapSection extends PureComponent {
       iconUrl: `/img/pin.svg`,
     });
     this._currentCenter = null;
-    this._zoom = 10;
+    this._zoom = 13;
   }
 
   _addPins() {
-    const {filteredOffers} = this.props;
-    const currentOffersCoords = filteredOffers.map((it) => it.location);
+    const {offersToRender} = this.props;
+    const currentOffersCoords = (Array.isArray(offersToRender)) ? offersToRender.map((it) => it.location) : [offersToRender.location];
     currentOffersCoords.map((it) => {
       leaflet
       .marker(it, this._pin)
       .addTo(this._map);
     });
-  }
-
-  // временная консоль
-  componentDidUpdate() {
-    console.log(this.props.currentCity);
   }
 
   componentDidMount() {
@@ -45,7 +39,6 @@ class MapSection extends PureComponent {
       zoomControl: false,
       marker: true,
     });
-
     this._map.setView(getAreaCoordinats(currentCity), this._zoom);
 
     leaflet
@@ -69,15 +62,32 @@ class MapSection extends PureComponent {
 
   render() {
     return (
-      <div id="map" ref={this._mapRef} style={{height: `100%`}}>
-      </div>
+      <div id="map" ref={this._mapRef} style={{height: `100%`}} />
     );
   }
 }
 
 MapSection.propTypes = {
   currentCity: PropTypes.string.isRequired,
-  filteredOffers: PropTypes.array.isRequired
+  offersToRender: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      images: PropTypes.array.isRequired,
+      price: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+      rating: PropTypes.number.isRequired,
+      features: PropTypes.array.isRequired,
+      bedrooms: PropTypes.number.isRequired,
+      maxGuests: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      reviews: PropTypes.array.isRequired,
+      host: PropTypes.string.isRequired,
+      isPremium: PropTypes.bool.isRequired,
+      isFavorite: PropTypes.bool.isRequired,
+    })]).isRequired
 };
 
 export default MapSection;

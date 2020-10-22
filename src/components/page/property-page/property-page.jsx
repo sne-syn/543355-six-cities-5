@@ -8,10 +8,11 @@ import MapSection from '../../map-section/map-section';
 import ReviewsList from '../../reviews-list/reviews-list';
 import NearPlaces from '../../near-places/near-places';
 import StarBar from '../../star-bar/star-bar';
-import {CITIES, AccomodationTypes} from '../../../utils/const';
+import {CITIES, AccomodationTypes, CountCards} from '../../../utils/const';
 import {capitalizeChar} from '../../../utils/common';
 
 const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
+  const nearPlacesToRender = offers.slice(0, CountCards.NEAR_LIST);
   return (
     <Page pageClass={`page`}>
       <Header isLogged={isLogged}/>
@@ -74,11 +75,11 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
             </div>
           </div>
           <section className="property__map map">
-            <MapSection />
+            <MapSection currentCity={offer.city} offersToRender={offer}/>
           </section>
         </section>
         <div className="container">
-          <NearPlaces offers={offers}/>
+          <NearPlaces offers={nearPlacesToRender}/>
         </div>
       </main>
     </Page>
