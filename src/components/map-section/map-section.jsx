@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import 'leaflet/dist/leaflet';
 
 const CoordinatesMap = {
   AMSTERDAM: [52.38333, 4.9],

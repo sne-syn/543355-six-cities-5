@@ -2,9 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Page from '../page';
 import Header from './../../header/header';
-import FavoritesContent from '../../favorites-content/favorites-content';
-import FavoritesEmpty from '../../favorites-empty/favorites-empty';
 import Footer from './../../footer/footer';
+import FavoritesMainEmpty from '../../favorites/favorites-main-empty/favorites-main-empty';
+import FavoritesMainOffers from '../../favorites/favorites-main-offers/favorites-main-offers';
+
+const getComponent = (offers) => {
+  switch (true) {
+    case (offers.length === 0):
+      return <FavoritesMainEmpty />;
+    default:
+      return <FavoritesMainOffers offers={offers}/>;
+  }
+};
 
 const FavoritesPage = ({isLogged, offers}) => {
   const favoritesOffersOnly = offers.filter((offer) => {
@@ -13,7 +22,7 @@ const FavoritesPage = ({isLogged, offers}) => {
   return (
     <Page pageClass={`page`}>
       <Header isLogged={isLogged}/>
-      {favoritesOffersOnly.length > 0 ? (<FavoritesContent favoritesOffersOnly={favoritesOffersOnly}/>) : (<FavoritesEmpty />)}
+      {getComponent(favoritesOffersOnly)}
       <Footer />
     </Page>
   );

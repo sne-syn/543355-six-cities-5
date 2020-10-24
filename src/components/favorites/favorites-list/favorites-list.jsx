@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardFavorites from '../card/card-favorites/card-favorites';
-import LocationsItem from '../locations-item/locations-item';
+import CardFavorites from '../../card/card-favorites/card-favorites';
+import LocationsItem from '../../locations-item/locations-item';
 
 const FavoritesList = ({favoritesOffersOnly}) => {
   const someOffers = favoritesOffersOnly.filter(((offer) => {

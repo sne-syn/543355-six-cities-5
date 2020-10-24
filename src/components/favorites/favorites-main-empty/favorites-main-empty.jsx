@@ -1,8 +1,9 @@
 import React from 'react';
+import FavoritesMain from '../favorites-main';
 
-const FavoritesEmpty = () => {
+const FavoritesMainEmpty = (props) => {
   return (
-    <main className="page__main page__main--favorites page__main--favorites-empty">
+    <FavoritesMain className={`page__main--favorites page__main--favorites-empty`} {...props}>
       <div className="page__favorites-container container">
         <section className="favorites favorites--empty">
           <h1 className="visually-hidden">Favorites (empty)</h1>
@@ -12,8 +13,8 @@ const FavoritesEmpty = () => {
           </div>
         </section>
       </div>
-    </main>
+    </FavoritesMain>
   );
 };
 
-export default FavoritesEmpty;
+export default FavoritesMainEmpty;
