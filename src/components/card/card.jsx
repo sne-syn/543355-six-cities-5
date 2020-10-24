@@ -1,32 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
-import {CITIES, AccomodationTypes} from '../../utils/const';
+import {CITIES, AccomodationTypes, ComponentType} from '../../utils/const';
 
-const getImageSize = (type) => {
-  return (type === `favorites`) ? {
-    width: 150,
-    height: 110,
-  } :
-    {
-      width: 260,
-      height: 200,
-    };
+const getCardClass = (type) => {
+  switch (type) {
+    case ComponentType.CITIES:
+      return `cities__place-card`;
+    case ComponentType.NEAR:
+      return `near-places__card`;
+    case ComponentType.FAVORITE:
+      return `favorites__card`;
+  }
+
+  return ``;
 };
 
-const Card = ({type, offer, setCardMarkerHover, resetCardMarkerHover}) => {
-  const {cardType, containerClass} = type;
+const getImageSize = (type) => {
+  switch (type) {
+    case ComponentType.FAVORITE:
+      return {
+        width: 150,
+        height: 110,
+      };
+    default:
+      return {
+        width: 260,
+        height: 200,
+      };
+  }
+};
+
+const Card = ({cardType, offer}) => {
   const imageSize = getImageSize(cardType);
   return (
-    <article id={`${offer.id}`} className={`place-card ${containerClass}`} onMouseEnter={setCardMarkerHover} onMouseLeave={ resetCardMarkerHover}>
-      {offer.isPremium && (
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      )}
-
+    <article id={`${offer.id}`} className={`place-card ${getCardClass(cardType)}`}>
+      {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={offer.images[0]} width={imageSize.width} height={imageSize.height} alt="Place image" />
@@ -42,7 +54,7 @@ const Card = ({type, offer, setCardMarkerHover, resetCardMarkerHover}) => {
         </div>
         <StarBar rating={offer.rating} />
         <h2 className="place-card__name">
-          <Link to="/offer/5">{offer.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
       </div>
@@ -51,16 +63,7 @@ const Card = ({type, offer, setCardMarkerHover, resetCardMarkerHover}) => {
 };
 
 Card.propTypes = {
-  type: PropTypes.shape({
-    cardType: PropTypes.string.isRequired,
-    containerClass: PropTypes.string.isRequired,
-    size: PropTypes.shape({
-      width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired
-    })
-  }).isRequired,
-  setCardMarkerHover: PropTypes.func,
-  resetCardMarkerHover: PropTypes.func,
+  cardType: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     city: PropTypes.oneOf([...CITIES]).isRequired,

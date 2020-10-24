@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Page from '../page';
 import Header from '../../header/header';
 import LocationsItem from '../../locations-item/locations-item';
 
 const LoginPage = ({isLogged}) => {
   return (
-    <Page pageClass={`page page--gray page--login`}>
+    <div className="page page--gray page--login">
       <Header isLogged={isLogged}/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
@@ -29,7 +28,7 @@ const LoginPage = ({isLogged}) => {
           </section>
         </div>
       </main>
-    </Page>
+    </div>
   );
 };
 

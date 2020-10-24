@@ -33,7 +33,7 @@ class Form extends PureComponent {
   _handleRatingChange(evt) {
     this.setState({
       rating: evt.target.value,
-      buttonDisabled: this.handleButtonDisable()
+      buttonDisabled: this._handleButtonDisable()
     });
   }
 
@@ -41,7 +41,7 @@ class Form extends PureComponent {
     this.setState({
       text: evt.target.value,
       textLength: evt.target.value.length,
-      buttonDisabled: this.handleButtonDisable()
+      buttonDisabled: this._handleButtonDisable()
     });
   }
 
@@ -58,7 +58,7 @@ class Form extends PureComponent {
       <form className="reviews__form form" onSubmit={this._handleSubmit}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <StarButtons onStarClick={this._handleRatingChange}/>
-        <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onInput = {this.handleTextareaChange}></textarea>
+        <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onInput = {this._handleTextareaChange}></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.

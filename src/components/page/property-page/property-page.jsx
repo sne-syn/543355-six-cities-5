@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Page from '../page';
 import Header from '../../header/header';
+import PremiumMark from '../../premium-mark/premium-mark';
 import FavoriteButton from '../../favorite-button/favorite-button';
 import Host from '../../host/host';
 import MapSection from '../../map-section/map-section';
@@ -14,7 +14,7 @@ import {capitalizeChar} from '../../../utils/common';
 const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
   const nearPlacesToRender = offers.slice(0, CountCards.NEAR_LIST);
   return (
-    <Page pageClass={`page`}>
+    <div className="page">
       <Header isLogged={isLogged}/>
       <main className="page__main page__main--property">
         <section className="property">
@@ -29,11 +29,7 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {offer.isPremium && (
-                <div className="property__mark">
-                  <span>Premium</span>
-                </div>
-              )}
+              {offer.isPremium && (<PremiumMark componentName={`property`}/>)}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {offer.title}
@@ -75,14 +71,14 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
             </div>
           </div>
           <section className="property__map map">
-            <MapSection currentCity={offer.city} offersToRender={offer}/>
+            <MapSection currentCity={offer.city} offersToRender={nearPlacesToRender} activeOffer={offer}/>
           </section>
         </section>
         <div className="container">
           <NearPlaces offers={nearPlacesToRender}/>
         </div>
       </main>
-    </Page>
+    </div>
   );
 };
 

@@ -24,7 +24,7 @@ class MapSection extends PureComponent {
 
   _addPins() {
     const {offersToRender} = this.props;
-    const currentOffersCoords = (Array.isArray(offersToRender)) ? offersToRender.map((it) => it.location) : [offersToRender.location];
+    const currentOffersCoords = offersToRender.map((it) => it.location);
     currentOffersCoords.map((it) => {
       leaflet
       .marker(it, this._pin)

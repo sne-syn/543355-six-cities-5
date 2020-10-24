@@ -1,17 +1,25 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import Page from '../page';
 import Header from '../../header/header';
 import LocationsNav from '../../locations-nav/locations-nav';
 import PlacesContainer from '../../places-container/places-container';
 import NoPlacesContainer from '../../no-places-container/no-places-container';
-// import {CITIES} from '../../../utils/const';
+import {CITIES} from '../../../utils/const';
+
+const getPlacesComponent = (offers, currentCity) => {
+  switch (true) {
+    case (offers.length === 0):
+      return <NoPlacesContainer currentCity={currentCity} />;
+    default:
+      return <PlacesContainer offers={offers} currentCity={currentCity} />;
+  }
+};
 
 class MainPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      currentCity: `Amsterdam`,
+      currentCity: CITIES[3],
     };
     this._handleLocationChange = this._handleLocationChange.bind(this);
   }
@@ -27,10 +35,15 @@ class MainPage extends PureComponent {
     const filteredOffers = offers.filter((offer) =>
       (offer.city === this.state.currentCity)
     );
+    let mainClassName = `page__main page__main--index`;
+    if (filteredOffers.length === 0) {
+      mainClassName += ` page__main--index-empty`;
+    }
+
     return (
-      <Page pageClass={`page page--gray page--main ${ filteredOffers.length === 0 && `page__main--index-empty`}`}>
+      <div className="page page--gray page--main">
         <Header isLogged={isLogged}/>
-        <main className="page__main page__main--index">
+        <main className={mainClassName}>
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
@@ -38,10 +51,10 @@ class MainPage extends PureComponent {
             </section>
           </div>
           <div className="cities">
-            {filteredOffers.length > 0 ? (<PlacesContainer filteredOffers={filteredOffers} currentCity={this.state.currentCity} />) : (<NoPlacesContainer currentCity={this.state.currentCity} />)}
+            {getPlacesComponent(filteredOffers, this.state.currentCity)}
           </div>
         </main>
-      </Page>
+      </div>
     );
   }
 }

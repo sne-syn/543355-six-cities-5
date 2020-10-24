@@ -1,6 +1,12 @@
 const CountCards = {
-  MAIN_LIST: 4,
+  CITIES_LIST: 4,
   NEAR_LIST: 3
+};
+
+const ComponentType = {
+  CITIES: `cities`,
+  NEAR: `near-places`,
+  FAVORITE: `favorites`
 };
 
 const AccomodationTypes = {
@@ -27,4 +33,4 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, CountCards};
+export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, CountCards, ComponentType};
