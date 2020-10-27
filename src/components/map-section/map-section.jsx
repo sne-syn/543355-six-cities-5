@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet';
+import '../../../node_modules/leaflet/dist/leaflet.css';
 
 const CoordinatesMap = {
   AMSTERDAM: [52.38333, 4.9],
@@ -16,7 +16,8 @@ class MapSection extends PureComponent {
     super(props);
     this._mapRef = React.createRef();
     this._pin = leaflet.icon({
-      iconUrl: `/img/pin.svg`,
+      iconUrl: `./img/pin.svg`,
+      iconSize: [30, 30]
     });
     this._currentCenter = null;
     this._zoom = 13;

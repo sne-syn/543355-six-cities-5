@@ -49,7 +49,7 @@ const Location = [
 const generateOffer = () => {
   return {
     id: generateID(),
-    city: getRandomArrayItem(CITIES),
+    city: CITIES[3],
     title: getRandomArrayItem(Titles),
     images: getShuffledArray(Photos),
     price: getRandomIntegerNumber(50, 250),

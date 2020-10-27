@@ -20,7 +20,7 @@ const FavoritesList = ({offers}) => {
                 <LocationsItem cityName={city} />
               </div>
             </div>
-            <FavoritesCardsList offers={offers}/>
+            <FavoritesCardsList city={city} offers={offers}/>
 
           </li>
         );

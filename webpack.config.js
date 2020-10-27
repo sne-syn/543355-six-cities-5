@@ -17,17 +17,18 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {loader: 'babel-loader'}
+        use: {
+            loader: 'babel-loader',
+        },
       },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
-        exclude: /node_modules/,
-        use: [{loader: 'file-loader'}],
-      },
+        test: /\.(png|jpe?g|svg)$/i,
+        use: ['url-loader']
+    }
     ],
   },
   resolve: {
