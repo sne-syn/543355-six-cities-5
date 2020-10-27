@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import LoginPage from '../page/login-page/login-page';
-import FavoritesPage from '../page/favorites-page/favorites-page';
-import MainPage from '../page/main-page/main-page';
-import PropertyPage from '../page/property-page/property-page';
+import LoginPage from '../login-page/login-page';
+import FavoritesPage from '../favorites/favorites-page/favorites-page';
+import MainPage from '../main-page/main-page';
+import PropertyPage from '../property-page/property-page';
 
 const App = ({offers, reviews, hosts, isLogged}) => {
   return (

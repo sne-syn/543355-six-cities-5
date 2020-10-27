@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sort from '../sort/sort';
 import MapSection from '../map-section/map-section';
-import List from '../list/list';
 import {CountCards} from '../../utils/const';
 import ListHoverOnMap from '../list-hover-on-map/list-hover-on-map';
 
@@ -14,14 +13,7 @@ const PlacesContainer = ({offers, currentCity}) => {
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{offers.length} {offers.length === 1 ? `place` : `places`} to stay in {currentCity}</b>
         <Sort />
-        <ListHoverOnMap renderWithCardHover = {
-          (setCardMarkerHover, resetCardMarkerHover) => {
-            return (
-              <List type={`cities`} offers={offersToRender} setCardMarkerHover={setCardMarkerHover} resetCardMarkerHover={resetCardMarkerHover} />
-            );
-          }
-        }
-        />
+        <ListHoverOnMap type={`cities`} offers={offersToRender}/>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">

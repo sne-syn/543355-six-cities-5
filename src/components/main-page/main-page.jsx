@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../header/header';
-import LocationsNav from '../../locations-nav/locations-nav';
-import PlacesContainer from '../../places-container/places-container';
-import NoPlacesContainer from '../../no-places-container/no-places-container';
-import {CITIES} from '../../../utils/const';
+import Header from '../header/header';
+import LocationsNav from '../locations-nav/locations-nav';
+import PlacesContainer from '../places-container/places-container';
+import NoPlacesContainer from '../no-places-container/no-places-container';
+import {CITIES} from '../../utils/const';
 
 const getPlacesComponent = (offers, currentCity) => {
   switch (true) {
@@ -31,7 +31,7 @@ class MainPage extends PureComponent {
   }
 
   render() {
-    const {offers, isLogged} = this.props;
+    const {offers} = this.props;
     const filteredOffers = offers.filter((offer) =>
       (offer.city === this.state.currentCity)
     );
@@ -42,12 +42,12 @@ class MainPage extends PureComponent {
 
     return (
       <div className="page page--gray page--main">
-        <Header isLogged={isLogged}/>
+        <Header {...this.props}/>
         <main className={mainClassName}>
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <LocationsNav currentCity={this.state.currentCity} onLocationChange={this._handleLocationChange} />
+              <LocationsNav currentCity={this.state.currentCity} onLocationChange={this._handleLocationChange} tab={true}/>
             </section>
           </div>
           <div className="cities">
@@ -61,7 +61,6 @@ class MainPage extends PureComponent {
 
 MainPage.propTypes = {
   offers: PropTypes.array.isRequired,
-  isLogged: PropTypes.bool.isRequired,
 };
 
 export default MainPage;

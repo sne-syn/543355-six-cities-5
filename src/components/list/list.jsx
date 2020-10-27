@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../card/card';
+import CardBase from '../card-base/card-base';
 import {ComponentType} from '../../utils/const';
 
 const getListClass = (type) => {
@@ -14,12 +14,19 @@ const getListClass = (type) => {
   return ``;
 };
 
-const List = ({type, offers}) => {
+const List = (props) => {
+  const {type, offers} = props;
+  const restProps = Object.assign({}, props);
+  delete restProps.offers;
   const componentType = type;
   return (
     <div className={`${getListClass(componentType)} places__list`}>
       {offers.map((offer) => (
-        <Card cardType={componentType} key={offer.id} offer={offer} />
+        <CardBase
+          key={offer.id}
+          offer={offer}
+          {...restProps}
+        />
       ))}
     </div>
   );

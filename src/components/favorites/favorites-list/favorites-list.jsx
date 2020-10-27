@@ -1,39 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../card/card';
+import FavoritesCardsList from '../favorites-cards-list/favorites-cards-list';
 import LocationsItem from '../../locations-item/locations-item';
 
-const FavoritesList = ({favoritesOffersOnly}) => {
-  const someOffers = favoritesOffersOnly.filter(((offer) => {
-    return offer.city === `Amsterdam`;
-  }));
+const FavoritesList = ({offers}) => {
+  let countObj = new Set();
+  for (let value of offers) {
+    countObj.add(value.city);
+  }
+  let citiesWithFavoritesOffers = Array.from(countObj);
 
   return (
     <ul className="favorites__list">
-      <li className="favorites__locations-items">
-        <div className="favorites__locations locations locations--current">
-          <div className="locations__item">
-            <LocationsItem cityName={favoritesOffersOnly[1].city} activeCity={favoritesOffersOnly[1].city} tab={false}/>
-          </div>
-        </div>
-        <div className="favorites__places">
-          {someOffers.map((offer) => {
-            return (
-              <Card
-                cardType={`favorites`}
-                key={offer.id}
-                offer={offer}
-              />
-            );
-          })}
-        </div>
-      </li>
+      {citiesWithFavoritesOffers.map((city, i) => {
+        return (
+          <li key={`city-${i}`} className="favorites__locations-items">
+            <div className="favorites__locations locations locations--current">
+              <div className="locations__item">
+                <LocationsItem cityName={city} />
+              </div>
+            </div>
+            <FavoritesCardsList offers={offers}/>
+
+          </li>
+        );
+      })
+      }
     </ul>
   );
 };
 
 FavoritesList.propTypes = {
-  favoritesOffersOnly: PropTypes.array.isRequired
+  offers: PropTypes.array.isRequired
 };
 
 export default FavoritesList;

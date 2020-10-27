@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../header/header';
-import PremiumMark from '../../premium-mark/premium-mark';
-import FavoriteButton from '../../favorite-button/favorite-button';
-import Host from '../../host/host';
-import MapSection from '../../map-section/map-section';
-import ReviewsList from '../../reviews-list/reviews-list';
-import NearPlaces from '../../near-places/near-places';
-import StarBar from '../../star-bar/star-bar';
-import {CITIES, AccomodationTypes, CountCards} from '../../../utils/const';
-import {capitalizeChar} from '../../../utils/common';
+import Header from '../header/header';
+import PremiumMark from '../premium-mark/premium-mark';
+import FavoriteButton from '../favorite-button/favorite-button';
+import Host from '../host/host';
+import MapSection from '../map-section/map-section';
+import PropertyFeatures from '../property-features/property-features';
+import ReviewsList from '../reviews-list/reviews-list';
+import NearPlaces from '../near-places/near-places';
+import StarBar from '../star-bar/star-bar';
+import {CITIES, CountCards} from '../../utils/const';
+import {capitalizeChar} from '../../utils/common';
 
-const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
+const PropertyPage = (props) => {
+  const {offer, offers} = props;
   const nearPlacesToRender = offers.slice(0, CountCards.NEAR_LIST);
   return (
     <div className="page">
-      <Header isLogged={isLogged}/>
+      <Header {...props}/>
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -39,17 +41,7 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
               <StarBar rating={offer.rating} containerClassName={`property`}>
                 <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
               </ StarBar>
-              <ul className="property__features">
-                <li className="property__feature property__feature--entire">
-                  {AccomodationTypes[offer.type]}
-                </li>
-                <li className="property__feature property__feature--bedrooms">
-                  {offer.bedrooms} Bedrooms
-                </li>
-                <li className="property__feature property__feature--adults">
-                Max {offer.maxGuests} adults
-                </li>
-              </ul>
+              <PropertyFeatures type={offer.type} bedrooms={offer.bedrooms} maxGuests={offer.maxGuests} />
               <div className="property__price">
                 <b className="property__price-value">&euro;{offer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
@@ -65,8 +57,8 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
                 </ul>
               </div>
 
-              <Host description={offer.description} hostID={offer.host} hosts={hosts}/>
-              <ReviewsList reviews={reviews} isLogged={isLogged}/>
+              <Host description={offer.description} hostID={offer.host} {...props}/>
+              <ReviewsList {...props}/>
 
             </div>
           </div>
@@ -83,7 +75,6 @@ const PropertyPage = ({offer, reviews, hosts, isLogged, offers}) => {
 };
 
 PropertyPage.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
   offers: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -102,8 +93,6 @@ PropertyPage.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }).isRequired,
-  hosts: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired,
 };
 
 export default PropertyPage;

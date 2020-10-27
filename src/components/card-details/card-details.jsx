@@ -6,19 +6,6 @@ import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
 import {CITIES, AccomodationTypes, ComponentType} from '../../utils/const';
 
-const getCardClass = (type) => {
-  switch (type) {
-    case ComponentType.CITIES:
-      return `cities__place-card`;
-    case ComponentType.NEAR:
-      return `near-places__card`;
-    case ComponentType.FAVORITE:
-      return `favorites__card`;
-  }
-
-  return ``;
-};
-
 const getImageSize = (type) => {
   switch (type) {
     case ComponentType.FAVORITE:
@@ -34,12 +21,13 @@ const getImageSize = (type) => {
   }
 };
 
-const Card = ({cardType, offer}) => {
-  const imageSize = getImageSize(cardType);
+const CardDetails = (props) => {
+  const {type, offer} = props;
+  const imageSize = getImageSize(type);
   return (
-    <article id={`${offer.id}`} className={`place-card ${getCardClass(cardType)}`}>
+    <React.Fragment>
       {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
-      <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${type}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={offer.images[0]} width={imageSize.width} height={imageSize.height} alt="Place image" />
         </a>
@@ -58,12 +46,12 @@ const Card = ({cardType, offer}) => {
         </h2>
         <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
       </div>
-    </article>
+    </React.Fragment>
   );
 };
 
-Card.propTypes = {
-  cardType: PropTypes.string.isRequired,
+CardDetails.propTypes = {
+  type: PropTypes.string,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     city: PropTypes.oneOf([...CITIES]).isRequired,
@@ -83,4 +71,4 @@ Card.propTypes = {
   }).isRequired,
 };
 
-export default Card;
+export default CardDetails;

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from './../../header/header';
-import Footer from './../../footer/footer';
-import FavoritesMainEmpty from '../../favorites/favorites-main-empty/favorites-main-empty';
-import FavoritesMainOffers from '../../favorites/favorites-main-offers/favorites-main-offers';
+import Header from '../../header/header';
+import Footer from '../../footer/footer';
+import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
+import FavoritesMainOffers from '../favorites-main-offers/favorites-main-offers';
 
 const getFavoriteComponent = (offers) => {
   if (offers.length === 0) {
@@ -13,7 +13,8 @@ const getFavoriteComponent = (offers) => {
   }
 };
 
-const FavoritesPage = ({isLogged, offers}) => {
+const FavoritesPage = (props) => {
+  const {offers} = props;
   const favoritesOffersOnly = offers.filter((offer) => {
     return offer.isFavorite === true;
   });
@@ -23,7 +24,7 @@ const FavoritesPage = ({isLogged, offers}) => {
   }
   return (
     <div className="page">
-      <Header isLogged={isLogged}/>
+      <Header {...props}/>
       <main className={favoritesClassName} >
         {getFavoriteComponent(favoritesOffersOnly)}
       </main>
@@ -33,7 +34,6 @@ const FavoritesPage = ({isLogged, offers}) => {
 };
 
 FavoritesPage.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
   offers: PropTypes.array.isRequired,
 };
 

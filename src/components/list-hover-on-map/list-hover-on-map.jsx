@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import List from '../list/list';
 
 class ListHoverOnMap extends PureComponent {
   constructor(props) {
@@ -24,17 +24,10 @@ class ListHoverOnMap extends PureComponent {
   }
 
   render() {
-    console.log(this.state.cardID);
     return (
-      <React.Fragment>
-        {this.props.renderWithCardHover()}
-      </React.Fragment>
+      <List resetCardMarkerHover={this._resetCardMarkerHover} setCardMarkerHover={this._setCardMarkerHover} {...this.props}/>
     );
   }
 }
-
-ListHoverOnMap.propTypes = {
-  renderWithCardHover: PropTypes.func.isRequired
-};
 
 export default ListHoverOnMap;

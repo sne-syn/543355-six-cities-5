@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Header from '../../header/header';
-import LocationsItem from '../../locations-item/locations-item';
+import Header from '../header/header';
+import LocationsItem from '../locations-item/locations-item';
 
-const LoginPage = ({isLogged}) => {
+const LoginPage = (props) => {
   return (
     <div className="page page--gray page--login">
-      <Header isLogged={isLogged}/>
+      <Header {...props}/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -30,10 +29,6 @@ const LoginPage = ({isLogged}) => {
       </main>
     </div>
   );
-};
-
-LoginPage.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
 };
 
 export default LoginPage;

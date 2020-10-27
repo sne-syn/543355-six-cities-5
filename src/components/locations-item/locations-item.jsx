@@ -8,10 +8,15 @@ const LocationsItem = ({cityName, activeCity, tab}) => {
   locationItemClass += (tab) ? ` tabs__item` : ``;
 
   return (
-    <Link to="/" className={locationItemClass} href="#">
+    <Link to="/" className={locationItemClass}>
       <span>{cityName}</span>
     </Link>
   );
+};
+
+LocationsItem.defaultProps = {
+  activeCity: ``,
+  tab: false
 };
 
 LocationsItem.propTypes = {
