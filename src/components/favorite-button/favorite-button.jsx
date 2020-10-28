@@ -1,25 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Toggler from '../toggler/toggler';
 
-const IconSize = new Map();
-IconSize.set(`property`, {
-  width: 31,
-  height: 33
-});
-IconSize.set(`place-card`, {
-  width: 18,
-  height: 19
-});
+const getIconSize = (componentName) => {
+  return (componentName === `property`) ? {
+    width: 31,
+    height: 33,
+  } :
+    {
+      width: 18,
+      height: 19,
+    };
+};
 
 const FavoriteButton = ({isFavorite, componentName}) => {
-  const iconSize = IconSize.get(componentName);
+  const iconSize = getIconSize(componentName);
   return (
-    <button className={`${componentName}__bookmark-button button ${isFavorite && (`${componentName}__bookmark-button--active`)}`} type="button">
-      <svg className={`${componentName}__bookmark-icon`} width={`${iconSize.width}`} height={`${iconSize.height}`}>
-        <use xlinkHref="#icon-bookmark"></use>
-      </svg>
-      <span className="visually-hidden">{`${isFavorite ? (`In`) : (`To`)} bookmarks`}</span>
-    </button>
+    <Toggler defaultOnValue={isFavorite} renderWithToggle={
+      (on, toggleComponent) => {
+        return (
+          <button className={`${componentName}__bookmark-button button ${on && (`${componentName}__bookmark-button--active`)}`} onClick={toggleComponent} type="button">
+            <svg className={`place-card__bookmark-icon`} width={`${iconSize.width}`} height={`${iconSize.height}`}>
+              <use xlinkHref="#icon-bookmark"></use>
+            </svg>
+            <span className="visually-hidden">{`${on ? (`In`) : (`To`)} bookmarks`}</span>
+          </button>
+        );
+      }
+    }
+    />
   );
 };
 

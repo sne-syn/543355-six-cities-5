@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LocationsItem from '../locations-item/locations-item';
 import {CITIES} from '../../utils/const';
 
-const LocationsNav = ({activeCity, onLocationChange}) => {
+const LocationsNav = (props) => {
+  const {onLocationChange, currentCity} = props;
   const citiesList = CITIES;
   return (
     <ul className = "locations__list tabs__list" >
       {citiesList.map((city, i) => (
         <li key={i} className="locations__item" onClick={onLocationChange}>
-          <a className={`locations__item-link tabs__item ${activeCity === city && `tabs__item--active`}`} href="#">
-            <span>{city}</span>
-          </a>
+          <LocationsItem cityName={city} activeCity={currentCity}{...props}/>
         </li>
       ))}
     </ul>
@@ -18,7 +18,7 @@ const LocationsNav = ({activeCity, onLocationChange}) => {
 };
 
 LocationsNav.propTypes = {
-  activeCity: PropTypes.string.isRequired,
+  currentCity: PropTypes.string.isRequired,
   onLocationChange: PropTypes.func.isRequired
 };
 

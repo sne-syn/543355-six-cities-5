@@ -6,10 +6,12 @@ import {generateReviews} from './mocks/reviews.js';
 import {generateHosts} from './mocks/hosts';
 import {getRandomIntegerNumber} from './utils/common.js';
 
-const isLogged = Math.random() > 0.5;
+// const isLogged = Math.random() > 0.5;
+const isLogged = true;
 const offers = generateOffers(20);
 const reviews = generateReviews(getRandomIntegerNumber(0, 15));
 const hosts = generateHosts(10);
+
 ReactDOM.render(
     <App offers={offers} reviews={reviews} hosts={hosts} isLogged={isLogged} />,
     document.querySelector(`#root`)

@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Header from '../header/header';
+import LocationsItem from '../locations-item/locations-item';
 
-const LoginPage = ({isLogged}) => {
+const LoginPage = (props) => {
   return (
     <div className="page page--gray page--login">
-      <Header isLogged={isLogged}/>
-
+      <Header {...props}/>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -24,20 +23,12 @@ const LoginPage = ({isLogged}) => {
             </form>
           </section>
           <section className="locations locations--login locations--current">
-            <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
-            </div>
+            <LocationsItem cityName={`Amsterdam`} />
           </section>
         </div>
       </main>
     </div>
   );
-};
-
-LoginPage.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
 };
 
 export default LoginPage;

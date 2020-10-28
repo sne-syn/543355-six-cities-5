@@ -1,3 +1,22 @@
+const CountCards = {
+  CITIES_LIST: 4,
+  NEAR_LIST: 3
+};
+
+const ComponentType = {
+  CITIES: `cities`,
+  NEAR: `near-places`,
+  FAVORITE: `favorites`
+};
+
+const AccomodationTypes = {
+  apartment: `Apartment`,
+  room: `Private Room`,
+  house: `House`,
+  hotel: `Hotel`
+};
+
+const MAX_RATING = 5;
 const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 const MONTH_NAMES = [
   `January`,
@@ -14,4 +33,4 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {CITIES, MONTH_NAMES};
+export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, CountCards, ComponentType};

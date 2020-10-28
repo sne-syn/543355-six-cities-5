@@ -1,21 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
-import {CITIES} from '../../utils/const';
-import {capitalizeChar} from '../../utils/common';
+import StarBar from '../star-bar/star-bar';
+import {CITIES, AccomodationTypes, ComponentType} from '../../utils/const';
 
-const PlaceCard = ({offer, onCardHover, onCardClick}) => {
+const getImageSize = (type) => {
+  switch (type) {
+    case ComponentType.FAVORITE:
+      return {
+        width: 150,
+        height: 110,
+      };
+    default:
+      return {
+        width: 260,
+        height: 200,
+      };
+  }
+};
+
+const CardDetails = (props) => {
+  const {type, offer} = props;
+  const imageSize = getImageSize(type);
   return (
-    <article key={`${offer.id}`} className="cities__place-card place-card" onMouseEnter={onCardHover}>
-      {offer.isPremium && (
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      )}
-
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <React.Fragment>
+      {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
+      <div className={`${type}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.images[0]} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={offer.images[0]} width={imageSize.width} height={imageSize.height} alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -26,24 +40,18 @@ const PlaceCard = ({offer, onCardHover, onCardClick}) => {
           </div>
           <FavoriteButton isFavorite={offer.isFavorite} componentName={`place-card`} />
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${100 / 5 * offer.rating}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <StarBar rating={offer.rating} />
         <h2 className="place-card__name">
-          <a href="#" onClick={onCardClick}>{offer.title}</a>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{capitalizeChar(offer.type)}</p>
+        <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
       </div>
-    </article>
+    </React.Fragment>
   );
 };
 
-PlaceCard.propTypes = {
-  onCardHover: PropTypes.func.isRequired,
-  onCardClick: PropTypes.func.isRequired,
+CardDetails.propTypes = {
+  type: PropTypes.string,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     city: PropTypes.oneOf([...CITIES]).isRequired,
@@ -63,4 +71,4 @@ PlaceCard.propTypes = {
   }).isRequired,
 };
 
-export default PlaceCard;
+export default CardDetails;

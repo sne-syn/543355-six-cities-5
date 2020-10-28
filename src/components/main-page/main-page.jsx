@@ -6,31 +6,52 @@ import PlacesContainer from '../places-container/places-container';
 import NoPlacesContainer from '../no-places-container/no-places-container';
 import {CITIES} from '../../utils/const';
 
+const getPlacesComponent = (offers, currentCity) => {
+  switch (true) {
+    case (offers.length === 0):
+      return <NoPlacesContainer currentCity={currentCity} />;
+    default:
+      return <PlacesContainer offers={offers} currentCity={currentCity} />;
+  }
+};
+
 class MainPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeCity: CITIES[0],
+      currentCity: CITIES[3],
     };
+    this._handleLocationChange = this._handleLocationChange.bind(this);
+  }
+
+  _handleLocationChange(evt) {
+    this.setState({
+      currentCity: evt.target.textContent
+    });
   }
 
   render() {
-    const {offers, isLogged, onCardClick} = this.props;
+    const {offers} = this.props;
     const filteredOffers = offers.filter((offer) =>
-      (offer.city === this.state.activeCity)
+      (offer.city === this.state.currentCity)
     );
+    let mainClassName = `page__main page__main--index`;
+    if (filteredOffers.length === 0) {
+      mainClassName += ` page__main--index-empty`;
+    }
+
     return (
-      <div className={`page page--gray page--main ${ filteredOffers.length === 0 && `page__main--index-empty`}`}>
-        <Header isLogged={isLogged}/>
-        <main className="page__main page__main--index">
+      <div className="page page--gray page--main">
+        <Header {...this.props}/>
+        <main className={mainClassName}>
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <LocationsNav activeCity={this.state.activeCity} onLocationChange={(evt) => this.setState({activeCity: evt.target.textContent})} />
+              <LocationsNav currentCity={this.state.currentCity} onLocationChange={this._handleLocationChange} tab={true}/>
             </section>
           </div>
           <div className="cities">
-            {filteredOffers.length > 0 ? (<PlacesContainer filteredOffers={filteredOffers} activeCity={this.state.activeCity} onCardClick={onCardClick}/>) : (<NoPlacesContainer activeCity={this.state.activeCity} />)}
+            {getPlacesComponent(filteredOffers, this.state.currentCity)}
           </div>
         </main>
       </div>
@@ -40,8 +61,6 @@ class MainPage extends PureComponent {
 
 MainPage.propTypes = {
   offers: PropTypes.array.isRequired,
-  isLogged: PropTypes.bool.isRequired,
-  onCardClick: PropTypes.func.isRequired,
 };
 
 export default MainPage;
