@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sort from '../sort/sort';
-import MapSection from '../map-section/map-section';
+// import MapSection from '../map-section/map-section';
 import {CountCards} from '../../utils/const';
 import ListHoverOnMap from '../list-hover-on-map/list-hover-on-map';
 
@@ -17,13 +17,12 @@ const PlacesContainer = ({offers, currentCity}) => {
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <MapSection currentCity={currentCity} offersToRender={offersToRender}/>
         </section>
       </div>
     </div>
   );
 };
-
+// <MapSection currentCity={currentCity} offersToRender={offersToRender}/>
 PlacesContainer.propTypes = {
   offers: PropTypes.array.isRequired,
   currentCity: PropTypes.string.isRequired,

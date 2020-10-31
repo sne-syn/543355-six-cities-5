@@ -4,13 +4,13 @@ import LocationsItem from '../locations-item/locations-item';
 import {CITIES} from '../../utils/const';
 
 const LocationsNav = (props) => {
-  const {onLocationChange, currentCity} = props;
+  const {currentCity, changeActiveElement} = props;
   const citiesList = CITIES;
   return (
     <ul className = "locations__list tabs__list" >
       {citiesList.map((city, i) => (
-        <li key={i} className="locations__item" onClick={onLocationChange}>
-          <LocationsItem cityName={city} activeCity={currentCity}{...props}/>
+        <li key={i} className="locations__item" onClick={changeActiveElement}>
+          <LocationsItem cityName={city} activeCity={currentCity} {...props}/>
         </li>
       ))}
     </ul>
@@ -19,7 +19,7 @@ const LocationsNav = (props) => {
 
 LocationsNav.propTypes = {
   currentCity: PropTypes.string.isRequired,
-  onLocationChange: PropTypes.func.isRequired
+  onLocationChange: PropTypes.func
 };
 
 export default LocationsNav;

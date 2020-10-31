@@ -42,6 +42,10 @@ const capitalizeChar = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
 export {
   addLeadingZero,
   capitalizeChar,
@@ -50,4 +54,5 @@ export {
   getRandomArrayItem,
   getRandomNumber,
   getSeveralRandomItems,
+  extend
 };
