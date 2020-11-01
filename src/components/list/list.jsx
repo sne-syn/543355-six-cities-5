@@ -34,7 +34,7 @@ const List = (props) => {
 
 List.propTypes = {
   type: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.any,
 };
 
 export default List;

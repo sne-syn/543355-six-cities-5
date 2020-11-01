@@ -26,9 +26,9 @@ class MainPage extends PureComponent {
   }
 
   render() {
-    const {activeElement, filteredOffers} = this.props;
+    const {activeElement, offers} = this.props;
     let mainClassName = `page__main page__main--index`;
-    if (filteredOffers.length === 0) {
+    if (offers.length === 0) {
       mainClassName += ` page__main--index-empty`;
     }
 
@@ -43,7 +43,7 @@ class MainPage extends PureComponent {
             </section>
           </div>
           <div className="cities">
-            {getPlacesComponent(filteredOffers, activeElement)}
+            {getPlacesComponent(offers, activeElement)}
           </div>
         </main>
       </div>
@@ -54,20 +54,19 @@ class MainPage extends PureComponent {
 function mapStateToProps(state) {
   return {
     activeElement: state.activeElement,
-    filteredOffers: state.filteredOffers
+    offers: state.offers
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showOnLoad(offers) {
-    dispatch(ActionCreator.showOnLoad(offers));
+  showOnLoad() {
+    dispatch(ActionCreator.showOnLoad());
   }
 });
 
 MainPage.propTypes = {
-  offers: PropTypes.array.isRequired,
   activeElement: PropTypes.string.isRequired,
-  filteredOffers: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
   showOnLoad: PropTypes.func.isRequired
 };
 

@@ -34,7 +34,7 @@ const FavoritesPage = (props) => {
 };
 
 FavoritesPage.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.any,
 };
 
 export default FavoritesPage;

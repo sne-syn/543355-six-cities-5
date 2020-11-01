@@ -75,7 +75,7 @@ const PropertyPage = (props) => {
 };
 
 PropertyPage.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.any,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     city: PropTypes.oneOf([...CITIES]).isRequired,
@@ -92,7 +92,7 @@ PropertyPage.propTypes = {
     host: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
-  }).isRequired,
+  }),
 };
 
 export default PropertyPage;
