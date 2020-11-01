@@ -54,7 +54,7 @@ class MainPage extends PureComponent {
 function mapStateToProps(state) {
   return {
     activeElement: state.activeElement,
-    offers: state.offers
+    offers: state.filteredOffers
   };
 }
 

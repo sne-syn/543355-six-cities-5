@@ -35,10 +35,12 @@ class MapSection extends PureComponent {
     });
     this._currentCenter = null;
     this._zoom = 13;
+
   }
 
   _addPins() {
     const {offersToRender} = this.props;
+
     const currentOffersCoords = offersToRender.map((it) => it.location);
     currentOffersCoords.map((it) => {
       leaflet
@@ -82,6 +84,7 @@ class MapSection extends PureComponent {
         }
     )
     .addTo(this._map);
+
     this._addPins();
   }
 

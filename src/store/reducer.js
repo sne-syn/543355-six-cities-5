@@ -6,8 +6,9 @@ import {filterData, filterFavorites} from './../core';
 const offers = generateOffers(20);
 
 const initialState = {
+  offers,
   activeElement: CITIES[0],
-  offers
+  filteredOffers: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,16 +16,16 @@ const reducer = (state = initialState, action) => {
     case ActionType.SHOW_ON_LOAD:
       return extend(state, {
         activeElement: CITIES[0],
-        offers: filterData(offers, state.activeElement)
+        filteredOffers: filterData(state.offers, state.activeElement)
       });
     case ActionType.CHANGE_ACTIVE_ELEMENT:
       return extend(state, {
         activeElement: action.payload,
-        offers: filterData(offers, action.payload)
+        filteredOffers: filterData(state.offers, action.payload)
       });
     case ActionType.SHOW_FAVORITES:
       return extend(state, {
-        offers: filterFavorites(offers)
+        filteredOffers: filterFavorites(state.offers)
       });
     default:
       return state;

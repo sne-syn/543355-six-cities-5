@@ -1,7 +1,7 @@
 export const ActionType = {
   SHOW_ON_LOAD: `SHOW_ON_LOAD`,
   CHANGE_ACTIVE_ELEMENT: `CHANGE_ACTIVE_ELEMENT`,
-  SHOW_FAVORITES: `SHOW_FAVORITES`
+  SHOW_FAVORITES: `SHOW_FAVORITES`,
 };
 
 export const ActionCreator = {
@@ -12,7 +12,7 @@ export const ActionCreator = {
     type: ActionType.CHANGE_ACTIVE_ELEMENT,
     payload: evt.target.textContent
   }),
-  showFavoritesElement: () => ({
+  showFavoritesElements: () => ({
     type: ActionType.SHOW_FAVORITES
-  })
+  }),
 };

@@ -21,7 +21,7 @@ class FavoritesPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showFavoritesElement(this.props.offers);
+    this.props.showFavoritesElements(this.props.offers);
   }
 
   render() {
@@ -44,19 +44,19 @@ class FavoritesPage extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    offers: state.offers
+    offers: state.filteredOffers
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElement() {
-    dispatch(ActionCreator.showFavoritesElement());
+  showFavoritesElements(offers) {
+    dispatch(ActionCreator.showFavoritesElements(offers));
   }
 });
 
 FavoritesPage.propTypes = {
   offers: PropTypes.array.isRequired,
-  showFavoritesElement: PropTypes.func.isRequired
+  showFavoritesElements: PropTypes.func.isRequired
 };
 
 export {FavoritesPage};
