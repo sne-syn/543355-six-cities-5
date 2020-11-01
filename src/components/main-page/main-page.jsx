@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import LocationsNav from '../locations-nav/locations-nav';
 import PlacesContainer from '../places-container/places-container';
 import NoPlacesContainer from '../no-places-container/no-places-container';
-import {CITIES} from '../../utils/const';
-import {changeActiveElement} from '../../store/reducer';
 
 const getPlacesComponent = (offers, currentCity) => {
   switch (true) {
@@ -17,47 +16,59 @@ const getPlacesComponent = (offers, currentCity) => {
   }
 };
 
-const MainPage = (props) => {
-  const {offers, activeElement, changeActiveElement} = props;
-  const currentCity = activeElement;
-  const filteredOffers = offers.filter((offer) =>
-    (offer.city === currentCity)
-  );
-  let mainClassName = `page__main page__main--index`;
-  if (filteredOffers.length === 0) {
-    mainClassName += ` page__main--index-empty`;
+class MainPage extends PureComponent {
+  constructor(props) {
+    super(props);
   }
 
-  return (
-    <div className="page page--gray page--main">
-      <Header {...props}/>
-      <main className={mainClassName}>
-        <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <LocationsNav changeActiveElement={changeActiveElement} currentCity={currentCity} tab={true}/>
-          </section>
-        </div>
-        <div className="cities">
-          {getPlacesComponent(filteredOffers, currentCity)}
-        </div>
-      </main>
-    </div>
-  );
-};
+  componentDidMount() {
+    this.props.showOnLoad(this.props.offers);
+  }
+
+  render() {
+    const {activeElement, filteredOffers} = this.props;
+    let mainClassName = `page__main page__main--index`;
+    if (filteredOffers.length === 0) {
+      mainClassName += ` page__main--index-empty`;
+    }
+
+    return (
+      <div className="page page--gray page--main">
+        <Header {...this.props}/>
+        <main className={mainClassName}>
+          <h1 className="visually-hidden">Cities</h1>
+          <div className="tabs">
+            <section className="locations container">
+              <LocationsNav currentCity={activeElement} tab={true}/>
+            </section>
+          </div>
+          <div className="cities">
+            {getPlacesComponent(filteredOffers, activeElement)}
+          </div>
+        </main>
+      </div>
+    );
+  }
+}
 
 function mapStateToProps(state) {
   return {
-    activeElement: state.activeElement
+    activeElement: state.activeElement,
+    filteredOffers: state.filteredOffers
   };
 }
 
-const mapDispatchToProps = {
-  changeActiveElement
-};
+const mapDispatchToProps = (dispatch) => ({
+  showOnLoad(offers) {
+    dispatch(ActionCreator.showOnLoad(offers));
+  }
+});
 
 MainPage.propTypes = {
   offers: PropTypes.array.isRequired,
+  activeElement: PropTypes.string.isRequired,
+  filteredOffers: PropTypes.array.isRequired,
+  showOnLoad: PropTypes.func.isRequired
 };
 
 export {MainPage};

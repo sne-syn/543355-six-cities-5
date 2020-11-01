@@ -1,29 +1,30 @@
 import {CITIES} from '../utils/const';
 import {extend} from '../utils/common';
-import {createStore} from "redux";
+import {offers} from './../index';
+import {ActionType} from "./action";
 
 const initialState = {
-  activeElement: CITIES[0]
-};
-
-export const changeActiveElement = (evt) => {
-  return {
-    type: `CHANGE_ACTIVE_ELEMENT`,
-    playload: evt.target.textContent
-  };
+  activeElement: CITIES[0],
+  filteredOffers: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `CHANGE_ACTIVE_ELEMENT`:
+    case ActionType.SHOW_ON_LOAD:
       return extend(state, {
-        activeElement: action.playload
+        activeElement: CITIES[0],
+        filteredOffers: action.payload.filter((offer) =>
+          (offer.city === state.activeElement))
+      });
+    case ActionType.CHANGE_ACTIVE_ELEMENT:
+      return extend(state, {
+        activeElement: action.payload,
+        filteredOffers: offers.filter((offer) =>
+          (offer.city === action.payload))
       });
     default:
       return state;
   }
 };
 
-const store = createStore(reducer);
-store.subscribe(() => console.log(store.getState()));
-export default store;
+export {reducer};

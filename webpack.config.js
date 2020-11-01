@@ -21,14 +21,8 @@ module.exports = {
             loader: 'babel-loader',
         },
       },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(png|jpe?g|svg)$/i,
-        use: ['url-loader']
-    }
+      { test: /\.css$/, use: ["style-loader","css-loader"] },
+      { test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, use: [ 'file-loader' ] },
     ],
   },
   resolve: {

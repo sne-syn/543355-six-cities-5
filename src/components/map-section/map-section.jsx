@@ -2,9 +2,23 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
+import icon from '../../../node_modules/leaflet/dist/images/marker-icon.png';
+import iconShadow from '../../../node_modules/leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = leaflet.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow
+});
+leaflet.Marker.prototype.options.icon = DefaultIcon;
 
 const CoordinatesMap = {
   AMSTERDAM: [52.38333, 4.9],
+  DUSSELDORF: [51.225402, 6.776314],
+  COLOGNE: [50.938361, 6.959974],
+  HAMBURG: [53.550341, 10.000654],
+  PARIS: [48.85661, 2.351499],
+  BRUSSELS: [50.846557, 4.351697]
 };
 
 const getAreaCoordinats = (city) => {
@@ -31,6 +45,15 @@ class MapSection extends PureComponent {
       .marker(it, this._pin)
       .addTo(this._map);
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    const shouldUpdate = this.props.currentCity !== prevProps.currentCity;
+
+    if (shouldUpdate) {
+      this._map.setView(getAreaCoordinats(this.props.currentCity), this._zoom);
+      this._addPins();
+    }
   }
 
   componentDidMount() {
@@ -93,4 +116,3 @@ MapSection.propTypes = {
 };
 
 export default MapSection;
-
