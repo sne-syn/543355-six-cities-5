@@ -2,7 +2,7 @@ import {CITIES} from '../utils/const';
 import {extend} from '../utils/common';
 import {ActionType} from "./action";
 import {generateOffers} from '../mocks/offers.js';
-import {filterData} from './../core';
+import {filterData, filterFavorites} from './../core';
 const offers = generateOffers(20);
 
 const initialState = {
@@ -21,6 +21,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         activeElement: action.payload,
         offers: filterData(offers, action.payload)
+      });
+    case ActionType.SHOW_FAVORITES:
+      return extend(state, {
+        offers: filterFavorites(offers)
       });
     default:
       return state;

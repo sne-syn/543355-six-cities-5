@@ -5,8 +5,10 @@ import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites/favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
+import {connect} from "react-redux";
 
-const App = ({reviews, hosts, isLogged}) => {
+const App = (props) => {
+  const {offers, reviews, hosts, isLogged} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -32,17 +34,25 @@ const App = ({reviews, hosts, isLogged}) => {
 
         </Route>
         <Route exact path='/offer/:id'>
-          <PropertyPage reviews={reviews} hosts={hosts} isLogged={isLogged} />
+          <PropertyPage offer={offers[0]} offers={offers} reviews={reviews} hosts={hosts} isLogged={isLogged} />
         </Route>
       </Switch>
     </BrowserRouter>
   );
 };
 
+function mapStateToProps(state) {
+  return {
+    offers: state.offers
+  };
+}
+
 App.propTypes = {
+  offers: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   hosts: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,
 };
 
-export default App;
+export {App};
+export default connect(mapStateToProps)(App);
