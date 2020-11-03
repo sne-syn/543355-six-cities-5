@@ -24,7 +24,9 @@ const reducer = (state = initialState, action) => {
         activeElement: action.payload,
         filteredOffers: filterData(state.offers, action.payload),
         activeSortType: SortType.DEFAULT,
-        unsortedOffers: state.unsortedOffers
+        get unsortedOffers() {
+          return this.filteredOffers;
+        },
       });
     case ActionType.SHOW_FAVORITES:
       return extend(state, {

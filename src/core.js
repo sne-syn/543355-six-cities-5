@@ -27,5 +27,5 @@ export const getSortedMovies = (filteredOffers, unsortedOffers, sortType) => {
       break;
   }
 
-  return sortedOffers.slice(0, 4);
+  return sortedOffers;
 };
