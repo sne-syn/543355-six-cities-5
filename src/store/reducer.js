@@ -2,13 +2,17 @@ import {CITIES} from '../utils/const';
 import {extend} from '../utils/common';
 import {ActionType} from "./action";
 import {generateOffers} from '../mocks/offers.js';
-import {filterData, filterFavorites} from './../core';
+import {filterData, filterFavorites, getSortedMovies} from './../core';
+import {SortType} from '../utils/const';
+
 const offers = generateOffers(20);
 const DEFAULT_CITY = CITIES[0];
 const initialState = {
   offers,
   activeElement: DEFAULT_CITY,
   filteredOffers: filterData(offers, DEFAULT_CITY),
+  activeSortType: SortType.DEFAULT,
+  unsortedOffers: filterData(offers, DEFAULT_CITY)
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,11 +20,18 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_ACTIVE_ELEMENT:
       return extend(state, {
         activeElement: action.payload,
-        filteredOffers: filterData(state.offers, action.payload)
+        filteredOffers: filterData(state.offers, action.payload),
+        activeSortType: SortType.DEFAULT,
+        unsortedOffers: filterData(state.offers, action.payload)
       });
     case ActionType.SHOW_FAVORITES:
       return extend(state, {
         filteredOffers: filterFavorites(state.offers)
+      });
+    case ActionType.CHANGE_SORT_TYPE:
+      return extend(state, {
+        filteredOffers: getSortedMovies(state.filteredOffers, state.unsortedOffers, action.payload),
+        activeSortType: action.payload
       });
     default:
       return state;

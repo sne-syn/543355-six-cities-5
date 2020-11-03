@@ -9,6 +9,13 @@ const ComponentType = {
   FAVORITE: `favorites`
 };
 
+const SortType = {
+  DEFAULT: `Popular`,
+  PRICE_LOW_HIGH: `Price: low to high`,
+  PRICE_HIGH_LOW: `Price: high to low`,
+  TOP_RATED: `Top rated first`
+};
+
 const AccomodationTypes = {
   apartment: `Apartment`,
   room: `Private Room`,
@@ -33,4 +40,4 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, CountCards, ComponentType};
+export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, CountCards, ComponentType, SortType};
