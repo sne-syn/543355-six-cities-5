@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 import Header from '../header/header';
 import LocationsItem from '../locations-item/locations-item';
 
 const LoginPage = (props) => {
+  const {activeElement} = props;
   return (
     <div className="page page--gray page--login">
       <Header {...props}/>
@@ -23,7 +26,7 @@ const LoginPage = (props) => {
             </form>
           </section>
           <section className="locations locations--login locations--current">
-            <LocationsItem cityName={`Amsterdam`} />
+            <LocationsItem cityName={activeElement} />
           </section>
         </div>
       </main>
@@ -31,4 +34,15 @@ const LoginPage = (props) => {
   );
 };
 
-export default LoginPage;
+function mapStateToProps(state) {
+  return {
+    activeElement: state.activeElement,
+  };
+}
+
+LoginPage.propTypes = {
+  activeElement: PropTypes.string.isRequired,
+};
+
+export {LoginPage};
+export default connect(mapStateToProps)(LoginPage);

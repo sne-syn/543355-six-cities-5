@@ -75,7 +75,7 @@ const PropertyPage = (props) => {
 };
 
 PropertyPage.propTypes = {
-  offers: PropTypes.any,
+  offers: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     city: PropTypes.oneOf([...CITIES]).isRequired,

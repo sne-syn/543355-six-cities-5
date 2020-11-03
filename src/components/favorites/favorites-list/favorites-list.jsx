@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import FavoritesCardsList from '../favorites-cards-list/favorites-cards-list';
 import LocationsItem from '../../locations-item/locations-item';
 
-const FavoritesList = ({offers}) => {
-  let countObj = new Set();
-  for (let value of offers) {
-    countObj.add(value.city);
+const FavoritesList = ({favoritesOffers}) => {
+  let collectCititesWithFavorites = new Set();
+  for (let value of favoritesOffers) {
+    collectCititesWithFavorites.add(value.city);
   }
-  let citiesWithFavoritesOffers = Array.from(countObj);
+  let citiesWithFavoritesOffers = Array.from(collectCititesWithFavorites);
 
   return (
     <ul className="favorites__list">
@@ -20,8 +20,7 @@ const FavoritesList = ({offers}) => {
                 <LocationsItem cityName={city} />
               </div>
             </div>
-            <FavoritesCardsList city={city} offers={offers}/>
-
+            <FavoritesCardsList city={city} offers={favoritesOffers}/>
           </li>
         );
       })
@@ -31,7 +30,8 @@ const FavoritesList = ({offers}) => {
 };
 
 FavoritesList.propTypes = {
-  offers: PropTypes.any
+  favoritesOffers: PropTypes.array.isRequired,
+  activeElement: PropTypes.string.isRequired,
 };
 
 export default FavoritesList;

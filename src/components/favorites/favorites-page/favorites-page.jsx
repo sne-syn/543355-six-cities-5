@@ -7,11 +7,11 @@ import Footer from '../../footer/footer';
 import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
 import FavoritesMainOffers from '../favorites-main-offers/favorites-main-offers';
 
-const getFavoriteComponent = (offers) => {
-  if (offers.length === 0) {
+const getFavoriteComponent = (favoritesOffers) => {
+  if (favoritesOffers.length === 0) {
     return <FavoritesMainEmpty />;
   } else {
-    return <FavoritesMainOffers offers={offers} />;
+    return <FavoritesMainOffers favoritesOffers={favoritesOffers}/>;
   }
 };
 
@@ -21,20 +21,20 @@ class FavoritesPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showFavoritesElements(this.props.offers);
+    this.props.showFavoritesElements();
   }
 
   render() {
-    const {offers} = this.props;
+    const {favoritesOffers} = this.props;
     let favoritesClassName = `page__main page__main--favorites`;
-    if (offers.length === 0) {
+    if (favoritesOffers.length === 0) {
       favoritesClassName += `page__main--favorites-empty`;
     }
     return (
       <div className="page">
         <Header {...this.props}/>
         <main className={favoritesClassName} >
-          {getFavoriteComponent(offers)}
+          {getFavoriteComponent(favoritesOffers)}
         </main>
         <Footer />
       </div>
@@ -44,19 +44,19 @@ class FavoritesPage extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    offers: state.filteredOffers
+    favoritesOffers: state.filteredOffers,
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElements(offers) {
-    dispatch(ActionCreator.showFavoritesElements(offers));
+  showFavoritesElements() {
+    dispatch(ActionCreator.showFavoritesElements());
   }
 });
 
 FavoritesPage.propTypes = {
-  offers: PropTypes.array.isRequired,
-  showFavoritesElements: PropTypes.func.isRequired
+  favoritesOffers: PropTypes.array.isRequired,
+  showFavoritesElements: PropTypes.func.isRequired,
 };
 
 export {FavoritesPage};
