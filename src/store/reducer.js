@@ -12,7 +12,9 @@ const initialState = {
   activeElement: DEFAULT_CITY,
   filteredOffers: filterData(offers, DEFAULT_CITY),
   activeSortType: SortType.DEFAULT,
-  unsortedOffers: filterData(offers, DEFAULT_CITY)
+  get unsortedOffers() {
+    return this.filteredOffers;
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,7 +24,7 @@ const reducer = (state = initialState, action) => {
         activeElement: action.payload,
         filteredOffers: filterData(state.offers, action.payload),
         activeSortType: SortType.DEFAULT,
-        unsortedOffers: filterData(state.offers, action.payload)
+        unsortedOffers: state.unsortedOffers
       });
     case ActionType.SHOW_FAVORITES:
       return extend(state, {
