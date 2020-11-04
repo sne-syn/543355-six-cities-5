@@ -1,5 +1,4 @@
 const CountCards = {
-  CITIES_LIST: 4,
   NEAR_LIST: 3
 };
 
@@ -9,12 +8,11 @@ const ComponentType = {
   FAVORITE: `favorites`
 };
 
-const SortType = {
-  DEFAULT: `Popular`,
-  PRICE_LOW_HIGH: `Price: low to high`,
-  PRICE_HIGH_LOW: `Price: high to low`,
-  TOP_RATED: `Top rated first`
-};
+const SortType = new Map();
+SortType.set(`DEFAULT`, `Popular`);
+SortType.set(`PRICE_LOW_HIGH`, `Price: low to high`);
+SortType.set(`PRICE_HIGH_LOW`, `Price: high to low`);
+SortType.set(`TOP_RATED`, `Top rated first`);
 
 const AccomodationTypes = {
   apartment: `Apartment`,

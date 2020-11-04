@@ -13,16 +13,16 @@ export const filterFavorites = (dataCollection) => {
 export const getSortedMovies = (filteredOffers, unsortedOffers, sortType) => {
   let sortedOffers = [];
   switch (sortType) {
-    case SortType.PRICE_LOW_HIGH:
+    case SortType.get(`PRICE_LOW_HIGH`):
       sortedOffers = [...filteredOffers].sort((a, b) => a.price - b.price);
       break;
-    case SortType.PRICE_HIGH_LOW:
+    case SortType.get(`PRICE_HIGH_LOW`):
       sortedOffers = [...filteredOffers].sort((a, b) => b.price - a.price);
       break;
-    case SortType.TOP_RATED:
+    case SortType.get(`TOP_RATED`):
       sortedOffers = [...filteredOffers].sort((a, b) => b.rating - a.rating);
       break;
-    case SortType.DEFAULT:
+    case SortType.get(`DEFAULT`):
       sortedOffers = [...unsortedOffers];
       break;
   }

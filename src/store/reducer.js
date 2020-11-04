@@ -11,7 +11,7 @@ const initialState = {
   offers,
   activeElement: DEFAULT_CITY,
   filteredOffers: filterData(offers, DEFAULT_CITY),
-  activeSortType: SortType.DEFAULT,
+  activeSortType: SortType.get(`DEFAULT`),
   get unsortedOffers() {
     return this.filteredOffers;
   },
@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         activeElement: action.payload,
         filteredOffers: filterData(state.offers, action.payload),
-        activeSortType: SortType.DEFAULT,
+        activeSortType: SortType.get(`DEFAULT`),
         get unsortedOffers() {
           return this.filteredOffers;
         },

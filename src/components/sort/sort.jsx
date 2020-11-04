@@ -3,6 +3,16 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 import PropTypes from 'prop-types';
 import Toggler from '../toggler/toggler';
+import {SortType} from '../../utils/const';
+
+const getSortOptions = (toggleComponent) => {
+  let sortOptions = [];
+  for (let [key, value] of SortType) {
+    sortOptions.push(<li key={key} className="places__option" tabIndex="0" onClick={toggleComponent}>{value}</li>);
+  }
+
+  return sortOptions;
+};
 
 const Sort = ({activeSortType, changeSortType}) => {
   return (
@@ -17,10 +27,7 @@ const Sort = ({activeSortType, changeSortType}) => {
               </svg>
             </span>
             <ul className={`places__options places__options--custom ${on && (`places__options--opened`)}`} onClick={changeSortType}>
-              <li className="places__option" tabIndex="0" onClick={toggleComponent} >Popular</li>
-              <li className="places__option" tabIndex="0" onClick={toggleComponent}>Price: low to high</li>
-              <li className="places__option" tabIndex="0" onClick={toggleComponent}>Price: high to low</li>
-              <li className="places__option" tabIndex="0" onClick={toggleComponent}>Top rated first</li>
+              {getSortOptions(toggleComponent)}
             </ul>
           </form>
         );
