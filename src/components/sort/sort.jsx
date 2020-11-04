@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import Toggler from '../toggler/toggler';
 import {SortType} from '../../utils/const';
 
-const getSortOptions = (toggleComponent) => {
+const getSortOptions = (toggleComponent, activeSortType) => {
   let sortOptions = [];
   for (let [key, value] of SortType) {
-    sortOptions.push(<li key={key} className="places__option" tabIndex="0" onClick={toggleComponent}>{value}</li>);
+    const isActive = (value === activeSortType) ? `places__option--active` : ``;
+    sortOptions.push(<li key={key} className={`places__option ${isActive}`} tabIndex="0" onClick={toggleComponent}>{value}</li>);
   }
 
   return sortOptions;
@@ -27,7 +28,7 @@ const Sort = ({activeSortType, changeSortType}) => {
               </svg>
             </span>
             <ul className={`places__options places__options--custom ${on && (`places__options--opened`)}`} onClick={changeSortType}>
-              {getSortOptions(toggleComponent)}
+              {getSortOptions(toggleComponent, activeSortType)}
             </ul>
           </form>
         );
