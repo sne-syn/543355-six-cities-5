@@ -15,6 +15,7 @@ const initialState = {
   get unsortedOffers() {
     return this.filteredOffers;
   },
+  highlightedOfferID: ``
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,6 +37,14 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         filteredOffers: getSortedMovies(state.filteredOffers, state.unsortedOffers, action.payload),
         activeSortType: action.payload
+      });
+    case ActionType.SET_ACTIVE_CARD_ID:
+      return extend(state, {
+        highlightedOfferID: action.payload
+      });
+    case ActionType.RESET_ACTIVE_CARD_ID:
+      return extend(state, {
+        highlightedOfferID: ``
       });
     default:
       return state;

@@ -6,12 +6,6 @@ import 'leaflet/dist/leaflet.css';
 import icon from '../../../node_modules/leaflet/dist/images/marker-icon.png';
 import iconShadow from '../../../node_modules/leaflet/dist/images/marker-shadow.png';
 
-let DefaultIcon = leaflet.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow
-});
-leaflet.Marker.prototype.options.icon = DefaultIcon;
-
 const CoordinatesMap = {
   AMSTERDAM: [52.38333, 4.9],
   DUSSELDORF: [51.225402, 6.776314],
@@ -28,24 +22,26 @@ const getAreaCoordinats = (city) => {
 class MapSection extends PureComponent {
   constructor(props) {
     super(props);
-    this._mapRef = React.createRef();
-    this._pin = leaflet.icon({
-      iconUrl: `./img/pin.svg`,
-      iconSize: [30, 30]
-    });
-    this._currentCenter = null;
+    this._mapSection = React.createRef();
+    this._map = null;
+    this._layerGroup = null;
     this._zoom = 13;
+    this._pin = leaflet.icon({
+      iconUrl: icon,
+      shadowUrl: iconShadow
+    });
 
   }
 
   _addPins() {
+    leaflet.Marker.prototype.options.icon = this._pin;
     const {offersToRender} = this.props;
-
+    this._layerGroup.clearLayers();
     const currentOffersCoords = offersToRender.map((it) => it.location);
     currentOffersCoords.map((it) => {
       leaflet
       .marker(it, this._pin)
-      .addTo(this._map);
+      .addTo(this._layerGroup);
     });
   }
 
@@ -53,6 +49,7 @@ class MapSection extends PureComponent {
     const shouldUpdate = this.props.currentCity !== prevProps.currentCity;
 
     if (shouldUpdate) {
+      this._layerGroup.clearLayers();
       this._map.setView(getAreaCoordinats(this.props.currentCity), this._zoom);
       this._addPins();
     }
@@ -60,12 +57,13 @@ class MapSection extends PureComponent {
 
   componentDidMount() {
     const {currentCity} = this.props;
-    this._map = leaflet.map(this._mapRef.current, {
+    this._map = leaflet.map(this._mapSection.current, {
       center: getAreaCoordinats(currentCity),
       zoom: this._zoom,
       zoomControl: false,
       marker: true,
     });
+    this._layerGroup = leaflet.layerGroup().addTo(this._map);
     this._map.setView(getAreaCoordinats(currentCity), this._zoom);
 
     leaflet
@@ -84,13 +82,12 @@ class MapSection extends PureComponent {
         }
     )
     .addTo(this._map);
-
-    this._addPins();
+    this._addPins(this._layerGroup);
   }
 
   render() {
     return (
-      <div id="map" ref={this._mapRef} style={{height: `100%`}} />
+      <div id="map" ref={this._mapSection} style={{height: `100%`}} />
     );
   }
 }
