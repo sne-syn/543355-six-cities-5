@@ -68,24 +68,24 @@ class MapSection extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const shouldUpdate = this.props.currentCity !== prevProps.currentCity;
+    const shouldUpdate = this.props.activeElement !== prevProps.activeElement;
     if (shouldUpdate) {
       this._layerGroup.clearLayers();
-      this._map.setView(getAreaCoordinats(this.props.currentCity), this._zoom);
+      this._map.setView(getAreaCoordinats(this.props.activeElement), this._zoom);
     }
     this._showActivePin();
   }
 
   componentDidMount() {
-    const {currentCity} = this.props;
+    const {activeElement} = this.props;
     this._map = leaflet.map(this._mapSection.current, {
-      center: getAreaCoordinats(currentCity),
+      center: getAreaCoordinats(activeElement),
       zoom: this._zoom,
       zoomControl: false,
       marker: true,
     });
 
-    this._map.setView(getAreaCoordinats(currentCity), this._zoom);
+    this._map.setView(getAreaCoordinats(activeElement), this._zoom);
 
     leaflet
     .tileLayer(
@@ -115,7 +115,7 @@ class MapSection extends PureComponent {
 }
 
 MapSection.propTypes = {
-  currentCity: PropTypes.string.isRequired,
+  activeElement: PropTypes.string.isRequired,
   highlightedOfferID: PropTypes.string.isRequired,
   unsortedOffers: PropTypes.oneOfType([
     PropTypes.array,
@@ -140,7 +140,7 @@ MapSection.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    currentCity: state.activeElement,
+    activeElement: state.activeElement,
     unsortedOffers: state.unsortedOffers,
     highlightedOfferID: state.highlightedOfferID
   };

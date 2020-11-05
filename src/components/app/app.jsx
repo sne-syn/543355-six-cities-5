@@ -5,10 +5,12 @@ import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites/favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
-import {connect} from "react-redux";
+import {generateOffers} from '../../mocks/offers.js';
+
+const offers = generateOffers(20);
 
 const App = (props) => {
-  const {offers, reviews, hosts, isLogged} = props;
+  const {reviews, hosts, isLogged} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -41,18 +43,10 @@ const App = (props) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    offers: state.offers
-  };
-}
-
 App.propTypes = {
-  offers: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   hosts: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,
 };
 
-export {App};
-export default connect(mapStateToProps)(App);
+export default App;

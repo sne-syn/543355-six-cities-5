@@ -28,22 +28,17 @@ LocationsItem.propTypes = {
   changeLocation: PropTypes.func.isRequired
 };
 
-
 function mapStateToProps(state) {
   return {
-    favoritesOffers: state.filteredOffers,
     activeCity: state.activeElement,
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElements() {
-    dispatch(ActionCreator.showFavoritesElements());
-  },
   changeLocation(evt) {
     dispatch(ActionCreator.changeActiveElement(evt));
   }
 });
 
 export {LocationsItem};
-export default connect(mapStateToProps, mapDispatchToProps)(LocationsItem);
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(LocationsItem));

@@ -15,4 +15,4 @@ const LocationsNav = (props) => {
   );
 };
 
-export default LocationsNav;
+export default React.memo(LocationsNav);

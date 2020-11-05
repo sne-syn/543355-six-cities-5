@@ -63,7 +63,7 @@ const PropertyPage = (props) => {
             </div>
           </div>
           <section className="property__map map">
-            <MapSection currentCity={offer.city} offersToRender={nearPlacesToRender} activeOffer={offer}/>
+            <MapSection activeElement={offer.city} offersToRender={nearPlacesToRender} activeOffer={offer}/>
           </section>
         </section>
         <div className="container">

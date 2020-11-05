@@ -6,12 +6,12 @@ import LocationsNav from '../locations-nav/locations-nav';
 import PlacesContainer from '../places-container/places-container';
 import NoPlacesContainer from '../no-places-container/no-places-container';
 
-const getPlacesComponent = (offers, currentCity) => {
+const getPlacesComponent = (offers, activeElement) => {
   switch (true) {
     case (offers.length === 0):
-      return <NoPlacesContainer currentCity={currentCity} />;
+      return <NoPlacesContainer activeElement={activeElement} />;
     default:
-      return <PlacesContainer offers={offers} currentCity={currentCity} />;
+      return <PlacesContainer />;
   }
 };
 
@@ -29,7 +29,7 @@ const MainPage = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <LocationsNav currentCity={activeElement} tab={true}/>
+            <LocationsNav tab={true}/>
           </section>
         </div>
         <div className="cities">
@@ -43,7 +43,7 @@ const MainPage = (props) => {
 function mapStateToProps(state) {
   return {
     activeElement: state.activeElement,
-    offers: state.filteredOffers
+    offers: state.unsortedOffers
   };
 }
 
@@ -53,4 +53,4 @@ MainPage.propTypes = {
 };
 
 export {MainPage};
-export default connect(mapStateToProps)(MainPage);
+export default React.memo(connect(mapStateToProps)(MainPage));

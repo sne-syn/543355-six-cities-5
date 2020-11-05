@@ -12,6 +12,7 @@ const ListHoverOnMap = (props) => {
 function mapStateToProps(state) {
   return {
     highlightedOfferID: state.highlightedOfferID,
+    offers: state.filteredOffers
   };
 }
 
