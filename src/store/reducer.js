@@ -15,7 +15,7 @@ const initialState = {
   get unsortedOffers() {
     return this.filteredOffers;
   },
-  highlightedOfferID: ``
+  highlightedOfferID: ``,
 };
 
 const reducer = (state = initialState, action) => {

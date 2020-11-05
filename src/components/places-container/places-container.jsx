@@ -15,7 +15,7 @@ const PlacesContainer = ({offers, currentCity}) => {
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <MapSection currentCity={currentCity} offersToRender={offers}/>
+          <MapSection/>
         </section>
       </div>
     </div>

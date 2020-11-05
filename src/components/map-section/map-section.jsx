@@ -1,10 +1,11 @@
 import React, {PureComponent} from 'react';
+import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
-import 'leaflet/dist/leaflet.css';
-import icon from '../../../node_modules/leaflet/dist/images/marker-icon.png';
-import iconShadow from '../../../node_modules/leaflet/dist/images/marker-shadow.png';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import iconActive from '../../../public/img/pin-active.svg';
 
 const CoordinatesMap = {
   AMSTERDAM: [52.38333, 4.9],
@@ -13,6 +14,22 @@ const CoordinatesMap = {
   HAMBURG: [53.550341, 10.000654],
   PARIS: [48.85661, 2.351499],
   BRUSSELS: [50.846557, 4.351697]
+};
+
+let IconTypes = {
+  ICON_DEFAULT: icon,
+  ICON_ACTIVE: iconActive
+};
+
+const getIcon = (iconTypes) => {
+  let DefaultIcon = leaflet.icon({
+    iconUrl: iconTypes,
+    shadowUrl: iconShadow,
+    iconSize: [24, 36],
+    iconAnchor: [12, 36]
+  });
+  leaflet.Marker.prototype.options.icon = DefaultIcon;
+  return DefaultIcon;
 };
 
 const getAreaCoordinats = (city) => {
@@ -26,33 +43,33 @@ class MapSection extends PureComponent {
     this._map = null;
     this._layerGroup = null;
     this._zoom = 13;
-    this._pin = leaflet.icon({
-      iconUrl: icon,
-      shadowUrl: iconShadow
-    });
-
   }
 
   _addPins() {
-    leaflet.Marker.prototype.options.icon = this._pin;
-    const {offersToRender} = this.props;
     this._layerGroup.clearLayers();
-    const currentOffersCoords = offersToRender.map((it) => it.location);
-    currentOffersCoords.map((it) => {
-      leaflet
-      .marker(it, this._pin)
-      .addTo(this._layerGroup);
+    this.props.unsortedOffers.map((it) => {
+      const marker = leaflet.marker(it.location, {pin: getIcon(IconTypes.ICON_DEFAULT)}).addTo(this._layerGroup);
+      return marker;
     });
   }
 
   componentDidUpdate(prevProps) {
+    this._layerGroup.clearLayers();
     const shouldUpdate = this.props.currentCity !== prevProps.currentCity;
-
     if (shouldUpdate) {
-      this._layerGroup.clearLayers();
       this._map.setView(getAreaCoordinats(this.props.currentCity), this._zoom);
-      this._addPins();
     }
+
+    let iconToShow;
+    this.props.unsortedOffers.map((it) => {
+      if (this.props.highlightedOfferID !== it.id) {
+        iconToShow = getIcon(IconTypes.ICON_DEFAULT);
+      } else {
+        iconToShow = getIcon(IconTypes.ICON_ACTIVE);
+      }
+      const marker = leaflet.marker(it.location, {pin: iconToShow}).addTo(this._layerGroup);
+      return marker;
+    });
   }
 
   componentDidMount() {
@@ -63,7 +80,7 @@ class MapSection extends PureComponent {
       zoomControl: false,
       marker: true,
     });
-    this._layerGroup = leaflet.layerGroup().addTo(this._map);
+
     this._map.setView(getAreaCoordinats(currentCity), this._zoom);
 
     leaflet
@@ -82,7 +99,8 @@ class MapSection extends PureComponent {
         }
     )
     .addTo(this._map);
-    this._addPins(this._layerGroup);
+    this._layerGroup = leaflet.layerGroup().addTo(this._map);
+    this._addPins();
   }
 
   render() {
@@ -94,7 +112,8 @@ class MapSection extends PureComponent {
 
 MapSection.propTypes = {
   currentCity: PropTypes.string.isRequired,
-  offersToRender: PropTypes.oneOfType([
+  highlightedOfferID: PropTypes.string.isRequired,
+  unsortedOffers: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -115,4 +134,13 @@ MapSection.propTypes = {
     })]).isRequired
 };
 
-export default MapSection;
+function mapStateToProps(state) {
+  return {
+    currentCity: state.activeElement,
+    unsortedOffers: state.unsortedOffers,
+    highlightedOfferID: state.highlightedOfferID
+  };
+}
+
+export {MapSection};
+export default connect(mapStateToProps)(MapSection);
