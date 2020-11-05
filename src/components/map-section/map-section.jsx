@@ -53,13 +53,8 @@ class MapSection extends PureComponent {
     });
   }
 
-  componentDidUpdate(prevProps) {
+  _showActivePin() {
     this._layerGroup.clearLayers();
-    const shouldUpdate = this.props.currentCity !== prevProps.currentCity;
-    if (shouldUpdate) {
-      this._map.setView(getAreaCoordinats(this.props.currentCity), this._zoom);
-    }
-
     let iconToShow;
     this.props.unsortedOffers.map((it) => {
       if (this.props.highlightedOfferID !== it.id) {
@@ -70,6 +65,15 @@ class MapSection extends PureComponent {
       const marker = leaflet.marker(it.location, {pin: iconToShow}).addTo(this._layerGroup);
       return marker;
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    const shouldUpdate = this.props.currentCity !== prevProps.currentCity;
+    if (shouldUpdate) {
+      this._layerGroup.clearLayers();
+      this._map.setView(getAreaCoordinats(this.props.currentCity), this._zoom);
+    }
+    this._showActivePin();
   }
 
   componentDidMount() {
