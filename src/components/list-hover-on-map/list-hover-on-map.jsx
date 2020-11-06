@@ -1,33 +1,29 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 import List from '../list/list';
 
-class ListHoverOnMap extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cardID: ``
-    };
-    this._setCardMarkerHover = this._setCardMarkerHover.bind(this);
-    this._resetCardMarkerHover = this._resetCardMarkerHover.bind(this);
-  }
+const ListHoverOnMap = (props) => {
+  return (
+    <List {...props}/>
+  );
+};
 
-  _setCardMarkerHover(evt) {
-    this.setState({
-      cardID: evt.currentTarget.id
-    });
-  }
-
-  _resetCardMarkerHover() {
-    this.setState({
-      cardID: ``
-    });
-  }
-
-  render() {
-    return (
-      <List resetCardMarkerHover={this._resetCardMarkerHover} setCardMarkerHover={this._setCardMarkerHover} {...this.props}/>
-    );
-  }
+function mapStateToProps(state) {
+  return {
+    highlightedOfferID: state.highlightedOfferID,
+    offers: state.filteredOffers
+  };
 }
 
-export default ListHoverOnMap;
+const mapDispatchToProps = (dispatch) => ({
+  setActiveCardID(evt) {
+    dispatch(ActionCreator.setActiveCardID(evt));
+  },
+  resetActiveCardID() {
+    dispatch(ActionCreator.resetActiveCardID());
+  }
+});
+
+export {ListHoverOnMap};
+export default connect(mapStateToProps, mapDispatchToProps)(ListHoverOnMap);

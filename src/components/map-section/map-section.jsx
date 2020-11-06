@@ -1,47 +1,80 @@
 import React, {PureComponent} from 'react';
+import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import iconActive from '../../../public/img/pin-active.svg';
 
-const CoordinatesMap = {
-  AMSTERDAM: [52.38333, 4.9],
+let IconTypes = {
+  ICON_DEFAULT: icon,
+  ICON_ACTIVE: iconActive
 };
 
-const getAreaCoordinats = (city) => {
-  return CoordinatesMap[city.toUpperCase()];
+const getIcon = (iconTypes) => {
+  let DefaultIcon = leaflet.icon({
+    iconUrl: iconTypes,
+    shadowUrl: iconShadow,
+    iconSize: [24, 36],
+    iconAnchor: [12, 36]
+  });
+  leaflet.Marker.prototype.options.icon = DefaultIcon;
+  return DefaultIcon;
 };
 
 class MapSection extends PureComponent {
   constructor(props) {
     super(props);
-    this._mapRef = React.createRef();
-    this._pin = leaflet.icon({
-      iconUrl: `./img/pin.svg`,
-      iconSize: [30, 30]
-    });
-    this._currentCenter = null;
-    this._zoom = 13;
+    this._mapSection = React.createRef();
+    this._map = null;
+    this._layerGroup = null;
   }
 
   _addPins() {
-    const {offersToRender} = this.props;
-    const currentOffersCoords = offersToRender.map((it) => it.location);
-    currentOffersCoords.map((it) => {
-      leaflet
-      .marker(it, this._pin)
-      .addTo(this._map);
+    this._layerGroup.clearLayers();
+    this.props.unsortedOffers.map((it) => {
+      const marker = leaflet.marker(it.location, {pin: getIcon(IconTypes.ICON_DEFAULT)}).addTo(this._layerGroup);
+      return marker;
     });
   }
 
+  _showActivePin() {
+    this._layerGroup.clearLayers();
+    let iconToShow;
+    this.props.unsortedOffers.map((it) => {
+      if (this.props.highlightedOfferID !== it.id) {
+        iconToShow = getIcon(IconTypes.ICON_DEFAULT);
+      } else {
+        iconToShow = getIcon(IconTypes.ICON_ACTIVE);
+      }
+      const marker = leaflet.marker(it.location, {pin: iconToShow}).addTo(this._layerGroup);
+      return marker;
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    const {activeElement, unsortedOffers} = this.props;
+    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
+    const shouldUpdate = activeElement !== prevProps.activeElement;
+    if (shouldUpdate) {
+      this._layerGroup.clearLayers();
+      this._map.setView([latitude, longitude], zoom);
+    }
+    this._showActivePin();
+  }
+
   componentDidMount() {
-    const {currentCity} = this.props;
-    this._map = leaflet.map(this._mapRef.current, {
-      center: getAreaCoordinats(currentCity),
-      zoom: this._zoom,
+    const {unsortedOffers} = this.props;
+    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
+    this._map = leaflet.map(this._mapSection.current, {
+      center: [latitude, longitude],
+      zoom,
       zoomControl: false,
       marker: true,
     });
-    this._map.setView(getAreaCoordinats(currentCity), this._zoom);
+
+    this._map.setView([latitude, longitude], zoom);
 
     leaflet
     .tileLayer(
@@ -59,23 +92,32 @@ class MapSection extends PureComponent {
         }
     )
     .addTo(this._map);
+    this._layerGroup = leaflet.layerGroup().addTo(this._map);
     this._addPins();
   }
 
   render() {
     return (
-      <div id="map" ref={this._mapRef} style={{height: `100%`}} />
+      <div id="map" ref={this._mapSection} style={{height: `100%`}} />
     );
   }
 }
 
 MapSection.propTypes = {
-  currentCity: PropTypes.string.isRequired,
-  offersToRender: PropTypes.oneOfType([
+  activeElement: PropTypes.string.isRequired,
+  highlightedOfferID: PropTypes.string.isRequired,
+  unsortedOffers: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
+      city: PropTypes.shape({
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired,
+        }).isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
       title: PropTypes.string.isRequired,
       images: PropTypes.array.isRequired,
       price: PropTypes.number.isRequired,
@@ -92,5 +134,13 @@ MapSection.propTypes = {
     })]).isRequired
 };
 
-export default MapSection;
+function mapStateToProps(state) {
+  return {
+    activeElement: state.activeElement,
+    unsortedOffers: state.unsortedOffers,
+    highlightedOfferID: state.highlightedOfferID
+  };
+}
 
+export {MapSection};
+export default connect(mapStateToProps)(MapSection);

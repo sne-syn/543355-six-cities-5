@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
-import {CITIES, AccomodationTypes, ComponentType} from '../../utils/const';
+import {AccomodationTypes, ComponentType} from '../../utils/const';
 
 const getImageSize = (type) => {
   switch (type) {
@@ -54,7 +54,14 @@ CardDetails.propTypes = {
   type: PropTypes.string,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    city: PropTypes.oneOf([...CITIES]).isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,

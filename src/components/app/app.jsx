@@ -5,13 +5,17 @@ import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites/favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
+import {generateOffers} from '../../mocks/offers.js';
 
-const App = ({offers, reviews, hosts, isLogged}) => {
+const offers = generateOffers(20);
+
+const App = (props) => {
+  const {reviews, hosts, isLogged} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/' render={() => (
-          <MainPage offers={offers} isLogged={isLogged} />
+          <MainPage isLogged={isLogged} />
         )}
         />
         <Route exact path='/login'>
@@ -27,12 +31,12 @@ const App = ({offers, reviews, hosts, isLogged}) => {
           {(!isLogged) ? (
             <Redirect to="/login" />
           ) :
-            (<FavoritesPage isLogged={isLogged} offers={offers} />)
+            (<FavoritesPage isLogged={isLogged} />)
           }
 
         </Route>
         <Route exact path='/offer/:id'>
-          <PropertyPage offers={offers} offer={offers[0]} reviews={reviews} hosts={hosts} isLogged={isLogged} />
+          <PropertyPage offer={offers[0]} offers={offers} reviews={reviews} hosts={hosts} isLogged={isLogged} />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -40,7 +44,6 @@ const App = ({offers, reviews, hosts, isLogged}) => {
 };
 
 App.propTypes = {
-  offers: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   hosts: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,

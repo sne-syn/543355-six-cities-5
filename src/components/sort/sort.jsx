@@ -1,35 +1,58 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
+import PropTypes from 'prop-types';
 import Toggler from '../toggler/toggler';
+import {SortType} from '../../utils/const';
 
-export const SortType = {
-  POPULAR: `popular`,
-  PRICE_LOW_HIGH: `low-high`,
-  PRICE_HIGH_LOW: `high-low`,
-  TOP_RATED: `top`
+const getSortOptions = (toggleComponent, activeSortType) => {
+  let sortOptions = [];
+  for (let [key, value] of SortType) {
+    const isActive = (value === activeSortType) ? `places__option--active` : ``;
+    sortOptions.push(<li key={key} className={`places__option ${isActive}`} tabIndex="0" onClick={toggleComponent}>{value}</li>);
+  }
+
+  return sortOptions;
 };
 
-const Sort = () => {
+const Sort = ({activeSortType, changeSortType}) => {
   return (
     <Toggler renderWithToggle={
       (on, toggleComponent) => {
-        return (<form className="places__sorting" action="#" method="get">
-          <span className="places__sorting-caption">Sort by</span>
-          <span className="places__sorting-type" tabIndex="0" onClick={toggleComponent}> Popular
-            <svg className="places__sorting-arrow" width="7" height="4">
-              <use xlinkHref="#icon-arrow-select"></use>
-            </svg>
-          </span>
-          <ul className={`places__options places__options--custom ${on && (`places__options--opened`)}`}>
-            <li className="places__option places__option--active" tabIndex="0" data-sort-type="${SortType.POPULAR}" onClick={toggleComponent}>Popular</li>
-            <li className="places__option" tabIndex="0" data-sort-type="${SortType.PRICE_LOW_HIGH}" onClick={toggleComponent}>Price: low to high</li>
-            <li className="places__option" tabIndex="0" data-sort-type="${SortType.PRICE_HIGH_LOW}" onClick={toggleComponent}>Price: high to low</li>
-            <li className="places__option" tabIndex="0" data-sort-type="${SortType.TOP_RATED}" onClick={toggleComponent}>Top rated first</li>
-          </ul>
-        </form>
+        return (
+          <form className="places__sorting" action="#" method="get">
+            <span className="places__sorting-caption">Sort by</span>
+            <span className="places__sorting-type" tabIndex="0" onClick={toggleComponent}> {activeSortType}
+              <svg className="places__sorting-arrow" width="7" height="4">
+                <use xlinkHref="#icon-arrow-select"></use>
+              </svg>
+            </span>
+            <ul className={`places__options places__options--custom ${on && (`places__options--opened`)}`} onClick={changeSortType}>
+              {getSortOptions(toggleComponent, activeSortType)}
+            </ul>
+          </form>
         );
       }} />
   );
 };
 
+Sort.propTypes = {
+  activeSortType: PropTypes.string.isRequired,
+  changeSortType: PropTypes.func.isRequired,
+};
 
-export default Sort;
+function mapStateToProps(state) {
+  return {
+    activeSortType: state.activeSortType
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  changeSortType(evt) {
+    dispatch(ActionCreator.changeSortType(evt));
+  }
+});
+
+
+export {Sort};
+export default connect(mapStateToProps, mapDispatchToProps)(Sort);

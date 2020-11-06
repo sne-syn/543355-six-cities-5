@@ -41,7 +41,14 @@ CardBase.propTypes = {
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
