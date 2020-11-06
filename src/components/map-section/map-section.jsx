@@ -7,15 +7,6 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import iconActive from '../../../public/img/pin-active.svg';
 
-const CoordinatesMap = {
-  AMSTERDAM: [52.38333, 4.9],
-  DUSSELDORF: [51.225402, 6.776314],
-  COLOGNE: [50.938361, 6.959974],
-  HAMBURG: [53.550341, 10.000654],
-  PARIS: [48.85661, 2.351499],
-  BRUSSELS: [50.846557, 4.351697]
-};
-
 let IconTypes = {
   ICON_DEFAULT: icon,
   ICON_ACTIVE: iconActive
@@ -32,17 +23,12 @@ const getIcon = (iconTypes) => {
   return DefaultIcon;
 };
 
-const getAreaCoordinats = (city) => {
-  return CoordinatesMap[city.toUpperCase()];
-};
-
 class MapSection extends PureComponent {
   constructor(props) {
     super(props);
     this._mapSection = React.createRef();
     this._map = null;
     this._layerGroup = null;
-    this._zoom = 13;
   }
 
   _addPins() {
@@ -68,24 +54,27 @@ class MapSection extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const shouldUpdate = this.props.activeElement !== prevProps.activeElement;
+    const {activeElement, unsortedOffers} = this.props;
+    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
+    const shouldUpdate = activeElement !== prevProps.activeElement;
     if (shouldUpdate) {
       this._layerGroup.clearLayers();
-      this._map.setView(getAreaCoordinats(this.props.activeElement), this._zoom);
+      this._map.setView([latitude, longitude], zoom);
     }
     this._showActivePin();
   }
 
   componentDidMount() {
-    const {activeElement} = this.props;
+    const {unsortedOffers} = this.props;
+    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
     this._map = leaflet.map(this._mapSection.current, {
-      center: getAreaCoordinats(activeElement),
-      zoom: this._zoom,
+      center: [latitude, longitude],
+      zoom,
       zoomControl: false,
       marker: true,
     });
 
-    this._map.setView(getAreaCoordinats(activeElement), this._zoom);
+    this._map.setView([latitude, longitude], zoom);
 
     leaflet
     .tileLayer(
@@ -121,7 +110,14 @@ MapSection.propTypes = {
     PropTypes.array,
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
+      city: PropTypes.shape({
+        location: PropTypes.shape({
+          latitude: PropTypes.number.isRequired,
+          longitude: PropTypes.number.isRequired,
+          zoom: PropTypes.number.isRequired,
+        }).isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
       title: PropTypes.string.isRequired,
       images: PropTypes.array.isRequired,
       price: PropTypes.number.isRequired,

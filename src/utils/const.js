@@ -1,7 +1,3 @@
-const CountCards = {
-  NEAR_LIST: 3
-};
-
 const ComponentType = {
   CITIES: `cities`,
   NEAR: `near-places`,
@@ -38,4 +34,4 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, CountCards, ComponentType, SortType};
+export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, ComponentType, SortType};

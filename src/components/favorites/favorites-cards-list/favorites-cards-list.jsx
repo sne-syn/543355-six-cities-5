@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardBase from '../../card-base/card-base';
 
-const FavoritesCardsList = ({offers, city}) => {
+const FavoritesCardsList = ({offers, name}) => {
   const favoritesOffersByCity = offers.filter((offer) => {
-    return offer.city === city;
+    return offer.city.name === name;
   });
   return (
     <div className="favorites__places">
@@ -23,7 +23,7 @@ const FavoritesCardsList = ({offers, city}) => {
 
 FavoritesCardsList.propTypes = {
   offers: PropTypes.array.isRequired,
-  city: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired
 };
 
 export default FavoritesCardsList;

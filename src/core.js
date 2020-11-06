@@ -2,7 +2,7 @@ import {SortType} from './utils/const';
 
 export const filterData = (dataCollection, payload) => {
   return dataCollection.filter((it) =>
-    (it.city === payload));
+    (it.city.name === payload));
 };
 
 export const filterFavorites = (dataCollection) => {

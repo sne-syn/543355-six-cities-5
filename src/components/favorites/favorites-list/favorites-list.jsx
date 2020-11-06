@@ -8,7 +8,7 @@ import LocationsItem from '../../locations-item/locations-item';
 const FavoritesList = ({favoritesOffers, changeLocation}) => {
   let collectCititesWithFavorites = new Set();
   for (let value of favoritesOffers) {
-    collectCititesWithFavorites.add(value.city);
+    collectCititesWithFavorites.add(value.city.name);
   }
   let citiesWithFavoritesOffers = Array.from(collectCititesWithFavorites);
 

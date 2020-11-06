@@ -1,3 +1,5 @@
+import {getRandomIntegerNumber} from '../utils/common';
+
 export const LocationsList = {
   Amsterdam: [
     [52.3909553943508, 4.85309666406198],
@@ -33,4 +35,37 @@ export const LocationsList = {
     [48.84461, 2.374499],
     [48.861610000000006, 2.340499]
   ]
+};
+
+export const CoordinatesMap = {
+  AMSTERDAM: {
+    latitude: 52.38333,
+    longitude: 4.9,
+    zoom: getRandomIntegerNumber(10, 14)
+  },
+  DUSSELDORF: {
+    latitude: 51.225402,
+    longitude: 6.776314,
+    zoom: getRandomIntegerNumber(10, 14)
+  },
+  COLOGNE: {
+    latitude: 50.938361,
+    longitude: 6.959974,
+    zoom: getRandomIntegerNumber(11, 14)
+  },
+  HAMBURG: {
+    latitude: 53.550341,
+    longitude: 10.000654,
+    zoom: getRandomIntegerNumber(10, 14)
+  },
+  PARIS: {
+    latitude: 48.85661,
+    longitude: 2.351499,
+    zoom: getRandomIntegerNumber(11, 14)
+  },
+  BRUSSELS: {
+    latitude: 50.846557,
+    longitude: 4.351697,
+    zoom: getRandomIntegerNumber(10, 14)
+  },
 };

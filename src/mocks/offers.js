@@ -6,7 +6,7 @@ import {
   generateID
 } from '../utils/common.js';
 import {CITIES} from '../utils/const.js';
-import {LocationsList} from '../utils/locations';
+import {LocationsList, CoordinatesMap} from '../utils/locations';
 
 const generateRandomAmountOfRandomNumbers = () => {
   let uniqueSet = new Set();
@@ -39,7 +39,7 @@ const generateOffer = () => {
   const newCity = getRandomArrayItem(CITIES);
   return {
     id: generateID(),
-    city: newCity,
+    city: {location: CoordinatesMap[newCity.toUpperCase()], name: newCity},
     title: getRandomArrayItem(Titles),
     images: getShuffledArray(Photos),
     price: getRandomIntegerNumber(50, 250),

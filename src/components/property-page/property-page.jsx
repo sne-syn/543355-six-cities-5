@@ -9,12 +9,12 @@ import PropertyFeatures from '../property-features/property-features';
 import ReviewsList from '../reviews-list/reviews-list';
 import NearPlaces from '../near-places/near-places';
 import StarBar from '../star-bar/star-bar';
-import {CITIES, CountCards} from '../../utils/const';
 import {capitalizeChar} from '../../utils/common';
+const nearPlacesCount = 3;
 
 const PropertyPage = (props) => {
   const {offer, offers} = props;
-  const nearPlacesToRender = offers.slice(0, CountCards.NEAR_LIST);
+  const nearPlacesToRender = offers.slice(0, nearPlacesCount);
   return (
     <div className="page">
       <Header {...props}/>
@@ -63,7 +63,7 @@ const PropertyPage = (props) => {
             </div>
           </div>
           <section className="property__map map">
-            <MapSection activeElement={offer.city} offersToRender={nearPlacesToRender} activeOffer={offer}/>
+            <MapSection activeElement={offer.city.name} offersToRender={nearPlacesToRender} activeOffer={offer}/>
           </section>
         </section>
         <div className="container">
@@ -78,7 +78,14 @@ PropertyPage.propTypes = {
   offers: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    city: PropTypes.oneOf([...CITIES]).isRequired,
+    city: PropTypes.shape({
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
@@ -92,7 +99,7 @@ PropertyPage.propTypes = {
     host: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default PropertyPage;
