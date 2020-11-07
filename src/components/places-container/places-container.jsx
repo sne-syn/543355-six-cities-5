@@ -11,7 +11,7 @@ const PlacesContainer = ({unsortedOffers, activeElement}) => {
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{unsortedOffers.length} {unsortedOffers.length === 1 ? `place` : `places`} to stay in {activeElement}</b>
-        <Sort />
+        <Sort defaultOnValue={false}/>
         <ListHoverOnMap type={`cities`}/>
       </section>
       <div className="cities__right-section">

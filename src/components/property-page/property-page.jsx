@@ -36,7 +36,7 @@ const PropertyPage = (props) => {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <FavoriteButton isFavorite={offer.isFavorite} componentName={`property`} />
+                <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`property`} />
               </div>
               <StarBar rating={offer.rating} containerClassName={`property`}>
                 <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
@@ -59,7 +59,6 @@ const PropertyPage = (props) => {
 
               <Host description={offer.description} hostID={offer.host} {...props}/>
               <ReviewsList {...props}/>
-
             </div>
           </div>
           <section className="property__map map">
@@ -101,5 +100,4 @@ PropertyPage.propTypes = {
     isFavorite: PropTypes.bool.isRequired,
   }).isRequired,
 };
-
 export default PropertyPage;
