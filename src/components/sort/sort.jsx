@@ -15,7 +15,7 @@ const getSortOptions = (toggleComponent, activeSortType) => {
   return sortOptions;
 };
 
-const Sort = (props, {toggleComponent, on, activeSortType, changeSortType}) => {
+const Sort = ({toggleComponent, on, activeSortType, changeSortType}) => {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>

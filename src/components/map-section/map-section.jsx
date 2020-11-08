@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import '../../../node_modules/leaflet/dist/leaflet.css';
@@ -40,7 +39,7 @@ class MapSection extends PureComponent {
 
   _addPins() {
     this._layerGroup.clearLayers();
-    this.props.unsortedOffers.map((offer) => {
+    this.props.offersToShowOnMap.map((offer) => {
       this._createPin(offer);
     });
   }
@@ -48,8 +47,8 @@ class MapSection extends PureComponent {
   _showActivePin() {
     this._layerGroup.clearLayers();
     let iconToShow;
-    this.props.unsortedOffers.map((offer) => {
-      if (this.props.highlightedOfferID !== offer.id) {
+    this.props.offersToShowOnMap.map((offer) => {
+      if (this.props.activeOffer !== offer.id) {
         iconToShow = getIcon(IconTypes.ICON_DEFAULT);
       } else {
         iconToShow = getIcon(IconTypes.ICON_ACTIVE);
@@ -59,9 +58,9 @@ class MapSection extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {activeElement, unsortedOffers} = this.props;
-    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
-    const shouldUpdateList = activeElement !== prevProps.activeElement;
+    const {activeCity, offersToShowOnMap} = this.props;
+    const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
+    const shouldUpdateList = activeCity !== prevProps.activeCity;
     if (shouldUpdateList) {
       this._layerGroup.clearLayers();
       this._map.setView([latitude, longitude], zoom);
@@ -70,8 +69,8 @@ class MapSection extends PureComponent {
   }
 
   componentDidMount() {
-    const {unsortedOffers} = this.props;
-    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
+    const {offersToShowOnMap} = this.props;
+    const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
     this._map = leaflet.map(this._mapSection.current, {
       center: [latitude, longitude],
       zoom,
@@ -98,7 +97,11 @@ class MapSection extends PureComponent {
     )
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
-    this._addPins();
+    if (this.props.activeOffer) {
+      this._showActivePin();
+    } else {
+      this._addPins();
+    }
   }
 
   render() {
@@ -109,9 +112,9 @@ class MapSection extends PureComponent {
 }
 
 MapSection.propTypes = {
-  activeElement: PropTypes.string.isRequired,
-  highlightedOfferID: PropTypes.string.isRequired,
-  unsortedOffers: PropTypes.oneOfType([
+  activeCity: PropTypes.string.isRequired,
+  activeOffer: PropTypes.string.isRequired,
+  offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -139,13 +142,4 @@ MapSection.propTypes = {
     })]).isRequired
 };
 
-function mapStateToProps(state) {
-  return {
-    activeElement: state.activeElement,
-    unsortedOffers: state.unsortedOffers,
-    highlightedOfferID: state.highlightedOfferID
-  };
-}
-
-export {MapSection};
-export default connect(mapStateToProps)(MapSection);
+export default React.memo(MapSection);
