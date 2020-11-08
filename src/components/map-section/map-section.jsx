@@ -1,22 +1,20 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-import '../../../node_modules/leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
+import 'leaflet/dist/leaflet.css';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import iconActive from '../../../public/img/pin-active.svg';
 
 let IconTypes = {
-  ICON_DEFAULT: icon,
-  ICON_ACTIVE: iconActive
+  ICON_DEFAULT: `../img/pin.svg`,
+  ICON_ACTIVE: `../img/pin-active.svg`
 };
 
 const getIcon = (iconTypes) => {
   let DefaultIcon = leaflet.icon({
     iconID: ``,
     iconUrl: iconTypes,
-    shadowUrl: iconShadow,
-    iconSize: [24, 36],
+    shadowUrl: `../${iconShadow}`,
+    iconSize: [27, 39],
     iconAnchor: [12, 36]
   });
   leaflet.Marker.prototype.options.icon = DefaultIcon;
