@@ -1,3 +1,4 @@
+const NEAR_PLACES_COUNT = 3;
 const ComponentType = {
   CITIES: `cities`,
   NEAR: `near-places`,
@@ -34,4 +35,4 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, ComponentType, SortType};
+export {NEAR_PLACES_COUNT, MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, ComponentType, SortType};

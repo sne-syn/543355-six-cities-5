@@ -5,6 +5,7 @@ import {
   getSeveralRandomItems,
   generateID
 } from '../utils/common.js';
+import {generateHost} from './hosts';
 import {CITIES} from '../utils/const.js';
 import {LocationsList, CoordinatesMap} from '../utils/locations';
 
@@ -52,7 +53,7 @@ const generateOffer = () => {
     reviews: Array.from(generateRandomAmountOfRandomNumbers()),
     isPremium: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,
-    host: `id-${getRandomIntegerNumber(0, 5)}`,
+    host: generateHost(),
     location: getRandomArrayItem(LocationsList[newCity])
   };
 };

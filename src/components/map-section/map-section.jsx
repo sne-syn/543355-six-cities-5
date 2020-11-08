@@ -11,9 +11,11 @@ let IconTypes = {
   ICON_DEFAULT: icon,
   ICON_ACTIVE: iconActive
 };
+let marker;
 
 const getIcon = (iconTypes) => {
   let DefaultIcon = leaflet.icon({
+    iconID: ``,
     iconUrl: iconTypes,
     shadowUrl: iconShadow,
     iconSize: [24, 36],
@@ -31,33 +33,36 @@ class MapSection extends PureComponent {
     this._layerGroup = null;
   }
 
+  _createPin(offer, iconType = getIcon(IconTypes.ICON_DEFAULT)) {
+    marker = leaflet.marker(offer.location, {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
+    return marker;
+  }
+
   _addPins() {
     this._layerGroup.clearLayers();
-    this.props.unsortedOffers.map((it) => {
-      const marker = leaflet.marker(it.location, {pin: getIcon(IconTypes.ICON_DEFAULT)}).addTo(this._layerGroup);
-      return marker;
+    this.props.unsortedOffers.map((offer) => {
+      this._createPin(offer);
     });
   }
 
   _showActivePin() {
     this._layerGroup.clearLayers();
     let iconToShow;
-    this.props.unsortedOffers.map((it) => {
-      if (this.props.highlightedOfferID !== it.id) {
+    this.props.unsortedOffers.map((offer) => {
+      if (this.props.highlightedOfferID !== offer.id) {
         iconToShow = getIcon(IconTypes.ICON_DEFAULT);
       } else {
         iconToShow = getIcon(IconTypes.ICON_ACTIVE);
       }
-      const marker = leaflet.marker(it.location, {pin: iconToShow}).addTo(this._layerGroup);
-      return marker;
+      this._createPin(offer, iconToShow);
     });
   }
 
   componentDidUpdate(prevProps) {
     const {activeElement, unsortedOffers} = this.props;
     const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
-    const shouldUpdate = activeElement !== prevProps.activeElement;
-    if (shouldUpdate) {
+    const shouldUpdateList = activeElement !== prevProps.activeElement;
+    if (shouldUpdateList) {
       this._layerGroup.clearLayers();
       this._map.setView([latitude, longitude], zoom);
     }
