@@ -10,7 +10,6 @@ let IconTypes = {
   ICON_DEFAULT: icon,
   ICON_ACTIVE: iconActive
 };
-let marker;
 
 const getIcon = (iconTypes) => {
   let DefaultIcon = leaflet.icon({
@@ -33,7 +32,7 @@ class MapSection extends PureComponent {
   }
 
   _createPin(offer, iconType = getIcon(IconTypes.ICON_DEFAULT)) {
-    marker = leaflet.marker(offer.location, {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
+    let marker = leaflet.marker(offer.location, {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
     return marker;
   }
 
