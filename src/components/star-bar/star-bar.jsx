@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {MAX_RATING} from '../../utils/const';
 
-
 const countStarPainting = (rating) => {
   return `${100 / MAX_RATING * rating}%`;
 };

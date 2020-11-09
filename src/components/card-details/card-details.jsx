@@ -38,7 +38,7 @@ const CardDetails = (props) => {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <FavoriteButton isFavorite={offer.isFavorite} componentName={`place-card`} />
+          <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`place-card`} />
         </div>
         <StarBar rating={offer.rating} />
         <h2 className="place-card__name">
@@ -51,7 +51,7 @@ const CardDetails = (props) => {
 };
 
 CardDetails.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.string.isRequired,
     city: PropTypes.shape({
@@ -72,7 +72,12 @@ CardDetails.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     reviews: PropTypes.array.isRequired,
-    host: PropTypes.string.isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired
+    }).isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }).isRequired,

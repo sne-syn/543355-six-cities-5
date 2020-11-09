@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import Header from '../header/header';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
-import Host from '../host/host';
 import MapSection from '../map-section/map-section';
+import Host from '../host/host';
 import PropertyFeatures from '../property-features/property-features';
 import ReviewsList from '../reviews-list/reviews-list';
 import NearPlaces from '../near-places/near-places';
 import StarBar from '../star-bar/star-bar';
 import {capitalizeChar} from '../../utils/common';
-const nearPlacesCount = 3;
+import {NEAR_PLACES_COUNT} from '../../utils/const';
 
 const PropertyPage = (props) => {
   const {offer, offers} = props;
-  const nearPlacesToRender = offers.slice(0, nearPlacesCount);
+  const nearPlacesToRender = offers.slice(0, NEAR_PLACES_COUNT);
   return (
     <div className="page">
       <Header {...props}/>
@@ -36,7 +36,7 @@ const PropertyPage = (props) => {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <FavoriteButton isFavorite={offer.isFavorite} componentName={`property`} />
+                <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`property`} />
               </div>
               <StarBar rating={offer.rating} containerClassName={`property`}>
                 <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
@@ -57,13 +57,12 @@ const PropertyPage = (props) => {
                 </ul>
               </div>
 
-              <Host description={offer.description} hostID={offer.host} {...props}/>
+              <Host description={offer.description} host={offer.host} {...props}/>
               <ReviewsList {...props}/>
-
             </div>
           </div>
           <section className="property__map map">
-            <MapSection activeElement={offer.city.name} offersToRender={nearPlacesToRender} activeOffer={offer}/>
+            <MapSection activeCity={offer.city.name} offersToShowOnMap={nearPlacesToRender} activeOffer={offer.id}/>
           </section>
         </section>
         <div className="container">
@@ -96,10 +95,14 @@ PropertyPage.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     reviews: PropTypes.array.isRequired,
-    host: PropTypes.string.isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired
+    }).isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }).isRequired,
 };
-
 export default PropertyPage;

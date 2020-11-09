@@ -14,12 +14,6 @@ const generateHost = () => {
   };
 };
 
-const generateHosts = (count) => {
-  return new Array(count)
-    .fill(``)
-    .map(generateHost);
-};
-
 export {
-  generateHosts
+  generateHost
 };

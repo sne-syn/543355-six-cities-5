@@ -10,7 +10,7 @@ import {generateOffers} from '../../mocks/offers.js';
 const offers = generateOffers(20);
 
 const App = (props) => {
-  const {reviews, hosts, isLogged} = props;
+  const {reviews, isLogged} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -36,7 +36,7 @@ const App = (props) => {
 
         </Route>
         <Route exact path='/offer/:id'>
-          <PropertyPage offer={offers[0]} offers={offers} reviews={reviews} hosts={hosts} isLogged={isLogged} />
+          <PropertyPage offer={offers[0]} offers={offers} reviews={reviews} isLogged={isLogged} />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -45,7 +45,6 @@ const App = (props) => {
 
 App.propTypes = {
   reviews: PropTypes.array.isRequired,
-  hosts: PropTypes.array.isRequired,
   isLogged: PropTypes.bool.isRequired,
 };
 

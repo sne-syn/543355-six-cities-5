@@ -1,22 +1,20 @@
 import React, {PureComponent} from 'react';
-import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-import '../../../node_modules/leaflet/dist/leaflet.css';
-import icon from 'leaflet/dist/images/marker-icon.png';
+import 'leaflet/dist/leaflet.css';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import iconActive from '../../../public/img/pin-active.svg';
 
 let IconTypes = {
-  ICON_DEFAULT: icon,
-  ICON_ACTIVE: iconActive
+  ICON_DEFAULT: `../img/pin.svg`,
+  ICON_ACTIVE: `../img/pin-active.svg`
 };
 
 const getIcon = (iconTypes) => {
   let DefaultIcon = leaflet.icon({
+    iconID: ``,
     iconUrl: iconTypes,
-    shadowUrl: iconShadow,
-    iconSize: [24, 36],
+    shadowUrl: `../${iconShadow}`,
+    iconSize: [27, 39],
     iconAnchor: [12, 36]
   });
   leaflet.Marker.prototype.options.icon = DefaultIcon;
@@ -31,33 +29,36 @@ class MapSection extends PureComponent {
     this._layerGroup = null;
   }
 
+  _createPin(offer, iconType = getIcon(IconTypes.ICON_DEFAULT)) {
+    let marker = leaflet.marker(offer.location, {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
+    return marker;
+  }
+
   _addPins() {
     this._layerGroup.clearLayers();
-    this.props.unsortedOffers.map((it) => {
-      const marker = leaflet.marker(it.location, {pin: getIcon(IconTypes.ICON_DEFAULT)}).addTo(this._layerGroup);
-      return marker;
+    this.props.offersToShowOnMap.map((offer) => {
+      this._createPin(offer);
     });
   }
 
   _showActivePin() {
     this._layerGroup.clearLayers();
     let iconToShow;
-    this.props.unsortedOffers.map((it) => {
-      if (this.props.highlightedOfferID !== it.id) {
+    this.props.offersToShowOnMap.map((offer) => {
+      if (this.props.activeOffer !== offer.id) {
         iconToShow = getIcon(IconTypes.ICON_DEFAULT);
       } else {
         iconToShow = getIcon(IconTypes.ICON_ACTIVE);
       }
-      const marker = leaflet.marker(it.location, {pin: iconToShow}).addTo(this._layerGroup);
-      return marker;
+      this._createPin(offer, iconToShow);
     });
   }
 
   componentDidUpdate(prevProps) {
-    const {activeElement, unsortedOffers} = this.props;
-    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
-    const shouldUpdate = activeElement !== prevProps.activeElement;
-    if (shouldUpdate) {
+    const {activeCity, offersToShowOnMap} = this.props;
+    const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
+    const shouldUpdateList = activeCity !== prevProps.activeCity;
+    if (shouldUpdateList) {
       this._layerGroup.clearLayers();
       this._map.setView([latitude, longitude], zoom);
     }
@@ -65,8 +66,8 @@ class MapSection extends PureComponent {
   }
 
   componentDidMount() {
-    const {unsortedOffers} = this.props;
-    const {latitude, longitude, zoom} = unsortedOffers[0].city.location;
+    const {offersToShowOnMap} = this.props;
+    const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
     this._map = leaflet.map(this._mapSection.current, {
       center: [latitude, longitude],
       zoom,
@@ -93,7 +94,11 @@ class MapSection extends PureComponent {
     )
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
-    this._addPins();
+    if (this.props.activeOffer) {
+      this._showActivePin();
+    } else {
+      this._addPins();
+    }
   }
 
   render() {
@@ -104,9 +109,9 @@ class MapSection extends PureComponent {
 }
 
 MapSection.propTypes = {
-  activeElement: PropTypes.string.isRequired,
-  highlightedOfferID: PropTypes.string.isRequired,
-  unsortedOffers: PropTypes.oneOfType([
+  activeCity: PropTypes.string.isRequired,
+  activeOffer: PropTypes.string.isRequired,
+  offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -134,13 +139,4 @@ MapSection.propTypes = {
     })]).isRequired
 };
 
-function mapStateToProps(state) {
-  return {
-    activeElement: state.activeElement,
-    unsortedOffers: state.unsortedOffers,
-    highlightedOfferID: state.highlightedOfferID
-  };
-}
-
-export {MapSection};
-export default connect(mapStateToProps)(MapSection);
+export default React.memo(MapSection);

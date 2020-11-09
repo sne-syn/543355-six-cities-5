@@ -14,15 +14,9 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-        },
-      },
+      { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
       { test: /\.css$/, use: ["style-loader","css-loader"] },
-      { test: /\.(png|svg|jpe?g|gif|woff2?|ttf|eot)$/, use: [ 'file-loader' ] },
+      { test: /\.(png|jpe?g|gif|svg)$/i, use: [ 'file-loader' ] },
     ],
   },
   resolve: {

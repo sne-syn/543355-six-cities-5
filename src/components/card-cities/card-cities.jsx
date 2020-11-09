@@ -32,7 +32,12 @@ CardCities.propTypes = {
     maxGuests: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     reviews: PropTypes.array.isRequired,
-    host: PropTypes.string.isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired
+    }).isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }).isRequired,
