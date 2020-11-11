@@ -35,4 +35,10 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-export {NEAR_PLACES_COUNT, MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, ComponentType, SortType};
+
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export {NEAR_PLACES_COUNT, MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, ComponentType, SortType, AuthorizationStatus};

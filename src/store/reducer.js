@@ -1,4 +1,4 @@
-import {CITIES} from '../utils/const';
+import {CITIES, AuthorizationStatus} from '../utils/const';
 import {extend} from '../utils/common';
 import {ActionType} from "./action";
 import {generateOffers} from '../mocks/offers.js';
@@ -16,10 +16,15 @@ const initialState = {
     return this.filteredOffers;
   },
   highlightedOfferID: ``,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return extend(state, {
+        authorizationStatus: action.payload,
+      });
     case ActionType.CHANGE_ACTIVE_ELEMENT:
       return extend(state, {
         activeElement: action.payload,
