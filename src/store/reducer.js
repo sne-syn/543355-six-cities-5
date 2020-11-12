@@ -1,22 +1,23 @@
-import {CITIES, AuthorizationStatus} from '../utils/const';
+import {CITIES, AuthorizationStatus, SortType} from '../utils/const';
 import {extend} from '../utils/common';
 import {ActionType} from "./action";
-import {generateOffers} from '../mocks/offers.js';
 import {filterData, filterFavorites, getSortedMovies} from './../core';
-import {SortType} from '../utils/const';
 
-const offers = generateOffers(20);
 const DEFAULT_CITY = CITIES[0];
 const initialState = {
-  offers,
+  offers: [],
   activeElement: DEFAULT_CITY,
-  filteredOffers: filterData(offers, DEFAULT_CITY),
   activeSortType: SortType.get(`DEFAULT`),
-  get unsortedOffers() {
-    return this.filteredOffers;
-  },
   highlightedOfferID: ``,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  filteredData: [],
+  unsortedOffers: []
+  // get filteredOffers() {
+  //   return filterData(this.offers, DEFAULT_CITY);
+  // },
+  // get unsortedOffers() {
+  //   return this.filteredOffers;
+  // },
 };
 
 const reducer = (state = initialState, action) => {
