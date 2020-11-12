@@ -1,42 +1,45 @@
 import React from 'react';
-import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
+import {Switch, Redirect, Route, Router as BrowserRouter} from 'react-router-dom';
+import PrivateRoute from "../private-route/private-route";
 import PropTypes from 'prop-types';
 import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites/favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
-import {generateOffers} from '../../mocks/offers.js';
-
-const offers = generateOffers(20);
+import {connect} from "react-redux";
+import {AuthorizationStatus, AppRoute} from "../../utils/const";
+import browserHistory from "../../browser-history";
 
 const App = (props) => {
-  const {reviews, isLogged} = props;
+  const {reviews, authorizationStatus, offers} = props;
+  const isLogged = (authorizationStatus === AuthorizationStatus.AUTH) ? true : false;
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path='/' render={() => (
-          <MainPage isLogged={isLogged} />
-        )}
+        <Route exact
+          path={AppRoute.ROOT}
+          render={() => (
+            <MainPage isLogged={isLogged}/>
+          )}
         />
-        <Route exact path='/login'>
+        <Route exact
+          path={AppRoute.LOGIN}>
           {(isLogged) ? (
-            <Redirect to="/" />
+            <Redirect to={AppRoute.ROOT} />
           ) :
             (<LoginPage isLogged={isLogged}/>)
           }
-
         </Route>
-        <Route exact path='/favorites'>
-
-          {(!isLogged) ? (
-            <Redirect to="/login" />
-          ) :
-            (<FavoritesPage isLogged={isLogged} />)
-          }
-
-        </Route>
-        <Route exact path='/offer/:id'>
-          <PropertyPage offer={offers[0]} offers={offers} reviews={reviews} isLogged={isLogged} />
+        <PrivateRoute exact
+          path={AppRoute.FAVORITES}
+          render={(_history) => {
+            return (
+              <FavoritesPage />
+            );
+          }}
+        />
+        <Route exact path={AppRoute.OFFER}>
+          <PropertyPage offers={offers} offer={offers} reviews={reviews} isLogged={isLogged} />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -45,7 +48,14 @@ const App = (props) => {
 
 App.propTypes = {
   reviews: PropTypes.array.isRequired,
-  isLogged: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  offers: PropTypes.array.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+  offers: state.offers
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

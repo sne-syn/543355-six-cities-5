@@ -49,7 +49,7 @@ const PropertyPage = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {offer.features.map((feature, i) => (
+                  {offer.goods.map((feature, i) => (
                     <li key={i} className="property__inside-item">
                       {capitalizeChar(feature)}
                     </li>
@@ -75,34 +75,35 @@ const PropertyPage = (props) => {
 
 PropertyPage.propTypes = {
   offers: PropTypes.array.isRequired,
-  offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    city: PropTypes.shape({
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired,
-      }).isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    title: PropTypes.string.isRequired,
-    images: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    features: PropTypes.array.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxGuests: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    reviews: PropTypes.array.isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired
-    }).isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-  }).isRequired,
+  offer: PropTypes.any.isRequired,
+  // offer: PropTypes.shape({
+  //   id: PropTypes.string.isRequired,
+  //   city: PropTypes.shape({
+  //     location: PropTypes.shape({
+  //       latitude: PropTypes.number.isRequired,
+  //       longitude: PropTypes.number.isRequired,
+  //       zoom: PropTypes.number.isRequired,
+  //     }).isRequired,
+  //     name: PropTypes.string.isRequired,
+  //   }).isRequired,
+  //   title: PropTypes.string.isRequired,
+  //   images: PropTypes.array.isRequired,
+  //   price: PropTypes.number.isRequired,
+  //   type: PropTypes.string.isRequired,
+  //   rating: PropTypes.number.isRequired,
+  //   features: PropTypes.array.isRequired,
+  //   bedrooms: PropTypes.number.isRequired,
+  //   maxGuests: PropTypes.number.isRequired,
+  //   description: PropTypes.string.isRequired,
+  //   reviews: PropTypes.array.isRequired,
+  //   host: PropTypes.shape({
+  //     id: PropTypes.string.isRequired,
+  //     avatar: PropTypes.string.isRequired,
+  //     name: PropTypes.string.isRequired,
+  //     isPro: PropTypes.bool.isRequired
+  //   }).isRequired,
+  //   isPremium: PropTypes.bool.isRequired,
+  //   isFavorite: PropTypes.bool.isRequired,
+  // }).isRequired,
 };
 export default PropertyPage;

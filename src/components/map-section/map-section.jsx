@@ -114,7 +114,7 @@ MapSection.propTypes = {
   offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       city: PropTypes.shape({
         location: PropTypes.shape({
           latitude: PropTypes.number.isRequired,
@@ -128,7 +128,7 @@ MapSection.propTypes = {
       price: PropTypes.number.isRequired,
       type: PropTypes.string.isRequired,
       rating: PropTypes.number.isRequired,
-      features: PropTypes.array.isRequired,
+      goods: PropTypes.array.isRequired,
       bedrooms: PropTypes.number.isRequired,
       maxGuests: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,

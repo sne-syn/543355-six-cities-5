@@ -35,10 +35,23 @@ const MONTH_NAMES = [
   `December`,
 ];
 
-
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
 
-export {NEAR_PLACES_COUNT, MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, ComponentType, SortType, AuthorizationStatus};
+const AppRoute = {
+  FAVORITES: `/favorites`,
+  LOGIN: `/login`,
+  OFFER: `/offer/`,
+  ROOT: `/`,
+};
+
+const APIRoute = {
+  OFFERS: `/hotels`,
+  OFFER: `/hotels/:id`,
+  OFFERS_NEARBY: `/hotels/:hotel_id/nearby`,
+  FAVORITES: `/favorite`,
+};
+
+export {NEAR_PLACES_COUNT, MAX_RATING, CITIES, MONTH_NAMES, AccomodationTypes, ComponentType, SortType, AuthorizationStatus, AppRoute, APIRoute};

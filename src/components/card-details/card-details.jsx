@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
-import {AccomodationTypes, ComponentType} from '../../utils/const';
+import {AccomodationTypes, ComponentType, AppRoute} from '../../utils/const';
 
 const getImageSize = (type) => {
   switch (type) {
@@ -42,7 +42,7 @@ const CardDetails = (props) => {
         </div>
         <StarBar rating={offer.rating} />
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+          <Link to={`${AppRoute.OFFER}${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
       </div>
@@ -53,7 +53,7 @@ const CardDetails = (props) => {
 CardDetails.propTypes = {
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     city: PropTypes.shape({
       location: PropTypes.shape({
         latitude: PropTypes.number.isRequired,
@@ -67,7 +67,7 @@ CardDetails.propTypes = {
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    features: PropTypes.array.isRequired,
+    goods: PropTypes.array.isRequired,
     bedrooms: PropTypes.number.isRequired,
     maxGuests: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,

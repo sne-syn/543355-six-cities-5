@@ -5,10 +5,15 @@ export const ActionType = {
   SET_ACTIVE_CARD_ID: `SET_ACTIVE_CARD_ID`,
   RESET_ACTIVE_CARD_ID: `RESET_ACTIVE_CARD_ID`,
   LOAD_OFFERS: `LOAD_OFFERS`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
 export const ActionCreator = {
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  }),
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers

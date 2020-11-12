@@ -13,7 +13,7 @@ const CardCities = (props) => {
 
 CardCities.propTypes = {
   offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     city: PropTypes.shape({
       location: PropTypes.shape({
         latitude: PropTypes.number.isRequired,
@@ -27,7 +27,7 @@ CardCities.propTypes = {
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    features: PropTypes.array.isRequired,
+    goods: PropTypes.array.isRequired,
     bedrooms: PropTypes.number.isRequired,
     maxGuests: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
