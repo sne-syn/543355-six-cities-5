@@ -5,6 +5,7 @@ export const ActionType = {
   SET_ACTIVE_CARD_ID: `SET_ACTIVE_CARD_ID`,
   RESET_ACTIVE_CARD_ID: `RESET_ACTIVE_CARD_ID`,
   LOAD_OFFERS: `LOAD_OFFERS`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
@@ -17,6 +18,10 @@ export const ActionCreator = {
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers
+  }),
+  loadReviews: (reviews) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload: reviews
   }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,

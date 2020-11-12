@@ -2,6 +2,7 @@ import {CITIES, AuthorizationStatus, SortType} from '../utils/const';
 import {extend} from '../utils/common';
 import {ActionType} from "./action";
 import {filterData, filterFavorites, getSortedMovies} from './../core';
+import {adaptOffers, adaptReviews} from '../utils/offer-model';
 
 const DEFAULT_CITY = CITIES[0];
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   highlightedOfferID: ``,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   filteredData: [],
-  unsortedOffers: []
+  unsortedOffers: [],
+  reviews: []
   // get filteredOffers() {
   //   return filterData(this.offers, DEFAULT_CITY);
   // },
@@ -24,7 +26,11 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return extend(state, {
-        offers: action.payload,
+        offers: adaptOffers(action.payload),
+      });
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {
+        offers: adaptReviews(action.payload),
       });
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {

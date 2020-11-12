@@ -31,9 +31,8 @@ CardCities.propTypes = {
     bedrooms: PropTypes.number.isRequired,
     maxGuests: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    reviews: PropTypes.array.isRequired,
     host: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       isPro: PropTypes.bool.isRequired

@@ -132,7 +132,6 @@ MapSection.propTypes = {
       bedrooms: PropTypes.number.isRequired,
       maxGuests: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
-      reviews: PropTypes.array.isRequired,
       host: PropTypes.string.isRequired,
       isPremium: PropTypes.bool.isRequired,
       isFavorite: PropTypes.bool.isRequired,
