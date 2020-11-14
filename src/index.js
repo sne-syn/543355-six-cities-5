@@ -7,7 +7,7 @@ import {redirect} from './store/middlewares/redirect';
 import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {reducer} from './store/reducer';
-import {ActionCreator} from './store/action';
+import {requireAuthorization} from './store/action';
 import {createAPI} from './services/api';
 import {generateReviews} from './mocks/reviews';
 import {getRandomIntegerNumber} from './utils/common';
@@ -16,7 +16,7 @@ import {fetchOffers, checkAuth} from './store/api-actions';
 
 const reviews = generateReviews(getRandomIntegerNumber(0, 15));
 
-const api = createAPI(() => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)));
+const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)));
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect)));
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {connect} from 'react-redux';
+import {setActiveCardID, resetActiveCardID} from "../../store/action";
 import List from '../list/list';
 
 const ListHoverOnMap = (props) => {
@@ -18,10 +18,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveCardID(evt) {
-    dispatch(ActionCreator.setActiveCardID(evt));
+    dispatch(setActiveCardID(evt));
   },
   resetActiveCardID() {
-    dispatch(ActionCreator.resetActiveCardID());
+    dispatch(resetActiveCardID());
   }
 });
 

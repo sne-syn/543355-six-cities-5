@@ -62,7 +62,7 @@ const PropertyPage = (props) => {
             </div>
           </div>
           <section className="property__map map">
-
+            <MapSection activeCity={offer.city.name} offersToShowOnMap={nearPlacesToRender} activeOffer={offer.id}/>
           </section>
         </section>
         <div className="container">
@@ -75,7 +75,7 @@ const PropertyPage = (props) => {
 
 PropertyPage.propTypes = {
   offers: PropTypes.array.isRequired,
-  offer: PropTypes.any.isRequired,
+  offer: PropTypes.any
   // offer: PropTypes.shape({
   //   id: PropTypes.number.isRequired,
   //   city: PropTypes.shape({
@@ -91,7 +91,7 @@ PropertyPage.propTypes = {
   //   price: PropTypes.number.isRequired,
   //   type: PropTypes.string.isRequired,
   //   rating: PropTypes.number.isRequired,
-  //   features: PropTypes.array.isRequired,
+  //   goods: PropTypes.array.isRequired,
   //   bedrooms: PropTypes.number.isRequired,
   //   maxGuests: PropTypes.number.isRequired,
   //   description: PropTypes.string.isRequired,

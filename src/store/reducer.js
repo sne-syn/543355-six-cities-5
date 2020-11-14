@@ -1,25 +1,21 @@
 import {CITIES, AuthorizationStatus, SortType} from '../utils/const';
 import {extend} from '../utils/common';
-import {ActionType} from "./action";
-import {filterData, filterFavorites, getSortedMovies} from './../core';
-import {adaptOffers, adaptReviews} from '../utils/offer-model';
+import {ActionType} from './action';
+import {filterData, getSortedMovies} from './../core';
+import {adaptOffers, adaptReviews} from '../utils/adapter';
 
 const DEFAULT_CITY = CITIES[0];
 const initialState = {
+  offer: {},
   offers: [],
+  reviews: [],
+  favorites: [],
   activeElement: DEFAULT_CITY,
   activeSortType: SortType.get(`DEFAULT`),
   highlightedOfferID: ``,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  filteredData: [],
-  unsortedOffers: [],
-  reviews: []
-  // get filteredOffers() {
-  //   return filterData(this.offers, DEFAULT_CITY);
-  // },
-  // get unsortedOffers() {
-  //   return this.filteredOffers;
-  // },
+  filteredOffers: [],
+  unsortedOffers: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,9 +24,19 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         offers: adaptOffers(action.payload),
       });
+    case ActionType.SHOW_OFFERS_ON_LOAD:
+      return extend(state, {
+        filteredOffers: filterData(state.offers, DEFAULT_CITY),
+        get unsortedOffers() {
+          return this.filteredOffers;
+        }});
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
-        offers: adaptReviews(action.payload),
+        reviews: adaptReviews(action.payload),
+      });
+    case ActionType.SHOW_FAVORITES_ELEMENTS:
+      return extend(state, {
+        favorites: adaptOffers(action.payload),
       });
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
@@ -43,12 +49,7 @@ const reducer = (state = initialState, action) => {
         activeSortType: SortType.get(`DEFAULT`),
         get unsortedOffers() {
           return this.filteredOffers;
-        },
-      });
-    case ActionType.SHOW_FAVORITES:
-      return extend(state, {
-        filteredOffers: filterFavorites(state.offers)
-      });
+        }});
     case ActionType.CHANGE_SORT_TYPE:
       return extend(state, {
         filteredOffers: getSortedMovies(state.filteredOffers, state.unsortedOffers, action.payload),

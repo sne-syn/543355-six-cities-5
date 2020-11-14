@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../../store/action";
+import {connect} from 'react-redux';
+import {showFavoritesElements} from '../../../store/action';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
 import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
@@ -21,7 +21,7 @@ class FavoritesPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showFavoritesElements();
+    this.props.showFavoritesElementsAction();
   }
 
   render() {
@@ -44,19 +44,19 @@ class FavoritesPage extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: state.filteredOffers,
+    favoritesOffers: state.favorites,
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElements() {
-    dispatch(ActionCreator.showFavoritesElements());
+  showFavoritesElementsAction() {
+    dispatch(showFavoritesElements());
   }
 });
 
 FavoritesPage.propTypes = {
   favoritesOffers: PropTypes.array.isRequired,
-  showFavoritesElements: PropTypes.func.isRequired,
+  showFavoritesElementsAction: PropTypes.func.isRequired,
 };
 
 export {FavoritesPage};

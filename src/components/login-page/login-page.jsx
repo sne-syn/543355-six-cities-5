@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {login} from "../../store/api-actions";
+import {connect} from 'react-redux';
+import {login} from '../../store/api-actions';
 import Header from '../header/header';
 import LocationsItem from '../locations-item/locations-item';
 

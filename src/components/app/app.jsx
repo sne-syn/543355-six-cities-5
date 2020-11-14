@@ -35,15 +35,14 @@ const App = (props) => {
         </Route>
         <PrivateRoute exact
           path={AppRoute.FAVORITES}
-          render={(_history) => {
+          render={() => {
             return (
-              <FavoritesPage />
+              <FavoritesPage isLogged={isLogged}/>
             );
           }}
         />
-        <Route exact path={AppRoute.OFFER}>
-          <PropertyPage offers={offers} offer={offers} reviews={reviews} isLogged={isLogged} />
-        </Route>
+        <Route exact path={`${AppRoute.OFFER}:id`}
+          render={() => (<PropertyPage offers={offers} offer={offers} reviews={reviews} isLogged={isLogged} />)}/>
       </Switch>
     </BrowserRouter>
   );

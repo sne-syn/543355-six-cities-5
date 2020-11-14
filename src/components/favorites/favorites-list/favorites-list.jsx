@@ -1,17 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../../store/action";
+import {connect} from 'react-redux';
+import {changeActiveElement} from '../../../store/action';
 import FavoritesCardsList from '../favorites-cards-list/favorites-cards-list';
 import LocationsItem from '../../locations-item/locations-item';
 
-const FavoritesList = ({favoritesOffers, changeLocation}) => {
-  let collectCititesWithFavorites = new Set();
+const arrangeFavoritesByCity = (favoritesOffers) => {
+  let collection = new Set();
   for (let value of favoritesOffers) {
-    collectCititesWithFavorites.add(value.city.name);
+    collection.add(value.city.name);
   }
-  let citiesWithFavoritesOffers = Array.from(collectCititesWithFavorites);
+  let citiesWithFavoritesOffers = Array.from(collection);
+  return citiesWithFavoritesOffers;
+};
 
+const FavoritesList = ({favoritesOffers, changeLocation}) => {
+  const citiesWithFavoritesOffers = arrangeFavoritesByCity(favoritesOffers);
   return (
     <ul className="favorites__list">
       {citiesWithFavoritesOffers.map((city, i) => {
@@ -39,17 +43,14 @@ FavoritesList.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: state.filteredOffers,
+    favoritesOffers: state.favorites,
     activeElement: state.activeElement,
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElements() {
-    dispatch(ActionCreator.showFavoritesElements());
-  },
   changeLocation(evt) {
-    dispatch(ActionCreator.changeActiveElement(evt));
+    dispatch(changeActiveElement(evt));
   }
 });
 

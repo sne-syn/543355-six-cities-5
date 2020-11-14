@@ -5,11 +5,6 @@ export const filterData = (dataCollection, payload) => {
     (it.city.name === payload));
 };
 
-export const filterFavorites = (dataCollection) => {
-  return dataCollection.filter((it) =>
-    (it.isFavorite === true));
-};
-
 export const getSortedMovies = (filteredOffers, unsortedOffers, sortType) => {
   let sortedOffers = [];
   switch (sortType) {

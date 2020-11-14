@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {connect} from 'react-redux';
+import {changeSortType} from '../../store/action';
 import PropTypes from 'prop-types';
 import withToggler from '../../HOCs/with-toggler';
 import {SortType} from '../../utils/const';
@@ -15,7 +15,7 @@ const getSortOptions = (toggleComponent, activeSortType) => {
   return sortOptions;
 };
 
-const Sort = ({toggleComponent, on, activeSortType, changeSortType}) => {
+const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -24,7 +24,7 @@ const Sort = ({toggleComponent, on, activeSortType, changeSortType}) => {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className={`places__options places__options--custom ${on && (`places__options--opened`)}`} onClick={changeSortType}>
+      <ul className={`places__options places__options--custom ${on && (`places__options--opened`)}`} onClick={changeSortTypeAction}>
         {getSortOptions(toggleComponent, activeSortType)}
       </ul>
     </form>
@@ -35,7 +35,7 @@ Sort.propTypes = {
   toggleComponent: PropTypes.func.isRequired,
   on: PropTypes.bool.isRequired,
   activeSortType: PropTypes.string.isRequired,
-  changeSortType: PropTypes.func.isRequired,
+  changeSortTypeAction: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -45,8 +45,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSortType(evt) {
-    dispatch(ActionCreator.changeSortType(evt));
+  changeSortTypeAction(evt) {
+    dispatch(changeSortType(evt));
   }
 });
 

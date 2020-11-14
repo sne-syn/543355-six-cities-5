@@ -30,7 +30,7 @@ class MapSection extends PureComponent {
   }
 
   _createPin(offer, iconType = getIcon(IconTypes.ICON_DEFAULT)) {
-    let marker = leaflet.marker(offer.location, {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
+    let marker = leaflet.marker([offer.location.latitude, offer.location.longitude], {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
     return marker;
   }
 
@@ -45,10 +45,10 @@ class MapSection extends PureComponent {
     this._layerGroup.clearLayers();
     let iconToShow;
     this.props.offersToShowOnMap.map((offer) => {
-      if (this.props.activeOffer !== offer.id) {
-        iconToShow = getIcon(IconTypes.ICON_DEFAULT);
-      } else {
+      if (+this.props.activeOffer === offer.id) {
         iconToShow = getIcon(IconTypes.ICON_ACTIVE);
+      } else {
+        iconToShow = getIcon(IconTypes.ICON_DEFAULT);
       }
       this._createPin(offer, iconToShow);
     });
@@ -56,7 +56,7 @@ class MapSection extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const {activeCity, offersToShowOnMap} = this.props;
-    const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
+    const {latitude, longitude, zoom} = offersToShowOnMap[0].location;
     const shouldUpdateList = activeCity !== prevProps.activeCity;
     if (shouldUpdateList) {
       this._layerGroup.clearLayers();
@@ -94,11 +94,7 @@ class MapSection extends PureComponent {
     )
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
-    if (this.props.activeOffer) {
-      this._showActivePin();
-    } else {
-      this._addPins();
-    }
+    this._showActivePin();
   }
 
   render() {

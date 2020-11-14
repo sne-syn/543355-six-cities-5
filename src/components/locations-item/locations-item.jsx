@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {connect} from 'react-redux';
+import {changeActiveElement} from '../../store/action';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
@@ -37,7 +37,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   changeLocation(evt) {
-    dispatch(ActionCreator.changeActiveElement(evt));
+    dispatch(changeActiveElement(evt));
   }
 });
 
