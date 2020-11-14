@@ -72,7 +72,7 @@ class MapSection extends PureComponent {
     this._map = leaflet.map(this._mapSection.current, {
       center: [latitude, longitude],
       zoom,
-      zoomControl: false,
+      zoomControl: true,
       marker: true,
     });
 
@@ -95,7 +95,7 @@ class MapSection extends PureComponent {
     )
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
-    this._showActivePin();
+    this._addPins();
   }
 
   render() {
@@ -121,6 +121,7 @@ MapSection.propTypes = {
         name: PropTypes.string.isRequired,
       }).isRequired,
       title: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
       images: PropTypes.array.isRequired,
       price: PropTypes.number.isRequired,
       type: PropTypes.string.isRequired,

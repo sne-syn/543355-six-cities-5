@@ -2,21 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {changeActiveElement} from '../../../store/action';
-import {getActiveElement, getOffers} from '../../../store/offers-data/offers-data-selectors';
+import {getActiveElement} from '../../../store/offers-data/offers-data-selectors';
+import {getFavorites} from '../../../store/favorites/favorites-selectors';
 import FavoritesCardsList from '../favorites-cards-list/favorites-cards-list';
 import LocationsItem from '../../locations-item/locations-item';
 
-const arrangeFavoritesByCity = (favoritesOffers) => {
+const arrangeFavoritesByCity = (favorites) => {
   let collection = new Set();
-  for (let value of favoritesOffers) {
+  for (let value of favorites) {
     collection.add(value.city.name);
   }
   let citiesWithFavoritesOffers = Array.from(collection);
   return citiesWithFavoritesOffers;
 };
 
-const FavoritesList = ({favoritesOffers, changeLocation}) => {
-  const citiesWithFavoritesOffers = arrangeFavoritesByCity(favoritesOffers);
+const FavoritesList = ({favorites, changeLocation}) => {
+  const citiesWithFavoritesOffers = arrangeFavoritesByCity(favorites);
   return (
     <ul className="favorites__list">
       {citiesWithFavoritesOffers.map((city, i) => {
@@ -27,7 +28,7 @@ const FavoritesList = ({favoritesOffers, changeLocation}) => {
                 <LocationsItem cityName={city} onClick={changeLocation}/>
               </div>
             </div>
-            <FavoritesCardsList city={city} offers={favoritesOffers}/>
+            <FavoritesCardsList city={city} offers={favorites}/>
           </li>
         );
       })
@@ -37,14 +38,14 @@ const FavoritesList = ({favoritesOffers, changeLocation}) => {
 };
 
 FavoritesList.propTypes = {
-  favoritesOffers: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
   activeElement: PropTypes.string.isRequired,
   changeLocation: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: getOffers(state),
+    favorites: getFavorites(state),
     activeElement: getActiveElement(state),
   };
 }

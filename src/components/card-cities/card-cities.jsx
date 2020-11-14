@@ -23,6 +23,7 @@ CardCities.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
     title: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,

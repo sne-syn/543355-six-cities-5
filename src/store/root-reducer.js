@@ -1,17 +1,20 @@
 import {activeCard} from './active-card/active-card-reducer';
+import {favorites} from './favorites/favorites-reducers';
 import {offersData} from './offers-data/offers-data-reducers';
 import {userData} from './user-data/user-data-reducers';
 import {combineReducers} from 'redux';
 
 export const NameSpace = {
-  OFFERS: `OFFERS`,
   ACTIVE_CARD: `ACTIVE_CARD`,
-  USER: `USER`
+  FAVORITES: `FAVORITES`,
+  OFFERS: `OFFERS`,
+  USER: `USER`,
 };
 
 export const rootReducer = combineReducers({
-  [NameSpace.OFFERS]: offersData,
   [NameSpace.ACTIVE_CARD]: activeCard,
+  [NameSpace.FAVORITES]: favorites,
+  [NameSpace.OFFERS]: offersData,
   [NameSpace.USER]: userData,
 });
 

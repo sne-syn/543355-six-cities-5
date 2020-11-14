@@ -2,17 +2,17 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {showFavoritesElements} from '../../../store/action';
-import {getOffers} from '../../../store/offers-data/offers-data-selectors';
+import {getFavorites} from '../../../store/favorites/favorites-selectors';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
 import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
 import FavoritesMainOffers from '../favorites-main-offers/favorites-main-offers';
 
-const getFavoriteComponent = (favoritesOffers) => {
-  if (favoritesOffers.length === 0) {
+const getFavoriteComponent = (favorites) => {
+  if (favorites.length === 0) {
     return <FavoritesMainEmpty />;
   } else {
-    return <FavoritesMainOffers favoritesOffers={favoritesOffers}/>;
+    return <FavoritesMainOffers favorites={favorites}/>;
   }
 };
 
@@ -22,20 +22,20 @@ class FavoritesPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showFavoritesElementsAction();
+    this.props.showFavoritesElementsAction(this.props.favorites);
   }
 
   render() {
-    const {favoritesOffers} = this.props;
+    const {favorites} = this.props;
     let favoritesClassName = `page__main page__main--favorites`;
-    if (favoritesOffers.length === 0) {
+    if (favorites.length === 0) {
       favoritesClassName += `page__main--favorites-empty`;
     }
     return (
       <div className="page">
         <Header {...this.props}/>
         <main className={favoritesClassName} >
-          {getFavoriteComponent(favoritesOffers)}
+          {getFavoriteComponent(favorites)}
         </main>
         <Footer />
       </div>
@@ -45,18 +45,18 @@ class FavoritesPage extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: getOffers(state),
+    favorites: getFavorites(state),
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElementsAction() {
-    dispatch(showFavoritesElements());
+  showFavoritesElementsAction(favorites) {
+    dispatch(showFavoritesElements(favorites));
   }
 });
 
 FavoritesPage.propTypes = {
-  favoritesOffers: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
   showFavoritesElementsAction: PropTypes.func.isRequired,
 };
 

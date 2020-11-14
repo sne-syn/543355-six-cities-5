@@ -1,4 +1,4 @@
-import {requireAuthorization, redirectToRoute, showFavoritesElements, loadOffers, loadReviews} from './action';
+import {requireAuthorization, redirectToRoute, showFavoritesElements, loadOffers} from './action';
 import {AuthorizationStatus, APIRoute, AppRoute} from '../utils/const';
 
 export const checkAuth = () => (dispatch, _getState, api) => (
@@ -15,15 +15,13 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 
 export const fetchFavorites = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITES)
-    .then(({data}) => dispatch(showFavoritesElements(data)))
-);
+    .then(({data}) => {
+      return dispatch(showFavoritesElements(data));
+    }
+    ));
+
 
 export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(loadOffers(data)))
-);
-
-export const fetchReviews = () => (dispatch, _getState, api) => (
-  api.get(`/comments/:hotel_id`)
-    .then(({data}) => dispatch(loadReviews(data)))
 );

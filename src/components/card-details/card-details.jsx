@@ -29,7 +29,7 @@ const CardDetails = (props) => {
       {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
       <div className={`${type}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.images[0]} width={imageSize.width} height={imageSize.height} alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width={imageSize.width} height={imageSize.height} alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -63,6 +63,7 @@ CardDetails.propTypes = {
       name: PropTypes.string.isRequired,
     }).isRequired,
     title: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     images: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
