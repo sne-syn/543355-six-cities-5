@@ -1,12 +1,12 @@
-import {AuthorizationStatus} from '../../utils/const';
-import {extend} from '../../utils/common';
 import {ActionType} from '../action';
+import {AuthorizationStatus} from '../../utils/const';
+import {extend} from '../utils/common';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
-const userReducer = (state = initialState, action) => {
+export const userData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
@@ -17,4 +17,3 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
