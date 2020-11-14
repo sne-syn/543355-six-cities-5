@@ -2,7 +2,7 @@ import {CITIES, SortType} from '../../utils/const';
 import {extend} from '../../utils/common';
 import {ActionType} from '../action';
 import {filterData, getSortedMovies} from '../../core';
-import {adaptOffers} from '../utils/adapter';
+import {adaptOffers} from '../../utils/adapter';
 
 const DEFAULT_CITY = CITIES[0];
 const initialState = {

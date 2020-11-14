@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import {redirect} from './store/middlewares/redirect';
 import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {reducer} from './store/reducer';
+import {rootReducer} from './store/root-reducer';
 import {requireAuthorization} from './store/action';
 import {createAPI} from './services/api';
 import {generateReviews} from './mocks/reviews';
@@ -18,7 +18,7 @@ const reviews = generateReviews(getRandomIntegerNumber(0, 15));
 
 const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)));
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect)));
 
 Promise.all([
   store.dispatch(fetchOffers()),

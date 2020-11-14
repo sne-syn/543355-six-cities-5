@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {login} from '../../store/api-actions';
+import {getActiveElement} from '../../store/offers-data/offers-data-selectors';
 import Header from '../header/header';
 import LocationsItem from '../locations-item/locations-item';
 
@@ -11,7 +12,6 @@ class LoginPage extends PureComponent {
 
     this.loginRef = createRef();
     this.passwordRef = createRef();
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -65,7 +65,7 @@ LoginPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    activeElement: state.activeElement
+    activeElement: getActiveElement(state)
   };
 }
 

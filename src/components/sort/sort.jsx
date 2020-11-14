@@ -4,6 +4,7 @@ import {changeSortType} from '../../store/action';
 import PropTypes from 'prop-types';
 import withToggler from '../../HOCs/with-toggler';
 import {SortType} from '../../utils/const';
+import {getActiveSortType} from '../../store/offers-data/offers-data-selectors';
 
 const getSortOptions = (toggleComponent, activeSortType) => {
   let sortOptions = [];
@@ -40,7 +41,7 @@ Sort.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    activeSortType: state.activeSortType
+    activeSortType: getActiveSortType(state)
   };
 }
 

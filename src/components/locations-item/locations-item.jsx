@@ -4,6 +4,7 @@ import {changeActiveElement} from '../../store/action';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
+import {getActiveElement} from '../../store//offers-data/offers-data-selectors';
 
 const LocationsItem = ({cityName, activeCity, tab, changeLocation}) => {
   let locationItemClass = `locations__item-link`;
@@ -31,7 +32,7 @@ LocationsItem.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    activeCity: state.activeElement,
+    activeCity: getActiveElement(state),
   };
 }
 

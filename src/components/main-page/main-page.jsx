@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {showOnLoad} from '../../store/action';
+import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import LocationsNav from '../locations-nav/locations-nav';
@@ -53,8 +54,8 @@ class MainPage extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    activeElement: state.activeElement,
-    offers: state.unsortedOffers
+    activeElement: getActiveElement(state),
+    offers: getUnsortedOffers(state)
   };
 }
 

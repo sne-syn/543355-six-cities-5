@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {showFavoritesElements} from '../../../store/action';
+import {getOffers} from '../../../store/offers-data/offers-data-selectors';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
 import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
@@ -44,7 +45,7 @@ class FavoritesPage extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: state.favorites,
+    favoritesOffers: getOffers(state),
   };
 }
 

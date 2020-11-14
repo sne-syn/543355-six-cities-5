@@ -9,6 +9,8 @@ import PropertyPage from '../property-page/property-page';
 import {connect} from 'react-redux';
 import {AuthorizationStatus, AppRoute} from '../../utils/const';
 import browserHistory from '../../browser-history';
+import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
+import {getOffers} from '../../store/offers-data/offers-data-selectors';
 import {generateReviews} from '../../mocks/reviews';
 
 const reviews = generateReviews(10);
@@ -54,8 +56,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-  offers: state.offers
+  authorizationStatus: getAuthorizationStatus(state),
+  offers: getOffers(state),
 });
 
 export {App};

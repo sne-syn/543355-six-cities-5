@@ -1,6 +1,6 @@
 import {ActionType} from '../action';
 import {AuthorizationStatus} from '../../utils/const';
-import {extend} from '../utils/common';
+import {extend} from '../../utils/common';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,

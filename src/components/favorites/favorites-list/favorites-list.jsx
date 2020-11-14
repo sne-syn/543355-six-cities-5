@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {changeActiveElement} from '../../../store/action';
+import {getActiveElement, getOffers} from '../../../store/offers-data/offers-data-selectors';
 import FavoritesCardsList from '../favorites-cards-list/favorites-cards-list';
 import LocationsItem from '../../locations-item/locations-item';
 
@@ -43,8 +44,8 @@ FavoritesList.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: state.favorites,
-    activeElement: state.activeElement,
+    favoritesOffers: getOffers(state),
+    activeElement: getActiveElement(state),
   };
 }
 
