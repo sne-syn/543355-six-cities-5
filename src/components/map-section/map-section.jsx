@@ -6,7 +6,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 let IconTypes = {
   ICON_DEFAULT: `../img/pin.svg`,
-  ICON_ACTIVE: `../img/pin-active.svg`
+  ICON_ACTIVE: `../img/pin-active.svg`,
 };
 
 const getIcon = (iconTypes) => {
@@ -15,7 +15,7 @@ const getIcon = (iconTypes) => {
     iconUrl: iconTypes,
     shadowUrl: `../${iconShadow}`,
     iconSize: [27, 39],
-    iconAnchor: [12, 36]
+    iconAnchor: [12, 36],
   });
   leaflet.Marker.prototype.options.icon = DefaultIcon;
   return DefaultIcon;
@@ -47,10 +47,11 @@ class MapSection extends PureComponent {
     this.props.offersToShowOnMap.map((offer) => {
       if (+this.props.activeOffer === offer.id) {
         iconToShow = getIcon(IconTypes.ICON_ACTIVE);
-      } else {
-        iconToShow = getIcon(IconTypes.ICON_DEFAULT);
+        return this._createPin(offer, iconToShow);
       }
-      this._createPin(offer, iconToShow);
+
+      iconToShow = getIcon(IconTypes.ICON_DEFAULT);
+      return this._createPin(offer, iconToShow);
     });
   }
 

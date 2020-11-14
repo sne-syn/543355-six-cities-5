@@ -48,10 +48,11 @@ const withInputs = (Component) => {
     _handleButtonDisable() {
       if (this.state.textLength >= 50 && this.state.textLength < 300 && this.state.rating > 0) {
         return false;
-      } else {
-        return true;
       }
+
+      return true;
     }
+
     render() {
       return (
         <Component
