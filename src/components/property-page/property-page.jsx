@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Header from '../header/header';
-import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
-import MapSection from '../map-section/map-section';
+import Header from '../header/header';
 import Host from '../host/host';
-import PropertyFeatures from '../property-features/property-features';
-import ReviewsList from '../reviews-list/reviews-list';
+import MapSection from '../map-section/map-section';
 import NearPlaces from '../near-places/near-places';
+import PremiumMark from '../premium-mark/premium-mark';
+import PropTypes from 'prop-types';
+import PropertyFeatures from '../property-features/property-features';
+import React from 'react';
+import ReviewsList from '../reviews-list/reviews-list';
 import StarBar from '../star-bar/star-bar';
-import {capitalizeChar} from '../../utils/common';
 import {NEAR_PLACES_COUNT} from '../../utils/const';
+import {capitalizeChar} from '../../utils/common';
 
 const PropertyPage = (props) => {
   const {offer, offers} = props;

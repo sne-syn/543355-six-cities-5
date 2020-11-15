@@ -1,12 +1,12 @@
-import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
-import {showOnLoad} from '../../store/action';
-import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
-import PropTypes from 'prop-types';
 import Header from '../header/header';
 import LocationsNav from '../locations-nav/locations-nav';
-import PlacesContainer from '../places-container/places-container';
 import NoPlacesContainer from '../no-places-container/no-places-container';
+import PlacesContainer from '../places-container/places-container';
+import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
+import {showOnLoad} from '../../store/action';
 
 const getPlacesComponent = (offers, activeElement) => {
   switch (true) {

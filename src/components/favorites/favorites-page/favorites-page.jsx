@@ -1,12 +1,12 @@
-import React, {PureComponent} from 'react';
+import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
+import FavoritesMainOffers from '../favorites-main-offers/favorites-main-offers';
+import Footer from '../../footer/footer';
+import Header from '../../header/header';
 import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {fetchFavorites} from '../../../store/api-actions';
 import {getFavorites} from '../../../store/favorites/favorites-selectors';
-import Header from '../../header/header';
-import Footer from '../../footer/footer';
-import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
-import FavoritesMainOffers from '../favorites-main-offers/favorites-main-offers';
 
 const getFavoriteComponent = (favorites) => {
   if (favorites.length === 0) {

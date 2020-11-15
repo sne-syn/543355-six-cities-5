@@ -1,35 +1,25 @@
 export const ActionType = {
   CHANGE_ACTIVE_ELEMENT: `CHANGE_ACTIVE_ELEMENT`,
-  SHOW_FAVORITES_ELEMENTS: `SHOW_FAVORITES_ELEMENTS`,
-  SHOW_OFFERS_ON_LOAD: `SHOW_OFFERS_ON_LOAD`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
-  SET_ACTIVE_CARD_ID: `SET_ACTIVE_CARD_ID`,
-  RESET_ACTIVE_CARD_ID: `RESET_ACTIVE_CARD_ID`,
   LOAD_OFFERS: `LOAD_OFFERS`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
   LOAD_USER_INFORMATION: `LOAD_USER_INFORMATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
-  SHOW_FILTERED_OFFERS: `SHOW_FILTERED_OFFERS`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  RESET_ACTIVE_CARD_ID: `RESET_ACTIVE_CARD_ID`,
+  SET_ACTIVE_CARD_ID: `SET_ACTIVE_CARD_ID`,
+  SHOW_FAVORITES_ELEMENTS: `SHOW_FAVORITES_ELEMENTS`,
+  SHOW_OFFERS_ON_LOAD: `SHOW_OFFERS_ON_LOAD`
 };
 
-export const requireAuthorization = (status) => ({
-  type: ActionType.REQUIRED_AUTHORIZATION,
-  payload: status
+export const changeActiveElement = (evt) => ({
+  type: ActionType.CHANGE_ACTIVE_ELEMENT,
+  payload: evt.target.textContent
 });
 
-export const loadUserInformation = (info) => ({
-  type: ActionType.LOAD_USER_INFORMATION,
-  payload: info
-});
-
-export const showOnLoad = (offers) => ({
-  type: ActionType.SHOW_OFFERS_ON_LOAD,
-  payload: offers
-});
-
-export const redirectToRoute = (url) => ({
-  type: `REDIRECT_TO_ROUTE`,
-  payload: url,
+export const changeSortType = (evt) => ({
+  type: ActionType.CHANGE_SORT_TYPE,
+  payload: evt.target.textContent
 });
 
 export const loadOffers = (offers) => ({
@@ -42,19 +32,23 @@ export const loadReviews = (reviews) => ({
   payload: reviews
 });
 
-export const changeActiveElement = (evt) => ({
-  type: ActionType.CHANGE_ACTIVE_ELEMENT,
-  payload: evt.target.textContent
+export const loadUserInformation = (info) => ({
+  type: ActionType.LOAD_USER_INFORMATION,
+  payload: info
 });
 
-export const showFavoritesElements = (favorites) => ({
-  type: ActionType.SHOW_FAVORITES_ELEMENTS,
-  payload: favorites
+export const redirectToRoute = (url) => ({
+  type: `REDIRECT_TO_ROUTE`,
+  payload: url,
 });
 
-export const changeSortType = (evt) => ({
-  type: ActionType.CHANGE_SORT_TYPE,
-  payload: evt.target.textContent
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status
+});
+
+export const resetActiveCardID = () => ({
+  type: ActionType.RESET_ACTIVE_CARD_ID,
 });
 
 export const setActiveCardID = (evt) => ({
@@ -62,7 +56,12 @@ export const setActiveCardID = (evt) => ({
   payload: evt.currentTarget.id
 });
 
-export const resetActiveCardID = () => ({
-  type: ActionType.RESET_ACTIVE_CARD_ID,
+export const showFavoritesElements = (favorites) => ({
+  type: ActionType.SHOW_FAVORITES_ELEMENTS,
+  payload: favorites
 });
 
+export const showOnLoad = (offers) => ({
+  type: ActionType.SHOW_OFFERS_ON_LOAD,
+  payload: offers
+});

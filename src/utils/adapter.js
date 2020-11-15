@@ -1,24 +1,24 @@
 export const adaptOffer = (data) => {
   return {
-    id: data[`id`],
+    bedrooms: data[`bedrooms`],
     city: {
       location: adaptLocation(data[`city`][`location`]),
       name: data[`city`][`name`]
     },
-    title: data[`title`],
+    description: data[`description`],
+    goods: data[`goods`],
+    host: adaptHost(data[`host`]),
+    id: data[`id`],
     images: data[`images`],
+    isFavorite: Boolean(data[`is_favorite`]),
+    isPremium: Boolean(data[`is_favorite`]),
+    location: adaptLocation(data[`location`]),
+    maxGuests: data[`max_adults`],
     previewImage: data[`preview_image`],
     price: data[`price`],
-    type: data[`type`],
     rating: data[`rating`],
-    goods: data[`goods`],
-    bedrooms: data[`bedrooms`],
-    maxGuests: data[`max_adults`],
-    description: data[`description`],
-    isPremium: Boolean(data[`is_favorite`]),
-    isFavorite: Boolean(data[`is_favorite`]),
-    host: adaptHost(data[`host`]),
-    location: adaptLocation(data[`location`])
+    title: data[`title`],
+    type: data[`type`],
   };
 };
 
@@ -32,22 +32,22 @@ const adaptLocation = (location) => {
 
 const adaptHost = (host) => {
   return {
-    id: host[`id`],
     avatar: host[`avatar_url`],
-    name: host[`name`],
+    id: host[`id`],
     isPro: Boolean(host[`is_pro`]),
+    name: host[`name`]
   };
 };
 
 export const adaptReview = (review) => {
   return {
-    id: review[`id`],
-    avatar: review[`user`][`avatar_url`],
-    text: review[`comment`],
     author: review[`user`][`name`],
+    avatar: review[`user`][`avatar_url`],
     date: review[`date`],
-    rating: review[`rating`],
+    id: review[`id`],
     isPro: Boolean(review[`is_pro`]),
+    rating: review[`rating`],
+    text: review[`comment`],
     userId: review[`user`][`id`]
   };
 };

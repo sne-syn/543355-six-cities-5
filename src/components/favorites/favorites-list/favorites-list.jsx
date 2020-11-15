@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {changeActiveElement} from '../../../store/action';
-import {getActiveElement} from '../../../store/offers-data/offers-data-selectors';
-import {getFavorites} from '../../../store/favorites/favorites-selectors';
 import FavoritesCardsList from '../favorites-cards-list/favorites-cards-list';
 import LocationsItem from '../../locations-item/locations-item';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {changeActiveElement} from '../../../store/action';
+import {connect} from 'react-redux';
+import {getActiveElement} from '../../../store/offers-data/offers-data-selectors';
+import {getFavorites} from '../../../store/favorites/favorites-selectors';
 
 const arrangeFavoritesByCity = (favorites) => {
   let collection = new Set();

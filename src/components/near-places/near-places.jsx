@@ -1,5 +1,5 @@
-import React from 'react';
 import List from '../list/list';
+import React from 'react';
 
 const NearPlaces = (props) => {
   return (

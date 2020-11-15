@@ -1,9 +1,9 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {changeSortType} from '../../store/action';
 import PropTypes from 'prop-types';
+import React from 'react';
 import withToggler from '../../HOCs/with-toggler';
 import {SortType} from '../../utils/const';
+import {changeSortType} from '../../store/action';
+import {connect} from 'react-redux';
 import {getActiveSortType} from '../../store/offers-data/offers-data-selectors';
 
 const getSortOptions = (toggleComponent, activeSortType) => {

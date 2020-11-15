@@ -1,10 +1,10 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
-import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
+import PremiumMark from '../premium-mark/premium-mark';
+import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import StarBar from '../star-bar/star-bar';
 import {AccomodationTypes, ComponentType, AppRoute} from '../../utils/const';
+import {Link} from 'react-router-dom';
 
 const getImageSize = (type) => {
   switch (type) {

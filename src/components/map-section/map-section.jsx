@@ -1,8 +1,8 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
-import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import leaflet from 'leaflet';
 
 let IconTypes = {
   ICON_DEFAULT: `../img/pin.svg`,

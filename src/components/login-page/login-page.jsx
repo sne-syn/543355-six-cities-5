@@ -1,10 +1,10 @@
-import React, {PureComponent, createRef} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {login} from '../../store/api-actions';
-import {getActiveElement} from '../../store/offers-data/offers-data-selectors';
 import Header from '../header/header';
 import LocationsItem from '../locations-item/locations-item';
+import PropTypes from 'prop-types';
+import React, {PureComponent, createRef} from 'react';
+import {connect} from 'react-redux';
+import {getActiveElement} from '../../store/offers-data/offers-data-selectors';
+import {login} from '../../store/api-actions';
 
 class LoginPage extends PureComponent {
   constructor(props) {

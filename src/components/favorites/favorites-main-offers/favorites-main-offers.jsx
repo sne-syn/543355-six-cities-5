@@ -1,5 +1,5 @@
-import React from 'react';
 import FavoritesList from '../favorites-list/favorites-list';
+import React from 'react';
 
 const FavoritesMainOffers = (props) => {
   return (

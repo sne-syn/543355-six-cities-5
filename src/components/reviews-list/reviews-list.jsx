@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {AuthorizationStatus} from '../../utils/const';
-import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
-import ReviewItem from './../review-item/review-item';
 import Form from '../form/form';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ReviewItem from './../review-item/review-item';
+import {AuthorizationStatus} from '../../utils/const';
+import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 
 const ReviewsList = ({reviews, authorizationStatus}) => {
   const reviewsSorted = reviews.sort((a, b) => {

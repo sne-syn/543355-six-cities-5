@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import CardDetails from '../card-details/card-details';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const CardCities = (props) => {
   const {offer, setActiveCardID, resetActiveCardID} = props;

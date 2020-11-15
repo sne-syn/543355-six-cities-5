@@ -1,9 +1,9 @@
+import List from '../list/list';
 import React from 'react';
 import {connect} from 'react-redux';
-import {setActiveCardID, resetActiveCardID} from "../../store/action";
-import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
 import {getFilteredOffers} from '../../store/offers-data/offers-data-selectors';
-import List from '../list/list';
+import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
+import {setActiveCardID, resetActiveCardID} from "../../store/action";
 
 const ListHoverOnMap = (props) => {
   return (

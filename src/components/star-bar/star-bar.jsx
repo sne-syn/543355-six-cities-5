@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {MAX_RATING} from '../../utils/const';
 
 const countStarPainting = (rating) => {

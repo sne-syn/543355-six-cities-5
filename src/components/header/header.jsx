@@ -1,9 +1,9 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import React from 'react';
 import {AppRoute} from '../../utils/const';
 import {AuthorizationStatus} from '../../utils/const';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {getUserEmail, getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 
 const Header = ({authorizationStatus, userEmail}) => {

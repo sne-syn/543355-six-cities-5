@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import CardBase from '../../card-base/card-base';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const FavoritesCardsList = ({offers, city}) => {
   const favoritesByCity = offers.filter((offer) => {

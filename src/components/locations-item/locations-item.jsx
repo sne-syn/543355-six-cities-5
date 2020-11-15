@@ -1,9 +1,9 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {changeActiveElement} from '../../store/action';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {AppRoute} from '../../utils/const';
+import {Link} from 'react-router-dom';
+import {changeActiveElement} from '../../store/action';
+import {connect} from 'react-redux';
 import {getActiveElement} from '../../store//offers-data/offers-data-selectors';
 
 const LocationsItem = ({cityName, activeCity, tab, changeLocation}) => {

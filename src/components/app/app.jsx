@@ -6,12 +6,12 @@ import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites/favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
-import {connect} from 'react-redux';
-import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import browserHistory from '../../browser-history';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import {connect} from 'react-redux';
+import {generateReviews} from '../../mocks/reviews';
 import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 import {getOffers} from '../../store/offers-data/offers-data-selectors';
-import {generateReviews} from '../../mocks/reviews';
 
 const reviews = generateReviews(10);
 

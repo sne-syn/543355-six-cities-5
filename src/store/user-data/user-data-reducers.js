@@ -4,11 +4,11 @@ import {extend} from '../../utils/common';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  userId: null,
-  userName: ``,
-  userEmail: ``,
   userAvatar: ``,
+  userEmail: ``,
+  userId: null,
   userIsPro: null,
+  userName: ``,
 };
 
 export const userData = (state = initialState, action) => {
@@ -19,11 +19,11 @@ export const userData = (state = initialState, action) => {
       });
     case ActionType.LOAD_USER_INFORMATION:
       return extend(state, {
-        userId: action.payload.id,
-        userName: action.payload.name,
-        userEmail: action.payload.email,
         userAvatar: action.payload.avatar_url,
-        userIsPro: action.payload.is_pro
+        userEmail: action.payload.email,
+        userId: action.payload.id,
+        userIsPro: action.payload.is_pro,
+        userName: action.payload.name,
       });
     default:
       return state;

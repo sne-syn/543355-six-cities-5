@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CardDetails from '../card-details/card-details';
 import CardCities from '../card-cities/card-cities';
+import CardDetails from '../card-details/card-details';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {ComponentType} from '../../utils/const';
 
 const getCardElement = (id, offer, type, cardDetailsComponent, props) => {

@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import withInputs from '../../HOCs/with-inputs';
+import React from 'react';
 import StarButtons from '../star-buttons/star-buttons';
+import withInputs from '../../HOCs/with-inputs';
 
 const Form = ({handleSubmit, handleRatingChange, handleTextareaChange, buttonDisabled}) => {
   return (
