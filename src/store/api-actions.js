@@ -19,11 +19,6 @@ export const fetchFavorites = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(showFavoritesElements(data)))
 );
 
-// export const favoritesUpdate = ({offer}) => (dispatch, _getState, api) => (
-//   api.post(`/favorite/${offer.id}/${+offer.isFavorite}`, {offer})
-//     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-// );
-
 export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(loadOffers(data)))

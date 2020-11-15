@@ -17,7 +17,7 @@ const reviews = generateReviews(10);
 
 const App = (props) => {
   const {authorizationStatus, offers} = props;
-  const isLogged = (authorizationStatus === AuthorizationStatus.AUTH) ? true : false;
+  const isLogged = (authorizationStatus === AuthorizationStatus.AUTH) ? 1 : 0;
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>

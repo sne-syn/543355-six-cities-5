@@ -5,9 +5,6 @@ import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
 import {AccomodationTypes, ComponentType, AppRoute} from '../../utils/const';
-import {connect} from 'react-redux';
-// import {favoritesUpdate} from '../../store/api-actions';
-// import {getFavorites} from '../../store/favorites/favorites-selectors';
 
 const getImageSize = (type) => {
   switch (type) {
@@ -27,18 +24,7 @@ const getImageSize = (type) => {
 class CardDetails extends PureComponent {
   constructor(props) {
     super(props);
-
-    // this.handleFavoriteToggle = this.handleFavoriteToggle.bind(this);
   }
-
-  // handleFavoriteToggle() {
-  //   const {onClick} = this.props;
-
-  //   onClick({
-  //     login: this.loginRef.current.value,
-  //     password: this.passwordRef.current.value,
-  //   });
-  // }
 
   render() {
     const {type, offer} = this.props;
@@ -103,5 +89,4 @@ CardDetails.propTypes = {
   }).isRequired,
 };
 
-export {CardDetails};
-export default connect()(CardDetails);
+export default CardDetails;
