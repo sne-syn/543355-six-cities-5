@@ -57,7 +57,7 @@ class MapSection extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const {activeCity, offersToShowOnMap} = this.props;
-    const {latitude, longitude, zoom} = offersToShowOnMap[0].location;
+    const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
     const shouldUpdateList = activeCity !== prevProps.activeCity;
     if (shouldUpdateList) {
       this._layerGroup.clearLayers();

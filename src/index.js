@@ -12,7 +12,7 @@ import {createAPI} from './services/api';
 import {generateReviews} from './mocks/reviews';
 import {getRandomIntegerNumber} from './utils/common';
 import {AuthorizationStatus} from './utils/const';
-import {fetchOffers, checkAuth, fetchFavorites} from './store/api-actions';
+import {fetchOffers, checkAuth} from './store/api-actions';
 
 const reviews = generateReviews(getRandomIntegerNumber(0, 15));
 
@@ -22,8 +22,7 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 Promise.all([
   store.dispatch(fetchOffers()),
-  store.dispatch(checkAuth()),
-  store.dispatch(fetchFavorites()),
+  store.dispatch(checkAuth())
 ])
 .then(() => {
   ReactDOM.render(

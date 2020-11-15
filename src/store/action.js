@@ -7,9 +7,21 @@ export const ActionType = {
   RESET_ACTIVE_CARD_ID: `RESET_ACTIVE_CARD_ID`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  LOAD_USER_INFORMATION: `LOAD_USER_INFORMATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   SHOW_FILTERED_OFFERS: `SHOW_FILTERED_OFFERS`,
 };
+
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status
+});
+
+export const loadUserInformation = (info) => ({
+  type: ActionType.LOAD_USER_INFORMATION,
+  payload: info
+});
+
 export const showOnLoad = (offers) => ({
   type: ActionType.SHOW_OFFERS_ON_LOAD,
   payload: offers
@@ -28,11 +40,6 @@ export const loadOffers = (offers) => ({
 export const loadReviews = (reviews) => ({
   type: ActionType.LOAD_REVIEWS,
   payload: reviews
-});
-
-export const requireAuthorization = (status) => ({
-  type: ActionType.REQUIRED_AUTHORIZATION,
-  payload: status
 });
 
 export const changeActiveElement = (evt) => ({

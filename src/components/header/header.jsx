@@ -1,9 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {AppRoute} from '../../utils/const';
+import {AuthorizationStatus} from '../../utils/const';
+import {getUserEmail, getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 
-const Header = ({isLogged}) => {
+const Header = ({authorizationStatus, userEmail}) => {
   return (
     <header className="header">
       <div className="container">
@@ -16,10 +19,10 @@ const Header = ({isLogged}) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                {isLogged ? (<Link to={AppRoute.FAVORITES} className="header__nav-link header__nav-link--profile" href="#">
+                {(authorizationStatus === AuthorizationStatus.AUTH) ? (<Link to={AppRoute.FAVORITES} className="header__nav-link header__nav-link--profile" href="#">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  <span className="header__user-name user__name">{userEmail}</span>
                 </Link>) : (<Link to={AppRoute.LOGIN} className="header__nav-link header__nav-link--profile" href="#">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div><span className="header__login">Sign in</span></Link>)}
@@ -33,7 +36,14 @@ const Header = ({isLogged}) => {
 };
 
 Header.propTypes = {
-  isLogged: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  userEmail: PropTypes.string.isRequired,
 };
 
-export default React.memo(Header);
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userEmail: getUserEmail(state),
+});
+
+export {Header};
+export default connect(mapStateToProps)(Header);

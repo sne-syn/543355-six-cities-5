@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {showFavoritesElements} from '../../../store/action';
+import {fetchFavorites} from '../../../store/api-actions';
 import {getFavorites} from '../../../store/favorites/favorites-selectors';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
@@ -22,7 +22,7 @@ class FavoritesPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showFavoritesElementsAction(this.props.favorites);
+    this.props.showFavoritesElementsAction();
   }
 
   render() {
@@ -50,8 +50,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElementsAction(favorites) {
-    dispatch(showFavoritesElements(favorites));
+  showFavoritesElementsAction() {
+    dispatch(fetchFavorites());
   }
 });
 

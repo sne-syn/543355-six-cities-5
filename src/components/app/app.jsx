@@ -7,7 +7,7 @@ import FavoritesPage from '../favorites/favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
 import {connect} from 'react-redux';
-import {AuthorizationStatus, AppRoute} from '../../utils/const';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import browserHistory from '../../browser-history';
 import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 import {getOffers} from '../../store/offers-data/offers-data-selectors';
@@ -24,7 +24,7 @@ const App = (props) => {
         <Route exact
           path={AppRoute.ROOT}
           render={() => (
-            <MainPage isLogged={isLogged}/>
+            <MainPage />
           )}
         />
         <Route exact
@@ -32,19 +32,19 @@ const App = (props) => {
           {(isLogged) ? (
             <Redirect to={AppRoute.ROOT} />
           ) :
-            (<LoginPage isLogged={isLogged}/>)
+            (<LoginPage />)
           }
         </Route>
         <PrivateRoute exact
           path={AppRoute.FAVORITES}
           render={() => {
             return (
-              <FavoritesPage isLogged={isLogged}/>
+              <FavoritesPage />
             );
           }}
         />
         <Route exact path={`${AppRoute.OFFER}:id`}
-          render={() => (<PropertyPage offers={offers} offer={offers} reviews={reviews} isLogged={isLogged} />)}/>
+          render={() => (<PropertyPage offers={offers} offer={offers} reviews={reviews} />)}/>
       </Switch>
     </BrowserRouter>
   );

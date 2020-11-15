@@ -63,11 +63,9 @@ LoginPage.propTypes = {
   onSubmit: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
-  return {
-    activeElement: getActiveElement(state)
-  };
-}
+const mapStateToProps = (state) => ({
+  activeElement: getActiveElement(state)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {

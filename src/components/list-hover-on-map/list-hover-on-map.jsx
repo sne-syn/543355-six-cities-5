@@ -11,12 +11,10 @@ const ListHoverOnMap = (props) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    highlightedOfferID: getHighlightedOfferID(state),
-    offers: getFilteredOffers(state),
-  };
-}
+const mapStateToProps = (state) => ({
+  highlightedOfferID: getHighlightedOfferID(state),
+  offers: getFilteredOffers(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveCardID(evt) {

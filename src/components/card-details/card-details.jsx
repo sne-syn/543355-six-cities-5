@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import PremiumMark from '../premium-mark/premium-mark';
 import FavoriteButton from '../favorite-button/favorite-button';
 import StarBar from '../star-bar/star-bar';
 import {AccomodationTypes, ComponentType, AppRoute} from '../../utils/const';
+import {connect} from 'react-redux';
+// import {favoritesUpdate} from '../../store/api-actions';
+// import {getFavorites} from '../../store/favorites/favorites-selectors';
 
 const getImageSize = (type) => {
   switch (type) {
@@ -21,34 +24,51 @@ const getImageSize = (type) => {
   }
 };
 
-const CardDetails = (props) => {
-  const {type, offer} = props;
-  const imageSize = getImageSize(type);
-  return (
-    <React.Fragment>
-      {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
-      <div className={`${type}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
-          <img className="place-card__image" src={offer.previewImage} width={imageSize.width} height={imageSize.height} alt="Place image" />
-        </a>
-      </div>
-      <div className="place-card__info">
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{offer.price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;night</span>
-          </div>
-          <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`place-card`} />
+class CardDetails extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    // this.handleFavoriteToggle = this.handleFavoriteToggle.bind(this);
+  }
+
+  // handleFavoriteToggle() {
+  //   const {onClick} = this.props;
+
+  //   onClick({
+  //     login: this.loginRef.current.value,
+  //     password: this.passwordRef.current.value,
+  //   });
+  // }
+
+  render() {
+    const {type, offer} = this.props;
+    const imageSize = getImageSize(type);
+    return (
+      <React.Fragment>
+        {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
+        <div className={`${type}__image-wrapper place-card__image-wrapper`}>
+          <a href="#">
+            <img className="place-card__image" src={offer.previewImage} width={imageSize.width} height={imageSize.height} alt="Place image" />
+          </a>
         </div>
-        <StarBar rating={offer.rating} />
-        <h2 className="place-card__name">
-          <Link to={`${AppRoute.OFFER}${offer.id}`}>{offer.title}</Link>
-        </h2>
-        <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
-      </div>
-    </React.Fragment>
-  );
-};
+        <div className="place-card__info">
+          <div className="place-card__price-wrapper">
+            <div className="place-card__price">
+              <b className="place-card__price-value">&euro;{offer.price}</b>
+              <span className="place-card__price-text">&#47;&nbsp;night</span>
+            </div>
+            <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`place-card`} />
+          </div>
+          <StarBar rating={offer.rating} />
+          <h2 className="place-card__name">
+            <Link to={`${AppRoute.OFFER}${offer.id}`}>{offer.title}</Link>
+          </h2>
+          <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
+        </div>
+      </React.Fragment>
+    );
+  }
+}
 
 CardDetails.propTypes = {
   type: PropTypes.string.isRequired,
@@ -83,4 +103,5 @@ CardDetails.propTypes = {
   }).isRequired,
 };
 
-export default CardDetails;
+export {CardDetails};
+export default connect()(CardDetails);
