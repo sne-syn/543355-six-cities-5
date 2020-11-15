@@ -12,10 +12,10 @@ class LoginPage extends PureComponent {
 
     this.loginRef = createRef();
     this.passwordRef = createRef();
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  handleSubmit(evt) {
+  _handleSubmit(evt) {
     const {onSubmit} = this.props;
 
     evt.preventDefault();
@@ -35,7 +35,7 @@ class LoginPage extends PureComponent {
           <div className="page__login-container container">
             <section className="login">
               <h1 className="login__title">Sign in</h1>
-              <form className="login__form form" action="" onSubmit={this.handleSubmit}
+              <form className="login__form form" action="" onSubmit={this._handleSubmit}
               >
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
@@ -70,7 +70,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
-    dispatch()
   }
 });
 
