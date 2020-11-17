@@ -5,7 +5,8 @@ import PlacesContainer from '../places-container/places-container';
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
+import {getActiveElement, getLoadingStatus, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
+import {fetchOffers} from '../../store/api-actions';
 import {showOnLoad} from '../../store/action';
 
 const getPlacesComponent = (offers, activeElement) => {
@@ -23,14 +24,18 @@ class MainPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showOnLoadAction(this.props.offers);
+    this.props.fetchOffersAction();
   }
 
   render() {
-    const {activeElement, offers} = this.props;
+    const {activeElement, offers, loading} = this.props;
     let mainClassName = `page__main page__main--index`;
     if (offers.length === 0) {
       mainClassName += ` page__main--index-empty`;
+    }
+
+    if (loading) {
+      return <div>Загрузка</div>;
     }
 
     return (
@@ -55,20 +60,20 @@ class MainPage extends PureComponent {
 function mapStateToProps(state) {
   return {
     activeElement: getActiveElement(state),
-    offers: getUnsortedOffers(state)
+    offers: getUnsortedOffers(state),
+    loading: getLoadingStatus(state),
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showOnLoadAction(offers) {
-    dispatch(showOnLoad(offers));
+  fetchOffersAction() {
+    dispatch(fetchOffers());
   }
 });
 
 MainPage.propTypes = {
   offers: PropTypes.array.isRequired,
-  activeElement: PropTypes.string.isRequired,
-  showOnLoadAction: PropTypes.func.isRequired
+  activeElement: PropTypes.string.isRequired
 };
 
 export {MainPage};

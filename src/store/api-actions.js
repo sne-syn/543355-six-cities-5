@@ -1,4 +1,4 @@
-import {loadOffers, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements} from './action';
+import {loadOffers, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad} from './action';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../utils/const';
 
 export const checkAuth = () => (dispatch, _getState, api) => (
@@ -16,6 +16,7 @@ export const fetchFavorites = () => (dispatch, _getState, api) => (
 export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(loadOffers(data)))
+    .then(({array}) => dispatch(showOnLoad(array)))
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (

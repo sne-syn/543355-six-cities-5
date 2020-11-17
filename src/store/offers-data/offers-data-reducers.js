@@ -10,7 +10,8 @@ const initialState = {
   activeSortType: SortType.get(`DEFAULT`),
   filteredOffers: [],
   offers: [],
-  unsortedOffers: []
+  unsortedOffers: [],
+  loading: true
 };
 
 export const offersData = (state = initialState, action) => {
@@ -30,11 +31,11 @@ export const offersData = (state = initialState, action) => {
       });
     case ActionType.LOAD_OFFERS:
       return extend(state, {
-        offers: adaptOffers(action.payload),
-      });
+        loading: false,
+        offers: adaptOffers(action.payload)});
     case ActionType.SHOW_OFFERS_ON_LOAD:
       return extend(state, {
-        filteredOffers: filterData(state.offers, DEFAULT_CITY),
+        filteredOffers: filterData(state.offers, state.activeElement),
         get unsortedOffers() {
           return this.filteredOffers;
         }});
