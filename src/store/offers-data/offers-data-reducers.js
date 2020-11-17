@@ -1,7 +1,7 @@
 import {ActionType} from '../action';
-import {CITIES, SortType} from '../../utils/const';
 import {adaptOffers} from '../../utils/adapter';
 import {extend} from '../../utils/common';
+import {CITIES, SortType} from '../../utils/const';
 import {filterData, getSortedMovies} from '../../core';
 
 const DEFAULT_CITY = CITIES[0];
@@ -16,6 +16,17 @@ const initialState = {
 
 export const offersData = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.OFFERS_LOADING_FAIL:
+      return extend(state, {
+        errorMsg: `Unable to load offers`,
+        loading: false,
+      });
+    case ActionType.OFFERS_LOADING_SUCCESS:
+      return extend(state, {
+        errorMsg: ``,
+        loading: false,
+        offers: adaptOffers(action.payload),
+      });
     case ActionType.CHANGE_ACTIVE_ELEMENT:
       return extend(state, {
         activeElement: action.payload,

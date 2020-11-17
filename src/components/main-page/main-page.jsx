@@ -1,4 +1,5 @@
 import Header from '../header/header';
+import Loader from '../loader/loader';
 import LocationsNav from '../locations-nav/locations-nav';
 import NoPlacesContainer from '../no-places-container/no-places-container';
 import PlacesContainer from '../places-container/places-container';
@@ -7,7 +8,6 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {getActiveElement, getLoadingStatus, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
 import {fetchOffers} from '../../store/api-actions';
-import {showOnLoad} from '../../store/action';
 
 const getPlacesComponent = (offers, activeElement) => {
   switch (true) {
@@ -24,7 +24,9 @@ class MainPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.fetchOffersAction();
+    if (this.props.offers.length === 0) {
+      this.props.fetchOffersAction();
+    }
   }
 
   render() {
@@ -34,24 +36,22 @@ class MainPage extends PureComponent {
       mainClassName += ` page__main--index-empty`;
     }
 
-    if (loading) {
-      return <div>Загрузка</div>;
-    }
-
     return (
       <div className="page page--gray page--main">
         <Header {...this.props}/>
-        <main className={mainClassName}>
-          <h1 className="visually-hidden">Cities</h1>
-          <div className="tabs">
-            <section className="locations container">
-              <LocationsNav tab={true}/>
-            </section>
-          </div>
-          <div className="cities">
-            {getPlacesComponent(offers, activeElement)}
-          </div>
-        </main>
+        {loading ? (<Loader />) : (
+          <main className={mainClassName}>
+            <h1 className="visually-hidden">Cities</h1>
+            <div className="tabs">
+              <section className="locations container">
+                <LocationsNav tab={true}/>
+              </section>
+            </div>
+            <div className="cities">
+              {getPlacesComponent(offers, activeElement)}
+            </div>
+          </main>)
+        }
       </div>
     );
   }
@@ -60,8 +60,8 @@ class MainPage extends PureComponent {
 function mapStateToProps(state) {
   return {
     activeElement: getActiveElement(state),
-    offers: getUnsortedOffers(state),
     loading: getLoadingStatus(state),
+    offers: getUnsortedOffers(state),
   };
 }
 
@@ -72,8 +72,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 MainPage.propTypes = {
+  activeElement: PropTypes.string.isRequired,
+  fetchOffersAction: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   offers: PropTypes.array.isRequired,
-  activeElement: PropTypes.string.isRequired
 };
 
 export {MainPage};

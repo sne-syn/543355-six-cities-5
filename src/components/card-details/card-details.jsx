@@ -47,7 +47,7 @@ class CardDetails extends PureComponent {
           </div>
           <StarBar rating={offer.rating} />
           <h2 className="place-card__name">
-            <Link to={`${AppRoute.OFFER}${offer.id}`}>{offer.title}</Link>
+            <Link to={`/hotels/${offer.id}`}>{offer.title}</Link>
           </h2>
           <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
         </div>

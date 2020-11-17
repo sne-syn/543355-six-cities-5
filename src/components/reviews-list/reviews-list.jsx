@@ -17,7 +17,7 @@ const ReviewsList = ({reviews, authorizationStatus}) => {
     return 0;
   });
 
-  const isLogged = (authorizationStatus === AuthorizationStatus.AUTH) ? 1 : 0;
+  const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <section className="property__reviews reviews">

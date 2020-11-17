@@ -99,6 +99,7 @@ class MapSection extends PureComponent {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div id="map" ref={this._mapSection} style={{height: `100%`}} />
     );
@@ -107,7 +108,7 @@ class MapSection extends PureComponent {
 
 MapSection.propTypes = {
   activeCity: PropTypes.string.isRequired,
-  activeOffer: PropTypes.string.isRequired,
+  activeOffer: PropTypes.any.isRequired,
   offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
