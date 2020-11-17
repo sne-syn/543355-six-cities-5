@@ -1,19 +1,50 @@
 .loader {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #333;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
   margin: auto;
-  animation: spin 2s linear infinite;
 }
 
-@keyframes spin {
+.ldio-hnl6tyhogo8 div {
+  position: absolute;
+  animation: ldio-hnl6tyhogo8 1s linear infinite;
+  width: 160px;
+  height: 160px;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  box-shadow: 0 4px 0 0 #4481c3;
+  transform-origin: 80px 82px;
+}
+
+.loadingio-spinner-eclipse-tdjcbvvh5xi {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+
+.ldio-hnl6tyhogo8 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+
+.ldio-hnl6tyhogo8 div {
+  box-sizing: content-box;
+}
+
+@keyframes ldio-hnl6tyhogo8 {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+
+  50% {
+    transform: rotate(180deg)
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: rotate(360deg)
   }
 }
