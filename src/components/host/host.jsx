@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const Host = ({description, host}) => {
   const {isPro, avatar, name} = host;
@@ -24,7 +24,7 @@ const Host = ({description, host}) => {
 Host.propTypes = {
   description: PropTypes.string.isRequired,
   host: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     avatar: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     isPro: PropTypes.bool.isRequired

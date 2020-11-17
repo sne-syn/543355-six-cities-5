@@ -1,12 +1,12 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
-import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import leaflet from 'leaflet';
 
 let IconTypes = {
   ICON_DEFAULT: `../img/pin.svg`,
-  ICON_ACTIVE: `../img/pin-active.svg`
+  ICON_ACTIVE: `../img/pin-active.svg`,
 };
 
 const getIcon = (iconTypes) => {
@@ -15,7 +15,7 @@ const getIcon = (iconTypes) => {
     iconUrl: iconTypes,
     shadowUrl: `../${iconShadow}`,
     iconSize: [27, 39],
-    iconAnchor: [12, 36]
+    iconAnchor: [12, 36],
   });
   leaflet.Marker.prototype.options.icon = DefaultIcon;
   return DefaultIcon;
@@ -30,7 +30,7 @@ class MapSection extends PureComponent {
   }
 
   _createPin(offer, iconType = getIcon(IconTypes.ICON_DEFAULT)) {
-    let marker = leaflet.marker(offer.location, {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
+    let marker = leaflet.marker([offer.location.latitude, offer.location.longitude], {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
     return marker;
   }
 
@@ -45,12 +45,13 @@ class MapSection extends PureComponent {
     this._layerGroup.clearLayers();
     let iconToShow;
     this.props.offersToShowOnMap.map((offer) => {
-      if (this.props.activeOffer !== offer.id) {
-        iconToShow = getIcon(IconTypes.ICON_DEFAULT);
-      } else {
+      if (+this.props.activeOffer === offer.id) {
         iconToShow = getIcon(IconTypes.ICON_ACTIVE);
+        return this._createPin(offer, iconToShow);
       }
-      this._createPin(offer, iconToShow);
+
+      iconToShow = getIcon(IconTypes.ICON_DEFAULT);
+      return this._createPin(offer, iconToShow);
     });
   }
 
@@ -71,7 +72,7 @@ class MapSection extends PureComponent {
     this._map = leaflet.map(this._mapSection.current, {
       center: [latitude, longitude],
       zoom,
-      zoomControl: false,
+      zoomControl: true,
       marker: true,
     });
 
@@ -94,11 +95,7 @@ class MapSection extends PureComponent {
     )
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
-    if (this.props.activeOffer) {
-      this._showActivePin();
-    } else {
-      this._addPins();
-    }
+    this._addPins();
   }
 
   render() {
@@ -114,7 +111,7 @@ MapSection.propTypes = {
   offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       city: PropTypes.shape({
         location: PropTypes.shape({
           latitude: PropTypes.number.isRequired,
@@ -124,15 +121,15 @@ MapSection.propTypes = {
         name: PropTypes.string.isRequired,
       }).isRequired,
       title: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
       images: PropTypes.array.isRequired,
       price: PropTypes.number.isRequired,
       type: PropTypes.string.isRequired,
       rating: PropTypes.number.isRequired,
-      features: PropTypes.array.isRequired,
+      goods: PropTypes.array.isRequired,
       bedrooms: PropTypes.number.isRequired,
       maxGuests: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
-      reviews: PropTypes.array.isRequired,
       host: PropTypes.string.isRequired,
       isPremium: PropTypes.bool.isRequired,
       isFavorite: PropTypes.bool.isRequired,

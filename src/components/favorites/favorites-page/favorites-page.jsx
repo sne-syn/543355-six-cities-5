@@ -1,17 +1,18 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../../store/action";
-import Header from '../../header/header';
-import Footer from '../../footer/footer';
 import FavoritesMainEmpty from '../favorites-main-empty/favorites-main-empty';
 import FavoritesMainOffers from '../favorites-main-offers/favorites-main-offers';
+import Footer from '../../footer/footer';
+import Header from '../../header/header';
+import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import {fetchFavorites} from '../../../store/api-actions';
+import {getFavorites} from '../../../store/favorites/favorites-selectors';
 
-const getFavoriteComponent = (favoritesOffers) => {
-  if (favoritesOffers.length === 0) {
+const getFavoriteComponent = (favorites) => {
+  if (favorites.length === 0) {
     return <FavoritesMainEmpty />;
   } else {
-    return <FavoritesMainOffers favoritesOffers={favoritesOffers}/>;
+    return <FavoritesMainOffers favorites={favorites}/>;
   }
 };
 
@@ -21,20 +22,20 @@ class FavoritesPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showFavoritesElements();
+    this.props.showFavoritesElementsAction();
   }
 
   render() {
-    const {favoritesOffers} = this.props;
+    const {favorites} = this.props;
     let favoritesClassName = `page__main page__main--favorites`;
-    if (favoritesOffers.length === 0) {
+    if (favorites.length === 0) {
       favoritesClassName += `page__main--favorites-empty`;
     }
     return (
       <div className="page">
         <Header {...this.props}/>
         <main className={favoritesClassName} >
-          {getFavoriteComponent(favoritesOffers)}
+          {getFavoriteComponent(favorites)}
         </main>
         <Footer />
       </div>
@@ -44,19 +45,19 @@ class FavoritesPage extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: state.filteredOffers,
+    favorites: getFavorites(state),
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElements() {
-    dispatch(ActionCreator.showFavoritesElements());
+  showFavoritesElementsAction() {
+    dispatch(fetchFavorites());
   }
 });
 
 FavoritesPage.propTypes = {
-  favoritesOffers: PropTypes.array.isRequired,
-  showFavoritesElements: PropTypes.func.isRequired,
+  favorites: PropTypes.array.isRequired,
+  showFavoritesElementsAction: PropTypes.func.isRequired,
 };
 
 export {FavoritesPage};

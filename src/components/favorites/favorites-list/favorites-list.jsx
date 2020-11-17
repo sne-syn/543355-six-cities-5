@@ -1,17 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../../store/action";
 import FavoritesCardsList from '../favorites-cards-list/favorites-cards-list';
 import LocationsItem from '../../locations-item/locations-item';
+import PropTypes from 'prop-types';
+import React from 'react';
+import {changeActiveElement} from '../../../store/action';
+import {connect} from 'react-redux';
+import {getActiveElement} from '../../../store/offers-data/offers-data-selectors';
+import {getFavorites} from '../../../store/favorites/favorites-selectors';
 
-const FavoritesList = ({favoritesOffers, changeLocation}) => {
-  let collectCititesWithFavorites = new Set();
-  for (let value of favoritesOffers) {
-    collectCititesWithFavorites.add(value.city.name);
+const arrangeFavoritesByCity = (favorites) => {
+  let collection = new Set();
+  for (let value of favorites) {
+    collection.add(value.city.name);
   }
-  let citiesWithFavoritesOffers = Array.from(collectCititesWithFavorites);
+  let citiesWithFavoritesOffers = Array.from(collection);
+  return citiesWithFavoritesOffers;
+};
 
+const FavoritesList = ({favorites, changeLocation}) => {
+  const citiesWithFavoritesOffers = arrangeFavoritesByCity(favorites);
   return (
     <ul className="favorites__list">
       {citiesWithFavoritesOffers.map((city, i) => {
@@ -22,7 +28,7 @@ const FavoritesList = ({favoritesOffers, changeLocation}) => {
                 <LocationsItem cityName={city} onClick={changeLocation}/>
               </div>
             </div>
-            <FavoritesCardsList city={city} offers={favoritesOffers}/>
+            <FavoritesCardsList city={city} offers={favorites}/>
           </li>
         );
       })
@@ -32,24 +38,21 @@ const FavoritesList = ({favoritesOffers, changeLocation}) => {
 };
 
 FavoritesList.propTypes = {
-  favoritesOffers: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
   activeElement: PropTypes.string.isRequired,
   changeLocation: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    favoritesOffers: state.filteredOffers,
-    activeElement: state.activeElement,
+    favorites: getFavorites(state),
+    activeElement: getActiveElement(state),
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  showFavoritesElements() {
-    dispatch(ActionCreator.showFavoritesElements());
-  },
   changeLocation(evt) {
-    dispatch(ActionCreator.changeActiveElement(evt));
+    dispatch(changeActiveElement(evt));
   }
 });
 

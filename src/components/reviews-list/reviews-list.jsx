@@ -1,9 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReviewItem from './../review-item/review-item';
 import Form from '../form/form';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ReviewItem from './../review-item/review-item';
+import {AuthorizationStatus} from '../../utils/const';
+import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 
-const ReviewsList = ({reviews, isLogged}) => {
+const ReviewsList = ({reviews, authorizationStatus}) => {
   const reviewsSorted = reviews.sort((a, b) => {
     if (a.date > b.date) {
       return -1;
@@ -13,6 +16,8 @@ const ReviewsList = ({reviews, isLogged}) => {
     }
     return 0;
   });
+
+  const isLogged = (authorizationStatus === AuthorizationStatus.AUTH) ? 1 : 0;
 
   return (
     <section className="property__reviews reviews">
@@ -28,8 +33,13 @@ const ReviewsList = ({reviews, isLogged}) => {
 };
 
 ReviewsList.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   reviews: PropTypes.array.isRequired,
-  isLogged: PropTypes.bool.isRequired
 };
 
-export default ReviewsList;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+});
+
+export {ReviewsList};
+export default connect(mapStateToProps)(ReviewsList);

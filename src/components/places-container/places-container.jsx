@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import Sort from '../sort/sort';
-import MapSection from '../map-section/map-section';
 import ListHoverOnMap from '../list-hover-on-map/list-hover-on-map';
+import MapSection from '../map-section/map-section';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Sort from '../sort/sort';
+import {connect} from 'react-redux';
+import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
+import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
 
 const PlacesContainer = ({unsortedOffers, activeElement, highlightedOfferID}) => {
   return (
@@ -31,9 +33,9 @@ PlacesContainer.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    activeElement: state.activeElement,
-    unsortedOffers: state.unsortedOffers,
-    highlightedOfferID: state.highlightedOfferID
+    activeElement: getActiveElement(state),
+    unsortedOffers: getUnsortedOffers(state),
+    highlightedOfferID: getHighlightedOfferID(state),
   };
 }
 

@@ -1,5 +1,5 @@
-import React from 'react';
 import LocationsItem from '../locations-item/locations-item';
+import React from 'react';
 import {CITIES} from '../../utils/const';
 
 const LocationsNav = (props) => {

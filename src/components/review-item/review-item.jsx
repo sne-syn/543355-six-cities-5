@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import StarBar from '../star-bar/star-bar';
 import {MONTH_NAMES} from '../../utils/const';
 

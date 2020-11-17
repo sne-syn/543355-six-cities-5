@@ -1,51 +1,64 @@
 import React from 'react';
-import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
+import {Switch, Redirect, Route, Router as BrowserRouter} from 'react-router-dom';
+import PrivateRoute from '../private-route/private-route';
 import PropTypes from 'prop-types';
 import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites/favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
-import {generateOffers} from '../../mocks/offers.js';
+import browserHistory from '../../browser-history';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import {connect} from 'react-redux';
+import {generateReviews} from '../../mocks/reviews';
+import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
+import {getOffers} from '../../store/offers-data/offers-data-selectors';
 
-const offers = generateOffers(20);
+const reviews = generateReviews(10);
 
 const App = (props) => {
-  const {reviews, isLogged} = props;
+  const {authorizationStatus, offers} = props;
+  const isLogged = (authorizationStatus === AuthorizationStatus.AUTH) ? 1 : 0;
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path='/' render={() => (
-          <MainPage isLogged={isLogged} />
-        )}
+        <Route exact
+          path={AppRoute.ROOT}
+          render={() => (
+            <MainPage />
+          )}
         />
-        <Route exact path='/login'>
+        <Route exact
+          path={AppRoute.LOGIN}>
           {(isLogged) ? (
-            <Redirect to="/" />
+            <Redirect to={AppRoute.ROOT} />
           ) :
-            (<LoginPage isLogged={isLogged}/>)
+            (<LoginPage />)
           }
-
         </Route>
-        <Route exact path='/favorites'>
-
-          {(!isLogged) ? (
-            <Redirect to="/login" />
-          ) :
-            (<FavoritesPage isLogged={isLogged} />)
-          }
-
-        </Route>
-        <Route exact path='/offer/:id'>
-          <PropertyPage offer={offers[0]} offers={offers} reviews={reviews} isLogged={isLogged} />
-        </Route>
+        <PrivateRoute exact
+          path={AppRoute.FAVORITES}
+          render={() => {
+            return (
+              <FavoritesPage />
+            );
+          }}
+        />
+        <Route exact path={`${AppRoute.OFFER}:id`}
+          render={() => (<PropertyPage offers={offers} offer={offers} reviews={reviews} />)}/>
       </Switch>
     </BrowserRouter>
   );
 };
 
 App.propTypes = {
-  reviews: PropTypes.array.isRequired,
-  isLogged: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  offers: PropTypes.array.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  offers: getOffers(state),
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

@@ -1,7 +1,9 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
 import List from '../list/list';
+import React from 'react';
+import {connect} from 'react-redux';
+import {getFilteredOffers} from '../../store/offers-data/offers-data-selectors';
+import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
+import {setActiveCardID, resetActiveCardID} from "../../store/action";
 
 const ListHoverOnMap = (props) => {
   return (
@@ -9,19 +11,17 @@ const ListHoverOnMap = (props) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    highlightedOfferID: state.highlightedOfferID,
-    offers: state.filteredOffers
-  };
-}
+const mapStateToProps = (state) => ({
+  highlightedOfferID: getHighlightedOfferID(state),
+  offers: getFilteredOffers(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveCardID(evt) {
-    dispatch(ActionCreator.setActiveCardID(evt));
+    dispatch(setActiveCardID(evt));
   },
   resetActiveCardID() {
-    dispatch(ActionCreator.resetActiveCardID());
+    dispatch(resetActiveCardID());
   }
 });
 

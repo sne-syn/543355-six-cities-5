@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import CardBase from '../card-base/card-base';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {ComponentType} from '../../utils/const';
 
 const getListClass = (type) => {
