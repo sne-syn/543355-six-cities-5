@@ -14,6 +14,10 @@ export const reviews = (state = initialState, action) => {
         reviews: adaptReviews(action.payload),
         loading: false,
       });
+    case ActionType.CLEANUP_REVIEWS:
+      return extend(state, {
+        reviews: [],
+      });
     default:
       return state;
   }

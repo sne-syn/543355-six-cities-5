@@ -14,6 +14,10 @@ export const nearPlaces = (state = initialState, action) => {
         nearPlaces: adaptOffers(action.payload),
         loading: false,
       });
+    case ActionType.CLEANUP_NEAR_PLACES:
+      return extend(state, {
+        nearPlaces: [],
+      });
     default:
       return state;
   }

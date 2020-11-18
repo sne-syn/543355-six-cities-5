@@ -13,6 +13,7 @@ import StarBar from '../star-bar/star-bar';
 import {NEAR_PLACES_COUNT} from '../../utils/const';
 import {capitalizeChar} from '../../utils/common';
 import {connect} from 'react-redux';
+import {cleanupNearPlaces, cleanupOfferItem, cleanupReviews} from '../../store/action';
 import {getNearPlaces} from '../../store/near-places/near-places-selectors';
 import {getOfferItem, getOfferItemLoadingStatus} from '../../store/offer-item/offer-item-selectors';
 import {fetchNearPlaces, fetchOfferItem} from '../../store/api-actions';
@@ -30,9 +31,17 @@ class PropertyPage extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (this.props.id !== prevProps.id) {
+      // this.props.cleanupNearPlacesAction();
+      // this.props.cleanupOfferItemAction();
+      // this.props.cleanupReviewsAction();
+      // window.scrollTo(0, 0)
       Promise.all([this.props.fetchOfferItemAction(this.props.id), this.props.fetchNearPlacesAction(this.props.id)]);
     }
   }
+
+  // componentWillUnmount() {
+
+  // }
 
   render() {
     const {offer, loading, nearPlaces} = this.props;
@@ -84,7 +93,7 @@ class PropertyPage extends PureComponent {
                 </div>
               </div>
               <section className="property__map map">
-                <MapSection activeCity={offer.city.name} offersToShowOnMap={nearPlaces} activeOffer={offer.id}/>
+
               </section>
             </section>
             <div className="container">
@@ -144,6 +153,15 @@ const mapDispatchToProps = (dispatch) => ({
   },
   fetchNearPlacesAction(id) {
     dispatch(fetchNearPlaces(id));
+  },
+  cleanupNearPlacesAction() {
+    dispatch(cleanupNearPlaces());
+  },
+  cleanupOfferItemAction() {
+    dispatch(cleanupOfferItem());
+  },
+  cleanupReviewsAction() {
+    dispatch(cleanupReviews());
   },
 });
 
