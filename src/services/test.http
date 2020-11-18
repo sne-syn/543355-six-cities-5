@@ -1,1 +1,1 @@
-GET https://5.react.pages.academy/six-cities/hotels HTTP/1.1
+GET https://5.react.pages.academy/six-cities/hotels/5/nearby HTTP/1.1

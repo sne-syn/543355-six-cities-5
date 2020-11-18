@@ -2,6 +2,7 @@ import List from '../list/list';
 import React from 'react';
 
 const NearPlaces = (props) => {
+  console.log(props);
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>

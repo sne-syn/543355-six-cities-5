@@ -1,17 +1,17 @@
 import {ActionType} from '../action';
-import {adaptOffers} from '../../utils/adapter';
+import {adaptReviews} from '../../utils/adapter';
 import {extend} from '../../utils/common';
 
 const initialState = {
-  favorites: [],
-  loading: true
+  reviews: [],
+  loading: true,
 };
 
-export const favorites = (state = initialState, action) => {
+export const reviews = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SHOW_FAVORITES_ELEMENTS:
+    case ActionType.LOAD_REVIEWS:
       return extend(state, {
-        favorites: adaptOffers(action.payload),
+        reviews: adaptReviews(action.payload),
         loading: false,
       });
     default:

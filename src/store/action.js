@@ -1,7 +1,7 @@
 export const ActionType = {
   CHANGE_ACTIVE_ELEMENT: `CHANGE_ACTIVE_ELEMENT`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
-  GET_OFFER_ITEM_ID: `GET_OFFER_ITEM_ID`,
+  LOAD_NEAR_PLACES: `LOAD_NEAR_PLACES`,
   LOAD_OFFER_ITEM: `LOAD_OFFER_ITEM`,
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
@@ -24,9 +24,9 @@ export const changeSortType = (evt) => ({
   payload: evt.target.textContent
 });
 
-export const getOfferItemId = (offerItemId) => ({
-  type: ActionType.GET_OFFER_ITEM_ID,
-  payload: offerItemId
+export const loadNearPlaces = (nearPlaces) => ({
+  type: ActionType.LOAD_NEAR_PLACES,
+  payload: nearPlaces
 });
 
 export const loadOfferItem = (offerItem) => ({
@@ -37,6 +37,11 @@ export const loadOfferItem = (offerItem) => ({
 export const loadOffers = (offers) => ({
   type: ActionType.LOAD_OFFERS,
   payload: offers
+});
+
+export const loadReviews = (reviews) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload: reviews
 });
 
 export const loadUserInformation = (info) => ({
