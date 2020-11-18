@@ -16,17 +16,6 @@ const initialState = {
 
 export const offersData = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.OFFERS_LOADING_FAIL:
-      return extend(state, {
-        errorMsg: `Unable to load offers`,
-        loading: false,
-      });
-    case ActionType.OFFERS_LOADING_SUCCESS:
-      return extend(state, {
-        errorMsg: ``,
-        loading: false,
-        offers: adaptOffers(action.payload),
-      });
     case ActionType.CHANGE_ACTIVE_ELEMENT:
       return extend(state, {
         activeElement: action.payload,

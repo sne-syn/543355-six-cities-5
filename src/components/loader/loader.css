@@ -1,5 +1,6 @@
 .loader {
-  margin: auto;
+  display: flex;
+  min-height: 500px;
 }
 
 .ldio-hnl6tyhogo8 div {
@@ -18,6 +19,7 @@
   width: 200px;
   height: 200px;
   display: inline-block;
+  margin: auto;
   overflow: hidden;
   background: none;
 }

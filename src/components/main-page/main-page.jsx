@@ -6,7 +6,7 @@ import PlacesContainer from '../places-container/places-container';
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {getActiveElement, getLoadingStatus, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
+import {getActiveElement, getOffersLoadingStatus, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
 import {fetchOffers} from '../../store/api-actions';
 
 const getPlacesComponent = (offers, activeElement) => {
@@ -57,13 +57,11 @@ class MainPage extends PureComponent {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activeElement: getActiveElement(state),
-    loading: getLoadingStatus(state),
-    offers: getUnsortedOffers(state),
-  };
-}
+const mapStateToProps = (state) => ({
+  activeElement: getActiveElement(state),
+  loading: getOffersLoadingStatus(state),
+  offers: getUnsortedOffers(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchOffersAction() {
