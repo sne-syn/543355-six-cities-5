@@ -1,9 +1,7 @@
 export const ActionType = {
   CHANGE_ACTIVE_ELEMENT: `CHANGE_ACTIVE_ELEMENT`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
-  CLEANUP_NEAR_PLACES: `CLEANUP_NEAR_PLACES`,
-  CLEANUP_OFFER_ITEM: `CLEANUP_OFFER_ITEM`,
-  CLEANUP_REVIEWS: `CLEANUP_REVIEWS`,
+  GET_DATA_FOR_PROPERTY_PAGE: `GET_DATA_FOR_PROPERTY_PAGE`,
   LOAD_NEAR_PLACES: `LOAD_NEAR_PLACES`,
   LOAD_OFFER_ITEM: `LOAD_OFFER_ITEM`,
   LOAD_OFFERS: `LOAD_OFFERS`,
@@ -17,6 +15,10 @@ export const ActionType = {
   SHOW_OFFERS_ON_LOAD: `SHOW_OFFERS_ON_LOAD`
 };
 
+export const getDataForPropertyPage = (data) => ({
+  type: ActionType.GET_DATA_FOR_PROPERTY_PAGE,
+  payload: data
+});
 
 export const changeActiveElement = (evt) => ({
   type: ActionType.CHANGE_ACTIVE_ELEMENT,
@@ -26,18 +28,6 @@ export const changeActiveElement = (evt) => ({
 export const changeSortType = (evt) => ({
   type: ActionType.CHANGE_SORT_TYPE,
   payload: evt.target.textContent
-});
-
-export const cleanupNearPlaces = () => ({
-  type: ActionType.CLEANUP_NEAR_PLACES,
-});
-
-export const cleanupOfferItem = () => ({
-  type: ActionType.CLEANUP_OFFER_ITEM,
-});
-
-export const cleanupReviews = () => ({
-  type: ActionType.CLEANUP_REVIEWS,
 });
 
 export const loadNearPlaces = (nearPlaces) => ({

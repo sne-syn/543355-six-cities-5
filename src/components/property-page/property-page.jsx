@@ -10,13 +10,11 @@ import PropertyFeatures from '../property-features/property-features';
 import React, {PureComponent} from 'react';
 import ReviewsList from '../reviews-list/reviews-list';
 import StarBar from '../star-bar/star-bar';
-import {NEAR_PLACES_COUNT} from '../../utils/const';
 import {capitalizeChar} from '../../utils/common';
 import {connect} from 'react-redux';
-import {cleanupNearPlaces, cleanupOfferItem, cleanupReviews} from '../../store/action';
 import {getNearPlaces} from '../../store/near-places/near-places-selectors';
 import {getOfferItem, getOfferItemLoadingStatus} from '../../store/offer-item/offer-item-selectors';
-import {fetchNearPlaces, fetchOfferItem} from '../../store/api-actions';
+import {fetchNearPlaces, fetchOfferItem, fetchPropertyPage} from '../../store/api-actions';
 
 const COUNT_OFFER_IMAGES = 6;
 
@@ -25,23 +23,18 @@ class PropertyPage extends PureComponent {
     super(props);
   }
 
+
   componentDidMount() {
-    Promise.all([this.props.fetchOfferItemAction(this.props.id), this.props.fetchNearPlacesAction(this.props.id)]);
+    this.props.fetchPropertyPageAction(this.props.id);
+    // Promise.all([this.props.fetchOfferItemAction(this.props.id), this.props.fetchNearPlacesAction(this.props.id)]);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.id !== prevProps.id) {
-      // this.props.cleanupNearPlacesAction();
-      // this.props.cleanupOfferItemAction();
-      // this.props.cleanupReviewsAction();
-      // window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
       Promise.all([this.props.fetchOfferItemAction(this.props.id), this.props.fetchNearPlacesAction(this.props.id)]);
     }
   }
-
-  // componentWillUnmount() {
-
-  // }
 
   render() {
     const {offer, loading, nearPlaces} = this.props;
@@ -110,6 +103,7 @@ PropertyPage.propTypes = {
   id: PropTypes.string.isRequired,
   fetchNearPlacesAction: PropTypes.func.isRequired,
   fetchOfferItemAction: PropTypes.func.isRequired,
+  nearPlaces: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -148,21 +142,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchOfferItemAction(id) {
-    dispatch(fetchOfferItem(id));
-  },
-  fetchNearPlacesAction(id) {
-    dispatch(fetchNearPlaces(id));
-  },
-  cleanupNearPlacesAction() {
-    dispatch(cleanupNearPlaces());
-  },
-  cleanupOfferItemAction() {
-    dispatch(cleanupOfferItem());
-  },
-  cleanupReviewsAction() {
-    dispatch(cleanupReviews());
-  },
+  // fetchOfferItemAction(id) {
+  //   dispatch(fetchOfferItem(id));
+  // },
+  // fetchNearPlacesAction(id) {
+  //   dispatch(fetchNearPlaces(id));
+  // },
+  fetchPropertyPageAction(id) {
+    dispatch(fetchPropertyPage(id));
+  }
 });
 
 export {PropertyPage};

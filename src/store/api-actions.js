@@ -1,4 +1,4 @@
-import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad} from './action';
+import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad, getDataForPropertyPage} from './action';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../utils/const';
 
 export const checkAuth = () => (dispatch, _getState, api) => (
@@ -11,6 +11,12 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 export const fetchFavorites = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITES)
     .then(({data}) => dispatch(showFavoritesElements(data)))
+);
+
+
+export const fetchPropertyPage = (id) => (dispatch, _getState, api) => (
+  Promise.all([api.get(`/hotels/${id}`), api.get(`/comments/${id}`), api.get(`/hotels/${id}/nearby`)])
+  .then((values) => dispatch(getDataForPropertyPage(values)))
 );
 
 export const fetchNearPlaces = (id) => (dispatch, _getState, api) => (
