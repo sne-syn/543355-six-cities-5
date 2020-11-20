@@ -13,8 +13,8 @@ import StarBar from '../star-bar/star-bar';
 import {capitalizeChar} from '../../utils/common';
 import {connect} from 'react-redux';
 import {getNearPlaces} from '../../store/near-places/near-places-selectors';
-import {getOfferItem, getOfferItemLoadingStatus} from '../../store/offer-item/offer-item-selectors';
-import {fetchNearPlaces, fetchOfferItem, fetchPropertyPage} from '../../store/api-actions';
+import {getOfferItem, getOfferItemId, getOfferItemLoadingStatus} from '../../store/offer-item/offer-item-selectors';
+import {fetchPropertyPage} from '../../store/api-actions';
 
 const COUNT_OFFER_IMAGES = 6;
 
@@ -23,16 +23,14 @@ class PropertyPage extends PureComponent {
     super(props);
   }
 
-
   componentDidMount() {
     this.props.fetchPropertyPageAction(this.props.id);
-    // Promise.all([this.props.fetchOfferItemAction(this.props.id), this.props.fetchNearPlacesAction(this.props.id)]);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.id !== prevProps.id) {
+      this.props.fetchPropertyPageAction(this.props.id);
       window.scrollTo(0, 0);
-      Promise.all([this.props.fetchOfferItemAction(this.props.id), this.props.fetchNearPlacesAction(this.props.id)]);
     }
   }
 
@@ -86,7 +84,7 @@ class PropertyPage extends PureComponent {
                 </div>
               </div>
               <section className="property__map map">
-
+                <MapSection activeCity={offer.city.name} offersToShowOnMap={[].concat([...nearPlaces], offer)} activeOffer={offer.id}/>
               </section>
             </section>
             <div className="container">
@@ -101,8 +99,7 @@ class PropertyPage extends PureComponent {
 
 PropertyPage.propTypes = {
   id: PropTypes.string.isRequired,
-  fetchNearPlacesAction: PropTypes.func.isRequired,
-  fetchOfferItemAction: PropTypes.func.isRequired,
+  fetchPropertyPageAction: PropTypes.func.isRequired,
   nearPlaces: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   offer: PropTypes.shape({
@@ -137,17 +134,12 @@ PropertyPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   offer: getOfferItem(state),
+  offerItemId: getOfferItemId(state),
   loading: getOfferItemLoadingStatus(state),
   nearPlaces: getNearPlaces(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // fetchOfferItemAction(id) {
-  //   dispatch(fetchOfferItem(id));
-  // },
-  // fetchNearPlacesAction(id) {
-  //   dispatch(fetchNearPlaces(id));
-  // },
   fetchPropertyPageAction(id) {
     dispatch(fetchPropertyPage(id));
   }

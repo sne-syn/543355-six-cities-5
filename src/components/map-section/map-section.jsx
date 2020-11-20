@@ -95,11 +95,10 @@ class MapSection extends PureComponent {
     )
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
-    this._addPins();
+    this._showActivePin();
   }
 
   render() {
-    console.log(this.props);
     return (
       <div id="map" ref={this._mapSection} style={{height: `100%`}} />
     );
@@ -110,7 +109,7 @@ MapSection.propTypes = {
   activeCity: PropTypes.string.isRequired,
   activeOffer: PropTypes.any.isRequired,
   offersToShowOnMap: PropTypes.oneOfType([
-    PropTypes.array,
+    PropTypes.array.isRequired,
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       city: PropTypes.shape({

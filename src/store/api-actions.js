@@ -1,5 +1,13 @@
-import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad, getDataForPropertyPage} from './action';
+import {addReview, loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad} from './action';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../utils/const';
+
+export const postReview = (offerId, data) => (dispatch, _getState, api) => {
+  const {comment, rating} = data;
+  return (
+    api.post(`/comments/${offerId}`, {comment, rating})
+    .then(() => dispatch(addReview(AuthorizationStatus.AUTH)))
+  );
+};
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
@@ -13,31 +21,19 @@ export const fetchFavorites = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(showFavoritesElements(data)))
 );
 
-
 export const fetchPropertyPage = (id) => (dispatch, _getState, api) => (
-  Promise.all([api.get(`/hotels/${id}`), api.get(`/comments/${id}`), api.get(`/hotels/${id}/nearby`)])
-  .then((values) => dispatch(getDataForPropertyPage(values)))
-);
-
-export const fetchNearPlaces = (id) => (dispatch, _getState, api) => (
-  api.get(`/hotels/${id}/nearby`)
-    .then(({data}) => dispatch(loadNearPlaces(data)))
-);
-
-export const fetchOfferItem = (id) => (dispatch, _getState, api) => (
-  api.get(`/hotels/${id}`)
-    .then(({data}) => dispatch(loadOfferItem(data)))
+  Promise.all([
+    api.get(`/hotels/${id}`).then((offerItem) => dispatch(loadOfferItem(offerItem.data))),
+    api.get(`/comments/${id}`).then((reviews) => dispatch(loadReviews(reviews.data))),
+    api.get(`/hotels/${id}/nearby`).then((nearPlaces) => dispatch(loadNearPlaces(nearPlaces.data)))
+  ])
+  .then((values) => values)
 );
 
 export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(loadOffers(data)))
     .then(({array}) => dispatch(showOnLoad(array)))
-);
-
-export const fetchReviews = (id) => (dispatch, _getState, api) => (
-  api.get(`/comments/${id}`)
-    .then(({data}) => dispatch(loadReviews(data)))
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
