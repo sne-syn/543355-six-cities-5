@@ -3,7 +3,7 @@ import PremiumMark from '../premium-mark/premium-mark';
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import StarBar from '../star-bar/star-bar';
-import {AccomodationTypes, ComponentType, AppRoute} from '../../utils/const';
+import {AccomodationTypes, ComponentType} from '../../utils/const';
 import {Link} from 'react-router-dom';
 
 const getImageSize = (type) => {

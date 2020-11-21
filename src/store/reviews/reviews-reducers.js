@@ -5,9 +5,6 @@ import {extend} from '../../utils/common';
 const initialState = {
   reviews: [],
   loading: true,
-  comment: ``,
-  rating: ``,
-  date: ``
 };
 
 export const reviews = (state = initialState, action) => {
