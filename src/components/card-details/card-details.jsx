@@ -43,7 +43,7 @@ class CardDetails extends PureComponent {
               <b className="place-card__price-value">&euro;{offer.price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`place-card`} />
+            <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`place-card`} offerId={offer.id}/>
           </div>
           <StarBar rating={offer.rating} />
           <h2 className="place-card__name">

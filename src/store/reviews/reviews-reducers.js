@@ -14,13 +14,6 @@ export const reviews = (state = initialState, action) => {
         reviews: adaptReviews(action.payload),
         loading: false,
       });
-    case ActionType.POST_REVIEW:
-      return extend(state, {
-        reviews: adaptReviews([...state.reviews, {
-          comment: action.payload.comment,
-          rating: action.payload.rating
-        }]),
-      });
     default:
       return state;
   }

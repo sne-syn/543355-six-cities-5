@@ -1,11 +1,12 @@
-import {addReview, loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad} from './action';
+import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad} from './action';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../utils/const';
 
 export const postReview = (offerId, data) => (dispatch, _getState, api) => {
   const {comment, rating} = data;
   return (
     api.post(`/comments/${offerId}`, {comment, rating})
-    .then(() => dispatch(addReview(AuthorizationStatus.AUTH)))
+    .then(() => api.get(`/comments/${offerId}`))
+    .then((response) => dispatch(loadReviews(response.data)))
   );
 };
 
@@ -28,6 +29,11 @@ export const fetchPropertyPage = (id) => (dispatch, _getState, api) => (
     api.get(`/hotels/${id}/nearby`).then((nearPlaces) => dispatch(loadNearPlaces(nearPlaces.data)))
   ])
   .then((values) => values)
+);
+
+export const fetchReviews = (id) => (dispatch, _getState, api) => (
+  api.get(`/comments/${id}`)
+    .then((reviews) => dispatch(loadReviews(reviews.data)))
 );
 
 export const fetchOffers = () => (dispatch, _getState, api) => (

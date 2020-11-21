@@ -76,7 +76,7 @@ const withInputs = (Component) => {
 
 const mapStateToProps = (state) => ({
   offer: getOfferItem(state),
-  offerItemId: getOfferItemId(state),
+  offerItemId: getOfferItemId(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

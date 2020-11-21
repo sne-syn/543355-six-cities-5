@@ -1,5 +1,4 @@
 export const ActionType = {
-  ADD_REVIEW: `ADD_REVIEW`,
   CHANGE_ACTIVE_ELEMENT: `CHANGE_ACTIVE_ELEMENT`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
   GET_DATA_FOR_PROPERTY_PAGE: `GET_DATA_FOR_PROPERTY_PAGE`,
@@ -16,11 +15,6 @@ export const ActionType = {
   SHOW_FAVORITES_ELEMENTS: `SHOW_FAVORITES_ELEMENTS`,
   SHOW_OFFERS_ON_LOAD: `SHOW_OFFERS_ON_LOAD`
 };
-
-export const addReview = (reviewData) => ({
-  type: ActionType.POST_REVIEW,
-  payload: reviewData
-});
 
 export const getDataForPropertyPage = (data) => ({
   type: ActionType.GET_DATA_FOR_PROPERTY_PAGE,

@@ -58,7 +58,7 @@ class PropertyPage extends PureComponent {
                     <h1 className="property__name">
                       {offer.title}
                     </h1>
-                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`property`} />
+                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`property`} offerId={offer.id}/>
                   </div>
                   <StarBar rating={offer.rating} containerClassName={`property`}>
                     <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
