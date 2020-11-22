@@ -36,13 +36,6 @@ class MapSection extends PureComponent {
 
   _addPins() {
     this._layerGroup.clearLayers();
-    this.props.offersToShowOnMap.map((offer) => {
-      this._createPin(offer);
-    });
-  }
-
-  _showActivePin() {
-    this._layerGroup.clearLayers();
     let iconToShow;
     this.props.offersToShowOnMap.map((offer) => {
       if (+this.props.activeOffer === offer.id) {
@@ -63,7 +56,7 @@ class MapSection extends PureComponent {
       this._layerGroup.clearLayers();
       this._map.setView([latitude, longitude], zoom);
     }
-    this._showActivePin();
+    this._addPins();
   }
 
   componentDidMount() {
@@ -95,7 +88,7 @@ class MapSection extends PureComponent {
     )
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
-    this._showActivePin();
+    this._addPins();
   }
 
   render() {

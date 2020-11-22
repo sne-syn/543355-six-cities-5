@@ -14,6 +14,17 @@ const initialState = {
   loading: true
 };
 
+const updateOffers = (offers, newOffer) => {
+  const index = offers.findIndex((offer) => offer.id === newOffer.id);
+
+  if (index === -1) {
+    return false;
+  }
+
+  const newOffers = [].concat(offers.slice(0, index), newOffer, offers.slice(index + 1));
+  return newOffers;
+};
+
 export const offersData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_ACTIVE_ELEMENT:
@@ -39,6 +50,9 @@ export const offersData = (state = initialState, action) => {
         get unsortedOffers() {
           return this.filteredOffers;
         }});
+    case ActionType.UPDATE_OFFERS:
+      return extend(state, {
+        offers: updateOffers(state.offers, action.payload)});
     default:
       return state;
   }

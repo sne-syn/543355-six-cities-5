@@ -18,12 +18,11 @@ export const AppRoute = {
 };
 
 export const APIRoute = {
-  COMMENTS: `/comments/:hotel_id`,
+  COMMENTS: `/comments`,
   FAVORITES: `/favorite`,
   LOGIN: `/login`,
-  OFFER: `/hotels/:id`,
   OFFERS: `/hotels`,
-  OFFERS_NEARBY: `/hotels/:hotel_id/nearby`,
+  OFFERS_NEARBY: `/nearby`,
 };
 
 export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];

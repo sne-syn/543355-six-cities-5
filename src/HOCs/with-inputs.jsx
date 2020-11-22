@@ -23,7 +23,7 @@ const withInputs = (Component) => {
     }
 
     _handleSubmit(evt) {
-      const {onSubmit, offerItemId} = this.props;
+      const {onSubmitAction, offerItemId} = this.props;
 
       evt.preventDefault();
       const review = {
@@ -31,7 +31,7 @@ const withInputs = (Component) => {
         comment: this.state.comment
       };
 
-      onSubmit(offerItemId, review);
+      onSubmitAction(offerItemId, review);
       document.querySelector(`.reviews__form`).reset();
     }
 
@@ -67,7 +67,7 @@ const withInputs = (Component) => {
   }
 
   WithInputs.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+    onSubmitAction: PropTypes.func.isRequired,
     offerItemId: PropTypes.number.isRequired
   };
 
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(review, id) {
+  onSubmitAction(review, id) {
     dispatch(postReview(review, id));
   }
 });
