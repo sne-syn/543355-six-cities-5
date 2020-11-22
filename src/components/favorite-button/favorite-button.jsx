@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import withToggler from '../../HOCs/with-toggler';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {addToFavorites} from '../../store/api-actions';
-import {updateOffersInStore} from '../../store/action';
+import {redirectToRoute, updateOffersInStore} from '../../store/action';
 import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 import {getOffers} from '../../store/offers-data/offers-data-selectors';
 
 const getIconSize = (componentName) => {
@@ -36,32 +38,42 @@ class FavoriteButton extends PureComponent {
   }
 
   render() {
-    const {toggleComponent, on, componentName, offerId} = this.props;
+    const {authorizationStatus, componentName, offerId, on, redirectToLoginAction, toggleComponent} = this.props;
+    const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
+    let buttonClass = `${componentName}__bookmark-button button `;
+    buttonClass += (on) ? `${componentName}__bookmark-button--active` : ``;
     const iconSize = getIconSize(componentName);
+    const favoriteButtonPlaceholder = `${on ? (`In`) : (`To`)} bookmarks`;
+    const onClickActions = isLogged ? () => {
+      toggleComponent(); this._handleAddToFavorite(offerId);
+    } : redirectToLoginAction;
+
     return (
-      <button className={`${componentName}__bookmark-button button ${on && (`${componentName}__bookmark-button--active`)}`} onClick={() => {
-        toggleComponent(); this._handleAddToFavorite(offerId);
-      } } type="button">
+      <button className={buttonClass} onClick={onClickActions} type="button">
         <svg className={`place-card__bookmark-icon`} width={`${iconSize.width}`} height={`${iconSize.height}`}>
           <use xlinkHref="#icon-bookmark"></use>
         </svg>
-        <span className="visually-hidden">{`${on ? (`In`) : (`To`)} bookmarks`}</span>
+        <span className="visually-hidden">{favoriteButtonPlaceholder}</span>
       </button>
     );
   }
 }
 
+
 FavoriteButton.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   componentName: PropTypes.string.isRequired,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
   on: PropTypes.bool.isRequired,
   onFavoriteButtonClickAction: PropTypes.func.isRequired,
+  redirectToLoginAction: PropTypes.func.isRequired,
   toggleComponent: PropTypes.func.isRequired,
   updateOffersInStoreAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   offers: getOffers(state),
 });
 
@@ -71,6 +83,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   updateOffersInStoreAction(offer) {
     dispatch(updateOffersInStore(offer));
+  },
+  redirectToLoginAction() {
+    dispatch(redirectToRoute(AppRoute.LOGIN));
   }
 });
 

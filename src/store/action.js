@@ -69,7 +69,7 @@ export const loadUserInformation = (info) => ({
 });
 
 export const redirectToRoute = (url) => ({
-  type: `REDIRECT_TO_ROUTE`,
+  type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
 });
 
