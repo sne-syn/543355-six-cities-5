@@ -59,7 +59,6 @@ class FavoriteButton extends PureComponent {
   }
 }
 
-
 FavoriteButton.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   componentName: PropTypes.string.isRequired,
