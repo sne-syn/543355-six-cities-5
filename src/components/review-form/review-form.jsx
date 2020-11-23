@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import StarButtons from '../star-buttons/star-buttons';
-import withInputs from '../../HOCs/with-inputs';
+import composedInputs from '../../HOCs/with-inputs';
 
-const Form = ({handleSubmit, handleRatingChange, handleTextareaChange, buttonDisabled}) => {
+const ReviewForm = ({handleSubmit, handleRatingChange, handleTextareaChange, buttonDisabled}) => {
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -19,11 +19,11 @@ const Form = ({handleSubmit, handleRatingChange, handleTextareaChange, buttonDis
   );
 };
 
-Form.propTypes = {
+ReviewForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleRatingChange: PropTypes.func.isRequired,
   handleTextareaChange: PropTypes.func.isRequired,
   buttonDisabled: PropTypes.bool.isRequired,
 };
 
-export default withInputs(Form);
+export default composedInputs(ReviewForm);

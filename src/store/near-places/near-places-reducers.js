@@ -3,15 +3,15 @@ import {adaptOffers} from '../../utils/adapter';
 import {extend} from '../../utils/common';
 
 const initialState = {
-  favorites: [],
-  loading: true
+  nearPlaces: [],
+  loading: true,
 };
 
-export const favorites = (state = initialState, action) => {
+export const nearPlaces = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SHOW_FAVORITES_ELEMENTS:
+    case ActionType.LOAD_NEAR_PLACES:
       return extend(state, {
-        favorites: adaptOffers(action.payload),
+        nearPlaces: adaptOffers(action.payload),
         loading: false,
       });
     default:

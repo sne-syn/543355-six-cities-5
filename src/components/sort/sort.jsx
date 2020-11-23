@@ -17,6 +17,9 @@ const getSortOptions = (toggleComponent, activeSortType) => {
 };
 
 const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
+  let optionsClass = `places__options places__options--custom `;
+  optionsClass += on ? `places__options--opened` : ``;
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -25,7 +28,7 @@ const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className={`places__options places__options--custom ${on && (`places__options--opened`)}`} onClick={changeSortTypeAction}>
+      <ul className={optionsClass} onClick={changeSortTypeAction}>
         {getSortOptions(toggleComponent, activeSortType)}
       </ul>
     </form>

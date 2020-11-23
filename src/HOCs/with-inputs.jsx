@@ -1,4 +1,9 @@
+import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
+import {postReview} from '../store/api-actions';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {getOfferItem, getOfferItemId} from '../store/offer-item/offer-item-selectors';
 
 const withInputs = (Component) => {
   class WithInputs extends PureComponent {
@@ -6,9 +11,8 @@ const withInputs = (Component) => {
       super(props);
       this.state = {
         rating: null,
-        date: ``,
-        text: ``,
-        textLength: 0,
+        comment: ``,
+        commentLength: 0,
         buttonDisabled: true,
       };
 
@@ -19,14 +23,15 @@ const withInputs = (Component) => {
     }
 
     _handleSubmit(evt) {
+      const {onSubmitAction, offerItemId} = this.props;
+
       evt.preventDefault();
-      this.setState({
-        rating: null,
-        date: ``,
-        text: ``,
-        textLength: 0,
-        buttonDisabled: true,
-      });
+      const review = {
+        rating: +this.state.rating,
+        comment: this.state.comment
+      };
+
+      onSubmitAction(offerItemId, review);
       document.querySelector(`.reviews__form`).reset();
     }
 
@@ -39,18 +44,15 @@ const withInputs = (Component) => {
 
     _handleTextareaChange(evt) {
       this.setState({
-        text: evt.target.value,
-        textLength: evt.target.value.length,
+        comment: evt.target.value,
+        commentLength: evt.target.value.length,
         buttonDisabled: this._handleButtonDisable()
       });
     }
 
     _handleButtonDisable() {
-      if (this.state.textLength >= 50 && this.state.textLength < 300 && this.state.rating > 0) {
-        return false;
-      }
-
-      return true;
+      const isDisabled = this.state.commentLength < 50 || this.state.commentLength > 300 || this.state.rating <= 0;
+      return isDisabled;
     }
 
     render() {
@@ -64,7 +66,24 @@ const withInputs = (Component) => {
     }
   }
 
+  WithInputs.propTypes = {
+    onSubmitAction: PropTypes.func.isRequired,
+    offerItemId: PropTypes.number.isRequired
+  };
+
   return WithInputs;
 };
 
-export default withInputs;
+const mapStateToProps = (state) => ({
+  offer: getOfferItem(state),
+  offerItemId: getOfferItemId(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmitAction(review, id) {
+    dispatch(postReview(review, id));
+  }
+});
+
+const composedInputs = compose(connect(mapStateToProps, mapDispatchToProps), withInputs);
+export default composedInputs;

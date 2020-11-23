@@ -1,7 +1,7 @@
 import {ActionType} from '../action';
-import {CITIES, SortType} from '../../utils/const';
 import {adaptOffers} from '../../utils/adapter';
 import {extend} from '../../utils/common';
+import {CITIES, SortType} from '../../utils/const';
 import {filterData, getSortedMovies} from '../../core';
 
 const DEFAULT_CITY = CITIES[0];
@@ -10,7 +10,19 @@ const initialState = {
   activeSortType: SortType.get(`DEFAULT`),
   filteredOffers: [],
   offers: [],
-  unsortedOffers: []
+  unsortedOffers: [],
+  loading: true
+};
+
+const updateOffers = (offers, newOffer) => {
+  const index = offers.findIndex((offer) => offer.id === newOffer.id);
+
+  if (index === -1) {
+    return false;
+  }
+
+  const newOffers = [].concat(offers.slice(0, index), newOffer, offers.slice(index + 1));
+  return newOffers;
 };
 
 export const offersData = (state = initialState, action) => {
@@ -30,14 +42,17 @@ export const offersData = (state = initialState, action) => {
       });
     case ActionType.LOAD_OFFERS:
       return extend(state, {
-        offers: adaptOffers(action.payload),
-      });
+        loading: false,
+        offers: adaptOffers(action.payload)});
     case ActionType.SHOW_OFFERS_ON_LOAD:
       return extend(state, {
-        filteredOffers: filterData(state.offers, DEFAULT_CITY),
+        filteredOffers: filterData(state.offers, state.activeElement),
         get unsortedOffers() {
           return this.filteredOffers;
         }});
+    case ActionType.UPDATE_OFFERS:
+      return extend(state, {
+        offers: updateOffers(state.offers, action.payload)});
     default:
       return state;
   }

@@ -3,7 +3,7 @@ import PremiumMark from '../premium-mark/premium-mark';
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import StarBar from '../star-bar/star-bar';
-import {AccomodationTypes, ComponentType, AppRoute} from '../../utils/const';
+import {AccomodationTypes, ComponentType} from '../../utils/const';
 import {Link} from 'react-router-dom';
 
 const getImageSize = (type) => {
@@ -43,11 +43,11 @@ class CardDetails extends PureComponent {
               <b className="place-card__price-value">&euro;{offer.price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`place-card`} />
+            <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`place-card`} offerId={offer.id}/>
           </div>
           <StarBar rating={offer.rating} />
           <h2 className="place-card__name">
-            <Link to={`${AppRoute.OFFER}${offer.id}`}>{offer.title}</Link>
+            <Link to={`/hotels/${offer.id}`}>{offer.title}</Link>
           </h2>
           <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
         </div>

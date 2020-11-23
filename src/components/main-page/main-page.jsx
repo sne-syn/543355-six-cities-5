@@ -1,12 +1,13 @@
 import Header from '../header/header';
+import Loader from '../loader/loader';
 import LocationsNav from '../locations-nav/locations-nav';
 import NoPlacesContainer from '../no-places-container/no-places-container';
 import PlacesContainer from '../places-container/places-container';
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
-import {showOnLoad} from '../../store/action';
+import {getActiveElement, getOffersLoadingStatus, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
+import {fetchOffers} from '../../store/api-actions';
 
 const getPlacesComponent = (offers, activeElement) => {
   switch (true) {
@@ -23,11 +24,13 @@ class MainPage extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.showOnLoadAction(this.props.offers);
+    if (this.props.offers.length === 0) {
+      this.props.fetchOffersAction();
+    }
   }
 
   render() {
-    const {activeElement, offers} = this.props;
+    const {activeElement, offers, loading} = this.props;
     let mainClassName = `page__main page__main--index`;
     if (offers.length === 0) {
       mainClassName += ` page__main--index-empty`;
@@ -36,39 +39,41 @@ class MainPage extends PureComponent {
     return (
       <div className="page page--gray page--main">
         <Header {...this.props}/>
-        <main className={mainClassName}>
-          <h1 className="visually-hidden">Cities</h1>
-          <div className="tabs">
-            <section className="locations container">
-              <LocationsNav tab={true}/>
-            </section>
-          </div>
-          <div className="cities">
-            {getPlacesComponent(offers, activeElement)}
-          </div>
-        </main>
+        {loading ? (<Loader />) : (
+          <main className={mainClassName}>
+            <h1 className="visually-hidden">Cities</h1>
+            <div className="tabs">
+              <section className="locations container">
+                <LocationsNav tab={true}/>
+              </section>
+            </div>
+            <div className="cities">
+              {getPlacesComponent(offers, activeElement)}
+            </div>
+          </main>)
+        }
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activeElement: getActiveElement(state),
-    offers: getUnsortedOffers(state)
-  };
-}
+const mapStateToProps = (state) => ({
+  activeElement: getActiveElement(state),
+  loading: getOffersLoadingStatus(state),
+  offers: getUnsortedOffers(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  showOnLoadAction(offers) {
-    dispatch(showOnLoad(offers));
+  fetchOffersAction() {
+    dispatch(fetchOffers());
   }
 });
 
 MainPage.propTypes = {
-  offers: PropTypes.array.isRequired,
   activeElement: PropTypes.string.isRequired,
-  showOnLoadAction: PropTypes.func.isRequired
+  fetchOffersAction: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  offers: PropTypes.array.isRequired,
 };
 
 export {MainPage};
