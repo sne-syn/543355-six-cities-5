@@ -47,7 +47,7 @@ export const adaptReview = (review) => {
     id: review[`id`],
     isPro: Boolean(review[`is_pro`]),
     rating: review[`rating`],
-    text: review[`comment`],
+    comment: review[`comment`],
     userId: review[`user`][`id`]
   };
 };

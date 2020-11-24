@@ -32,7 +32,6 @@ const withInputs = (Component) => {
         rating: +this.state.rating,
         comment: this.state.comment,
       };
-      onSubmitAction(offerItemId, review);
 
       const reviewForStore = {
         author: userName,
@@ -40,9 +39,10 @@ const withInputs = (Component) => {
         date: new Date().toISOString(),
         isPro: userIsPro,
         rating: +this.state.rating,
-        text: this.state.comment,
+        comment: this.state.comment,
         userId,
       };
+      onSubmitAction(offerItemId, review);
       updateReviewsInStoreAction(reviewForStore);
       document.querySelector(`.reviews__form`).reset();
     }

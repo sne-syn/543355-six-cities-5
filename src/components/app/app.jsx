@@ -13,7 +13,7 @@ import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors'
 
 const App = (props) => {
   const {authorizationStatus} = props;
-  const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
+  const isLogged = authorizationStatus === AuthorizationStatus.AUTH ? true : false;
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>

@@ -11,7 +11,7 @@ const formateDate = (date) => {
 };
 
 const ReviewItem = ({review}) => {
-  const {avatar, author, rating, text, date} = review;
+  const {avatar, author, rating, comment, date} = review;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -24,7 +24,7 @@ const ReviewItem = ({review}) => {
       </div>
       <div className="reviews__info">
         <StarBar rating={rating} />
-        <p className="reviews__text">{text}
+        <p className="reviews__text">{comment}
         </p>
         <time className="reviews__time" dateTime={`${date.slice(0, 10)}`}>{formateDate(date)}</time>
       </div>
@@ -36,7 +36,7 @@ ReviewItem.propTypes = {
   review: PropTypes.PropTypes.shape({
     id: PropTypes.number.isRequired,
     avatar: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired

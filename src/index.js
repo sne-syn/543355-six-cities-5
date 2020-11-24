@@ -17,9 +17,7 @@ const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationSta
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect)));
 
-Promise.all([
-  store.dispatch(checkAuth())
-])
+store.dispatch(checkAuth())
 .then(() => {
   ReactDOM.render(
       <Provider store={store}>
