@@ -33,7 +33,6 @@ class FavoriteButton extends PureComponent {
       const newOffer = Object.assign({}, offerShouldUpdate, {isFavorite: !this.props.on});
       updateOffersInStoreAction(newOffer, id);
     }
-
     onFavoriteButtonClickAction(id, Number(isFavorite));
   }
 
