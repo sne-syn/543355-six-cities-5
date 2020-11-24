@@ -4,6 +4,8 @@ import {postReview} from '../store/api-actions';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {getOfferItem, getOfferItemId} from '../store/offer-item/offer-item-selectors';
+import {getUserAvatar, getUserId, getUserIsPro, getUserName} from '../store/user-data/user-data-selectors';
+import {updateReviewsInStore} from '../store/action';
 
 const withInputs = (Component) => {
   class WithInputs extends PureComponent {
@@ -23,15 +25,25 @@ const withInputs = (Component) => {
     }
 
     _handleSubmit(evt) {
-      const {onSubmitAction, offerItemId} = this.props;
+      const {onSubmitAction, offerItemId, userAvatar, userId, userIsPro, userName, updateReviewsInStoreAction} = this.props;
 
       evt.preventDefault();
       const review = {
         rating: +this.state.rating,
-        comment: this.state.comment
+        comment: this.state.comment,
       };
-
       onSubmitAction(offerItemId, review);
+
+      const reviewForStore = {
+        author: userName,
+        avatar: userAvatar,
+        date: new Date().toISOString(),
+        isPro: userIsPro,
+        rating: +this.state.rating,
+        text: this.state.comment,
+        userId,
+      };
+      updateReviewsInStoreAction(reviewForStore);
       document.querySelector(`.reviews__form`).reset();
     }
 
@@ -68,21 +80,33 @@ const withInputs = (Component) => {
 
   WithInputs.propTypes = {
     onSubmitAction: PropTypes.func.isRequired,
-    offerItemId: PropTypes.number.isRequired
+    offerItemId: PropTypes.number.isRequired,
+    updateReviewsInStoreAction: PropTypes.func.isRequired,
+    userAvatar: PropTypes.string.isRequired,
+    userId: PropTypes.number.isRequired,
+    userIsPro: PropTypes.bool.isRequired,
+    userName: PropTypes.string.isRequired,
   };
 
   return WithInputs;
 };
 
 const mapStateToProps = (state) => ({
+  userAvatar: getUserAvatar(state),
+  userId: getUserId(state),
+  userName: getUserName(state),
+  userIsPro: getUserIsPro(state),
   offer: getOfferItem(state),
-  offerItemId: getOfferItemId(state)
+  offerItemId: getOfferItemId(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmitAction(review, id) {
     dispatch(postReview(review, id));
-  }
+  },
+  updateReviewsInStoreAction(review) {
+    dispatch(updateReviewsInStore(review));
+  },
 });
 
 const composedInputs = compose(connect(mapStateToProps, mapDispatchToProps), withInputs);

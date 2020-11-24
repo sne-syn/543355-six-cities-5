@@ -1,6 +1,7 @@
 export const ActionType = {
-  UPDATE_OFFERS: `UPDATE_OFFERS`,
   UPDATE_FAVORITES: `UPDATE_FAVORITES`,
+  UPDATE_OFFERS: `UPDATE_OFFERS`,
+  UPDATE_REVIEWS: `UPDATE_REVIEWS`,
   CHANGE_ACTIVE_ELEMENT: `CHANGE_ACTIVE_ELEMENT`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
   GET_DATA_FOR_PROPERTY_PAGE: `GET_DATA_FOR_PROPERTY_PAGE`,
@@ -17,16 +18,6 @@ export const ActionType = {
   SHOW_FAVORITES_ELEMENTS: `SHOW_FAVORITES_ELEMENTS`,
   SHOW_OFFERS_ON_LOAD: `SHOW_OFFERS_ON_LOAD`
 };
-
-export const updateFavoritesInStore = (data) => ({
-  type: ActionType.UPDATE_FAVORITES,
-  payload: data
-});
-
-export const updateOffersInStore = (data) => ({
-  type: ActionType.UPDATE_OFFERS,
-  payload: data
-});
 
 export const getDataForPropertyPage = (data) => ({
   type: ActionType.GET_DATA_FOR_PROPERTY_PAGE,
@@ -95,4 +86,19 @@ export const showFavoritesElements = (favorites) => ({
 export const showOnLoad = (offers) => ({
   type: ActionType.SHOW_OFFERS_ON_LOAD,
   payload: offers
+});
+
+export const updateFavoritesInStore = (data) => ({
+  type: ActionType.UPDATE_FAVORITES,
+  payload: data
+});
+
+export const updateOffersInStore = (data) => ({
+  type: ActionType.UPDATE_OFFERS,
+  payload: data
+});
+
+export const updateReviewsInStore = (data) => ({
+  type: ActionType.UPDATE_REVIEWS,
+  payload: data
 });

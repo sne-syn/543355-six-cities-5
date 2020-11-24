@@ -9,8 +9,6 @@ export const postReview = (offerId, data) => (dispatch, _getState, api) => {
   const {comment, rating} = data;
   return (
     api.post(`${APIRoute.COMMENTS}/${offerId}`, {comment, rating})
-    .then(() => api.get(`${APIRoute.COMMENTS}/${offerId}`))
-    .then((response) => dispatch(loadReviews(response.data)))
   );
 };
 
