@@ -4,6 +4,7 @@ import React, {PureComponent} from 'react';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import leaflet from 'leaflet';
 
+const MAP_HEIGHT = 100;
 let IconTypes = {
   ICON_DEFAULT: `../img/pin.svg`,
   ICON_ACTIVE: `../img/pin-active.svg`,
@@ -93,7 +94,7 @@ class MapSection extends PureComponent {
 
   render() {
     return (
-      <div id="map" ref={this._mapSection} style={{height: `100%`}} />
+      <div id="map" ref={this._mapSection} style={{height: `${MAP_HEIGHT}%`}} />
     );
   }
 }

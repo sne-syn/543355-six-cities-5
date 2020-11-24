@@ -8,6 +8,7 @@ import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors'
 import {getOfferItemId} from '../../store/offer-item/offer-item-selectors';
 import {getReviews, getReviewsLoadingStatus} from '../../store/reviews/reviews-selectors';
 
+const MAX_REVIEWS = 10;
 const sortReviews = (reviews) => {
   const reviewsSorted = reviews.sort((a, b) => {
     if (a.date > b.date) {
@@ -30,7 +31,7 @@ const ReviewsList = (props) => {
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ul className="reviews__list">
-        {sortReviews(reviews).slice(0, 10).map((review) => (
+        {sortReviews(reviews).slice(0, MAX_REVIEWS).map((review) => (
           <ReviewItem key={review.id} review={review}/>
         ))}
       </ul>
