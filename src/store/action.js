@@ -15,6 +15,7 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   RESET_ACTIVE_CARD_ID: `RESET_ACTIVE_CARD_ID`,
   SET_ACTIVE_CARD_ID: `SET_ACTIVE_CARD_ID`,
+  SET_USER_INFORMATION: `SET_USER_INFORMATION`,
   SHOW_FAVORITES_ELEMENTS: `SHOW_FAVORITES_ELEMENTS`,
   SHOW_OFFERS_ON_LOAD: `SHOW_OFFERS_ON_LOAD`
 };
@@ -76,6 +77,11 @@ export const resetActiveCardID = () => ({
 export const setActiveCardID = (evt) => ({
   type: ActionType.SET_ACTIVE_CARD_ID,
   payload: evt.currentTarget.id
+});
+
+export const setUserInformation = (email) => ({
+  type: ActionType.SET_USER_INFORMATION,
+  payload: email
 });
 
 export const showFavoritesElements = (favorites) => ({

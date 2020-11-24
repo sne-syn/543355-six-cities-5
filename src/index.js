@@ -12,7 +12,6 @@ import {createAPI} from './services/api';
 import {AuthorizationStatus} from './utils/const';
 import {checkAuth} from './store/api-actions';
 
-
 const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)));
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect)));
@@ -26,4 +25,3 @@ store.dispatch(checkAuth())
       document.querySelector(`#root`)
   );
 });
-
