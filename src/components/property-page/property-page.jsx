@@ -78,7 +78,6 @@ class PropertyPage extends PureComponent {
                       ))}
                     </ul>
                   </div>
-
                   <Host description={offer.description} host={offer.host} {...this.props}/>
                   <ReviewsList {...this.props}/>
                 </div>

@@ -12,7 +12,7 @@ const PropertyFeatures = ({type, bedrooms, maxGuests}) => {
         {bedrooms} Bedrooms
       </li>
       <li className="property__feature property__feature--adults">
-    Max {maxGuests} adults
+        Max {maxGuests} adults
       </li>
     </ul>
   );
