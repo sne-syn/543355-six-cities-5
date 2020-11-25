@@ -33,9 +33,9 @@ class CardDetails extends PureComponent {
       <React.Fragment>
         {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
         <div className={`${type}__image-wrapper place-card__image-wrapper`}>
-          <a href="#">
+          <Link to={`/hotels/${offer.id}`}>
             <img className="place-card__image" src={offer.previewImage} width={imageSize.width} height={imageSize.height} alt="Place image" />
-          </a>
+          </Link>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">

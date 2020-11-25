@@ -10,7 +10,7 @@ const getUserAvatar = (status, userEmail) => {
   switch (status) {
     case AuthorizationStatus.AUTH:
       return {
-        linkTo: AppRoute.ROOT,
+        linkTo: AppRoute.FAVORITES,
         className: `header__user-name user__name`,
         namePlaceholder: userEmail
       };
