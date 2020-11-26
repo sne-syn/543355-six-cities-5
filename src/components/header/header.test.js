@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Footer from './footer';
+import {Header} from './header';
 
 jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 
-test(`Render Footer`, () => {
+test(`Render Header`, () => {
   const tree = renderer
-    .create(<Footer/>)
+    .create(<Header userEmail={``} authorizationStatus={`NO_AUTH`} />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -5,6 +5,8 @@ import {extend} from '../../utils/common';
 const initialState = {
   reviews: [],
   loading: true,
+  comment: ``,
+  rating: 0
 };
 
 const updateReviews = (reviews, newReview) => {
@@ -19,6 +21,14 @@ export const reviews = (state = initialState, action) => {
       return extend(state, {
         reviews: adaptReviews(action.payload),
         loading: false,
+      });
+    case ActionType.SET_REVIEW_COMMENT:
+      return extend(state, {
+        comment: action.payload.target.value
+      });
+    case ActionType.SET_REVIEW_RATING:
+      return extend(state, {
+        rating: Number(action.payload.target.value)
       });
     case ActionType.UPDATE_REVIEWS:
       return extend(state, {

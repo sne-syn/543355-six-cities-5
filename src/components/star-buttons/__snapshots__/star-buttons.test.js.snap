@@ -15,7 +15,7 @@ exports[`Render StarButtons 1`] = `
   <label
     className="reviews__rating-label form__rating-label"
     htmlFor="5-star"
-    title="terribly"
+    title="perfect"
   >
     <svg
       className="form__star-image"
@@ -38,7 +38,7 @@ exports[`Render StarButtons 1`] = `
   <label
     className="reviews__rating-label form__rating-label"
     htmlFor="4-star"
-    title="terribly"
+    title="good"
   >
     <svg
       className="form__star-image"
@@ -61,7 +61,7 @@ exports[`Render StarButtons 1`] = `
   <label
     className="reviews__rating-label form__rating-label"
     htmlFor="3-star"
-    title="terribly"
+    title="not bad"
   >
     <svg
       className="form__star-image"
@@ -84,7 +84,7 @@ exports[`Render StarButtons 1`] = `
   <label
     className="reviews__rating-label form__rating-label"
     htmlFor="2-star"
-    title="terribly"
+    title="badly"
   >
     <svg
       className="form__star-image"

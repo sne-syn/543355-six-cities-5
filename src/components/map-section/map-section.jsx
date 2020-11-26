@@ -101,7 +101,7 @@ class MapSection extends PureComponent {
 
 MapSection.propTypes = {
   activeCity: PropTypes.string.isRequired,
-  activeOffer: PropTypes.string.isRequired,
+  activeOffer: PropTypes.number.isRequired,
   offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array.isRequired,
     PropTypes.shape({

@@ -35,6 +35,11 @@ const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
   );
 };
 
+Sort.defaultProps = {
+  on: false,
+  activeSortType: `Popular`,
+};
+
 Sort.propTypes = {
   toggleComponent: PropTypes.func.isRequired,
   on: PropTypes.bool.isRequired,
