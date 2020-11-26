@@ -5,7 +5,6 @@ import React, {PureComponent} from 'react';
 import StarBar from '../star-bar/star-bar';
 import {AccomodationTypes, ComponentType} from '../../utils/const';
 import {Link} from 'react-router-dom';
-import withMouthEvent from '../../HOCs/with-mouth-event/with-mouth-event';
 
 const getCardClass = (type) => {
   let className;
@@ -111,6 +110,4 @@ Card.propTypes = {
   }).isRequired,
 };
 
-const CardWithHoverEvent = withMouthEvent(Card);
-export {CardWithHoverEvent};
 export default Card;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
 import {getFilteredOffers} from '../../store/offers-data/offers-data-selectors';
-import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
+import {getHighlightedOfferId} from '../../store/active-card/active-card-selectors';
 import {setActiveCardId, resetActiveCardId} from "../../store/action";
 
 const ListCities = (props) => {
@@ -28,7 +28,7 @@ ListCities.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  highlightedOfferID: getHighlightedOfferID(state),
+  highlightedOfferId: getHighlightedOfferId(state),
   offers: getFilteredOffers(state),
 });
 

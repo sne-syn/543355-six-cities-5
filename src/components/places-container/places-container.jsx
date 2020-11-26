@@ -6,10 +6,10 @@ import React from 'react';
 import Sort from '../sort/sort';
 import {connect} from 'react-redux';
 import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
-import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
+import {getHighlightedOfferId} from '../../store/active-card/active-card-selectors';
 
 const PlacesContainer = (props) => {
-  const {unsortedOffers, activeElement, highlightedOfferID} = props;
+  const {unsortedOffers, activeElement, highlightedOfferId} = props;
   const placeText = unsortedOffers.length === 1 ? `place` : `places`;
   return (
     <div className="cities__places-container container">
@@ -30,7 +30,7 @@ const PlacesContainer = (props) => {
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <MapSection offersToShowOnMap={unsortedOffers} activeCity={activeElement} activeOffer={Number(highlightedOfferID)}/>
+          <MapSection offersToShowOnMap={unsortedOffers} activeCity={activeElement} activeOffer={Number(highlightedOfferId)}/>
         </section>
       </div>
     </div>
@@ -40,14 +40,14 @@ const PlacesContainer = (props) => {
 PlacesContainer.propTypes = {
   unsortedOffers: PropTypes.array.isRequired,
   activeElement: PropTypes.string.isRequired,
-  highlightedOfferID: PropTypes.string.isRequired,
+  highlightedOfferId: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     activeElement: getActiveElement(state),
     unsortedOffers: getUnsortedOffers(state),
-    highlightedOfferID: getHighlightedOfferID(state),
+    highlightedOfferId: getHighlightedOfferId(state),
   };
 }
 

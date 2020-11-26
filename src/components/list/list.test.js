@@ -66,6 +66,8 @@ const offers = [
   },
 ];
 
+jest.mock(`react-router-dom`, () => ({Link: `Link`}));
+
 test(`Render List`, () => {
   const tree = renderer
     .create(<List
