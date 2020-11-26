@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render connected to store component Render App 1`] = `
+exports[`Render FavoriteButton 1`] = `
 <button
-  className="property__bookmark-button button "
+  className="undefined__bookmark-button button "
   onClick={[Function]}
   type="button"
 >
   <svg
     className="place-card__bookmark-icon"
-    height="33"
-    width="31"
+    height="19"
+    width="18"
   >
     <use
       xlinkHref="#icon-bookmark"

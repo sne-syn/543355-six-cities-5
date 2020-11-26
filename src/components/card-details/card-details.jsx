@@ -56,6 +56,10 @@ class CardDetails extends PureComponent {
   }
 }
 
+CardDetails.defaultProps = {
+  type: `cities`
+};
+
 CardDetails.propTypes = {
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({

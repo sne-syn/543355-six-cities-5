@@ -1,10 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import FavoriteButton from './favorite-button';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
+import {FavoriteButton} from './favorite-button';
 
-const noop = () => {};
 const offers = [
   {
     bedrooms: 1,
@@ -68,39 +65,23 @@ const offers = [
     type: `house`,
   },
 ];
+const noop = () => {};
 
-jest.mock(`react-router-dom`, () => ({Link: `Link`}));
-describe(`Render connected to store component`, () => {
-  const mockStore = configureStore([]);
-  let store = null;
-  let favoriteButtonComponent = null;
+test(`Render FavoriteButton`, () => {
+  const tree = renderer
+    .create(<FavoriteButton
+      authorizationStatus={`AUTH`}
+      comnponentName={`property`}
+      on={false}
+      offerId={1}
+      offers={offers}
+      onFavoriteButtonClickAction={noop}
+      redirectToLoginAction={noop}
+      updateOffersInStoreAction={noop}
+      toggleComponent={noop}
+    />
+    )
+    .toJSON();
 
-  beforeEach(() => {
-    store = mockStore({
-      USER: {
-        authorizationStatus: `AUTH`,
-      },
-      OFFERS: offers,
-    });
-
-    store.dispatch = jest.fn();
-
-    favoriteButtonComponent = renderer.create(
-        <Provider store={store}>
-          <FavoriteButton componentName={`property`} offerId={0} onClickActions={noop} offers={offers}/>
-        </Provider>
-    );
-  });
-
-  it(`Render App`, () => {
-    expect(favoriteButtonComponent.toJSON()).toMatchSnapshot();
-  });
-
-  // it(`Should call dispatch when button click`, () => {
-  //   renderer.act(() => {
-  //     favoriteButtonComponent.root.findByType(`.button`).props.onClick();
-  //   });
-
-  //   expect(store.dispatch).toHaveBeenCalledTimes(1);
-  // });
+  expect(tree).toMatchSnapshot();
 });

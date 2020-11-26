@@ -90,7 +90,16 @@ const MockComponentWrapped = withToggler(MockComponent);
 
 it(`withToggler is rendered correctly`, () => {
   const tree = renderer.create((
-    <MockComponentWrapped componentName={`property`} offerId={0} onClickActions={noop} offers={offers}
+    <MockComponentWrapped
+      authorizationStatus={`AUTH`}
+      comnponentName={`place-card`}
+      on={false}
+      offerId={1}
+      offers={offers}
+      onFavoriteButtonClickAction={noop}
+      redirectToLoginAction={noop}
+      updateOffersInStoreAction={noop}
+      toggleComponent={noop}
     >
       <React.Fragment />
     </MockComponentWrapped>
