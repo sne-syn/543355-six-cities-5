@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Sort from '../sort/sort';
 import {connect} from 'react-redux';
-import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
+import {getActiveElement, getFilteredOffers, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
 import {getHighlightedOfferId} from '../../store/active-card/active-card-selectors';
 
 const PlacesContainer = (props) => {
-  const {unsortedOffers, activeElement, highlightedOfferId} = props;
+  const {unsortedOffers, activeElement, highlightedOfferId, offers} = props;
   const placeText = unsortedOffers.length === 1 ? `place` : `places`;
   return (
     <div className="cities__places-container container">
@@ -18,7 +18,7 @@ const PlacesContainer = (props) => {
         <b className="places__found">{unsortedOffers.length} {placeText} to stay in {activeElement}</b>
         <Sort defaultOnValue={false}/>
         <ListCities type={`cities`} >
-          {unsortedOffers.map((offer) => (
+          {offers.map((offer) => (
             <Card
               key={offer.id}
               offer={offer}
@@ -39,6 +39,7 @@ const PlacesContainer = (props) => {
 
 PlacesContainer.propTypes = {
   unsortedOffers: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
   activeElement: PropTypes.string.isRequired,
   highlightedOfferId: PropTypes.string.isRequired,
 };
@@ -47,6 +48,7 @@ function mapStateToProps(state) {
   return {
     activeElement: getActiveElement(state),
     unsortedOffers: getUnsortedOffers(state),
+    offers: getFilteredOffers(state),
     highlightedOfferId: getHighlightedOfferId(state),
   };
 }
