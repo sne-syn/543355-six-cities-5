@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import FavoritesCardsList from './favorites-cards-list';
+import List from './list';
 
 const offers = [
   {
@@ -66,13 +66,16 @@ const offers = [
   },
 ];
 
-it(`FavoritesCardsList is rendered correctly`, () => {
-  const tree = renderer.create((
-    <FavoritesCardsList
+test(`Render List`, () => {
+  const tree = renderer
+    .create(<List
+      type={`cities__places-list tabs__content`}
       offers={offers}
-      city={`Paris`}
-    />
-  )).toJSON();
+    >
+      <React.Fragment />
+    </ List>
+    )
+    .toJSON();
 
   expect(tree).toMatchSnapshot();
 });

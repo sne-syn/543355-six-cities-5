@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render List 1`] = `
+<div
+  className=" places__list"
+>
+  
+  
+</div>
+`;
