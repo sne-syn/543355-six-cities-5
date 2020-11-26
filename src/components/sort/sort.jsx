@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import withToggler from '../../HOCs/with-toggler';
+import withToggler from '../../HOCs/with-toggler/with-toggler';
 import {SortType} from '../../utils/const';
 import {changeSortType} from '../../store/action';
 import {connect} from 'react-redux';

@@ -5,6 +5,24 @@ import React, {PureComponent} from 'react';
 import StarBar from '../star-bar/star-bar';
 import {AccomodationTypes, ComponentType} from '../../utils/const';
 import {Link} from 'react-router-dom';
+import withMouthEvent from '../../HOCs/with-mouth-event/with-mouth-event';
+
+const getCardClass = (type) => {
+  let className;
+  switch (type) {
+    case ComponentType.CITIES:
+      className = `cities__place-card`;
+      return className;
+    case ComponentType.NEAR:
+      className = `near-places__card`;
+      return className;
+    case ComponentType.FAVORITE:
+      className = `favorites__card`;
+      return className;
+  }
+
+  return ``;
+};
 
 const getImageSize = (type) => {
   switch (type) {
@@ -21,7 +39,7 @@ const getImageSize = (type) => {
   }
 };
 
-class CardDetails extends PureComponent {
+class Card extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -30,7 +48,7 @@ class CardDetails extends PureComponent {
     const {type, offer} = this.props;
     const imageSize = getImageSize(type);
     return (
-      <React.Fragment>
+      <article key={`${offer.id}`} className={`${getCardClass(type) } place-card`}>
         {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
         <div className={`${type}__image-wrapper place-card__image-wrapper`}>
           <Link to={`/hotels/${offer.id}`}>
@@ -51,16 +69,16 @@ class CardDetails extends PureComponent {
           </h2>
           <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
         </div>
-      </React.Fragment>
+      </article>
     );
   }
 }
 
-CardDetails.defaultProps = {
+Card.defaultProps = {
   type: `cities`
 };
 
-CardDetails.propTypes = {
+Card.propTypes = {
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -93,4 +111,6 @@ CardDetails.propTypes = {
   }).isRequired,
 };
 
-export default CardDetails;
+const CardWithHoverEvent = withMouthEvent(Card);
+export {CardWithHoverEvent};
+export default Card;

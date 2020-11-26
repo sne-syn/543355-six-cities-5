@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import CardCities from './card-cities';
+import CardDetails from './card-details';
+
 
 const offer = {
   bedrooms: 1,
@@ -36,17 +37,17 @@ const offer = {
 jest.mock(`react-router-dom`, () => ({Link: `Link`}));
 const noop = () => {};
 
-test(`CardCities is rendered correctly`, () => {
+test(`CardDetails is rendered correctly`, () => {
   const tree = renderer.create((
-    <CardCities
+    <CardDetails
       offer={offer}
-      type={`cities`}
+      type={``}
       highlightedOfferID={1}
       resetActiveCardID={noop}
       setActiveCardID={noop}
     >
       <React.Fragment />
-    </ CardCities>
+    </ CardDetails>
   )).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
-import withToggler from '../../HOCs/with-toggler';
+import withToggler from '../../HOCs/with-toggler/with-toggler';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {addToFavorites} from '../../store/api-actions';
 import {redirectToRoute, updateOffersInStore} from '../../store/action';

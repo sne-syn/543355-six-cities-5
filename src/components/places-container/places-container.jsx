@@ -1,4 +1,5 @@
-import ListHoverOnMap from '../list-hover-on-map/list-hover-on-map';
+import Card from '../card/card';
+import ListCities from '../list-cities/list-cities';
 import MapSection from '../map-section/map-section';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -7,7 +8,8 @@ import {connect} from 'react-redux';
 import {getActiveElement, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
 import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
 
-const PlacesContainer = ({unsortedOffers, activeElement, highlightedOfferID}) => {
+const PlacesContainer = (props) => {
+  const {unsortedOffers, activeElement, highlightedOfferID} = props;
   const placeText = unsortedOffers.length === 1 ? `place` : `places`;
   return (
     <div className="cities__places-container container">
@@ -15,7 +17,16 @@ const PlacesContainer = ({unsortedOffers, activeElement, highlightedOfferID}) =>
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{unsortedOffers.length} {placeText} to stay in {activeElement}</b>
         <Sort defaultOnValue={false}/>
-        <ListHoverOnMap type={`cities`}/>
+        <ListCities type={`cities`} >
+          {unsortedOffers.map((offer) => (
+            <Card
+              key={offer.id}
+              offer={offer}
+              type={`cities`}
+              {...props}
+            />
+          ))}
+        </ListCities>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
