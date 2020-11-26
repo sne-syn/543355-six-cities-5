@@ -3,24 +3,28 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getFilteredOffers} from '../../store/offers-data/offers-data-selectors';
 import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
-import {setActiveCardID, resetActiveCardID} from "../../store/action";
+import {setActiveCardId, resetActiveCardId} from "../../store/action";
 
 const ListCities = (props) => {
-  const {children, resetActiveCardIDAction, setActiveCardIDAction} = props;
+  const {children, resetActiveCardIdAction, setActiveCardIdAction} = props;
   return (
     <div className={`cities__places-list tabs__content  places__list`}>
-      {React.Children.map(children, (child) => (
-        React.cloneElement(child, {
-          onMouseEnter: setActiveCardIDAction,
-          onMouseLeave: resetActiveCardIDAction
-        })
-      ))}
+      {React.Children.map(children, (child) => {
+        return (
+          React.cloneElement(child, {
+            onMouseEnter: setActiveCardIdAction,
+            onMouseLeave: resetActiveCardIdAction
+          })
+        );
+      })}
     </div>
   );
 };
 
 ListCities.propTypes = {
   children: PropTypes.any.isRequired,
+  resetActiveCardIdAction: PropTypes.func.isRequired,
+  setActiveCardIdAction: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -29,11 +33,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setActiveCardIDAction(evt) {
-    dispatch(setActiveCardID(evt));
+  setActiveCardIdAction(evt) {
+    dispatch(setActiveCardId(evt));
   },
-  resetActiveCardIDAction() {
-    dispatch(resetActiveCardID());
+  resetActiveCardIdAction() {
+    dispatch(resetActiveCardId());
   }
 });
 

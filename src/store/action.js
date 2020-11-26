@@ -72,11 +72,11 @@ export const requireAuthorization = (status) => ({
   payload: status
 });
 
-export const resetActiveCardID = () => ({
+export const resetActiveCardId = () => ({
   type: ActionType.RESET_ACTIVE_CARD_ID,
 });
 
-export const setActiveCardID = (evt) => ({
+export const setActiveCardId = (evt) => ({
   type: ActionType.SET_ACTIVE_CARD_ID,
   payload: evt.currentTarget.id
 });

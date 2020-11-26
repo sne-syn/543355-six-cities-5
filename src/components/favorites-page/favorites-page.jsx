@@ -38,11 +38,12 @@ class FavoritesPage extends PureComponent {
         <Header {...this.props}/>
         {loading ? (<Loader />) : (
           <>
-        <main className={favoritesClassName} >
-          {getFavoriteComponent(favorites)}
-        </main>
-        <Footer />
-        </>)}
+            <main className={favoritesClassName} >
+              {getFavoriteComponent(favorites)}
+            </main>
+            <Footer />
+          </>
+        )}
       </div>
     );
   }

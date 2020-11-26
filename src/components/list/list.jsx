@@ -1,4 +1,4 @@
-import Card from '../card-base/card-base';
+import Card from '../card/card';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {ComponentType} from '../../utils/const';
