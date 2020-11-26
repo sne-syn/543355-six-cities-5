@@ -6,7 +6,7 @@ import LoginPage from '../login-page/login-page';
 import FavoritesPage from '../favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
-import browserHistory from '../../browser-history';
+import browserHistory from "../../browser-history";
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
