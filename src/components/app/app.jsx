@@ -3,7 +3,7 @@ import {Switch, Redirect, Route, Router as BrowserRouter} from 'react-router-dom
 import PrivateRoute from '../private-route/private-route';
 import PropTypes from 'prop-types';
 import LoginPage from '../login-page/login-page';
-import FavoritesPage from '../favorites/favorites-page/favorites-page';
+import FavoritesPage from '../favorites-page/favorites-page';
 import MainPage from '../main-page/main-page';
 import PropertyPage from '../property-page/property-page';
 import browserHistory from '../../browser-history';

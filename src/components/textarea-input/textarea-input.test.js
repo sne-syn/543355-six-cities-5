@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {StarButtons} from './star-buttons';
+import TextareaInput from './textarea-input';
 
 const noop = () => {};
-test(`Render StarButtons`, () => {
+test(`Render TextareaInput`, () => {
   const tree = renderer
-    .create(<StarButtons onClickAction={noop}/>)
+    .create(<TextareaInput handleInputChange={noop}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
