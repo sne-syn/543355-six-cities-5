@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<LocationsItem /> snapshots renders LocationsItem with default props 1`] = `
+exports[`<LocationsItem /> test renders LocationsItem with default props 1`] = `
 <a
   className="locations__item-link"
   href="/"
@@ -12,7 +12,7 @@ exports[`<LocationsItem /> snapshots renders LocationsItem with default props 1`
 </a>
 `;
 
-exports[`<LocationsItem /> snapshots renders LocationsItem with props 1`] = `
+exports[`<LocationsItem /> test renders LocationsItem with props 1`] = `
 <a
   className="locations__item-link tabs__item"
   href="/"

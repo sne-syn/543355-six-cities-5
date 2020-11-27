@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Host /> snapshots  should render Host correctly 1`] = `
+exports[`<Host /> test  should render Host correctly 1`] = `
 <div
   className="property__host"
 >
@@ -41,7 +41,7 @@ exports[`<Host /> snapshots  should render Host correctly 1`] = `
 </div>
 `;
 
-exports[`<Host /> snapshots should render Host with Pro-mark correctly 1`] = `
+exports[`<Host /> test should render Host with Pro-mark correctly 1`] = `
 <div
   className="property__host"
 >

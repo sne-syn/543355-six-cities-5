@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MainPage /> snapshots renders MainPage with loader 1`] = `
+exports[`<MainPage /> test renders MainPage with loader 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -119,7 +119,7 @@ exports[`<MainPage /> snapshots renders MainPage with loader 1`] = `
 </div>
 `;
 
-exports[`<MainPage /> snapshots renders MainPage with multiple offers 1`] = `
+exports[`<MainPage /> test renders MainPage with multiple offers 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -262,7 +262,7 @@ exports[`<MainPage /> snapshots renders MainPage with multiple offers 1`] = `
 </div>
 `;
 
-exports[`<MainPage /> snapshots renders MainPage without offers 1`] = `
+exports[`<MainPage /> test renders MainPage without offers 1`] = `
 <div
   className="page page--gray page--main"
 >

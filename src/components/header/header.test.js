@@ -4,7 +4,7 @@ import {AuthorizationStatus} from '../../utils/const';
 import {Header} from './header';
 import {MemoryRouter} from 'react-router-dom';
 
-describe(`<Header /> snapshots`, () => {
+describe(`<Header /> test`, () => {
   it(`renders Header for non-auth user`, () => {
     const tree = renderer
     .create(

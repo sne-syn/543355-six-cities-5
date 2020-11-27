@@ -38,7 +38,7 @@ const offer = {
   type: `room`,
 };
 
-describe(`<CardBase /> snapshots`, () => {
+describe(`<CardBase /> test`, () => {
   it(`renders CardBase for cities list`, () => {
     const tree = renderer
     .create(

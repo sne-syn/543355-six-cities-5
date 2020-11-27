@@ -7,7 +7,7 @@ jest.mock(`../map-section/map-section`, () => `MapSection`);
 jest.mock(`../sort/sort`, () => `Sort`);
 jest.mock(`../../HOCs/with-toggler/with-toggler`, () => (Component) => (props) => <Component {...props} toggleComponent={()=>{}} on={false} />);
 
-describe(`<PlacesContainer /> snapshots`, () => {
+describe(`<PlacesContainer /> test`, () => {
   it(`renders PlacesContainer with multiple offers`, () => {
     const tree = renderer
     .create(

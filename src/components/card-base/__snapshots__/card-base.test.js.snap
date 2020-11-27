@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CardBase /> snapshots renders CardBase for cities list 1`] = `
+exports[`<CardBase /> test renders CardBase for cities list 1`] = `
 <CardCities
   highlightedOfferID="0"
   offer={
@@ -122,7 +122,7 @@ exports[`<CardBase /> snapshots renders CardBase for cities list 1`] = `
 </CardCities>
 `;
 
-exports[`<CardBase /> snapshots renders CardBase for favorites list 1`] = `
+exports[`<CardBase /> test renders CardBase for favorites list 1`] = `
 <article
   className="favorites__card place-card"
 >
@@ -185,7 +185,7 @@ exports[`<CardBase /> snapshots renders CardBase for favorites list 1`] = `
 </article>
 `;
 
-exports[`<CardBase /> snapshots renders CardBase for near-places list 1`] = `
+exports[`<CardBase /> test renders CardBase for near-places list 1`] = `
 <article
   className="near-places__card place-card"
 >

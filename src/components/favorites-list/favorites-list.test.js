@@ -1,13 +1,9 @@
-import {MemoryRouter} from 'react-router-dom';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {MainPage} from './main-page';
+import {FavoritesList} from './favorites-list';
 
-jest.mock(`../header/header`, () => `Header`);
-jest.mock(`../loader/loader`, () => `Loader`);
-jest.mock(`../locations-nav/locations-nav`, () => `LocationsNav`);
-jest.mock(`../no-places-container/no-places-container`, () => `NoPlacesContainer`);
-jest.mock(`../places-container/places-container`, () => `PlacesContainer`);
+jest.mock(`../favorites-cards-list/favorites-cards-list`, () => `FavoritesCardsList`);
+jest.mock(`../locations-item/locations-item`, () => `LocationsItem`);
 
 const noop = () => {};
 const offers = [
@@ -19,7 +15,7 @@ const offers = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: `Amsterdam`,
+      name: `Paris`,
     },
     description: `Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish`,
     goods: [`cabel TV`, `heating`, `kitchen`, `towels`, `washing machine`, `washer`, `dishwasher`, `conditioner`, `elevator`, `coffee machine`],
@@ -74,34 +70,26 @@ const offers = [
   },
 ];
 
-describe(`<MainPage /> test`, () => {
-  it(`renders MainPage with loader`, () => {
-    const tree = renderer
-    .create(
-        <MemoryRouter>
-          <MainPage activeElement={`Paris`} loading={true} offers={offers} fetchOffersAction={noop} />
-        </MemoryRouter>)
-    .toJSON();
+describe(`<FavoritesList /> test`, () => {
+  it(` should render FavoritesList correctly`, () => {
+    const tree = renderer.create((
+      <FavoritesList
+        activeElement={`Paris`}
+        favorites={[offers[0]]}
+        changeLocation={noop}
+      />
+    )).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
-  it(`renders MainPage without offers`, () => {
-    const tree = renderer
-    .create(
-        <MemoryRouter>
-          <MainPage activeElement={`Paris`} loading={false} offers={[]} fetchOffersAction={noop} />
-        </MemoryRouter>)
-    .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-  it(`renders MainPage with multiple offers`, () => {
-    const tree = renderer
-    .create(
-        <MemoryRouter>
-          <MainPage activeElement={`Amsterdam`} loading={false} offers={offers} fetchOffersAction={noop} />
-        </MemoryRouter>)
-    .toJSON();
+  it(`should render FavoritesList correctly with multiple favorites`, () => {
+    const tree = renderer.create((
+      <FavoritesList
+        activeElement={`Amsterdam`}
+        favorites={offers}
+        changeLocation={noop}
+      />
+    )).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardDetails /> test renders CardDetails for cities list 1`] = `
+Array [
+  <div
+    className="cities__image-wrapper place-card__image-wrapper"
+  >
+    <a
+      href="/hotels/1"
+      onClick={[Function]}
+    >
+      <img
+        alt="Place image"
+        className="place-card__image"
+        height={200}
+        src="https://bit.ly/34LWdhj"
+        width={260}
+      />
+    </a>
+  </div>,
+  <div
+    className="place-card__info"
+  >
+    <div
+      className="place-card__price-wrapper"
+    >
+      <div
+        className="place-card__price"
+      >
+        <b
+          className="place-card__price-value"
+        >
+          €
+          207
+        </b>
+        <span
+          className="place-card__price-text"
+        >
+          / night
+        </span>
+      </div>
+      <FavoriteButton
+        componentName="place-card"
+        defaultOnValue={true}
+        offerId={1}
+      />
+    </div>
+    <StarBar
+      rating={1.4018800815887484}
+    />
+    <h2
+      className="place-card__name"
+    >
+      <a
+        href="/hotels/1"
+        onClick={[Function]}
+      >
+        La Latina- Small Charming Studio
+      </a>
+    </h2>
+    <p
+      className="place-card__type"
+    >
+      Private Room
+    </p>
+  </div>,
+]
+`;
+
+exports[`<CardDetails /> test renders CardDetails for favorites list 1`] = `
+Array [
+  <div
+    className="favorites__image-wrapper place-card__image-wrapper"
+  >
+    <a
+      href="/hotels/1"
+      onClick={[Function]}
+    >
+      <img
+        alt="Place image"
+        className="place-card__image"
+        height={110}
+        src="https://bit.ly/34LWdhj"
+        width={150}
+      />
+    </a>
+  </div>,
+  <div
+    className="place-card__info"
+  >
+    <div
+      className="place-card__price-wrapper"
+    >
+      <div
+        className="place-card__price"
+      >
+        <b
+          className="place-card__price-value"
+        >
+          €
+          207
+        </b>
+        <span
+          className="place-card__price-text"
+        >
+          / night
+        </span>
+      </div>
+      <FavoriteButton
+        componentName="place-card"
+        defaultOnValue={true}
+        offerId={1}
+      />
+    </div>
+    <StarBar
+      rating={1.4018800815887484}
+    />
+    <h2
+      className="place-card__name"
+    >
+      <a
+        href="/hotels/1"
+        onClick={[Function]}
+      >
+        La Latina- Small Charming Studio
+      </a>
+    </h2>
+    <p
+      className="place-card__type"
+    >
+      Private Room
+    </p>
+  </div>,
+]
+`;
+
+exports[`<CardDetails /> test renders CardDetails for near-places list 1`] = `
+Array [
+  <div
+    className="near-places__image-wrapper place-card__image-wrapper"
+  >
+    <a
+      href="/hotels/1"
+      onClick={[Function]}
+    >
+      <img
+        alt="Place image"
+        className="place-card__image"
+        height={200}
+        src="https://bit.ly/34LWdhj"
+        width={260}
+      />
+    </a>
+  </div>,
+  <div
+    className="place-card__info"
+  >
+    <div
+      className="place-card__price-wrapper"
+    >
+      <div
+        className="place-card__price"
+      >
+        <b
+          className="place-card__price-value"
+        >
+          €
+          207
+        </b>
+        <span
+          className="place-card__price-text"
+        >
+          / night
+        </span>
+      </div>
+      <FavoriteButton
+        componentName="place-card"
+        defaultOnValue={true}
+        offerId={1}
+      />
+    </div>
+    <StarBar
+      rating={1.4018800815887484}
+    />
+    <h2
+      className="place-card__name"
+    >
+      <a
+        href="/hotels/1"
+        onClick={[Function]}
+      >
+        La Latina- Small Charming Studio
+      </a>
+    </h2>
+    <p
+      className="place-card__type"
+    >
+      Private Room
+    </p>
+  </div>,
+]
+`;
+
+exports[`<CardDetails /> test renders CardDetails with Premium-mark 1`] = `
+Array [
+  <PremiumMark
+    componentName="place-card"
+  />,
+  <div
+    className="near-places__image-wrapper place-card__image-wrapper"
+  >
+    <a
+      href="/hotels/1"
+      onClick={[Function]}
+    >
+      <img
+        alt="Place image"
+        className="place-card__image"
+        height={200}
+        src="https://bit.ly/34LWdhj"
+        width={260}
+      />
+    </a>
+  </div>,
+  <div
+    className="place-card__info"
+  >
+    <div
+      className="place-card__price-wrapper"
+    >
+      <div
+        className="place-card__price"
+      >
+        <b
+          className="place-card__price-value"
+        >
+          €
+          207
+        </b>
+        <span
+          className="place-card__price-text"
+        >
+          / night
+        </span>
+      </div>
+      <FavoriteButton
+        componentName="place-card"
+        defaultOnValue={true}
+        offerId={1}
+      />
+    </div>
+    <StarBar
+      rating={1.4018800815887484}
+    />
+    <h2
+      className="place-card__name"
+    >
+      <a
+        href="/hotels/1"
+        onClick={[Function]}
+      >
+        La Latina- Small Charming Studio
+      </a>
+    </h2>
+    <p
+      className="place-card__type"
+    >
+      Private Room
+    </p>
+  </div>,
+]
+`;

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header /> snapshots renders Header for non-auth user 1`] = `
+exports[`<Header /> test renders Header for non-auth user 1`] = `
 <header
   className="header"
 >
@@ -58,7 +58,7 @@ exports[`<Header /> snapshots renders Header for non-auth user 1`] = `
 </header>
 `;
 
-exports[`<Header /> snapshots renders Header with auth user 1`] = `
+exports[`<Header /> test renders Header with auth user 1`] = `
 <header
   className="header"
 >

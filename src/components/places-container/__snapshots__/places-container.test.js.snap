@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PlacesContainer /> snapshots renders PlacesContainer with multiple offers 1`] = `
+exports[`<PlacesContainer /> test renders PlacesContainer with multiple offers 1`] = `
 <div
   className="cities__places-container container"
 >
