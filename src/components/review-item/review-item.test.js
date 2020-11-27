@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import ReviewItem from "./review-item";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import ReviewItem from './review-item';
 
 const review = {
   author: `Beaulah`,

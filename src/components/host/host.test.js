@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import Host from "./host";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Host from './host';
 
 const hostPro = {
   avatar: `https://robohash.org/61?set=set2&size=74x74`,
