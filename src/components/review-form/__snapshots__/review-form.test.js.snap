@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render ReviewForm 1`] = `
+<form
+  className="reviews__form form"
+  onSubmit={[Function]}
+>
+  <label
+    className="reviews__label form__label"
+    htmlFor="review"
+  >
+    Your review
+  </label>
+  <StarButtons />
+  <TextareaInput
+    handleInputChange={[Function]}
+  />
+  <div
+    className="reviews__button-wrapper"
+  >
+    <p
+      className="reviews__help"
+    >
+      To submit review please make sure to set 
+      <span
+        className="reviews__star"
+      >
+        rating
+      </span>
+       and describe your stay with at least 
+      <b
+        className="reviews__text-amount"
+      >
+        50 characters
+      </b>
+      .
+    </p>
+    <button
+      className="reviews__submit form__submit button"
+      disabled={true}
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;

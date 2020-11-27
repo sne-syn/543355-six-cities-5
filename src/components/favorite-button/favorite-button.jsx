@@ -23,16 +23,22 @@ class FavoriteButton extends PureComponent {
   constructor(props) {
     super(props);
     this._handleAddToFavorite = this._handleAddToFavorite.bind(this);
+    this._handleOffersUpdate = this._handleOffersUpdate.bind(this);
   }
 
-  _handleAddToFavorite(id) {
-    const {updateOffersInStoreAction, onFavoriteButtonClickAction, offers} = this.props;
-    const isFavorite = !this.props.on;
-    if (offers !== 0) {
+  _handleOffersUpdate(id) {
+    const {updateOffersInStoreAction, offers} = this.props;
+    if (offers.length !== 0) {
       const offerShouldUpdate = offers.find((offer) => offer.id === id);
       const newOffer = Object.assign({}, offerShouldUpdate, {isFavorite: !this.props.on});
       updateOffersInStoreAction(newOffer, id);
     }
+  }
+
+  _handleAddToFavorite(id) {
+    const {onFavoriteButtonClickAction} = this.props;
+    const isFavorite = !this.props.on;
+    this._handleOffersUpdate(id);
     onFavoriteButtonClickAction(id, Number(isFavorite));
   }
 

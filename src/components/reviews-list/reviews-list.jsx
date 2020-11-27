@@ -3,10 +3,6 @@ import React from 'react';
 import ReviewForm from '../review-form/review-form';
 import ReviewItem from './../review-item/review-item';
 import {AuthorizationStatus} from '../../utils/const';
-import {connect} from 'react-redux';
-import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
-import {getOfferItemId} from '../../store/offer-item/offer-item-selectors';
-import {getReviews, getReviewsLoadingStatus} from '../../store/reviews/reviews-selectors';
 
 const MAX_REVIEWS = 10;
 const sortReviews = (reviews) => {
@@ -45,12 +41,4 @@ ReviewsList.propTypes = {
   reviews: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-  offerId: getOfferItemId(state),
-  reviews: getReviews(state),
-  loading: getReviewsLoadingStatus(state),
-});
-
-export {ReviewsList};
-export default connect(mapStateToProps)(ReviewsList);
+export default ReviewsList;

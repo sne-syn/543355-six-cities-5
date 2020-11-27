@@ -8,7 +8,6 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {getActiveElement, getOffersLoadingStatus, getUnsortedOffers} from '../../store/offers-data/offers-data-selectors';
 import {fetchOffers} from '../../store/api-actions';
-import {CITIES} from '../../utils/const';
 
 const getPlacesComponent = (offers, activeElement) => {
   switch (true) {
@@ -68,11 +67,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchOffers());
   }
 });
-
-MainPage.defaultProps = {
-  activeElement: CITIES[0],
-  offers: [],
-};
 
 MainPage.propTypes = {
   activeElement: PropTypes.string.isRequired,
