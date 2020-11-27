@@ -1,4 +1,4 @@
-import Card from '../card/card';
+import CardBase from '../card-base/card-base';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -10,7 +10,7 @@ const FavoritesCardsList = ({offers, city}) => {
     <div className="favorites__places">
       {favoritesByCity.map((offer) => {
         return (
-          <Card
+          <CardBase
             type={`favorites`}
             key={offer.id}
             offer={offer}

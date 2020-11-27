@@ -1,4 +1,4 @@
-import Card from '../card/card';
+import CardBase from '../card-base/card-base';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {ComponentType} from '../../utils/const';
@@ -22,7 +22,7 @@ const List = (props) => {
   return (
     <div className={`${getListClass(componentType)} places__list`}>
       {offers.map((offer) => (
-        <Card
+        <CardBase
           key={offer.id}
           offer={offer}
           {...restProps}

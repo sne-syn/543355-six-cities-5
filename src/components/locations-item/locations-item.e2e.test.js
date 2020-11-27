@@ -5,16 +5,18 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({adapter: new Adapter()});
+describe(`<LocationsItem /> test`, () => {
+  it(`click on item`, () => {
+    const onClick = jest.fn();
+    const wrapper = shallow(
+        <LocationsItem
+          cityName={`Amsterdam`}
+          changeLocation={onClick}
+          tab={true}
+        />
+    );
 
-test(`click on item`, () => {
-  const onClick = jest.fn();
-  const wrapper = shallow(
-      <LocationsItem
-        cityName={`Amsterdam`}
-        changeLocation={onClick}
-      />
-  );
-
-  wrapper.find(`.locations__item-link`).simulate(`click`);
-  expect(onClick).toHaveBeenCalledTimes(1);
+    wrapper.find(`.locations__item-link`).simulate(`click`);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
 });

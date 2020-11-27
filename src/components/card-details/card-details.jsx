@@ -6,23 +6,6 @@ import StarBar from '../star-bar/star-bar';
 import {AccomodationTypes, ComponentType} from '../../utils/const';
 import {Link} from 'react-router-dom';
 
-const getCardClass = (type) => {
-  let className;
-  switch (type) {
-    case ComponentType.CITIES:
-      className = `cities__place-card`;
-      return className;
-    case ComponentType.NEAR:
-      className = `near-places__card`;
-      return className;
-    case ComponentType.FAVORITE:
-      className = `favorites__card`;
-      return className;
-  }
-
-  return ``;
-};
-
 const getImageSize = (type) => {
   switch (type) {
     case ComponentType.FAVORITE:
@@ -38,7 +21,7 @@ const getImageSize = (type) => {
   }
 };
 
-class Card extends PureComponent {
+class CardDetails extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -47,7 +30,7 @@ class Card extends PureComponent {
     const {type, offer} = this.props;
     const imageSize = getImageSize(type);
     return (
-      <article key={`${offer.id}`} className={`${getCardClass(type) } place-card`}>
+      <React.Fragment>
         {offer.isPremium && (<PremiumMark componentName={`place-card`}/>)}
         <div className={`${type}__image-wrapper place-card__image-wrapper`}>
           <Link to={`/hotels/${offer.id}`}>
@@ -68,16 +51,12 @@ class Card extends PureComponent {
           </h2>
           <p className="place-card__type">{AccomodationTypes[offer.type]}</p>
         </div>
-      </article>
+      </React.Fragment>
     );
   }
 }
 
-Card.defaultProps = {
-  type: `cities`
-};
-
-Card.propTypes = {
+CardDetails.propTypes = {
   type: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -110,4 +89,4 @@ Card.propTypes = {
   }).isRequired,
 };
 
-export default Card;
+export default CardDetails;
