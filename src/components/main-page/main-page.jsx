@@ -36,7 +36,6 @@ class MainPage extends PureComponent {
     if (offers.length === 0) {
       mainClassName += ` page__main--index-empty`;
     }
-
     return (
       <div className="page page--gray page--main">
         <Header {...this.props}/>

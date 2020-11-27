@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render LocationsNav 1`] = `
+<ul
+  className="locations__list tabs__list"
+>
+  <li
+    className="locations__item"
+  >
+    <LocationsItem
+      cityName="Paris"
+      tab={true}
+    />
+  </li>
+  <li
+    className="locations__item"
+  >
+    <LocationsItem
+      cityName="Cologne"
+      tab={true}
+    />
+  </li>
+  <li
+    className="locations__item"
+  >
+    <LocationsItem
+      cityName="Brussels"
+      tab={true}
+    />
+  </li>
+  <li
+    className="locations__item"
+  >
+    <LocationsItem
+      cityName="Amsterdam"
+      tab={true}
+    />
+  </li>
+  <li
+    className="locations__item"
+  >
+    <LocationsItem
+      cityName="Hamburg"
+      tab={true}
+    />
+  </li>
+  <li
+    className="locations__item"
+  >
+    <LocationsItem
+      cityName="Dusseldorf"
+      tab={true}
+    />
+  </li>
+</ul>
+`;

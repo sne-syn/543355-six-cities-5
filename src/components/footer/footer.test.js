@@ -1,12 +1,15 @@
+import Footer from './footer';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Footer from './footer';
-
-jest.mock(`react-router-dom`, () => ({Link: `Link`}));
+import {MemoryRouter} from 'react-router-dom';
 
 test(`Render Footer`, () => {
   const tree = renderer
-    .create(<Footer/>)
+    .create(
+        <MemoryRouter>
+          <Footer/>
+        </MemoryRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

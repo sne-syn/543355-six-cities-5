@@ -4,9 +4,10 @@ exports[`Render Footer 1`] = `
 <footer
   className="footer container"
 >
-  <Link
+  <a
     className="footer__logo-link"
-    to="/"
+    href="/"
+    onClick={[Function]}
   >
     <img
       alt="6 cities logo"
@@ -15,6 +16,6 @@ exports[`Render Footer 1`] = `
       src="img/logo.svg"
       width="64"
     />
-  </Link>
+  </a>
 </footer>
 `;
