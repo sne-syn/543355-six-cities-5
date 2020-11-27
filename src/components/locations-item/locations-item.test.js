@@ -5,7 +5,6 @@ import {LocationsItem} from './locations-item';
 
 const noop = () => {};
 
-// cityName, activeCity, tab, changeLocation
 describe(`<LocationsItem /> snapshots`, () => {
   it(`renders LocationsItem with default props`, () => {
     const tree = renderer

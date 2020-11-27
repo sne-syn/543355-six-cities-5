@@ -4,10 +4,9 @@ import {AppRoute} from '../../utils/const';
 import {Link} from 'react-router-dom';
 import {changeActiveElement} from '../../store/action';
 import {connect} from 'react-redux';
-import {getActiveElement} from '../../store//offers-data/offers-data-selectors';
+import {getActiveElement} from '../../store/offers-data/offers-data-selectors';
 
 const LocationsItem = ({cityName, activeCity, tab, changeLocation}) => {
-  console.log(cityName, activeCity, tab, changeLocation)
   let locationItemClass = `locations__item-link`;
   locationItemClass += (tab && cityName === activeCity) ? ` tabs__item--active tabs__item` : ``;
   locationItemClass += (tab) ? ` tabs__item` : ``;

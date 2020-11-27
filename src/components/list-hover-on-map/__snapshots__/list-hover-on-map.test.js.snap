@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListHoverOnMap render 1`] = `
+<List
+  highlightedOfferID="5"
+  offers={Array []}
+  resetActiveCardIdAction={[Function]}
+  setActiveCardIdAction={[Function]}
+  type="cities"
+/>
+`;
