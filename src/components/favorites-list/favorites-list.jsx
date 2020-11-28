@@ -52,7 +52,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   changeLocation(evt) {
-    dispatch(changeActiveElement(evt));
+    dispatch(changeActiveElement(evt.target.textContent));
   }
 });
 

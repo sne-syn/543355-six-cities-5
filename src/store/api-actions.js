@@ -1,11 +1,13 @@
 import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, setUserInformation, showFavoritesElements, showOnLoad} from './action';
+import {adaptUser} from '../utils/adapter.js';
+
 import {APIRoute, AppRoute, AuthorizationStatus} from '../utils/const';
 
 export const addToFavorites = (id, status) => (_dispatch, _getState, api) => (
   api.post(`${APIRoute.FAVORITES}/${id}/${status}`)
 );
 
-export const postReview = (offerId, data) => (dispatch, _getState, api) => {
+export const postReview = (offerId, data) => (_dispatch, _getState, api) => {
   const {comment, rating} = data;
   return (
     api.post(`${APIRoute.COMMENTS}/${offerId}`, {comment, rating})
@@ -14,7 +16,7 @@ export const postReview = (offerId, data) => (dispatch, _getState, api) => {
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
-    .then(({data}) => dispatch(loadUserInformation(data)))
+    .then(({data}) => dispatch(loadUserInformation(adaptUser(data))))
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
@@ -46,7 +48,7 @@ export const fetchOffers = () => (dispatch, _getState, api) => (
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
-    .then(() => dispatch(setUserInformation(email)))
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(setUserInformation(email)))
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
 );

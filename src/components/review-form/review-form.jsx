@@ -100,7 +100,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(updateReviewsInStore(review));
   },
   onChangeAction(evt) {
-    dispatch(setReviewComment(evt));
+    dispatch(setReviewComment(evt.target.value));
   },
 });
 

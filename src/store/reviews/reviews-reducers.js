@@ -22,11 +22,11 @@ export const reviews = (state = initialState, action) => {
       });
     case ActionType.SET_REVIEW_COMMENT:
       return extend(state, {
-        comment: action.payload.target.value
+        comment: action.payload
       });
     case ActionType.SET_REVIEW_RATING:
       return extend(state, {
-        rating: Number(action.payload.target.value)
+        rating: Number(action.payload)
       });
     case ActionType.UPDATE_REVIEWS:
       return extend(state, {

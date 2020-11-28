@@ -8,10 +8,10 @@ const withToggler = (Component) => {
       this.state = {
         on: this.props.defaultOnValue
       };
-      this.toggleComponent = this.toggleComponent.bind(this);
+      this._toggleComponent = this._toggleComponent.bind(this);
     }
 
-    toggleComponent() {
+    _toggleComponent() {
       this.setState((prevState) => {
         return {
           on: !prevState.on
@@ -23,7 +23,7 @@ const withToggler = (Component) => {
       return (
         <Component
           on={this.state.on}
-          toggleComponent={this.toggleComponent}
+          toggleComponent={this._toggleComponent}
           {...this.props}
         />
       );

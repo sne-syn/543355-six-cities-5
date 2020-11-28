@@ -39,6 +39,16 @@ const adaptHost = (host) => {
   };
 };
 
+export const adaptUser = (user) => {
+  return {
+    userAvatar: user[`avatar_url`],
+    userEmail: user[`email`],
+    userId: user[`id`],
+    userIsPro: Boolean(user[`is_pro`]),
+    userName: user[`name`]
+  };
+};
+
 export const adaptReview = (review) => {
   return {
     author: review[`user`][`name`],

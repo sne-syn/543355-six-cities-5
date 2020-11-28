@@ -23,11 +23,11 @@ export const userData = (state = initialState, action) => {
       });
     case ActionType.LOAD_USER_INFORMATION:
       return extend(state, {
-        userAvatar: action.payload.avatar_url,
-        userEmail: action.payload.email,
-        userId: action.payload.id,
-        userIsPro: action.payload.is_pro,
-        userName: action.payload.name,
+        userAvatar: action.payload.userAvatar,
+        userEmail: action.payload.userEmail,
+        userId: action.payload.userId,
+        userIsPro: action.payload.userIsPro,
+        userName: action.payload.userName,
       });
     default:
       return state;

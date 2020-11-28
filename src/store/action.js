@@ -29,14 +29,14 @@ export const getDataForPropertyPage = (data) => ({
   payload: data
 });
 
-export const changeActiveElement = (evt) => ({
+export const changeActiveElement = (element) => ({
   type: ActionType.CHANGE_ACTIVE_ELEMENT,
-  payload: evt.target.textContent
+  payload: element
 });
 
-export const changeSortType = (evt) => ({
+export const changeSortType = (element) => ({
   type: ActionType.CHANGE_SORT_TYPE,
-  payload: evt.target.textContent
+  payload: element
 });
 
 export const loadNearPlaces = (nearPlaces) => ({
@@ -78,9 +78,9 @@ export const resetActiveCardId = () => ({
   type: ActionType.RESET_ACTIVE_CARD_ID,
 });
 
-export const setActiveCardId = (evt) => ({
+export const setActiveCardId = (id) => ({
   type: ActionType.SET_ACTIVE_CARD_ID,
-  payload: evt.currentTarget.id
+  payload: id
 });
 
 export const setReviewComment = (value) => ({

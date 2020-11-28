@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
-import withToggler from '../../HOCs/with-toggler/with-toggler';
+import withToggler from '../../hocs/with-toggler/with-toggler';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {addToFavorites} from '../../store/api-actions';
 import {redirectToRoute, updateNearPlacesInStore, updateOfferItemInStore, updateOffersInStore} from '../../store/action';
@@ -37,7 +37,7 @@ class FavoriteButton extends PureComponent {
   _handleOffersUpdate(id, action, offers) {
     const offerShouldUpdate = offers.find((offer) => offer.id === id);
     if (offerShouldUpdate) {
-      action(this._handleItemUpdate(offerShouldUpdate), id);
+      action(this._handleItemUpdate(offerShouldUpdate));
     }
   }
 

@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onClickAction(evt) {
-    dispatch(setReviewRating(evt));
+    dispatch(setReviewRating(evt.target.value));
   },
 });
 
