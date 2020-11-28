@@ -11,6 +11,7 @@ import React, {PureComponent} from 'react';
 import ReviewsList from '../reviews-list/reviews-list';
 import StarBar from '../star-bar/star-bar';
 import {capitalizeChar} from '../../utils/common';
+import {ComponentType} from '../../utils/const';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 import {getNearPlaces} from '../../store/near-places/near-places-selectors';
@@ -19,7 +20,6 @@ import {getReviews} from '../../store/reviews/reviews-selectors';
 import {fetchPropertyPage} from '../../store/api-actions';
 
 const COUNT_OFFER_IMAGES = 6;
-const OFFER_TYPE = `property`;
 
 class PropertyPage extends PureComponent {
   constructor(props) {
@@ -56,14 +56,14 @@ class PropertyPage extends PureComponent {
               </div>
               <div className="property__container container">
                 <div className="property__wrapper">
-                  {offer.isPremium && (<PremiumMark componentName={OFFER_TYPE}/>)}
+                  {offer.isPremium && (<PremiumMark componentName={ComponentType.PROPERTY}/>)}
                   <div className="property__name-wrapper">
                     <h1 className="property__name">
                       {offer.title}
                     </h1>
-                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={OFFER_TYPE} offerId={offer.id} type={OFFER_TYPE}/>
+                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={ComponentType.PROPERTY} offerId={offer.id}/>
                   </div>
-                  <StarBar rating={offer.rating} containerClassName={OFFER_TYPE}>
+                  <StarBar rating={offer.rating} containerClassName={ComponentType.PROPERTY}>
                     <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
                   </ StarBar>
                   <PropertyFeatures type={offer.type} bedrooms={offer.bedrooms} maxGuests={offer.maxGuests} />

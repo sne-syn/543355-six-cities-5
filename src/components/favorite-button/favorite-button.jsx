@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import withToggler from '../../HOCs/with-toggler/with-toggler';
-import {AppRoute, AuthorizationStatus, ComponentType} from '../../utils/const';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {addToFavorites} from '../../store/api-actions';
 import {redirectToRoute, updateNearPlacesInStore, updateOfferItemInStore, updateOffersInStore} from '../../store/action';
 import {connect} from 'react-redux';
@@ -117,7 +117,6 @@ FavoriteButton.propTypes = {
   onFavoriteButtonClickAction: PropTypes.func.isRequired,
   redirectToLoginAction: PropTypes.func.isRequired,
   toggleComponent: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
   updateOfferItemInStoreAction: PropTypes.func.isRequired,
   updateOffersInStoreAction: PropTypes.func.isRequired,
   updateNearPlacesInStoreAction: PropTypes.func.isRequired,

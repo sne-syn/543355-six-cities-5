@@ -14,12 +14,17 @@ describe(`<FavoriteButton /> test`, () => {
           componentName={`place-card`}
           defaultOnValue={true}
           offerId={1}
+          nearPlaces={[]}
+          offerItem={{}}
           offers={[]}
           on={true}
           onFavoriteButtonClickAction={noop}
           redirectToLoginAction={noop}
           toggleComponent={noop}
-          updateOffersInStoreAction={noop} />
+          updateOfferItemInStoreAction={noop}
+          updateOffersInStoreAction={noop}
+          updateNearPlacesInStoreAction={noop}
+        />
     )
     .toJSON();
 
@@ -34,12 +39,17 @@ describe(`<FavoriteButton /> test`, () => {
           componentName={`place-card`}
           defaultOnValue={false}
           offerId={1}
+          nearPlaces={[]}
+          offerItem={{}}
           offers={[]}
           on={false}
           onFavoriteButtonClickAction={noop}
           redirectToLoginAction={noop}
           toggleComponent={noop}
-          updateOffersInStoreAction={noop} />
+          updateOfferItemInStoreAction={noop}
+          updateOffersInStoreAction={noop}
+          updateNearPlacesInStoreAction={noop}
+        />
     )
     .toJSON();
 
@@ -54,12 +64,17 @@ describe(`<FavoriteButton /> test`, () => {
           componentName={`property`}
           defaultOnValue={false}
           offerId={1}
+          nearPlaces={[]}
+          offerItem={{}}
           offers={[]}
           on={false}
           onFavoriteButtonClickAction={noop}
           redirectToLoginAction={noop}
           toggleComponent={noop}
-          updateOffersInStoreAction={noop} />
+          updateOfferItemInStoreAction={noop}
+          updateOffersInStoreAction={noop}
+          updateNearPlacesInStoreAction={noop}
+        />
     )
     .toJSON();
 
