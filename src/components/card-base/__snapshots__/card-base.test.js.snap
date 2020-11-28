@@ -44,10 +44,11 @@ exports[`<CardBase /> test renders CardBase for cities list 1`] = `
       ],
       "isFavorite": true,
       "isPremium": false,
-      "location": Array [
-        48.83961,
-        2.342499,
-      ],
+      "location": Object {
+        "latitude": 48.865610000000004,
+        "longitude": 2.350499,
+        "zoom": 5,
+      },
       "maxGuests": 8,
       "previewImage": "https://bit.ly/34LWdhj",
       "price": 207,
@@ -103,10 +104,11 @@ exports[`<CardBase /> test renders CardBase for cities list 1`] = `
         ],
         "isFavorite": true,
         "isPremium": false,
-        "location": Array [
-          48.83961,
-          2.342499,
-        ],
+        "location": Object {
+          "latitude": 48.865610000000004,
+          "longitude": 2.350499,
+          "zoom": 5,
+        },
         "maxGuests": 8,
         "previewImage": "https://bit.ly/34LWdhj",
         "price": 207,
@@ -168,10 +170,11 @@ exports[`<CardBase /> test renders CardBase for favorites list 1`] = `
         ],
         "isFavorite": true,
         "isPremium": false,
-        "location": Array [
-          48.83961,
-          2.342499,
-        ],
+        "location": Object {
+          "latitude": 48.865610000000004,
+          "longitude": 2.350499,
+          "zoom": 5,
+        },
         "maxGuests": 8,
         "previewImage": "https://bit.ly/34LWdhj",
         "price": 207,
@@ -231,10 +234,11 @@ exports[`<CardBase /> test renders CardBase for near-places list 1`] = `
         ],
         "isFavorite": true,
         "isPremium": false,
-        "location": Array [
-          48.83961,
-          2.342499,
-        ],
+        "location": Object {
+          "latitude": 48.865610000000004,
+          "longitude": 2.350499,
+          "zoom": 5,
+        },
         "maxGuests": 8,
         "previewImage": "https://bit.ly/34LWdhj",
         "price": 207,

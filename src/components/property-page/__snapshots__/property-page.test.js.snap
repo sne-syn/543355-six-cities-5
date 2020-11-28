@@ -212,10 +212,11 @@ exports[`<PropertyPage /> test renders PropertyPage with fetched data 1`] = `
                 ],
                 "isFavorite": false,
                 "isPremium": false,
-                "location": Array [
-                  48.865610000000004,
-                  2.350499,
-                ],
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
                 "maxGuests": 5,
                 "previewImage": "https://bit.ly/34LWdhj",
                 "price": 194,
@@ -280,10 +281,11 @@ exports[`<PropertyPage /> test renders PropertyPage with fetched data 1`] = `
                 ],
                 "isFavorite": false,
                 "isPremium": false,
-                "location": Array [
-                  48.865610000000004,
-                  2.350499,
-                ],
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
                 "maxGuests": 5,
                 "previewImage": "https://bit.ly/34LWdhj",
                 "price": 194,
@@ -521,10 +523,11 @@ exports[`<PropertyPage /> test renders PropertyPage with fetched data and Premiu
                 ],
                 "isFavorite": false,
                 "isPremium": true,
-                "location": Array [
-                  48.865610000000004,
-                  2.350499,
-                ],
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
                 "maxGuests": 5,
                 "previewImage": "https://bit.ly/34LWdhj",
                 "price": 194,
@@ -588,10 +591,11 @@ exports[`<PropertyPage /> test renders PropertyPage with fetched data and Premiu
                 ],
                 "isFavorite": false,
                 "isPremium": true,
-                "location": Array [
-                  48.865610000000004,
-                  2.350499,
-                ],
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
                 "maxGuests": 5,
                 "previewImage": "https://bit.ly/34LWdhj",
                 "price": 194,

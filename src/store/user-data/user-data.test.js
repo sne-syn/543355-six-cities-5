@@ -7,6 +7,13 @@ import {APIRoute, AuthorizationStatus} from '../../utils/const';
 import {adaptUser} from '../../utils/adapter.js';
 
 const api = createAPI(() => {});
+const user = {
+  userAvatar: `https://robohash.org/82?set=set2&size=74x74`,
+  userEmail: `trust_no_1@gmail.com`,
+  userId: 1,
+  userIsPro: false,
+  userName: `fox_mulder`
+};
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(userData(void 0, {})).toEqual({
@@ -39,16 +46,8 @@ it(`Reducer should update user information`, () => {
     userName: ``,
   }, {
     type: ActionType.LOAD_USER_INFORMATION,
-    payload: {userAvatar: `https://robohash.org/82?set=set2&size=74x74`,
-      userEmail: `trust_no_1@gmail.com`,
-      userId: 1,
-      userIsPro: false,
-      userName: `fox`}})
-  ).toEqual({userAvatar: `https://robohash.org/82?set=set2&size=74x74`,
-    userEmail: `trust_no_1@gmail.com`,
-    userId: 1,
-    userIsPro: false,
-    userName: `fox`});
+    payload: user})
+  ).toEqual(user);
 });
 
 describe(`Async operations work correctly`, () => {

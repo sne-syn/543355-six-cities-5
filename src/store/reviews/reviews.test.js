@@ -2,11 +2,18 @@ import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../services/api';
 import {reviews} from './reviews-reducers';
 import {ActionType} from '../action';
-import {fetchReviews, postReview} from '../api-actions';
-import {APIRoute, AuthorizationStatus} from '../../utils/const';
-import {adaptReviews} from '../../utils/adapter.js';
+import {fetchReviews} from '../api-actions';
+import {APIRoute} from '../../utils/const';
 
 const api = createAPI(() => {});
+const review = {
+  author: `Beaulah`,
+  avatar: `https://robohash.org/54?set=set2&size=54x54`,
+  date: `2004-09-06T16:12:32.554Z`,
+  id: 0,
+  rating: 1,
+  comment: `Antoni is a great host and us a wonderful home. His suggestions for places to go were killer!10/10 would stay again.`,
+};
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reviews(void 0, {})).toEqual({
@@ -43,9 +50,9 @@ it(`Reducer should update reviews`, () => {
     reviews: [],
   }, {
     type: ActionType.UPDATE_REVIEWS,
-    payload: {id: 1}
+    payload: review
   })).toEqual({
-    reviews: [{id: 1}],
+    reviews: [review],
   });
 });
 
@@ -58,14 +65,14 @@ describe(`Async operations work correctly`, () => {
 
     apiMock
       .onGet(`${APIRoute.COMMENTS}/${offerId}`)
-      .reply(200, {fake: true});
+      .reply(200, review);
 
     return fetchReviewsLoader(dispatch, () => {}, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.LOAD_REVIEWS,
-        payload: {fake: true}
+        payload: review
       });
     });
   });
@@ -74,6 +81,6 @@ describe(`Async operations work correctly`, () => {
 
     apiMock
       .onPost(`${APIRoute.COMMENTS}/1`)
-      .reply(200, [{fake: true}]);
+      .reply(200, [review]);
   });
 });
