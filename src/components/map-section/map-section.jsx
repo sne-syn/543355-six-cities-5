@@ -4,6 +4,16 @@ import React, {PureComponent} from 'react';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import leaflet from 'leaflet';
 
+const TITLE_LAYER = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
+const ATTRIBUTION = ` &copy;
+<a href="https://www.openstreetmap.org/copyright">
+    OpenStreetMap
+</a> contributors &copy;
+<a href="https://carto.com/attributions">
+  CARTO
+</a>
+`;
+
 const MAP_HEIGHT = 100;
 let IconTypes = {
   ICON_DEFAULT: `../img/pin.svg`,
@@ -73,20 +83,7 @@ class MapSection extends PureComponent {
     this._map.setView([latitude, longitude], zoom);
 
     leaflet
-    .tileLayer(
-        `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
-        {
-          attribution: `
-            &copy;
-            <a href="https://www.openstreetmap.org/copyright">
-                OpenStreetMap
-            </a> contributors &copy;
-            <a href="https://carto.com/attributions">
-              CARTO
-            </a>
-          `,
-        }
-    )
+    .tileLayer(TITLE_LAYER, {attribution: ATTRIBUTION})
     .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
     this._addPins();
