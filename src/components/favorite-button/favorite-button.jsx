@@ -21,8 +21,6 @@ const getIconSize = (componentName) => {
     };
 };
 
-
-
 class FavoriteButton extends PureComponent {
   constructor(props) {
     super(props);

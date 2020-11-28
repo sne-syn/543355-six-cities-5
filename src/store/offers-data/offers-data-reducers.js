@@ -41,7 +41,9 @@ export const offersData = (state = initialState, action) => {
         }});
     case ActionType.UPDATE_OFFERS:
       return extend(state, {
-        offers: updateItemInItemsCollection(state.offers, action.payload)});
+        offers: updateItemInItemsCollection(state.offers, action.payload),
+        filteredOffers: updateItemInItemsCollection(state.filteredOffers, action.payload)
+      });
     default:
       return state;
   }
