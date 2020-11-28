@@ -19,6 +19,7 @@ import {getReviews} from '../../store/reviews/reviews-selectors';
 import {fetchPropertyPage} from '../../store/api-actions';
 
 const COUNT_OFFER_IMAGES = 6;
+const OFFER_TYPE = `property`;
 
 class PropertyPage extends PureComponent {
   constructor(props) {
@@ -55,14 +56,14 @@ class PropertyPage extends PureComponent {
               </div>
               <div className="property__container container">
                 <div className="property__wrapper">
-                  {offer.isPremium && (<PremiumMark componentName={`property`}/>)}
+                  {offer.isPremium && (<PremiumMark componentName={OFFER_TYPE}/>)}
                   <div className="property__name-wrapper">
                     <h1 className="property__name">
                       {offer.title}
                     </h1>
-                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`property`} offerId={offer.id}/>
+                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={OFFER_TYPE} offerId={offer.id} type={OFFER_TYPE}/>
                   </div>
-                  <StarBar rating={offer.rating} containerClassName={`property`}>
+                  <StarBar rating={offer.rating} containerClassName={OFFER_TYPE}>
                     <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
                   </ StarBar>
                   <PropertyFeatures type={offer.type} bedrooms={offer.bedrooms} maxGuests={offer.maxGuests} />

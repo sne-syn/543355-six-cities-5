@@ -1,5 +1,7 @@
 export const ActionType = {
   UPDATE_FAVORITES: `UPDATE_FAVORITES`,
+  UPDATE_NEAR_PLACES: `UPDATE_NEAR_PLACES`,
+  UPDATE_OFFER_ITEM: `UPDATE_OFFER_ITEM`,
   UPDATE_OFFERS: `UPDATE_OFFERS`,
   UPDATE_REVIEWS: `UPDATE_REVIEWS`,
   CHANGE_ACTIVE_ELEMENT: `CHANGE_ACTIVE_ELEMENT`,
@@ -108,6 +110,16 @@ export const showOnLoad = (offers) => ({
 
 export const updateFavoritesInStore = (data) => ({
   type: ActionType.UPDATE_FAVORITES,
+  payload: data
+});
+
+export const updateNearPlacesInStore = (data) => ({
+  type: ActionType.UPDATE_NEAR_PLACES,
+  payload: data
+});
+
+export const updateOfferItemInStore = (data) => ({
+  type: ActionType.UPDATE_OFFER_ITEM,
   payload: data
 });
 

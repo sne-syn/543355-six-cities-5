@@ -16,6 +16,10 @@ export const offerItem = (state = initialState, action) => {
         loading: false,
         offerItemId: action.payload.id,
       });
+    case ActionType.UPDATE_OFFER_ITEM:
+      return extend(state, {
+        offerItem: action.payload,
+      });
     default:
       return state;
   }

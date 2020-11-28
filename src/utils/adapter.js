@@ -11,7 +11,7 @@ export const adaptOffer = (data) => {
     id: data[`id`],
     images: data[`images`],
     isFavorite: Boolean(data[`is_favorite`]),
-    isPremium: Boolean(data[`is_favorite`]),
+    isPremium: Boolean(data[`is_premium`]),
     location: adaptLocation(data[`location`]),
     maxGuests: data[`max_adults`],
     previewImage: data[`preview_image`],

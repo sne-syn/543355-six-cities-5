@@ -31,6 +31,7 @@ export const ComponentType = {
   CITIES: `cities`,
   FAVORITE: `favorites`,
   NEAR: `near-places`,
+  PROPERTY: `property`
 };
 
 export const MAX_RATING = 5;

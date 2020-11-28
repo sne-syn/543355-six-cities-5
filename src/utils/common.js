@@ -15,8 +15,20 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+const updateItemInItemsCollection = (itemsCollection, newItem) => {
+  const index = itemsCollection.findIndex((offer) => offer.id === newItem.id);
+
+  if (index === -1) {
+    return false;
+  }
+
+  const newItemsCollection = [].concat(itemsCollection.slice(0, index), newItem, itemsCollection.slice(index + 1));
+  return newItemsCollection;
+};
+
 export {
   addLeadingZero,
   capitalizeChar,
   extend,
+  updateItemInItemsCollection
 };

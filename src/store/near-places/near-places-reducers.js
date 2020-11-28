@@ -1,10 +1,9 @@
 import {ActionType} from '../action';
 import {adaptOffers} from '../../utils/adapter';
-import {extend} from '../../utils/common';
+import {extend, updateItemInItemsCollection} from '../../utils/common';
 
 const initialState = {
   nearPlaces: [],
-  loading: true,
 };
 
 export const nearPlaces = (state = initialState, action) => {
@@ -12,8 +11,10 @@ export const nearPlaces = (state = initialState, action) => {
     case ActionType.LOAD_NEAR_PLACES:
       return extend(state, {
         nearPlaces: adaptOffers(action.payload),
-        loading: false,
       });
+    case ActionType.UPDATE_NEAR_PLACES:
+      return extend(state, {
+        nearPlaces: updateItemInItemsCollection(state.nearPlaces, action.payload)});
     default:
       return state;
   }
