@@ -1,0 +1,630 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PropertyPage /> test renders PropertyPage with fetched data 1`] = `
+<div
+  className="page"
+>
+  <Header />
+  <main
+    className="page__main page__main--property"
+  >
+    <section
+      className="property"
+    >
+      <div
+        className="property__gallery-container container"
+      >
+        <div
+          className="property__gallery"
+        >
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/30YVQif"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/3lEt2DG"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36TgIv7"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/33Qpecj"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36Ys6Wn"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/34LWdhj"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="property__container container"
+      >
+        <div
+          className="property__wrapper"
+        >
+          <div
+            className="property__name-wrapper"
+          >
+            <h1
+              className="property__name"
+            >
+              Estudio/suite completo en el centro de Segovia
+            </h1>
+            <FavoriteButton
+              componentName="property"
+              defaultOnValue={false}
+              offerId={2}
+            />
+          </div>
+          <StarBar
+            containerClassName="property"
+            rating={1.9069547983791004}
+          >
+            <span
+              className="property__rating-value rating__value"
+            >
+              1.9
+            </span>
+          </StarBar>
+          <PropertyFeatures
+            bedrooms={3}
+            maxGuests={5}
+            type="house"
+          />
+          <div
+            className="property__price"
+          >
+            <b
+              className="property__price-value"
+            >
+              €
+              194
+            </b>
+            <span
+              className="property__price-text"
+            >
+               night
+            </span>
+          </div>
+          <div
+            className="property__inside"
+          >
+            <h2
+              className="property__inside-title"
+            >
+              What's inside
+            </h2>
+            <ul
+              className="property__inside-list"
+            >
+              <li
+                className="property__inside-item"
+              >
+                Elevator
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Dishwasher
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Coffee machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Washer
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Washing machine
+              </li>
+            </ul>
+          </div>
+          <Host
+            authorizationStatus="AUTH"
+            description="In full nature and very close to public transport. Green area surrounded by all kinds of sports facilities including a golf course, paddle, artificial grass soccer, pelota court. In an urbanization of villas with landscaped plots of about 500 m2"
+            fetchPropertyPageAction={[Function]}
+            host={
+              Object {
+                "avatar": "https://robohash.org/82?set=set2&size=74x74",
+                "id": 6,
+                "isPro": true,
+                "name": "Whitney",
+              }
+            }
+            id="24"
+            loading={false}
+            nearPlaces={Array []}
+            offer={
+              Object {
+                "bedrooms": 3,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "In full nature and very close to public transport. Green area surrounded by all kinds of sports facilities including a golf course, paddle, artificial grass soccer, pelota court. In an urbanization of villas with landscaped plots of about 500 m2",
+                "goods": Array [
+                  "elevator",
+                  "dishwasher",
+                  "coffee machine",
+                  "washer",
+                  "washing machine",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/82?set=set2&size=74x74",
+                  "id": 6,
+                  "isPro": true,
+                  "name": "Whitney",
+                },
+                "id": 2,
+                "images": Array [
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/3lEt2DG",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/34LWdhj",
+                ],
+                "isFavorite": false,
+                "isPremium": false,
+                "location": Array [
+                  48.865610000000004,
+                  2.350499,
+                ],
+                "maxGuests": 5,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 194,
+                "rating": 1.9069547983791004,
+                "reviews": Array [
+                  4,
+                  2,
+                  6,
+                ],
+                "title": "Estudio/suite completo en el centro de Segovia",
+                "type": "house",
+              }
+            }
+            reviews={Array []}
+          />
+          <ReviewsList
+            authorizationStatus="AUTH"
+            reviews={Array []}
+          />
+        </div>
+      </div>
+      <section
+        className="property__map map"
+      >
+        <MapSection
+          activeCity="Amsterdam"
+          activeOffer={2}
+          offersToShowOnMap={
+            Array [
+              Object {
+                "bedrooms": 3,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "In full nature and very close to public transport. Green area surrounded by all kinds of sports facilities including a golf course, paddle, artificial grass soccer, pelota court. In an urbanization of villas with landscaped plots of about 500 m2",
+                "goods": Array [
+                  "elevator",
+                  "dishwasher",
+                  "coffee machine",
+                  "washer",
+                  "washing machine",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/82?set=set2&size=74x74",
+                  "id": 6,
+                  "isPro": true,
+                  "name": "Whitney",
+                },
+                "id": 2,
+                "images": Array [
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/3lEt2DG",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/34LWdhj",
+                ],
+                "isFavorite": false,
+                "isPremium": false,
+                "location": Array [
+                  48.865610000000004,
+                  2.350499,
+                ],
+                "maxGuests": 5,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 194,
+                "rating": 1.9069547983791004,
+                "reviews": Array [
+                  4,
+                  2,
+                  6,
+                ],
+                "title": "Estudio/suite completo en el centro de Segovia",
+                "type": "house",
+              },
+            ]
+          }
+        />
+      </section>
+    </section>
+    <div
+      className="container"
+    >
+      <NearPlaces
+        offers={Array []}
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`<PropertyPage /> test renders PropertyPage with fetched data and Premium mark 1`] = `
+<div
+  className="page"
+>
+  <Header />
+  <main
+    className="page__main page__main--property"
+  >
+    <section
+      className="property"
+    >
+      <div
+        className="property__gallery-container container"
+      >
+        <div
+          className="property__gallery"
+        >
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/30YVQif"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/3lEt2DG"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36TgIv7"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/33Qpecj"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36Ys6Wn"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/34LWdhj"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="property__container container"
+      >
+        <div
+          className="property__wrapper"
+        >
+          <PremiumMark
+            componentName="property"
+          />
+          <div
+            className="property__name-wrapper"
+          >
+            <h1
+              className="property__name"
+            >
+              La Latina - Small Charming Studio
+            </h1>
+            <FavoriteButton
+              componentName="property"
+              defaultOnValue={false}
+              offerId={2}
+            />
+          </div>
+          <StarBar
+            containerClassName="property"
+            rating={1.9069547983791004}
+          >
+            <span
+              className="property__rating-value rating__value"
+            >
+              1.9
+            </span>
+          </StarBar>
+          <PropertyFeatures
+            bedrooms={3}
+            maxGuests={5}
+            type="room"
+          />
+          <div
+            className="property__price"
+          >
+            <b
+              className="property__price-value"
+            >
+              €
+              194
+            </b>
+            <span
+              className="property__price-text"
+            >
+               night
+            </span>
+          </div>
+          <div
+            className="property__inside"
+          >
+            <h2
+              className="property__inside-title"
+            >
+              What's inside
+            </h2>
+            <ul
+              className="property__inside-list"
+            >
+              <li
+                className="property__inside-item"
+              >
+                Parking
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Elevator
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Baby seat
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Cabel TV
+              </li>
+            </ul>
+          </div>
+          <Host
+            authorizationStatus="AUTH"
+            description="Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish"
+            fetchPropertyPageAction={[Function]}
+            host={
+              Object {
+                "avatar": "https://robohash.org/66?set=set2&size=74x74",
+                "id": 2,
+                "isPro": true,
+                "name": "Marquis",
+              }
+            }
+            id="24"
+            loading={false}
+            nearPlaces={Array []}
+            offer={
+              Object {
+                "bedrooms": 3,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
+                "goods": Array [
+                  "parking",
+                  "elevator",
+                  "baby seat",
+                  "cabel TV",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/66?set=set2&size=74x74",
+                  "id": 2,
+                  "isPro": true,
+                  "name": "Marquis",
+                },
+                "id": 2,
+                "images": Array [
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/3lEt2DG",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/34LWdhj",
+                ],
+                "isFavorite": false,
+                "isPremium": true,
+                "location": Array [
+                  48.865610000000004,
+                  2.350499,
+                ],
+                "maxGuests": 5,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 194,
+                "rating": 1.9069547983791004,
+                "reviews": Array [
+                  4,
+                  2,
+                  6,
+                ],
+                "title": "La Latina - Small Charming Studio",
+                "type": "room",
+              }
+            }
+            reviews={Array []}
+          />
+          <ReviewsList
+            authorizationStatus="AUTH"
+            reviews={Array []}
+          />
+        </div>
+      </div>
+      <section
+        className="property__map map"
+      >
+        <MapSection
+          activeCity="Amsterdam"
+          activeOffer={2}
+          offersToShowOnMap={
+            Array [
+              Object {
+                "bedrooms": 3,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Amsterdam",
+                },
+                "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
+                "goods": Array [
+                  "parking",
+                  "elevator",
+                  "baby seat",
+                  "cabel TV",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/66?set=set2&size=74x74",
+                  "id": 2,
+                  "isPro": true,
+                  "name": "Marquis",
+                },
+                "id": 2,
+                "images": Array [
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/3lEt2DG",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/34LWdhj",
+                ],
+                "isFavorite": false,
+                "isPremium": true,
+                "location": Array [
+                  48.865610000000004,
+                  2.350499,
+                ],
+                "maxGuests": 5,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 194,
+                "rating": 1.9069547983791004,
+                "reviews": Array [
+                  4,
+                  2,
+                  6,
+                ],
+                "title": "La Latina - Small Charming Studio",
+                "type": "room",
+              },
+            ]
+          }
+        />
+      </section>
+    </section>
+    <div
+      className="container"
+    >
+      <NearPlaces
+        offers={Array []}
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`<PropertyPage /> test renders PropertyPage with loader 1`] = `
+<div
+  className="page"
+>
+  <Header />
+  <Loader />
+</div>
+`;

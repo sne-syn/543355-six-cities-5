@@ -11,7 +11,11 @@ describe(`<PlacesContainer /> test`, () => {
   it(`renders PlacesContainer with multiple offers`, () => {
     const tree = renderer
     .create(
-        <PlacesContainer activeElement={`Paris`} unsortedOffers={[]} highlightedOfferId={`5`}/>
+        <PlacesContainer
+          activeElement={`Paris`}
+          unsortedOffers={[]}
+          highlightedOfferId={`5`}
+        />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

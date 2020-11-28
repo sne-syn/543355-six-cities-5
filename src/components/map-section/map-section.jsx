@@ -38,10 +38,14 @@ class MapSection extends PureComponent {
     this._mapSection = React.createRef();
     this._map = null;
     this._layerGroup = null;
+    this._createPin = this._createPin.bind(this);
+    this._addPins = this._addPins.bind(this);
   }
 
   _createPin(offer, iconType = getIcon(IconTypes.ICON_DEFAULT)) {
-    let marker = leaflet.marker([offer.location.latitude, offer.location.longitude], {iconId: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
+    let marker = leaflet
+      .marker([offer.location.latitude, offer.location.longitude], {iconId: offer.id, iconUrl: iconType})
+      .addTo(this._layerGroup);
     return marker;
   }
 
@@ -73,18 +77,19 @@ class MapSection extends PureComponent {
   componentDidMount() {
     const {offersToShowOnMap} = this.props;
     const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
-    this._map = leaflet.map(this._mapSection.current, {
-      center: [latitude, longitude],
-      zoom,
-      zoomControl: true,
-      marker: true,
-    });
+    this._map = leaflet
+      .map(this._mapSection.current, {
+        center: [latitude, longitude],
+        zoom,
+        zoomControl: true,
+        marker: true,
+      });
 
     this._map.setView([latitude, longitude], zoom);
 
     leaflet
-    .tileLayer(TITLE_LAYER, {attribution: ATTRIBUTION})
-    .addTo(this._map);
+      .tileLayer(TITLE_LAYER, {attribution: ATTRIBUTION})
+      .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
     this._addPins();
   }
