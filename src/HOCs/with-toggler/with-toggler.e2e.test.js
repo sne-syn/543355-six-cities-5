@@ -8,6 +8,7 @@ configure({adapter: new Adapter()});
 const MockComponent = () => <div />;
 const MockComponentWrapped = withToggler(MockComponent);
 const onDefaultState = false;
+const onToggleComponent = jest.fn();
 
 describe(`WithToggler checks`, () => {
   it(`Should on defaultState eq 'false'`, () => {
@@ -18,21 +19,9 @@ describe(`WithToggler checks`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
           defaultOnValue={true}
-          toggleComponent={() => {}}
+          toggleComponent={onToggleComponent}
         />
     );
     expect(wrapper.props().on).toEqual(true);
   });
-  // it(`Should change onClick`, () => {
-  //   const wrapper = shallow(
-  //       <MockComponentWrapped
-  //         defaultOnValue={true}
-  //         toggleComponent={() => {}}
-  //       />
-  //   );
-
-  //   expect(wrapper.props().on).toEqual(true);
-  //   wrapper.props().onClick(false);
-  //   expect(wrapper.props().on).toEqual(false);
-  // });
 });

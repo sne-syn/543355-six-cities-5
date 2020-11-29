@@ -5,10 +5,11 @@ exports[`Render StarButtons 1`] = `
   className="reviews__rating-form form__rating"
 >
   <input
+    checked={false}
     className="form__rating-input visually-hidden"
     id="5-star"
     name="rating"
-    onClick={[Function]}
+    onChange={[Function]}
     type="radio"
     value={5}
   />
@@ -28,10 +29,11 @@ exports[`Render StarButtons 1`] = `
     </svg>
   </label>
   <input
+    checked={false}
     className="form__rating-input visually-hidden"
     id="4-star"
     name="rating"
-    onClick={[Function]}
+    onChange={[Function]}
     type="radio"
     value={4}
   />
@@ -51,10 +53,11 @@ exports[`Render StarButtons 1`] = `
     </svg>
   </label>
   <input
+    checked={false}
     className="form__rating-input visually-hidden"
     id="3-star"
     name="rating"
-    onClick={[Function]}
+    onChange={[Function]}
     type="radio"
     value={3}
   />
@@ -74,10 +77,11 @@ exports[`Render StarButtons 1`] = `
     </svg>
   </label>
   <input
+    checked={false}
     className="form__rating-input visually-hidden"
     id="2-star"
     name="rating"
-    onClick={[Function]}
+    onChange={[Function]}
     type="radio"
     value={2}
   />
@@ -97,10 +101,11 @@ exports[`Render StarButtons 1`] = `
     </svg>
   </label>
   <input
+    checked={false}
     className="form__rating-input visually-hidden"
     id="1-star"
     name="rating"
-    onClick={[Function]}
+    onChange={[Function]}
     type="radio"
     value={1}
   />

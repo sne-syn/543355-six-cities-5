@@ -5,7 +5,10 @@ import {StarButtons} from './star-buttons';
 const noop = () => {};
 test(`Render StarButtons`, () => {
   const tree = renderer
-    .create(<StarButtons onClickAction={noop}/>)
+    .create(<StarButtons 
+      onChange={noop}
+      onStarClick={noop}
+    />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

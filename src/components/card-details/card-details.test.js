@@ -9,9 +9,6 @@ jest.mock(`../favorite-button/favorite-button`, () => `FavoriteButton`);
 jest.mock(`../premium-mark/premium-mark`, () => `PremiumMark`);
 jest.mock(`../star-bar/star-bar`, () => `StarBar`);
 
-const noop = () => {};
-
-
 describe(`<CardDetails /> test`, () => {
   it(`renders CardDetails for cities list`, () => {
     const tree = renderer
@@ -20,9 +17,7 @@ describe(`<CardDetails /> test`, () => {
           <CardDetails
             offer={offer}
             type={ComponentType.CITIES}
-            highlightedOfferID={`0`}
-            resetActiveCardIdAction={noop}
-            setActiveCardIdAction={noop}>
+            highlightedOfferID={`0`}>
             <React.Fragment />
           </CardDetails>
         </MemoryRouter>

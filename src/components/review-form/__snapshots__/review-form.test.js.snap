@@ -11,9 +11,16 @@ exports[`Render ReviewForm 1`] = `
   >
     Your review
   </label>
-  <StarButtons />
-  <TextareaInput
-    handleInputChange={[Function]}
+  <StarButtons
+    onStarClick={[Function]}
+  />
+  <textarea
+    className="reviews__textarea form__textarea"
+    id="review"
+    name="review"
+    onChange={[Function]}
+    placeholder="Tell how was your stay, what you like and what can be improved"
+    value=""
   />
   <div
     className="reviews__button-wrapper"

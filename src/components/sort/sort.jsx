@@ -19,7 +19,7 @@ const getSortOptions = (toggleComponent, activeSortType) => {
 const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
   let optionsClass = `places__options places__options--custom `;
   optionsClass += on ? `places__options--opened` : ``;
-
+console.log(activeSortType)
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -33,11 +33,6 @@ const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
       </ul>
     </form>
   );
-};
-
-Sort.defaultProps = {
-  on: false,
-  activeSortType: `Popular`,
 };
 
 Sort.propTypes = {

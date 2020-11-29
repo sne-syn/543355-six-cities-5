@@ -4,23 +4,27 @@ import {ReviewForm} from './review-form';
 
 const noop = () => {};
 jest.mock(`../star-buttons/star-buttons`, () => `StarButtons`);
-jest.mock(`../textarea-input/textarea-input`, () => `TextareaInput`);
 
 test(`Render ReviewForm`, () => {
   const tree = renderer
     .create(
         <ReviewForm
-          comment={``}
-          offer={{}}
-          offerItemId={1}
-          rating={0}
-          userAvatar={``}
-          userId={0}
-          userIsPro={true}
-          userName ={``}
-          updateReviewsInStoreAction={noop}
-          onChangeAction={noop}
-          onSubmitAction={noop}
+        buttonDisabled={true}
+        comment={``}
+        offer={{}}
+        offerItemId={1}
+        rating={0}
+        userAvatar={``}
+        userId={0}
+        userIsPro={true}
+        userName ={``}
+        handleRatingChange={noop}
+        updateReviewsInStoreAction={noop}
+        handleTextareaChange={noop}
+        handleSubmit={noop}
+        onSubmitAction={noop}
+        onRatingChangeAction={noop}
+        value={``}
         />
     )
     .toJSON();
