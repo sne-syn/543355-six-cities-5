@@ -121,9 +121,8 @@ describe(`Action creators work correctly`, () => {
     });
   });
   it(`Action creator for showOnLoad returns correct action`, () => {
-    expect(showOnLoad([])).toEqual({
+    expect(showOnLoad()).toEqual({
       type: ActionType.SHOW_OFFERS_ON_LOAD,
-      payload: []
     });
   });
   it(`Action creator for updateFavoritesInStore returns correct action`, () => {

@@ -102,9 +102,8 @@ export const showFavoritesElements = (favorites) => ({
   payload: favorites
 });
 
-export const showOnLoad = (offers) => ({
-  type: ActionType.SHOW_OFFERS_ON_LOAD,
-  payload: offers
+export const showOnLoad = () => ({
+  type: ActionType.SHOW_OFFERS_ON_LOAD
 });
 
 export const updateFavoritesInStore = (data) => ({

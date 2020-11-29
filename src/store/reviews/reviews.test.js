@@ -34,7 +34,7 @@ it(`Reducer should update comment`, () => {
   });
 });
 
-it(`Reducer should update comment`, () => {
+it(`Reducer should update rating`, () => {
   expect(reviews({
     rating: 0,
   }, {
@@ -65,14 +65,14 @@ describe(`Async operations work correctly`, () => {
 
     apiMock
       .onGet(`${APIRoute.COMMENTS}/${offerId}`)
-      .reply(200, review);
+      .reply(200, [review]);
 
     return fetchReviewsLoader(dispatch, () => {}, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.LOAD_REVIEWS,
-        payload: review
+        payload: [review]
       });
     });
   });

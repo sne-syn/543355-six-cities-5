@@ -30,9 +30,20 @@ export const fetchPropertyPage = (id) => (dispatch, _getState, api) => (
   Promise.all([
     api.get(`${APIRoute.OFFERS}/${id}`).then((offerItem) => dispatch(loadOfferItem(offerItem.data))),
     api.get(`${APIRoute.COMMENTS}/${id}`).then((reviews) => dispatch(loadReviews(reviews.data))),
-    api.get(`${APIRoute.OFFERS}/${id}${APIRoute.OFFERS_NEARBY}`).then((nearPlaces) => dispatch(loadNearPlaces(nearPlaces.data)))
+    api.get(`${APIRoute.OFFERS}/${id}${APIRoute.OFFERS_NEARBY}`)
+    .then((nearPlaces) => dispatch(loadNearPlaces(nearPlaces.data)))
   ])
   .then((values) => values)
+);
+
+export const fetchOfferItem = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.OFFERS}/${id}`)
+  .then((offerItem) => dispatch(loadOfferItem(offerItem.data)))
+);
+
+export const fetchNearPlaces = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.OFFERS}/${id}${APIRoute.OFFERS_NEARBY}`)
+  .then((nearPlaces) => dispatch(loadNearPlaces(nearPlaces.data)))
 );
 
 export const fetchReviews = (id) => (dispatch, _getState, api) => (
@@ -43,7 +54,7 @@ export const fetchReviews = (id) => (dispatch, _getState, api) => (
 export const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => dispatch(loadOffers(data)))
-    .then(({array}) => dispatch(showOnLoad(array)))
+    .then(() => dispatch(showOnLoad()))
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (

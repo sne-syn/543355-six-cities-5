@@ -48,7 +48,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
 });
 
 describe(`Async operations work correctly`, () => {
-  it(`Should make a correct API call to /comment and fetch reviews`, () => {
+  it(`Should make a correct API call to /favorites and fetch favorites offers`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offerId = 2;
