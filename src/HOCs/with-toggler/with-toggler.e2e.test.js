@@ -13,7 +13,7 @@ const onToggleComponent = jest.fn();
 describe(`WithToggler checks`, () => {
   it(`Should on defaultState eq 'false'`, () => {
     const wrapper = shallow(<MockComponentWrapped toggleComponent={() => {}}/>);
-    
+
     expect(wrapper.state().on).toEqual(onDefaultState);
   });
   it(`Should recieve state from Component and be eq 'true`, () => {
