@@ -13,10 +13,10 @@ describe(`Sort tests`, () => {
 
     const wrapper = shallow(
         <Sort
-        toggleComponent={onToggleChange}
-        on={true}
-        activeSortType={SortType[`DEFAULT`]}
-        changeSortTypeAction={changeSortTypeAction}
+          toggleComponent={onToggleChange}
+          on={true}
+          activeSortType={SortType[`DEFAULT`]}
+          changeSortTypeAction={changeSortTypeAction}
         />
     );
 
@@ -30,10 +30,10 @@ describe(`Sort tests`, () => {
     let passedSortType = SortType[`PRICE_LOW_HIGH`];
     const wrapper = shallow(
         <Sort
-        toggleComponent={onToggleChange}
-        on={true}
-        activeSortType={activeSortType}
-        changeSortTypeAction={changeSortTypeAction}
+          toggleComponent={onToggleChange}
+          on={true}
+          activeSortType={activeSortType}
+          changeSortTypeAction={changeSortTypeAction}
         />
     );
 
@@ -46,10 +46,10 @@ describe(`Sort tests`, () => {
 
     const wrapper = shallow(
         <Sort
-        toggleComponent={onToggleChange}
-        on={true}
-        activeSortType={SortType[`DEFAULT`]}
-        changeSortTypeAction={changeSortTypeAction}
+          toggleComponent={onToggleChange}
+          on={true}
+          activeSortType={SortType[`DEFAULT`]}
+          changeSortTypeAction={changeSortTypeAction}
         />
     );
 

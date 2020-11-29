@@ -9,22 +9,22 @@ test(`Render ReviewForm`, () => {
   const tree = renderer
     .create(
         <ReviewForm
-        buttonDisabled={true}
-        comment={``}
-        offer={{}}
-        offerItemId={1}
-        rating={0}
-        userAvatar={``}
-        userId={0}
-        userIsPro={true}
-        userName ={``}
-        handleRatingChange={noop}
-        updateReviewsInStoreAction={noop}
-        handleTextareaChange={noop}
-        handleSubmit={noop}
-        onSubmitAction={noop}
-        onRatingChangeAction={noop}
-        value={``}
+          buttonDisabled={true}
+          comment={``}
+          offer={{}}
+          offerItemId={1}
+          rating={0}
+          userAvatar={``}
+          userId={0}
+          userIsPro={true}
+          userName ={``}
+          handleRatingChange={noop}
+          updateReviewsInStoreAction={noop}
+          handleTextareaChange={noop}
+          handleSubmit={noop}
+          onSubmitAction={noop}
+          onRatingChangeAction={noop}
+          value={``}
         />
     )
     .toJSON();

@@ -26,20 +26,20 @@ const MockComponentWrapped = withInputs(MockComponent);
 it(`withInputs is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
-    buttonDisabled={true}
-    handleRatingChange={noop}
-    handleTextareaChange={noop}
-    handleSubmit={noop}
-    comment={``}
-    onSubmitAction={noop}
-    offerItemId={8}
-    rating={0}
-    updateReviewsInStoreAction={noop}
-    userAvatar={``}
-    userId={2}
-    userIsPro={true}
-    userName={`may`}
-    value={``}
+      buttonDisabled={true}
+      handleRatingChange={noop}
+      handleTextareaChange={noop}
+      handleSubmit={noop}
+      comment={``}
+      onSubmitAction={noop}
+      offerItemId={8}
+      rating={0}
+      updateReviewsInStoreAction={noop}
+      userAvatar={``}
+      userId={2}
+      userIsPro={true}
+      userName={`may`}
+      value={``}
     >
       <React.Fragment />
     </MockComponentWrapped>

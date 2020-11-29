@@ -61,7 +61,7 @@ const withInputs = (Component) => {
         buttonDisabled: this._handleButtonDisable()
       });
 
-      this.props.onRatingChangeAction(evt.target.value)
+      this.props.onRatingChangeAction(evt.target.value);
     }
 
     _handleTextareaChange(evt) {
@@ -98,6 +98,8 @@ const withInputs = (Component) => {
     offerItemId: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     updateReviewsInStoreAction: PropTypes.func.isRequired,
+    onRatingChangeAction: PropTypes.func.isRequired,
+    onChangeAction: PropTypes.func.isRequired,
     userAvatar: PropTypes.string.isRequired,
     userId: PropTypes.number.isRequired,
     userIsPro: PropTypes.bool.isRequired,

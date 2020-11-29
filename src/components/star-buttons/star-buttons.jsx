@@ -33,7 +33,8 @@ const StarButtons = ({onStarClick, rating}) => {
 };
 
 StarButtons.propTypes = {
-  onStarClick: PropTypes.func.isRequired
+  onStarClick: PropTypes.func.isRequired,
+  rating: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({

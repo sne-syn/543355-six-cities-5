@@ -10,7 +10,7 @@ describe(`Footer tests`, () => {
     const onFooterLinkClick = jest.fn();
 
     const wrapper = shallow(
-      <Footer/>
+        <Footer/>
     );
 
     wrapper.find(`.footer__logo-link`).simulate(`click`);

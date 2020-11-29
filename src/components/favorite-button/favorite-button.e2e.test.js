@@ -8,26 +8,26 @@ configure({adapter: new Adapter()});
 const noop = () => {};
 describe(`FavoriteButton`, () => {
   it(`Should redirect if user is no-auth`, () => {
-  const handleRedirectToLoginAction = jest.fn();
+    const handleRedirectToLoginAction = jest.fn();
 
-  const wrapper = shallow(
-      <FavoriteButton
-        authorizationStatus={`NO_AUTH`}
-        componentName={`place-card`}
-        defaultOnValue={true}
-        offerId={1}
-        nearPlaces={[]}
-        offerItem={{}}
-        offers={[]}
-        on={true}
-        onFavoriteButtonClickAction={noop}
-        redirectToLoginAction={handleRedirectToLoginAction}
-        toggleComponent={noop}
-        updateOfferItemInStoreAction={noop}
-        updateOffersInStoreAction={noop}
-        updateNearPlacesInStoreAction={noop}
-      />
-  )
+    const wrapper = shallow(
+        <FavoriteButton
+          authorizationStatus={`NO_AUTH`}
+          componentName={`place-card`}
+          defaultOnValue={true}
+          offerId={1}
+          nearPlaces={[]}
+          offerItem={{}}
+          offers={[]}
+          on={true}
+          onFavoriteButtonClickAction={noop}
+          redirectToLoginAction={handleRedirectToLoginAction}
+          toggleComponent={noop}
+          updateOfferItemInStoreAction={noop}
+          updateOffersInStoreAction={noop}
+          updateNearPlacesInStoreAction={noop}
+        />
+    );
 
     wrapper.find(`button.button`).simulate(`click`);
     expect(handleRedirectToLoginAction).toHaveBeenCalledTimes(1);
@@ -35,7 +35,7 @@ describe(`FavoriteButton`, () => {
   it(`Should toggle button and call calback to api-action`, () => {
     const handleFavoriteButtonClickAction = jest.fn();
     const handleToggleComponent = jest.fn();
-  
+
     const wrapper = shallow(
         <FavoriteButton
           authorizationStatus={`AUTH`}
@@ -53,10 +53,10 @@ describe(`FavoriteButton`, () => {
           updateOffersInStoreAction={noop}
           updateNearPlacesInStoreAction={noop}
         />
-    )
-  
-      wrapper.find(`button.button`).simulate(`click`);
-      expect(handleFavoriteButtonClickAction).toHaveBeenCalledTimes(1);
-      expect(handleToggleComponent).toHaveBeenCalledTimes(1);
-    });
+    );
+
+    wrapper.find(`button.button`).simulate(`click`);
+    expect(handleFavoriteButtonClickAction).toHaveBeenCalledTimes(1);
+    expect(handleToggleComponent).toHaveBeenCalledTimes(1);
+  });
 });
