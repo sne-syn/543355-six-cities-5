@@ -36,7 +36,7 @@ describe(`FavoriteButton`, () => {
     wrapper.find(`button.button`).simulate(`click`);
     expect(handleRedirectToLoginAction).toHaveBeenCalledTimes(1);
   });
-  it(`Should callback be click actions`, () => {
+  it(`Should toggle button and call calback to api-action`, () => {
     const handleFavoriteButtonClickAction = jest.fn();
     const handleRedirectToLoginAction = jest.fn();
     const handleToggleComponent = jest.fn();
