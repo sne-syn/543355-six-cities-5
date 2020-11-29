@@ -9,19 +9,14 @@ const MockComponent = () => <div />;
 const MockComponentWrapped = withToggler(MockComponent);
 const onDefaultState = false;
 const onToggleComponent = jest.fn();
-const component = <MockComponentWrapped toggleComponent={noop}/>
-let wrapper;
-
-beforeEach(() => {
-  wrapper = shallow(component);
-});
-
-afterEach(() => {
-  wrapper.unmount();
-});
 
 describe(`WithToggler checks`, () => {
   it(`Should on defaultState eq 'false'`, () => {
+    const wrapper = shallow(
+      <MockComponentWrapped 
+        toggleComponent={noop}
+      />
+    );
     expect(wrapper.state().on).toEqual(onDefaultState);
   });
   it(`Should recieve state from Component and be eq 'true`, () => {
