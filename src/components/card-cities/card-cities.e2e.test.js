@@ -24,6 +24,7 @@ it(`Should callback be called on mouse enter and mouse leave actions`, () => {
         setActiveCardIdAction={setActiveCardIdAction}>
         <React.Fragment />
       </CardCities>
+
   );
 
   const card = wrapper.find(`.cities__place-card`);

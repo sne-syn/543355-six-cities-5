@@ -95,7 +95,6 @@ class MapSection extends PureComponent {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div id="map" ref={this._mapSection} style={{height: `${MAP_HEIGHT}%`}} />
     );

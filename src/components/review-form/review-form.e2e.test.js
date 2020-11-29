@@ -8,6 +8,7 @@ const noop = () => {};
 it(`Click on submit button ReviewForm`, () => {
   const handleSubmit = jest.fn();
   const handleTextareaChange = jest.fn();
+  const handleRatingChange = jest.fn();
 
   const wrapper = shallow(
       <ReviewForm
@@ -20,16 +21,16 @@ it(`Click on submit button ReviewForm`, () => {
         userId={0}
         userIsPro={true}
         userName ={``}
-        handleRatingChange={noop}
+        handleRatingChange={handleRatingChange}
         updateReviewsInStoreAction={noop}
-        handleTextareaChange={noop}
-        handleSubmit={noop}
-        onSubmitAction={noop}
+        handleTextareaChange={handleTextareaChange}
+        handleSubmit={handleSubmit}
+        onSubmitAction={handleSubmit}
         onRatingChangeAction={noop}
         value={``}
       />
   );
 
   wrapper.find(`form`).simulate(`submit`, {preventDefault() {}});
-  //expect(handleSubmit).toHaveBeenCalledTimes(1);
+  expect(handleSubmit).toHaveBeenCalledTimes(1);
 });
