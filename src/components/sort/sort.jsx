@@ -35,6 +35,11 @@ console.log(activeSortType)
   );
 };
 
+Sort.defaultProps = {
+  on: false,
+  activeSortType: `Popular`,
+};
+
 Sort.propTypes = {
   toggleComponent: PropTypes.func.isRequired,
   on: PropTypes.bool.isRequired,
@@ -50,7 +55,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   changeSortTypeAction(evt) {
-    dispatch(changeSortType(evt));
+    dispatch(changeSortType(evt.target.textContent));
   }
 });
 

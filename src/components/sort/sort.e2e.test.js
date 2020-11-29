@@ -36,10 +36,7 @@ describe(`Sort tests`, () => {
         />
     );
 
-    const sortMenuBtns = wrapper.find(`li`);
-
-    sortMenuBtns.forEach((button) => button.simulate(`click`));
-    wrapper.find(`.places__options li`).first().simulate(`click`);
+    wrapper.find(`.places__option`).first().simulate(`click`);
     expect(changeSortTypeAction).toHaveBeenCalledTimes(1);
 
   });
