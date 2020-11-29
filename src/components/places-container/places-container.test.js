@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {PlacesContainer} from './places-container';
+import {offers} from '../../test-data/offers-test-data';
 
 jest.mock(`../list-hover-on-map/list-hover-on-map`, () => `ListHoverOnMap`);
 jest.mock(`../map-section/map-section`, () => `MapSection`);
@@ -13,7 +14,7 @@ describe(`<PlacesContainer /> test`, () => {
     .create(
         <PlacesContainer
           activeElement={`Paris`}
-          unsortedOffers={[]}
+          unsortedOffers={offers}
           highlightedOfferId={`5`}
         />
     ).toJSON();

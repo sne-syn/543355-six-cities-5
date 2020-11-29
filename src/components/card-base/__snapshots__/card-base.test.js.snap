@@ -12,7 +12,7 @@ exports[`<CardBase /> test renders CardBase for cities list 1`] = `
           "longitude": 4.895168,
           "zoom": 10,
         },
-        "name": "Amsterdam",
+        "name": "Paris",
       },
       "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
       "goods": Array [
@@ -42,7 +42,7 @@ exports[`<CardBase /> test renders CardBase for cities list 1`] = `
         "https://bit.ly/36TgIv7",
         "https://bit.ly/3lEt2DG",
       ],
-      "isFavorite": true,
+      "isFavorite": false,
       "isPremium": false,
       "location": Object {
         "latitude": 48.865610000000004,
@@ -72,7 +72,7 @@ exports[`<CardBase /> test renders CardBase for cities list 1`] = `
             "longitude": 4.895168,
             "zoom": 10,
           },
-          "name": "Amsterdam",
+          "name": "Paris",
         },
         "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
         "goods": Array [
@@ -102,7 +102,7 @@ exports[`<CardBase /> test renders CardBase for cities list 1`] = `
           "https://bit.ly/36TgIv7",
           "https://bit.ly/3lEt2DG",
         ],
-        "isFavorite": true,
+        "isFavorite": false,
         "isPremium": false,
         "location": Object {
           "latitude": 48.865610000000004,
@@ -138,7 +138,7 @@ exports[`<CardBase /> test renders CardBase for favorites list 1`] = `
             "longitude": 4.895168,
             "zoom": 10,
           },
-          "name": "Amsterdam",
+          "name": "Paris",
         },
         "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
         "goods": Array [
@@ -168,7 +168,7 @@ exports[`<CardBase /> test renders CardBase for favorites list 1`] = `
           "https://bit.ly/36TgIv7",
           "https://bit.ly/3lEt2DG",
         ],
-        "isFavorite": true,
+        "isFavorite": false,
         "isPremium": false,
         "location": Object {
           "latitude": 48.865610000000004,
@@ -202,7 +202,7 @@ exports[`<CardBase /> test renders CardBase for near-places list 1`] = `
             "longitude": 4.895168,
             "zoom": 10,
           },
-          "name": "Amsterdam",
+          "name": "Paris",
         },
         "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
         "goods": Array [
@@ -232,7 +232,7 @@ exports[`<CardBase /> test renders CardBase for near-places list 1`] = `
           "https://bit.ly/36TgIv7",
           "https://bit.ly/3lEt2DG",
         ],
-        "isFavorite": true,
+        "isFavorite": false,
         "isPremium": false,
         "location": Object {
           "latitude": 48.865610000000004,

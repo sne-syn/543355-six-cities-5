@@ -41,7 +41,7 @@ Array [
       </div>
       <FavoriteButton
         componentName="place-card"
-        defaultOnValue={true}
+        defaultOnValue={false}
         offerId={1}
         type="cities"
       />
@@ -109,7 +109,7 @@ Array [
       </div>
       <FavoriteButton
         componentName="place-card"
-        defaultOnValue={true}
+        defaultOnValue={false}
         offerId={1}
         type="favorites"
       />
@@ -177,7 +177,7 @@ Array [
       </div>
       <FavoriteButton
         componentName="place-card"
-        defaultOnValue={true}
+        defaultOnValue={false}
         offerId={1}
         type="near-places"
       />
@@ -263,7 +263,7 @@ Array [
         href="/hotels/1"
         onClick={[Function]}
       >
-        La Latina- Small Charming Studio
+        La Latina - Small Charming Studio
       </a>
     </h2>
     <p

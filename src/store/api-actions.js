@@ -1,5 +1,5 @@
 import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, setUserInformation, showFavoritesElements, showOnLoad} from './action';
-import {adaptUser, adaptOffers} from '../utils/adapter.js';
+import {adaptUser} from '../utils/adapter.js';
 
 import {APIRoute, AppRoute, AuthorizationStatus} from '../utils/const';
 
@@ -23,7 +23,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 
 export const fetchFavorites = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITES)
-    .then(({data}) => dispatch(showFavoritesElements(adaptOffers(data))))
+    .then(({data}) => dispatch(showFavoritesElements(data)))
 );
 
 export const fetchPropertyPage = (id) => (dispatch, _getState, api) => (

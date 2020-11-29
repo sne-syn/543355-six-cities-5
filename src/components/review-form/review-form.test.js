@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {ReviewForm} from './review-form';
+
 const noop = () => {};
 jest.mock(`../star-buttons/star-buttons`, () => `StarButtons`);
 jest.mock(`../textarea-input/textarea-input`, () => `TextareaInput`);

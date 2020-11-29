@@ -3,51 +3,45 @@ import {createAPI} from '../../services/api';
 import {userData} from './user-data-reducers';
 import {ActionType} from '../action';
 import {checkAuth, login} from '../api-actions';
-import {APIRoute, AuthorizationStatus} from '../../utils/const';
+import {APIRoute, AuthorizationStatus, AppRoute} from '../../utils/const';
 import {adaptUser} from '../../utils/adapter.js';
-
+import {user} from '../../test-data/user-test-data';
+import {extend} from '../../utils/common';
 const api = createAPI(() => {});
-const user = {
-  userAvatar: `https://robohash.org/82?set=set2&size=74x74`,
-  userEmail: `trust_no_1@gmail.com`,
-  userId: 1,
-  userIsPro: false,
-  userName: `fox_mulder`
+
+const initUserData = {
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  userAvatar: ``,
+  userEmail: ``,
+  userId: null,
+  userIsPro: null,
+  userName: ``,
 };
 
 it(`Reducer without additional parameters should return initial state`, () => {
-  expect(userData(void 0, {})).toEqual({
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
-    userAvatar: ``,
-    userEmail: ``,
-    userId: null,
-    userIsPro: null,
-    userName: ``,
-  });
+  expect(userData(void 0, {})).toEqual(initUserData);
 });
 
 it(`Reducer should update authorizationStatus to 'auth'`, () => {
-  expect(userData({
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
-  }, {
+  expect(userData(initUserData, {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: AuthorizationStatus.AUTH
-  })).toEqual({
+  })).toEqual(extend(initUserData, {
     authorizationStatus: AuthorizationStatus.AUTH,
-  });
+  }));
 });
 
 it(`Reducer should update user information`, () => {
-  expect(userData({
-    userAvatar: ``,
-    userEmail: ``,
-    userId: null,
-    userIsPro: null,
-    userName: ``,
-  }, {
+  expect(userData(initUserData, {
     type: ActionType.LOAD_USER_INFORMATION,
     payload: user})
-  ).toEqual(user);
+  ).toEqual(extend(initUserData, {
+    userAvatar: `https://robohash.org/82?set=set2&size=74x74`,
+    userEmail: `trust_no_1@gmail.com`,
+    userId: 1,
+    userIsPro: false,
+    userName: `fox_mulder`
+  }));
 });
 
 describe(`Async operations work correctly`, () => {
@@ -95,7 +89,7 @@ describe(`Async operations work correctly`, () => {
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.REDIRECT_TO_ROUTE,
-          payload: `/`,
+          payload: AppRoute.ROOT,
         });
       });
   });
