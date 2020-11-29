@@ -25,29 +25,19 @@ describe(`withInputs checks`, () => {
       onSubmitAction={noop}
       offerItemId={8}
       rating={0}
+      onChangeAction={noop}
+      onRatingChangeAction={noop}
       updateReviewsInStoreAction={noop}
       userAvatar={``}
       userId={2}
       userIsPro={true}
-      userName={`may`}
+      userName={``}
       value={``}
     />);
-    expect(wrapper.state().defaultState).toEqual(defaultState);
+    expect(wrapper.state().rating).toEqual(0);
+    expect(wrapper.state().comment).toEqual(``);
+    expect(wrapper.state().commentLength).toEqual(0);
+    expect(wrapper.state().buttonDisabled).toEqual(true);
   });
-  it(`withInputs should initialize state from parameter and change it by call`, () => {
-
-    const wrapper = shallow(
-        <MockComponentWrapped />
-    );
-
-    expect(wrapper.props().state).toEqual(defaultState);
-
-    wrapper.props().setState({comment: `Some comment to be submit`});
-    expect(wrapper.props().state).toEqual({
-      rating: 0,
-      comment: `Some comment to be submit`,
-      commentLength: 25,
-      buttonDisabled: true,
-    });
-  });
+  
 });
