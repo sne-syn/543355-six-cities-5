@@ -4,11 +4,11 @@ import Adapter from 'enzyme-adapter-react-16';
 import CardDetails from './card-details';
 import {offer} from '../../test-data/offer-test-data';
 import {ComponentType} from '../../utils/const';
-
+import {Link, MemoryRouter} from 'react-router-dom';
 configure({adapter: new Adapter()});
 
 describe(`CardDetails tests`, () => {
-  test(`click on CardDetails image`, () => {
+  it(`click on CardDetails image`, () => {
     const onCardDetailsClick = jest.fn();
 
     const wrapper = shallow(
@@ -22,7 +22,7 @@ describe(`CardDetails tests`, () => {
     expect(onCardDetailsClick).toHaveBeenCalledTimes(0);
   });
 
-  test(`click on CardDetails title`, () => {
+  it(`click on CardDetails title`, () => {
     const onCardDetailsClick = jest.fn();
 
     const wrapper = shallow(

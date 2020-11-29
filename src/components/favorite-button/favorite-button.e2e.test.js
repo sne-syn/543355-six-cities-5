@@ -5,14 +5,10 @@ import {FavoriteButton} from './favorite-button';
 
 configure({adapter: new Adapter()});
 
+const noop = () => {};
 describe(`FavoriteButton`, () => {
   it(`Should redirect if user is no-auth`, () => {
-  const handleFavoriteButtonClickAction = jest.fn();
   const handleRedirectToLoginAction = jest.fn();
-  const handleToggleComponent = jest.fn();
-  const handleUpdateOfferItemInStoreAction = jest.fn();
-  const handleUpdateOffersInStoreAction = jest.fn();
-  const handleUpdateNearPlacesInStoreAction = jest.fn();
 
   const wrapper = shallow(
       <FavoriteButton
@@ -24,12 +20,12 @@ describe(`FavoriteButton`, () => {
         offerItem={{}}
         offers={[]}
         on={true}
-        onFavoriteButtonClickAction={handleFavoriteButtonClickAction}
+        onFavoriteButtonClickAction={noop}
         redirectToLoginAction={handleRedirectToLoginAction}
-        toggleComponent={handleToggleComponent}
-        updateOfferItemInStoreAction={handleUpdateOfferItemInStoreAction}
-        updateOffersInStoreAction={handleUpdateOffersInStoreAction}
-        updateNearPlacesInStoreAction={handleUpdateNearPlacesInStoreAction}
+        toggleComponent={noop}
+        updateOfferItemInStoreAction={noop}
+        updateOffersInStoreAction={noop}
+        updateNearPlacesInStoreAction={noop}
       />
   )
 
@@ -38,11 +34,7 @@ describe(`FavoriteButton`, () => {
   });
   it(`Should toggle button and call calback to api-action`, () => {
     const handleFavoriteButtonClickAction = jest.fn();
-    const handleRedirectToLoginAction = jest.fn();
     const handleToggleComponent = jest.fn();
-    const handleUpdateOfferItemInStoreAction = jest.fn();
-    const handleUpdateOffersInStoreAction = jest.fn();
-    const handleUpdateNearPlacesInStoreAction = jest.fn();
   
     const wrapper = shallow(
         <FavoriteButton
@@ -55,11 +47,11 @@ describe(`FavoriteButton`, () => {
           offers={[]}
           on={true}
           onFavoriteButtonClickAction={handleFavoriteButtonClickAction}
-          redirectToLoginAction={handleRedirectToLoginAction}
+          redirectToLoginAction={noop}
           toggleComponent={handleToggleComponent}
-          updateOfferItemInStoreAction={handleUpdateOfferItemInStoreAction}
-          updateOffersInStoreAction={handleUpdateOffersInStoreAction}
-          updateNearPlacesInStoreAction={handleUpdateNearPlacesInStoreAction}
+          updateOfferItemInStoreAction={noop}
+          updateOffersInStoreAction={noop}
+          updateNearPlacesInStoreAction={noop}
         />
     )
   

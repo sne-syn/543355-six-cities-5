@@ -53,7 +53,9 @@ describe(`Sort tests`, () => {
         />
     );
 
-    wrapper.find(`.places__option`).first().simulate(`click`);
+    wrapper.find(`ul`).at(0).simulate(`click`);
+    expect(changeSortTypeAction).toHaveBeenCalledTimes(1);
+    wrapper.find(`li`).at(1).simulate(`click`);
     expect(changeSortTypeAction).toHaveBeenCalledTimes(1);
   });
 });
