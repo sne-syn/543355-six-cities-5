@@ -23,6 +23,23 @@ describe(`Sort tests`, () => {
     wrapper.find(`.places__sorting-type`).simulate(`click`);
     expect(onToggleChange).toHaveBeenCalledTimes(1);
   });
+  it(`Change sort type`, () => {
+    const changeSortTypeAction = jest.fn();
+    const onToggleChange = jest.fn();
+    let activeSortType = SortType[`DEFAULT`];
+    let passedSortType = SortType[`PRICE_LOW_HIGH`];
+    const wrapper = shallow(
+        <Sort
+        toggleComponent={onToggleChange}
+        on={true}
+        activeSortType={activeSortType}
+        changeSortTypeAction={changeSortTypeAction}
+        />
+    );
+
+    wrapper.find(`.places__option`).at(1).simulate(`click`);
+    expect(activeSortType).toBe(passedSortType);
+  });
   it(`Click on sort menu item`, () => {
     const changeSortTypeAction = jest.fn();
     const onToggleChange = jest.fn();
@@ -38,6 +55,5 @@ describe(`Sort tests`, () => {
 
     wrapper.find(`.places__option`).first().simulate(`click`);
     expect(changeSortTypeAction).toHaveBeenCalledTimes(1);
-
   });
 });

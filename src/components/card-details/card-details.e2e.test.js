@@ -9,7 +9,7 @@ configure({adapter: new Adapter()});
 
 describe(`CardDetails tests`, () => {
   test(`click on CardDetails image`, () => {
-    const onOCardDetailsClick = jest.fn();
+    const onCardDetailsClick = jest.fn();
 
     const wrapper = shallow(
         <CardDetails
@@ -19,11 +19,11 @@ describe(`CardDetails tests`, () => {
     );
 
     wrapper.find(`.place-card__image-wrapper`).simulate(`click`);
-    expect(onOCardDetailsClick).toHaveBeenCalledTimes(0);
+    expect(onCardDetailsClick).toHaveBeenCalledTimes(0);
   });
 
   test(`click on CardDetails title`, () => {
-    const onOCardDetailsClick = jest.fn();
+    const onCardDetailsClick = jest.fn();
 
     const wrapper = shallow(
         <CardDetails
@@ -33,6 +33,6 @@ describe(`CardDetails tests`, () => {
     );
 
     wrapper.find(`.place-card__name`).simulate(`click`);
-    expect(onOCardDetailsClick).toHaveBeenCalledTimes(0);
+    expect(onCardDetailsClick).toHaveBeenCalledTimes(0);
   });
 });
