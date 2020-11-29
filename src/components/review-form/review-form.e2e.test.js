@@ -29,17 +29,13 @@ const component = <ReviewForm
 
 describe(`ReviewForm checks`, () => {
   it(`has a text area and a button`, () => {
-    const wrapped = shallow(component);
-    // expect(wrapped.find('.reviews__rating-form.form__rating').length).toEqual(1);
-    expect(wrapped.find(`.reviews__textarea.form__textarea`).length).toEqual(1);
-    expect(wrapped.find(`button.reviews__submit`).length).toEqual(1);
+    const wrapper = shallow(component);
+    expect(wrapper.find(`.reviews__textarea.form__textarea`).length).toEqual(1);
+    expect(wrapper.find(`button.reviews__submit`).length).toEqual(1);
   });
-  // it(`Click on submit button ReviewForm`, () => {
-  //   const handleSubmit = jest.fn();
-  //   const handleTextareaChange = jest.fn();
-  //   const handleRatingChange = jest.fn();
-
-  //   wrapper.find(`form`).simulate(`submit`, {preventDefault() {}});
-  //   expect(handleSubmit).toHaveBeenCalledTimes(1);
-  // });
+  it(`Click on submit button ReviewForm`, () => {
+    const wrapper = shallow(component);
+    wrapper.find(`form`).simulate(`submit`, {preventDefault() {}});
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+  });
 });
