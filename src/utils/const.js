@@ -11,7 +11,7 @@ export const AuthorizationStatus = {
 };
 
 export const AppRoute = {
-  FAVORITES: `/favorite`,
+  FAVORITES: `/favorites`,
   LOGIN: `/login`,
   OFFER: `/offer/`,
   ROOT: `/`,
