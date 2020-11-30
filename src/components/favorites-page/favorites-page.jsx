@@ -49,6 +49,12 @@ class FavoritesPage extends PureComponent {
   }
 }
 
+FavoritesPage.propTypes = {
+  favorites: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  showFavoritesElementsAction: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   favorites: getFavorites(state),
   loading: getFavoritesLoadingStatus(state)
@@ -59,12 +65,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchFavorites());
   }
 });
-
-FavoritesPage.propTypes = {
-  favorites: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
-  showFavoritesElementsAction: PropTypes.func.isRequired,
-};
 
 export {FavoritesPage};
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesPage);

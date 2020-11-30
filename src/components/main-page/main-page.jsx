@@ -56,6 +56,13 @@ class MainPage extends PureComponent {
   }
 }
 
+MainPage.propTypes = {
+  activeElement: PropTypes.string.isRequired,
+  fetchOffersAction: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  offers: PropTypes.array.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   activeElement: getActiveElement(state),
   loading: getOffersLoadingStatus(state),
@@ -67,13 +74,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchOffers());
   }
 });
-
-MainPage.propTypes = {
-  activeElement: PropTypes.string.isRequired,
-  fetchOffersAction: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  offers: PropTypes.array.isRequired,
-};
 
 export {MainPage};
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
