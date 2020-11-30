@@ -4,6 +4,7 @@ import withToggler from '../../hocs/with-toggler/with-toggler';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import {addToFavorites} from '../../store/api-actions';
 import {redirectToRoute, updateNearPlacesInStore, updateOfferItemInStore, updateOffersInStore} from '../../store/action';
+import {offerItemPropTypesMock} from '../../utils/prop-types-mocks';
 import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 import {getNearPlaces} from '../../store/near-places/near-places-selectors';
@@ -83,34 +84,7 @@ FavoriteButton.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   componentName: PropTypes.string.isRequired,
   nearPlaces: PropTypes.array.isRequired,
-  offerItem: PropTypes.shape({
-    id: PropTypes.number,
-    city: PropTypes.shape({
-      location: PropTypes.shape({
-        latitude: PropTypes.number,
-        longitude: PropTypes.number,
-        zoom: PropTypes.number,
-      }),
-      name: PropTypes.string,
-    }),
-    title: PropTypes.string,
-    images: PropTypes.array,
-    price: PropTypes.number,
-    type: PropTypes.string,
-    rating: PropTypes.number,
-    goods: PropTypes.array,
-    bedrooms: PropTypes.number,
-    maxGuests: PropTypes.number,
-    description: PropTypes.string,
-    host: PropTypes.shape({
-      id: PropTypes.number,
-      avatar: PropTypes.string,
-      name: PropTypes.string,
-      isPro: PropTypes.bool
-    }),
-    isPremium: PropTypes.bool,
-    isFavorite: PropTypes.bool,
-  }).isRequired,
+  offerItem: offerItemPropTypesMock,
   offerId: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
   on: PropTypes.bool.isRequired,

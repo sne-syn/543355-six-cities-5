@@ -18,6 +18,7 @@ import {getNearPlaces} from '../../store/near-places/near-places-selectors';
 import {getOfferItem, getOfferItemLoadingStatus} from '../../store/offer-item/offer-item-selectors';
 import {getReviews} from '../../store/reviews/reviews-selectors';
 import {fetchPropertyPage} from '../../store/api-actions';
+import {offerItemPropTypesMock} from '../../utils/prop-types-mocks';
 
 const COUNT_OFFER_IMAGES = 6;
 
@@ -105,34 +106,7 @@ PropertyPage.propTypes = {
   fetchPropertyPageAction: PropTypes.func.isRequired,
   nearPlaces: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    city: PropTypes.shape({
-      location: PropTypes.shape({
-        latitude: PropTypes.number,
-        longitude: PropTypes.number,
-        zoom: PropTypes.number,
-      }),
-      name: PropTypes.string,
-    }),
-    title: PropTypes.string,
-    images: PropTypes.array,
-    price: PropTypes.number,
-    type: PropTypes.string,
-    rating: PropTypes.number,
-    goods: PropTypes.array,
-    bedrooms: PropTypes.number,
-    maxGuests: PropTypes.number,
-    description: PropTypes.string,
-    host: PropTypes.shape({
-      id: PropTypes.number,
-      avatar: PropTypes.string,
-      name: PropTypes.string,
-      isPro: PropTypes.bool
-    }),
-    isPremium: PropTypes.bool,
-    isFavorite: PropTypes.bool,
-  }).isRequired,
+  offer: offerItemPropTypesMock,
   reviews: PropTypes.array.isRequired,
 };
 

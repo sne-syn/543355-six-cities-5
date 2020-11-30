@@ -5,6 +5,7 @@ import React, {PureComponent} from 'react';
 import StarBar from '../star-bar/star-bar';
 import {AccomodationTypes, ComponentType} from '../../utils/const';
 import {Link} from 'react-router-dom';
+import {offerPropTypesMock} from '../../utils/prop-types-mocks';
 
 const getImageSize = (type) => {
   switch (type) {
@@ -58,35 +59,7 @@ class CardDetails extends PureComponent {
 
 CardDetails.propTypes = {
   type: PropTypes.string.isRequired,
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    city: PropTypes.shape({
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired,
-      }).isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    title: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    images: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    goods: PropTypes.array.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxGuests: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired
-    }).isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-  }).isRequired,
+  offer: offerPropTypesMock,
 };
 
 export default CardDetails;

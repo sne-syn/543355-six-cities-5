@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import leaflet from 'leaflet';
+import {offerPropTypesMock} from '../../utils/prop-types-mocks';
 
 const TITLE_LAYER = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
 const ATTRIBUTION = ` &copy;
@@ -106,30 +107,7 @@ MapSection.propTypes = {
   activeOffer: PropTypes.number.isRequired,
   offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array.isRequired,
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      city: PropTypes.shape({
-        location: PropTypes.shape({
-          latitude: PropTypes.number.isRequired,
-          longitude: PropTypes.number.isRequired,
-          zoom: PropTypes.number.isRequired,
-        }).isRequired,
-        name: PropTypes.string.isRequired,
-      }).isRequired,
-      title: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      images: PropTypes.array.isRequired,
-      price: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-      goods: PropTypes.array.isRequired,
-      bedrooms: PropTypes.number.isRequired,
-      maxGuests: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      host: PropTypes.string.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-    })]).isRequired
+    offerPropTypesMock]).isRequired
 };
 
 export default React.memo(MapSection);

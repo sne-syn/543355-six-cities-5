@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {hostPropTypesMock} from '../../utils/prop-types-mocks';
 
 const Host = ({description, host}) => {
   const {isPro, avatar, name} = host;
@@ -24,12 +25,7 @@ const Host = ({description, host}) => {
 
 Host.propTypes = {
   description: PropTypes.string.isRequired,
-  host: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    avatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    isPro: PropTypes.bool.isRequired
-  })
+  host: PropTypes.shape(hostPropTypesMock),
 };
 
 export default Host;
