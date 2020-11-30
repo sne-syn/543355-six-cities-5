@@ -13,7 +13,6 @@ import {
   setActiveCardId,
   setReviewComment,
   setReviewRating,
-  setUserInformation,
   showFavoritesElements,
   showOnLoad,
   updateFavoritesInStore,
@@ -106,12 +105,6 @@ describe(`Action creators work correctly`, () => {
     expect(setReviewRating(5)).toEqual({
       type: ActionType.SET_REVIEW_RATING,
       payload: 5
-    });
-  });
-  it(`Action creator for setUserInformation returns correct action`, () => {
-    expect(setUserInformation(`trust_no_1@gmail.com`)).toEqual({
-      type: ActionType.SET_USER_INFORMATION,
-      payload: `trust_no_1@gmail.com`
     });
   });
   it(`Action creator for showFavoritesElements returns correct action`, () => {

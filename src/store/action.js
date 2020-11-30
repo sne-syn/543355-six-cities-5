@@ -18,7 +18,6 @@ export const ActionType = {
   SET_ACTIVE_CARD_ID: `SET_ACTIVE_CARD_ID`,
   SET_REVIEW_COMMENT: `SET_REVIEW_COMMENT`,
   SET_REVIEW_RATING: `SET_REVIEW_RATING`,
-  SET_USER_INFORMATION: `SET_USER_INFORMATION`,
   SHOW_FAVORITES_ELEMENTS: `SHOW_FAVORITES_ELEMENTS`,
   SHOW_OFFERS_ON_LOAD: `SHOW_OFFERS_ON_LOAD`
 };
@@ -90,11 +89,6 @@ export const setReviewComment = (value) => ({
 export const setReviewRating = (value) => ({
   type: ActionType.SET_REVIEW_RATING,
   payload: value
-});
-
-export const setUserInformation = (email) => ({
-  type: ActionType.SET_USER_INFORMATION,
-  payload: email
 });
 
 export const showFavoritesElements = (favorites) => ({

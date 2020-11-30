@@ -17,10 +17,6 @@ export const userData = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload,
       });
-    case ActionType.SET_USER_INFORMATION:
-      return extend(state, {
-        userEmail: action.payload,
-      });
     case ActionType.LOAD_USER_INFORMATION:
       return extend(state, {
         userAvatar: action.payload.userAvatar,

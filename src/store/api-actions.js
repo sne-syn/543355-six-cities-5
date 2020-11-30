@@ -1,4 +1,4 @@
-import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, setUserInformation, showFavoritesElements, showOnLoad} from './action';
+import {loadOfferItem, loadReviews, loadOffers, loadNearPlaces, loadUserInformation, redirectToRoute, requireAuthorization, showFavoritesElements, showOnLoad} from './action';
 import {adaptUser} from '../utils/adapter.js';
 
 import {APIRoute, AppRoute, AuthorizationStatus} from '../utils/const';
@@ -59,7 +59,6 @@ export const fetchOffers = () => (dispatch, _getState, api) => (
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-    .then(() => dispatch(setUserInformation(email)))
+    .then(() => dispatch(checkAuth()))
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
 );
