@@ -2,8 +2,8 @@ import List from '../list/list';
 import React from 'react';
 import {connect} from 'react-redux';
 import {getFilteredOffers} from '../../store/offers-data/offers-data-selectors';
-import {getHighlightedOfferID} from '../../store/active-card/active-card-selectors';
-import {setActiveCardID, resetActiveCardID} from "../../store/action";
+import {getHighlightedOfferId} from '../../store/active-card/active-card-selectors';
+import {setActiveCardId, resetActiveCardId} from "../../store/action";
 
 const ListHoverOnMap = (props) => {
   return (
@@ -12,16 +12,16 @@ const ListHoverOnMap = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  highlightedOfferID: getHighlightedOfferID(state),
+  highlightedOfferID: getHighlightedOfferId(state),
   offers: getFilteredOffers(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setActiveCardID(evt) {
-    dispatch(setActiveCardID(evt));
+  setActiveCardIdAction(evt) {
+    dispatch(setActiveCardId(evt.currentTarget.id));
   },
-  resetActiveCardID() {
-    dispatch(resetActiveCardID());
+  resetActiveCardIdAction() {
+    dispatch(resetActiveCardId());
   }
 });
 

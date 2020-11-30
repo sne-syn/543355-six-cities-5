@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import withToggler from '../../HOCs/with-toggler';
+import withToggler from '../../hocs/with-toggler/with-toggler';
 import {SortType} from '../../utils/const';
 import {changeSortType} from '../../store/action';
 import {connect} from 'react-redux';
@@ -19,7 +19,6 @@ const getSortOptions = (toggleComponent, activeSortType) => {
 const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
   let optionsClass = `places__options places__options--custom `;
   optionsClass += on ? `places__options--opened` : ``;
-
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -33,6 +32,11 @@ const Sort = ({toggleComponent, on, activeSortType, changeSortTypeAction}) => {
       </ul>
     </form>
   );
+};
+
+Sort.defaultProps = {
+  on: false,
+  activeSortType: `Popular`,
 };
 
 Sort.propTypes = {
@@ -50,7 +54,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   changeSortTypeAction(evt) {
-    dispatch(changeSortType(evt));
+    dispatch(changeSortType(evt.target.textContent));
   }
 });
 

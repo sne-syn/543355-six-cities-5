@@ -12,14 +12,11 @@ import {createAPI} from './services/api';
 import {AuthorizationStatus} from './utils/const';
 import {checkAuth} from './store/api-actions';
 
-
 const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)));
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)), applyMiddleware(redirect)));
 
-Promise.all([
-  store.dispatch(checkAuth())
-])
+store.dispatch(checkAuth())
 .then(() => {
   ReactDOM.render(
       <Provider store={store}>
@@ -28,4 +25,3 @@ Promise.all([
       document.querySelector(`#root`)
   );
 });
-

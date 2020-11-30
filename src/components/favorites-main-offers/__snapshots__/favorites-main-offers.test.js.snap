@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render FavoritesMainOffers 1`] = `
+<div
+  className="page__favorites-container container"
+>
+  <section
+    className="favorites"
+  >
+    <h1
+      className="favorites__title"
+    >
+      Saved listing
+    </h1>
+    <FavoritesList
+      favorites={Array []}
+    />
+  </section>
+</div>
+`;

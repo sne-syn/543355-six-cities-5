@@ -11,9 +11,12 @@ import React, {PureComponent} from 'react';
 import ReviewsList from '../reviews-list/reviews-list';
 import StarBar from '../star-bar/star-bar';
 import {capitalizeChar} from '../../utils/common';
+import {ComponentType} from '../../utils/const';
 import {connect} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user-data/user-data-selectors';
 import {getNearPlaces} from '../../store/near-places/near-places-selectors';
-import {getOfferItem, getOfferItemId, getOfferItemLoadingStatus} from '../../store/offer-item/offer-item-selectors';
+import {getOfferItem, getOfferItemLoadingStatus} from '../../store/offer-item/offer-item-selectors';
+import {getReviews} from '../../store/reviews/reviews-selectors';
 import {fetchPropertyPage} from '../../store/api-actions';
 
 const COUNT_OFFER_IMAGES = 6;
@@ -35,10 +38,10 @@ class PropertyPage extends PureComponent {
   }
 
   render() {
-    const {offer, loading, nearPlaces} = this.props;
+    const {authorizationStatus, loading, nearPlaces, offer, reviews} = this.props;
     return (
       <div className="page">
-        <Header/>
+        <Header />
         {loading ? (<Loader />) : (
           <main className="page__main page__main--property">
             <section className="property">
@@ -53,14 +56,14 @@ class PropertyPage extends PureComponent {
               </div>
               <div className="property__container container">
                 <div className="property__wrapper">
-                  {offer.isPremium && (<PremiumMark componentName={`property`}/>)}
+                  {offer.isPremium && (<PremiumMark componentName={ComponentType.PROPERTY}/>)}
                   <div className="property__name-wrapper">
                     <h1 className="property__name">
                       {offer.title}
                     </h1>
-                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={`property`} offerId={offer.id}/>
+                    <FavoriteButton defaultOnValue={offer.isFavorite} componentName={ComponentType.PROPERTY} offerId={offer.id}/>
                   </div>
-                  <StarBar rating={offer.rating} containerClassName={`property`}>
+                  <StarBar rating={offer.rating} containerClassName={ComponentType.PROPERTY}>
                     <span className="property__rating-value rating__value">{offer.rating.toFixed(1)}</span>
                   </ StarBar>
                   <PropertyFeatures type={offer.type} bedrooms={offer.bedrooms} maxGuests={offer.maxGuests} />
@@ -78,9 +81,8 @@ class PropertyPage extends PureComponent {
                       ))}
                     </ul>
                   </div>
-
                   <Host description={offer.description} host={offer.host} {...this.props}/>
-                  <ReviewsList {...this.props}/>
+                  <ReviewsList authorizationStatus={authorizationStatus} reviews={reviews} />
                 </div>
               </div>
               <section className="property__map map">
@@ -98,45 +100,48 @@ class PropertyPage extends PureComponent {
 }
 
 PropertyPage.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   fetchPropertyPageAction: PropTypes.func.isRequired,
   nearPlaces: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number,
     city: PropTypes.shape({
       location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired,
-      }).isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    title: PropTypes.string.isRequired,
-    images: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    goods: PropTypes.array.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxGuests: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number,
+      }),
+      name: PropTypes.string,
+    }),
+    title: PropTypes.string,
+    images: PropTypes.array,
+    price: PropTypes.number,
+    type: PropTypes.string,
+    rating: PropTypes.number,
+    goods: PropTypes.array,
+    bedrooms: PropTypes.number,
+    maxGuests: PropTypes.number,
+    description: PropTypes.string,
     host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired
-    }).isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
+      id: PropTypes.number,
+      avatar: PropTypes.string,
+      name: PropTypes.string,
+      isPro: PropTypes.bool
+    }),
+    isPremium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
   }).isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   offer: getOfferItem(state),
-  offerItemId: getOfferItemId(state),
   loading: getOfferItemLoadingStatus(state),
   nearPlaces: getNearPlaces(state),
+  reviews: getReviews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

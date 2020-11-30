@@ -20,7 +20,8 @@ const StarBar = ({rating, containerClassName, children}) => {
 
 StarBar.defaultProps = {
   containerClassName: `place-card`,
-  children: ``
+  children: ``,
+  rating: 0
 };
 
 StarBar.propTypes = {

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Loader 1`] = `
+<div
+  className="loader"
+  id="loader"
+>
+  <div
+    className="loadingio-spinner-eclipse-tdjcbvvh5xi"
+  >
+    <div
+      className="ldio-hnl6tyhogo8"
+    >
+      <div />
+    </div>
+  </div>
+</div>
+`;

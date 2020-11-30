@@ -11,7 +11,7 @@ export const adaptOffer = (data) => {
     id: data[`id`],
     images: data[`images`],
     isFavorite: Boolean(data[`is_favorite`]),
-    isPremium: Boolean(data[`is_favorite`]),
+    isPremium: Boolean(data[`is_premium`]),
     location: adaptLocation(data[`location`]),
     maxGuests: data[`max_adults`],
     previewImage: data[`preview_image`],
@@ -39,6 +39,16 @@ const adaptHost = (host) => {
   };
 };
 
+export const adaptUser = (user) => {
+  return {
+    userAvatar: user[`avatar_url`],
+    userEmail: user[`email`],
+    userId: user[`id`],
+    userIsPro: Boolean(user[`is_pro`]),
+    userName: user[`name`]
+  };
+};
+
 export const adaptReview = (review) => {
   return {
     author: review[`user`][`name`],
@@ -47,7 +57,7 @@ export const adaptReview = (review) => {
     id: review[`id`],
     isPro: Boolean(review[`is_pro`]),
     rating: review[`rating`],
-    text: review[`comment`],
+    comment: review[`comment`],
     userId: review[`user`][`id`]
   };
 };

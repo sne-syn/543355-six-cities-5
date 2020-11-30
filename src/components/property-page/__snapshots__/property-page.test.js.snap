@@ -1,0 +1,691 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PropertyPage /> test renders PropertyPage with fetched data 1`] = `
+<div
+  className="page"
+>
+  <Header />
+  <main
+    className="page__main page__main--property"
+  >
+    <section
+      className="property"
+    >
+      <div
+        className="property__gallery-container container"
+      >
+        <div
+          className="property__gallery"
+        >
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/34LWdhj"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36Ys6Wn"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/33Qpecj"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/30YVQif"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36TgIv7"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/3lEt2DG"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="property__container container"
+      >
+        <div
+          className="property__wrapper"
+        >
+          <div
+            className="property__name-wrapper"
+          >
+            <h1
+              className="property__name"
+            >
+              La Latina- Small Charming Studio
+            </h1>
+            <FavoriteButton
+              componentName="property"
+              defaultOnValue={false}
+              offerId={1}
+            />
+          </div>
+          <StarBar
+            containerClassName="property"
+            rating={1.4018800815887484}
+          >
+            <span
+              className="property__rating-value rating__value"
+            >
+              1.4
+            </span>
+          </StarBar>
+          <PropertyFeatures
+            bedrooms={1}
+            maxGuests={8}
+            type="room"
+          />
+          <div
+            className="property__price"
+          >
+            <b
+              className="property__price-value"
+            >
+              €
+              207
+            </b>
+            <span
+              className="property__price-text"
+            >
+               night
+            </span>
+          </div>
+          <div
+            className="property__inside"
+          >
+            <h2
+              className="property__inside-title"
+            >
+              What's inside
+            </h2>
+            <ul
+              className="property__inside-list"
+            >
+              <li
+                className="property__inside-item"
+              >
+                Cabel TV
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Heating
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Kitchen
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Towels
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Washing machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Washer
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Dishwasher
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Conditioner
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Elevator
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Coffee machine
+              </li>
+            </ul>
+          </div>
+          <Host
+            authorizationStatus="AUTH"
+            description="Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish"
+            fetchPropertyPageAction={[Function]}
+            host={
+              Object {
+                "avatar": "https://robohash.org/28?set=set2&size=74x74",
+                "id": 4,
+                "isPro": false,
+                "name": "Salom",
+              }
+            }
+            id="24"
+            loading={false}
+            nearPlaces={Array []}
+            offer={
+              Object {
+                "bedrooms": 1,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Paris",
+                },
+                "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
+                "goods": Array [
+                  "cabel TV",
+                  "heating",
+                  "kitchen",
+                  "towels",
+                  "washing machine",
+                  "washer",
+                  "dishwasher",
+                  "conditioner",
+                  "elevator",
+                  "coffee machine",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/28?set=set2&size=74x74",
+                  "id": 4,
+                  "isPro": false,
+                  "name": "Salom",
+                },
+                "id": 1,
+                "images": Array [
+                  "https://bit.ly/34LWdhj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/3lEt2DG",
+                ],
+                "isFavorite": false,
+                "isPremium": false,
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
+                "maxGuests": 8,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 207,
+                "rating": 1.4018800815887484,
+                "title": "La Latina- Small Charming Studio",
+                "type": "room",
+              }
+            }
+            reviews={Array []}
+          />
+          <ReviewsList
+            authorizationStatus="AUTH"
+            reviews={Array []}
+          />
+        </div>
+      </div>
+      <section
+        className="property__map map"
+      >
+        <MapSection
+          activeCity="Paris"
+          activeOffer={1}
+          offersToShowOnMap={
+            Array [
+              Object {
+                "bedrooms": 1,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Paris",
+                },
+                "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
+                "goods": Array [
+                  "cabel TV",
+                  "heating",
+                  "kitchen",
+                  "towels",
+                  "washing machine",
+                  "washer",
+                  "dishwasher",
+                  "conditioner",
+                  "elevator",
+                  "coffee machine",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/28?set=set2&size=74x74",
+                  "id": 4,
+                  "isPro": false,
+                  "name": "Salom",
+                },
+                "id": 1,
+                "images": Array [
+                  "https://bit.ly/34LWdhj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/3lEt2DG",
+                ],
+                "isFavorite": false,
+                "isPremium": false,
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
+                "maxGuests": 8,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 207,
+                "rating": 1.4018800815887484,
+                "title": "La Latina- Small Charming Studio",
+                "type": "room",
+              },
+            ]
+          }
+        />
+      </section>
+    </section>
+    <div
+      className="container"
+    >
+      <NearPlaces
+        offers={Array []}
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`<PropertyPage /> test renders PropertyPage with fetched data and Premium mark 1`] = `
+<div
+  className="page"
+>
+  <Header />
+  <main
+    className="page__main page__main--property"
+  >
+    <section
+      className="property"
+    >
+      <div
+        className="property__gallery-container container"
+      >
+        <div
+          className="property__gallery"
+        >
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/34LWdhj"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36Ys6Wn"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/33Qpecj"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/30YVQif"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/36TgIv7"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Photo studio"
+              className="property__image"
+              src="https://bit.ly/3lEt2DG"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="property__container container"
+      >
+        <div
+          className="property__wrapper"
+        >
+          <PremiumMark
+            componentName="property"
+          />
+          <div
+            className="property__name-wrapper"
+          >
+            <h1
+              className="property__name"
+            >
+              La Latina - Small Charming Studio
+            </h1>
+            <FavoriteButton
+              componentName="property"
+              defaultOnValue={true}
+              offerId={1}
+            />
+          </div>
+          <StarBar
+            containerClassName="property"
+            rating={1.4018800815887484}
+          >
+            <span
+              className="property__rating-value rating__value"
+            >
+              1.4
+            </span>
+          </StarBar>
+          <PropertyFeatures
+            bedrooms={1}
+            maxGuests={8}
+            type="room"
+          />
+          <div
+            className="property__price"
+          >
+            <b
+              className="property__price-value"
+            >
+              €
+              207
+            </b>
+            <span
+              className="property__price-text"
+            >
+               night
+            </span>
+          </div>
+          <div
+            className="property__inside"
+          >
+            <h2
+              className="property__inside-title"
+            >
+              What's inside
+            </h2>
+            <ul
+              className="property__inside-list"
+            >
+              <li
+                className="property__inside-item"
+              >
+                Cabel TV
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Heating
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Kitchen
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Towels
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Washing machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Washer
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Dishwasher
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Conditioner
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Elevator
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Coffee machine
+              </li>
+            </ul>
+          </div>
+          <Host
+            authorizationStatus="AUTH"
+            description="Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish"
+            fetchPropertyPageAction={[Function]}
+            host={
+              Object {
+                "avatar": "https://robohash.org/28?set=set2&size=74x74",
+                "id": 4,
+                "isPro": false,
+                "name": "Salom",
+              }
+            }
+            id="24"
+            loading={false}
+            nearPlaces={Array []}
+            offer={
+              Object {
+                "bedrooms": 1,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Paris",
+                },
+                "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
+                "goods": Array [
+                  "cabel TV",
+                  "heating",
+                  "kitchen",
+                  "towels",
+                  "washing machine",
+                  "washer",
+                  "dishwasher",
+                  "conditioner",
+                  "elevator",
+                  "coffee machine",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/28?set=set2&size=74x74",
+                  "id": 4,
+                  "isPro": false,
+                  "name": "Salom",
+                },
+                "id": 1,
+                "images": Array [
+                  "https://bit.ly/34LWdhj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/3lEt2DG",
+                ],
+                "isFavorite": true,
+                "isPremium": true,
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
+                "maxGuests": 8,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 207,
+                "rating": 1.4018800815887484,
+                "title": "La Latina - Small Charming Studio",
+                "type": "room",
+              }
+            }
+            reviews={Array []}
+          />
+          <ReviewsList
+            authorizationStatus="AUTH"
+            reviews={Array []}
+          />
+        </div>
+      </div>
+      <section
+        className="property__map map"
+      >
+        <MapSection
+          activeCity="Paris"
+          activeOffer={1}
+          offersToShowOnMap={
+            Array [
+              Object {
+                "bedrooms": 1,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.370216,
+                    "longitude": 4.895168,
+                    "zoom": 10,
+                  },
+                  "name": "Paris",
+                },
+                "description": "Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish",
+                "goods": Array [
+                  "cabel TV",
+                  "heating",
+                  "kitchen",
+                  "towels",
+                  "washing machine",
+                  "washer",
+                  "dishwasher",
+                  "conditioner",
+                  "elevator",
+                  "coffee machine",
+                ],
+                "host": Object {
+                  "avatar": "https://robohash.org/28?set=set2&size=74x74",
+                  "id": 4,
+                  "isPro": false,
+                  "name": "Salom",
+                },
+                "id": 1,
+                "images": Array [
+                  "https://bit.ly/34LWdhj",
+                  "https://bit.ly/36Ys6Wn",
+                  "https://bit.ly/33Qpecj",
+                  "https://bit.ly/30YVQif",
+                  "https://bit.ly/36TgIv7",
+                  "https://bit.ly/3lEt2DG",
+                ],
+                "isFavorite": true,
+                "isPremium": true,
+                "location": Object {
+                  "latitude": 48.865610000000004,
+                  "longitude": 2.350499,
+                  "zoom": 5,
+                },
+                "maxGuests": 8,
+                "previewImage": "https://bit.ly/34LWdhj",
+                "price": 207,
+                "rating": 1.4018800815887484,
+                "title": "La Latina - Small Charming Studio",
+                "type": "room",
+              },
+            ]
+          }
+        />
+      </section>
+    </section>
+    <div
+      className="container"
+    >
+      <NearPlaces
+        offers={Array []}
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`<PropertyPage /> test renders PropertyPage with loader 1`] = `
+<div
+  className="page"
+>
+  <Header />
+  <Loader />
+</div>
+`;

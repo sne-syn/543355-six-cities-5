@@ -1,4 +1,4 @@
-import {activeCard} from './active-card/active-card-reducer';
+import {activeCard} from './active-card/active-card-reducers';
 import {favorites} from './favorites/favorites-reducers';
 import {nearPlaces} from './near-places/near-places-reducers';
 import {offerItem} from './offer-item/offer-item-reducers';

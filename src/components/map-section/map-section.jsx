@@ -4,6 +4,17 @@ import React, {PureComponent} from 'react';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import leaflet from 'leaflet';
 
+const TITLE_LAYER = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
+const ATTRIBUTION = ` &copy;
+<a href="https://www.openstreetmap.org/copyright">
+    OpenStreetMap
+</a> contributors &copy;
+<a href="https://carto.com/attributions">
+  CARTO
+</a>
+`;
+
+const MAP_HEIGHT = 100;
 let IconTypes = {
   ICON_DEFAULT: `../img/pin.svg`,
   ICON_ACTIVE: `../img/pin-active.svg`,
@@ -11,7 +22,7 @@ let IconTypes = {
 
 const getIcon = (iconTypes) => {
   let DefaultIcon = leaflet.icon({
-    iconID: ``,
+    iconId: ``,
     iconUrl: iconTypes,
     shadowUrl: `../${iconShadow}`,
     iconSize: [27, 39],
@@ -27,10 +38,14 @@ class MapSection extends PureComponent {
     this._mapSection = React.createRef();
     this._map = null;
     this._layerGroup = null;
+    this._createPin = this._createPin.bind(this);
+    this._addPins = this._addPins.bind(this);
   }
 
   _createPin(offer, iconType = getIcon(IconTypes.ICON_DEFAULT)) {
-    let marker = leaflet.marker([offer.location.latitude, offer.location.longitude], {iconID: offer.id, iconUrl: iconType}).addTo(this._layerGroup);
+    let marker = leaflet
+      .marker([offer.location.latitude, offer.location.longitude], {iconId: offer.id, iconUrl: iconType})
+      .addTo(this._layerGroup);
     return marker;
   }
 
@@ -62,45 +77,33 @@ class MapSection extends PureComponent {
   componentDidMount() {
     const {offersToShowOnMap} = this.props;
     const {latitude, longitude, zoom} = offersToShowOnMap[0].city.location;
-    this._map = leaflet.map(this._mapSection.current, {
-      center: [latitude, longitude],
-      zoom,
-      zoomControl: true,
-      marker: true,
-    });
+    this._map = leaflet
+      .map(this._mapSection.current, {
+        center: [latitude, longitude],
+        zoom,
+        zoomControl: true,
+        marker: true,
+      });
 
     this._map.setView([latitude, longitude], zoom);
 
     leaflet
-    .tileLayer(
-        `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
-        {
-          attribution: `
-            &copy;
-            <a href="https://www.openstreetmap.org/copyright">
-                OpenStreetMap
-            </a> contributors &copy;
-            <a href="https://carto.com/attributions">
-              CARTO
-            </a>
-          `,
-        }
-    )
-    .addTo(this._map);
+      .tileLayer(TITLE_LAYER, {attribution: ATTRIBUTION})
+      .addTo(this._map);
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
     this._addPins();
   }
 
   render() {
     return (
-      <div id="map" ref={this._mapSection} style={{height: `100%`}} />
+      <div id="map" ref={this._mapSection} style={{height: `${MAP_HEIGHT}%`}} />
     );
   }
 }
 
 MapSection.propTypes = {
   activeCity: PropTypes.string.isRequired,
-  activeOffer: PropTypes.any.isRequired,
+  activeOffer: PropTypes.number.isRequired,
   offersToShowOnMap: PropTypes.oneOfType([
     PropTypes.array.isRequired,
     PropTypes.shape({

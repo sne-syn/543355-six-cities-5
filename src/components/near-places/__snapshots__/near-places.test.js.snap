@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render NearPlaces 1`] = `
+<section
+  className="near-places places"
+>
+  <h2
+    className="near-places__title"
+  >
+    Other places in the neighbourhood
+  </h2>
+  <List
+    offers={Array []}
+    type="near-places"
+  />
+</section>
+`;

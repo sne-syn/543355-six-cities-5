@@ -1,6 +1,6 @@
 import {ActionType} from '../action';
-import {adaptOffers} from '../../utils/adapter';
 import {extend} from '../../utils/common';
+import {adaptOffers} from '../../utils/adapter.js';
 
 const initialState = {
   favorites: [],

@@ -1,6 +1,6 @@
 import {ActionType} from '../action';
 import {adaptOffers} from '../../utils/adapter';
-import {extend} from '../../utils/common';
+import {extend, updateItemInItemsCollection} from '../../utils/common';
 import {CITIES, SortType} from '../../utils/const';
 import {filterData, getSortedMovies} from '../../core';
 
@@ -12,17 +12,6 @@ const initialState = {
   offers: [],
   unsortedOffers: [],
   loading: true
-};
-
-const updateOffers = (offers, newOffer) => {
-  const index = offers.findIndex((offer) => offer.id === newOffer.id);
-
-  if (index === -1) {
-    return false;
-  }
-
-  const newOffers = [].concat(offers.slice(0, index), newOffer, offers.slice(index + 1));
-  return newOffers;
 };
 
 export const offersData = (state = initialState, action) => {
@@ -52,7 +41,10 @@ export const offersData = (state = initialState, action) => {
         }});
     case ActionType.UPDATE_OFFERS:
       return extend(state, {
-        offers: updateOffers(state.offers, action.payload)});
+        offers: updateItemInItemsCollection(state.offers, action.payload),
+        filteredOffers: updateItemInItemsCollection(state.filteredOffers, action.payload),
+        unsortedOffers: updateItemInItemsCollection(state.filteredOffers, action.payload)
+      });
     default:
       return state;
   }

@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Host /> test  should render Host correctly 1`] = `
+<div
+  className="property__host"
+>
+  <h2
+    className="property__host-title"
+  >
+    Meet the host
+  </h2>
+  <div
+    className="property__host-user user"
+  >
+    <div
+      className="property__avatar-wrapper "
+    >
+      <img
+        alt="Host avatar"
+        className="property__avatar user__avatar"
+        height="74"
+        src="/https://robohash.org/61?set=set2&size=74x74"
+        width="74"
+      />
+    </div>
+    <span
+      className="property__user-name"
+    >
+      Janette
+    </span>
+  </div>
+  <div
+    className="property__description"
+  >
+    <p
+      className="property__text"
+    >
+      Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Host /> test should render Host with Pro-mark correctly 1`] = `
+<div
+  className="property__host"
+>
+  <h2
+    className="property__host-title"
+  >
+    Meet the host
+  </h2>
+  <div
+    className="property__host-user user"
+  >
+    <div
+      className="property__avatar-wrapper property__avatar-wrapper--pro"
+    >
+      <img
+        alt="Host avatar"
+        className="property__avatar user__avatar"
+        height="74"
+        src="/https://robohash.org/61?set=set2&size=74x74"
+        width="74"
+      />
+    </div>
+    <span
+      className="property__user-name"
+    >
+      Janette
+    </span>
+  </div>
+  <div
+    className="property__description"
+  >
+    <p
+      className="property__text"
+    >
+      Gran suite con entrada independiente y baño interior privado en el centro de Segovia. Privacidad y comodidad a tan sólo tres minutos del acueducto.Amplia y luminosa, con 2 camas de 105 (+ 1 opcional de 90), baño completo, calefacción, mininevera, microondas, vajilla, cubertería básica, Internet y un balcón grande y soleado.I speak English, Italian and Spanish
+    </p>
+  </div>
+</div>
+`;

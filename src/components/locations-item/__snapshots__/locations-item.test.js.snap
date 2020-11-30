@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LocationsItem /> test renders LocationsItem with default props 1`] = `
+<a
+  className="locations__item-link"
+  href="/"
+  onClick={[Function]}
+>
+  <span>
+    Amsterdam
+  </span>
+</a>
+`;
+
+exports[`<LocationsItem /> test renders LocationsItem with props 1`] = `
+<a
+  className="locations__item-link tabs__item"
+  href="/"
+  onClick={[Function]}
+>
+  <span>
+    Amsterdam
+  </span>
+</a>
+`;

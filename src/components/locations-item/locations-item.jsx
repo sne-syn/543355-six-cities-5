@@ -4,7 +4,7 @@ import {AppRoute} from '../../utils/const';
 import {Link} from 'react-router-dom';
 import {changeActiveElement} from '../../store/action';
 import {connect} from 'react-redux';
-import {getActiveElement} from '../../store//offers-data/offers-data-selectors';
+import {getActiveElement} from '../../store/offers-data/offers-data-selectors';
 
 const LocationsItem = ({cityName, activeCity, tab, changeLocation}) => {
   let locationItemClass = `locations__item-link`;
@@ -38,7 +38,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   changeLocation(evt) {
-    dispatch(changeActiveElement(evt));
+    dispatch(changeActiveElement(evt.target.textContent));
   }
 });
 

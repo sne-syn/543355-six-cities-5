@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StarBar /> render renders correctly with default props 1`] = `
+<div
+  className="place-card__rating rating"
+>
+  <div
+    className="place-card__stars rating__stars"
+  >
+    <span
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
+    <span
+      className="visually-hidden"
+    >
+      Rating
+    </span>
+  </div>
+  
+</div>
+`;
+
+exports[`<StarBar /> render renders correctly with props 1`] = `
+<div
+  className="property__rating rating"
+>
+  <div
+    className="property__stars rating__stars"
+  >
+    <span
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
+    <span
+      className="visually-hidden"
+    >
+      Rating
+    </span>
+  </div>
+</div>
+`;

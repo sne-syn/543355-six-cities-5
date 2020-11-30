@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReviewsList /> test renders ReviewsList with ReviewsForm for auth-user 1`] = `
+<section
+  className="property__reviews reviews"
+>
+  <h2
+    className="reviews__title"
+  >
+    Reviews · 
+    <span
+      className="reviews__amount"
+    >
+      0
+    </span>
+  </h2>
+  <ul
+    className="reviews__list"
+  />
+  <ReviewForm />
+</section>
+`;
+
+exports[`<ReviewsList /> test renders ReviewsList with multiple reviews 1`] = `
+<section
+  className="property__reviews reviews"
+>
+  <h2
+    className="reviews__title"
+  >
+    Reviews · 
+    <span
+      className="reviews__amount"
+    >
+      2
+    </span>
+  </h2>
+  <ul
+    className="reviews__list"
+  >
+    <ReviewItem
+      review={
+        Object {
+          "author": "Ione",
+          "avatar": "https://robohash.org/98?set=set2&size=54x54",
+          "comment": "There’s a stunning beach with great snorkelling just a 6min drive, a few other beautiful beaches close by too.",
+          "date": "2007-10-13T16:12:32.554Z",
+          "id": 1,
+          "rating": 4,
+        }
+      }
+    />
+    <ReviewItem
+      review={
+        Object {
+          "author": "Bruno",
+          "avatar": "https://robohash.org/53?set=set2&size=54x54",
+          "comment": "Maria’s place is at a perfect location, very easy to get around with public transportation and walking distance to awesome bars and restaurants. Her place is great, very clean and has everything you need.",
+          "date": "2005-08-25T16:12:32.554Z",
+          "id": 2,
+          "rating": 3,
+        }
+      }
+    />
+  </ul>
+</section>
+`;
+
+exports[`<ReviewsList /> test renders ReviewsList without ReviewsForm for non-auth-user 1`] = `
+<section
+  className="property__reviews reviews"
+>
+  <h2
+    className="reviews__title"
+  >
+    Reviews · 
+    <span
+      className="reviews__amount"
+    >
+      2
+    </span>
+  </h2>
+  <ul
+    className="reviews__list"
+  >
+    <ReviewItem
+      review={
+        Object {
+          "author": "Ione",
+          "avatar": "https://robohash.org/98?set=set2&size=54x54",
+          "comment": "There’s a stunning beach with great snorkelling just a 6min drive, a few other beautiful beaches close by too.",
+          "date": "2007-10-13T16:12:32.554Z",
+          "id": 1,
+          "rating": 4,
+        }
+      }
+    />
+    <ReviewItem
+      review={
+        Object {
+          "author": "Bruno",
+          "avatar": "https://robohash.org/53?set=set2&size=54x54",
+          "comment": "Maria’s place is at a perfect location, very easy to get around with public transportation and walking distance to awesome bars and restaurants. Her place is great, very clean and has everything you need.",
+          "date": "2005-08-25T16:12:32.554Z",
+          "id": 2,
+          "rating": 3,
+        }
+      }
+    />
+  </ul>
+</section>
+`;
+
+exports[`<ReviewsList /> test renders ReviewsList without reviews 1`] = `
+<section
+  className="property__reviews reviews"
+>
+  <h2
+    className="reviews__title"
+  >
+    Reviews · 
+    <span
+      className="reviews__amount"
+    >
+      0
+    </span>
+  </h2>
+  <ul
+    className="reviews__list"
+  />
+</section>
+`;

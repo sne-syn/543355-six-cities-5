@@ -1,1 +1,1 @@
-export const getHighlightedOfferID = (state) => state.ACTIVE_CARD.highlightedOfferID;
+export const getHighlightedOfferId = (state) => state.ACTIVE_CARD.highlightedOfferId;
